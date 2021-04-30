@@ -6,6 +6,7 @@ import { createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import Reducers from './redux/reducers';
 
 const store = createStore(Reducers, composeWithDevTools());
 
