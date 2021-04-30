@@ -1,16 +1,15 @@
 .port-background {
-  @media only screen and (min-device-width: 320px) and (max-device-width: 480px) {
+  @media (max-width: 715px) {
     background: url(../img/background-user.png) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    height: 100%;
-    padding: 30px 20px 50px 20px;
+    min-height: 100vh;
+    padding: 60px 20px 60px 20px;
     .port-main {
-      * {
-        background: $color-white;
-      }
+      background: $color-white;
+      min-height: calc(100vh - 120px); // (padding top + bot) / 2
       .port-main-header {
         padding-top: 40px;
         padding-left: 60px;
@@ -59,7 +58,7 @@
       }
       .port-main-footer-login {
         text-align: center;
-        padding-top: 240px;
+        padding-top: 242px;
         padding-bottom: 50px;
         a {
           text-decoration: none;
@@ -69,23 +68,21 @@
     }
   }
 
-  @media all and (min-width: 480px) {
+  @media all and (min-width: 715px) {
     background: url(../img/background-user.png) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-    height: 100%;
-    padding: 130px 60px 150px 60px;
+    min-height: 100vh;
+    padding: 60px;
     .port-main {
-      * {
-        background: $color-white;
-      }
+      background: $color-white;
+      min-height: calc(100vh - 120px);
       .port-main-header {
         padding-top: 40px;
         padding-left: 60px;
         padding-right: 60px;
-        height: 100%;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -130,7 +127,7 @@
       }
       .port-main-footer-login {
         text-align: center;
-        padding-top: 240px;
+        padding-top: 242px;
         padding-bottom: 50px;
         a {
           text-decoration: none;
