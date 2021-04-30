@@ -1,7 +1,7 @@
 import { Route, Switch } from 'react-router';
+import './assets/styles/style.scss';
 import Home from './pages/Home';
 import Register from './pages/Register';
-import './assets/styles/style.scss';
 import Login from './pages/Login';
 
 function App() {
