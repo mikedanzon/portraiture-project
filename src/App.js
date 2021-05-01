@@ -4,6 +4,7 @@ import Home from './pages/Home';
 import Register from './pages/Register';
 import Login from './pages/Login';
 import Privacy from './pages/Privacy';
+import Download from './pages/Download';
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route exact path="/register" component={Register} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/privacy" component={Privacy} />
+        <Route exact path="/download" component={Download} />
       </Switch>
     </>
   );

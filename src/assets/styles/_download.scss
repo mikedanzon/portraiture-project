@@ -1,0 +1,117 @@
+.download-background {
+  @media (max-width: 715px) {
+    background: url(../img/privacy-bg.png) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    min-height: 100vh;
+    padding: 20px;
+    .download-main {
+      background: $color-white;
+      min-height: calc(100vh - 40px);
+      padding: 22px 30px 22px 30px;
+      .download-back {
+        font-size: 14px;
+        font-weight: bold;
+        a {
+          text-decoration: none !important;
+          color: black !important;
+        }
+      }
+      .download-main-content {
+        padding-top: 170px;
+        padding-bottom: 170px;
+        .download-text {
+          font-size: 14px;
+          color: $color-ash;
+          padding-bottom: 10px;
+          text-align: center;
+        }
+        .download-name {
+          font-size: 32px;
+          font-weight: bold;
+          text-align: center;
+        }
+        .download-date {
+          font-size: 14px;
+          font-weight: bold;
+          text-align: center;
+        }
+        .download-form {
+          font-size: 14px;
+          padding-top: 40px;
+          form {
+            margin: 0 auto;
+            max-width: 350px;
+          }
+          button {
+            background: white;
+            color: #0e203d;
+            font-weight: bold;
+            border: 1px solid black;
+            border-radius: 0px;
+          }
+        }
+      }
+    }
+  }
+
+  @media (min-width: 715px) {
+    background: url(../img/privacy-bg.png) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    min-height: 100vh;
+    padding: 40px;
+    .download-main {
+      background: $color-white;
+      min-height: calc(100vh - 80px);
+      padding: 42px 56px 42px 56px;
+      .download-back {
+        font-size: 14px;
+        font-weight: bold;
+        a {
+          text-decoration: none !important;
+          color: black !important;
+        }
+      }
+      .download-main-content {
+        padding-top: 190px;
+        padding-bottom: 190px;
+        .download-text {
+          font-size: 14px;
+          color: $color-ash;
+          padding-bottom: 10px;
+          text-align: center;
+        }
+        .download-name {
+          font-size: 32px;
+          font-weight: bold;
+          text-align: center;
+        }
+        .download-date {
+          font-size: 14px;
+          font-weight: bold;
+          text-align: center;
+        }
+        .download-form {
+          font-size: 14px;
+          padding-top: 30px;
+          form {
+            margin: 0 auto;
+            max-width: 350px;
+          }
+          button {
+            background: white;
+            color: #0e203d;
+            font-weight: bold;
+            border: 1px solid black;
+            border-radius: 0px;
+          }
+        }
+      }
+    }
+  }
+}
