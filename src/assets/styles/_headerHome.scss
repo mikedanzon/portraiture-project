@@ -1,0 +1,97 @@
+.hhome {
+  @media (max-width: 992px) {
+    background: white;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    .hhome-logo {
+      img {
+        width: 150px;
+        height: 100%;
+      }
+    }
+    .hhome-nav {
+      color: $color-brand-primary;
+      font-weight: bold;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      a {
+        text-decoration: none;
+        color: $color-brand-primary;
+      }
+      button {
+        padding: 5px 20px 5px 20px;
+        border: 1px solid #0e203d;
+        box-sizing: border-box;
+        font-weight: bold;
+      }
+      .hhome-product {
+        padding-bottom: 5px;
+      }
+      .hhome-gallery {
+        padding-bottom: 5px;
+      }
+      .hhome-button-login {
+        padding-bottom: 10px;
+        .hhome-login {
+          background: white;
+          padding-bottom: 5px;
+          border: 1px solid #0e203d;
+          box-sizing: border-box;
+          min-width: 150px;
+        }
+      }
+      .hhome-signup {
+        min-width: 150px;
+        background: linear-gradient(260.06deg, #0e203d 10.76%, #eab197 94.23%);
+        a {
+          color: white;
+        }
+      }
+    }
+  }
+  @media (min-width: 992px) {
+    background: white;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    .hhome-logo {
+      padding-left: 45px;
+      img {
+        width: 150px;
+        height: 100%;
+      }
+    }
+    .hhome-nav {
+      display: flex;
+      margin-left: auto;
+      color: $color-brand-primary;
+      font-weight: bold;
+      align-items: center;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      a {
+        text-decoration: none;
+        color: $color-brand-primary;
+      }
+      button {
+        padding: 5px 20px 5px 20px;
+        border: 1px solid #0e203d;
+        box-sizing: border-box;
+        font-weight: bold;
+      }
+      .hhome-login {
+        border: 1px solid #0e203d;
+        box-sizing: border-box;
+        background: white;
+      }
+      .hhome-signup {
+        margin-right: 45px;
+        background: linear-gradient(260.06deg, #0e203d 10.76%, #eab197 94.23%);
+        a {
+          color: white;
+        }
+      }
+    }
+  }
+}

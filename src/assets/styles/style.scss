@@ -6,6 +6,7 @@
 @import './loginRegister';
 @import './privacy';
 @import './download';
+@import './headerHome';
 
 * {
   margin: 0;
@@ -15,4 +16,8 @@
 
 .color-ash {
   color: $color-ash;
+}
+
+.color-gold {
+  color: #c2a47e;
 }
