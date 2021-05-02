@@ -9,9 +9,6 @@ function Download() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    if (download === 'email') {
-      console.log(email);
-    }
   }
 
   return (

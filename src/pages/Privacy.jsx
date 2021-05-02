@@ -8,13 +8,6 @@ function Privacy() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    if (privacy === 'password') {
-      console.log(password);
-    } else if (privacy === 'passmail') {
-      console.log(email, password);
-    } else {
-      console.log(email);
-    }
   }
 
   return (

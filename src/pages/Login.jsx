@@ -9,7 +9,6 @@ function Login() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    console.log(email, password);
   }
 
   return (

@@ -11,7 +11,6 @@ function Login() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    console.log(name, bsName, email, password);
   }
 
   return (
