@@ -1,6 +1,7 @@
 .port-background {
   @media (max-width: 715px) {
-    background: url(../img/background-user.png) no-repeat center center fixed;
+    background: url(../img/loginregister/background-user.png) no-repeat center
+      center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
@@ -69,7 +70,8 @@
   }
 
   @media all and (min-width: 715px) {
-    background: url(../img/background-user.png) no-repeat center center fixed;
+    background: url(../img/loginregister/background-user.png) no-repeat center
+      center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;

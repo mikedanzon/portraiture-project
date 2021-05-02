@@ -1,65 +1,45 @@
-import React, { useState } from 'react';
+import React from 'react';
+import { Navbar } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import Logo from '../assets/img/portraiture.png';
 import LogoBell from '../assets/img/logo_bell.png';
 import LogoUser from '../assets/img/logo_user.png';
-import Logo from '../assets/img/logo.png';
-import { FaBars } from 'react-icons/fa';
-import {
-  Collapse,
-  Navbar,
-  NavbarToggler,
-  NavbarBrand,
-  Nav,
-  NavItem,
-  NavLink,
-} from 'reactstrap';
 
 function Header() {
-  const [isOpen, setIsOpen] = useState(false);
-
-  const toggle = () => setIsOpen(!isOpen);
-
   return (
-    <div>
-      <Navbar color="light" light expand="md">
-        <NavbarBrand className="header-logo" href="/">
-          <img className="logo" src={Logo} alt="logo" />
-        </NavbarBrand>
-        <NavbarToggler onClick={toggle} />
-        <Collapse isOpen={isOpen} navbar>
-          <Nav className="header-nav" navbar>
-            <NavItem>
-              <NavLink className="header-nav-user" href="/">
-                Edit Profile
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink className="header-nav-user" href="/">
-                Notifications
-              </NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="/">Collections</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="/">Products</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="/">Packages</NavLink>
-            </NavItem>
-            <span className="header-nav-user-logo">
-              <NavItem>
-                <NavLink className="header-nav-logo" href="/">
-                  <img src={LogoBell} alt="notifications" />
-                </NavLink>
-              </NavItem>
-              <NavItem>
-                <NavLink className="header-nav-logo" href="/">
-                  <img src={LogoUser} alt="user" />
-                </NavLink>
-              </NavItem>
-            </span>
-          </Nav>
-        </Collapse>
+    <div className="port-header">
+      <Navbar expand="lg">
+        <div className="port-header-logo">
+          <Link to="/">
+            <img src={Logo} alt="logohome" />
+          </Link>
+        </div>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <div className="port-header-nav">
+            <div className="port-header-collection pr-3">
+              <Link to="/">Collection</Link>
+            </div>
+            <div className="port-header-products pr-3">
+              <Link to="/">Products</Link>
+            </div>
+            <div className="port-header-package pr-5">
+              <Link to="/">Package</Link>
+            </div>
+            <div className="port-header-bell pr-4">
+              {/* Tambahin tulisan Notification */}
+              <Link to="/">
+                <img src={LogoBell} alt="imageLogo" />
+              </Link>
+            </div>
+            <div className="port-header-user pr-5">
+              {/* Tambahin tulisan Profile */}
+              <Link to="/">
+                <img src={LogoUser} alt="imageLogo" />
+              </Link>
+            </div>
+          </div>
+        </Navbar.Collapse>
       </Navbar>
     </div>
   );

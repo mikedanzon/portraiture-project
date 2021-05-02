@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import HeaderHome from '../components/HeaderHome';
-import HomeMini from '../assets/img/home-minimalist.png';
-import HomeClass from '../assets/img/home-classic.png';
-import HomeDark from '../assets/img/home-dark.png';
-import HomeLaptop from '../assets/img/home-laptop.png';
-import Home9 from '../assets/img/home-image9.png';
-import Collection from '../assets/img/collection.png';
-import Projects from '../assets/img/projects.png';
-import Package from '../assets/img/package.png';
 import { Link } from 'react-router-dom';
+import HeaderHome from '../components/HeaderHome';
+import HomeMini from '../assets/img/home/home-minimalist.png';
+import HomeClass from '../assets/img/home/home-classic.png';
+import HomeDark from '../assets/img/home/home-dark.png';
+import HomeLaptop from '../assets/img/home/home-laptop.png';
+import Home9 from '../assets/img/home/home-image9.png';
+import Collection from '../assets/img/home/collection.png';
+import Projects from '../assets/img/home/projects.png';
+import Package from '../assets/img/home/package.png';
 import Footer from '../components/Footer';
 
 function Home() {

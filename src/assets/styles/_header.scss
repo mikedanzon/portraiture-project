@@ -1,35 +1,79 @@
-.header-nav {
-  margin-left: auto;
-  padding-right: 64px
-}
-
-.header-logo{
-  padding-left: 64px;
-  
-  .logo {
-    width: 150px;
-  }  
-}
-
-.header-nav-user {
-  display: none;
-}
-
-.header-nav-user-logo {
-  display: flex;
-  padding-left: 32px
-}
-
-@media (max-width: 767px) {
-  .header-logo {
-    padding-left: 10px;
+.port-header {
+  @media (max-width: 992px) {
+    background: white;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    .port-header-logo {
+      img {
+        width: 150px;
+        height: 100%;
+      }
+    }
+    .port-header-nav {
+      color: $color-brand-primary;
+      font-weight: bold;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      a {
+        text-decoration: none;
+        color: $color-brand-primary;
+      }
+      button {
+        padding: 5px 20px 5px 20px;
+        border: 1px solid #0e203d;
+        box-sizing: border-box;
+        font-weight: bold;
+      }
+      .port-header-collection {
+        padding-bottom: 5px;
+      }
+      .port-header-products {
+        padding-bottom: 5px;
+      }
+      .port-header-package {
+        padding-bottom: 5px;
+      }
+      .port-header-bell {
+        padding-bottom: 5px;
+      }
+      .port-header-user {
+        padding-bottom: 5px;
+      }
+    }
   }
-
-  .header-nav-logo {
-    display: none;
-  }
-
-  .header-nav-user {
-    display: block; 
+  @media (min-width: 992px) {
+    background: white;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    .port-header-logo {
+      padding-left: 45px;
+      img {
+        width: 150px;
+        height: 100%;
+      }
+    }
+    .port-header-nav {
+      display: flex;
+      margin-left: auto;
+      color: $color-brand-primary;
+      font-weight: bold;
+      align-items: center;
+      padding-top: 10px;
+      padding-bottom: 10px;
+      a {
+        text-decoration: none;
+        color: $color-brand-primary;
+      }
+      button {
+        padding: 5px 20px 5px 20px;
+        border: 1px solid #0e203d;
+        box-sizing: border-box;
+        font-weight: bold;
+      }
+    }
   }
 }
