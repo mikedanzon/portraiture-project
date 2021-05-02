@@ -1,5 +1,6 @@
 import { Route, Switch } from 'react-router';
 import Home from './pages/Home';
+import './assets/styles/style.scss';
 
 function App() {
   return (

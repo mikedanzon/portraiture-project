@@ -1,0 +1,35 @@
+.header-nav {
+  margin-left: auto;
+  padding-right: 64px
+}
+
+.header-logo{
+  padding-left: 64px;
+  
+  .logo {
+    width: 150px;
+  }  
+}
+
+.header-nav-user {
+  display: none;
+}
+
+.header-nav-user-logo {
+  display: flex;
+  padding-left: 32px
+}
+
+@media (max-width: 767px) {
+  .header-logo {
+    padding-left: 10px;
+  }
+
+  .header-nav-logo {
+    display: none;
+  }
+
+  .header-nav-user {
+    display: block; 
+  }
+}
