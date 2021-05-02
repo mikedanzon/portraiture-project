@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import Logo from '../assets/img/logo.png';
+import Header from '../components/Header'
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -13,6 +14,7 @@ function Login() {
 
   return (
     <>
+    <Header/>
       <div className="port-background">
         <div className="port-main">
           <div className="port-main-header">

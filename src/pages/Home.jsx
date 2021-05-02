@@ -11,6 +11,7 @@ import Projects from '../assets/img/home/projects.png';
 import Package from '../assets/img/home/package.png';
 import Footer from '../components/Footer';
 
+
 function Home() {
   const [image, setImage] = useState();
 

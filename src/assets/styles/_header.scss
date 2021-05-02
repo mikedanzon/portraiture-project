@@ -36,8 +36,16 @@
       }
       .port-header-bell {
         padding-bottom: 5px;
+        display: none;
       }
       .port-header-user {
+        padding-bottom: 5px;
+        display: none;
+      }
+      .port-header-bell-notif {
+        padding-bottom: 5px;
+      }
+      .port-header-user-profile {
         padding-bottom: 5px;
       }
     }
@@ -73,6 +81,12 @@
         border: 1px solid #0e203d;
         box-sizing: border-box;
         font-weight: bold;
+      }
+       .port-header-bell-notif {
+        display: none;
+      }
+      .port-header-user-profile {
+        display: none;
       }
     }
   }
