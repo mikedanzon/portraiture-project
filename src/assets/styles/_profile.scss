@@ -1,0 +1,128 @@
+.profile-container {
+	margin-top: 55px;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	height: 1047px;
+	justify-content: center;
+	.inner-container {
+		height: 840px;
+		width: 52%;
+		align-self: center;
+		.inner-title {
+			color: #C2A47E;
+			padding-bottom: 16px;
+			font-size: 16px;
+			font-weight: 400;
+		}
+		.inner-bn {
+			margin-bottom: 5px;
+			font-size: 12px;
+			color: #373737;
+			font-weight: bold;
+		}
+		.inner-bn-name {
+			background-color: #FCFCFC;
+			height: 42px;
+			border-bottom: 1px solid #999999;
+			margin-bottom: 24px;
+			.inner-bn-name-text {
+				padding: 11px 0px 11px 16px;
+				font-size: 14px;
+				font-weight: normal;
+				.inner-bn-name-text-input {
+					border: none;
+					outline: none;
+					width: 100%;
+					background-color: transparent;
+				}
+			}
+		}
+		.inner-address {
+			color: #373737;
+			font-size: 12px;
+			font-weight: bold;
+		}
+		.inner-address-name {
+			background-color: #FCFCFC;
+			height: 120px;
+			border-bottom: 1px solid #999999;
+			.inner-address-name-text {
+				height: 120px;
+				margin-left: 16px;
+				padding-top: 11px;
+				padding-bottom: 11px;
+				width: 165px;
+				font-size: 14px;
+				font-weight: 400;
+			}
+		}
+		.inner-images {
+			margin-top: 24px;
+			margin-bottom: 5px;
+			font-size: 12px;
+			font-weight: bold;
+		}
+		.inner-title-ad {
+			color: #C2A47E;
+			margin-bottom: 16px;
+			font-size: 16px;
+			font-weight: 400;
+		}
+		.inner-ad {
+			padding-bottom: 5px;
+			font-size: 12px;
+			font-weight: 700;
+		}
+		.inner-ad-name {
+			background-color: #FCFCFC;
+			height: 42px;
+			border-bottom: 1px solid #999999;
+			margin-bottom: 24px;
+			.inner-ad-name-text {
+				padding: 11px 0px 11px 16px;
+				font-size: 14px;
+				font-weight: 400;
+			}
+		}
+		.inner-ad-email {
+			padding-bottom: 5px;
+			font-size: 12px;
+			font-weight: 700;
+		}
+		.inner-ad-name-email {
+			background-color: #FCFCFC;
+			height: 42px;
+			border-bottom: 1px solid #999999;
+			margin-bottom: 24px;
+			.inner-ad-name-email-text {
+				padding: 11px 0px 11px 16px;
+				font-size: 14px;
+				font-weight: 400;
+			}
+		}
+		.profile-inner-button {
+			display: flex;
+			justify-content: flex-end;
+			margin-top: 119px;
+			margin-bottom: 127px;
+			.profile-inner-button-btn {
+			background-color: #0E203D;
+			justify-content: flex-end;
+			width: 99px;
+			height: 42px;
+			color: #FFFFFF;
+			border-radius: 0px;
+			border: none;
+			font-size: 14px;
+			font-weight: 700;
+		}
+		}
+	}
+}
+
+.inner-images-photo {
+	width: 122px;
+	border: 1px solid #999999;
+	margin-bottom: 44px; 
+}
