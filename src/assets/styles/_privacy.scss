@@ -7,30 +7,37 @@
     background-size: cover;
     min-height: 100vh;
     padding: 15px;
+
     .privacy-main {
       background: $color-white;
       padding: 180px 10px 180px 10px;
       min-height: calc(100vh - 30px);
       text-align: center;
+
       .privacy-collection {
         color: $color-ash;
         font-size: 14px;
         padding-bottom: 15px;
       }
+
       .privacy-name {
         font-size: 32px;
         font-weight: bold;
       }
+      
       .privacy-date {
         font-size: 14px;
       }
+
       .privacy-form {
         font-size: 14px;
         padding-top: 40px;
+
         form {
           margin: 0 auto;
           max-width: 400px;
         }
+
         button {
           padding-right: 30px;
           padding-left: 30px;
@@ -43,6 +50,7 @@
       }
     }
   }
+  
   @media (min-width: 715px) {
     background: url(../img/privacy/privacy-bg.png) no-repeat center center fixed;
     -webkit-background-size: cover;
@@ -51,31 +59,38 @@
     background-size: cover;
     min-height: 100vh;
     padding: 40px;
+
     .privacy-main {
       background: $color-white;
       padding: 230px 150px 230px 150px;
       min-height: calc(100vh - 80px);
       text-align: center;
+
       .privacy-collection {
         color: $color-ash;
         font-size: 14px;
         padding-bottom: 15px;
       }
+
       .privacy-name {
         font-size: 32px;
         font-weight: bold;
       }
+
       .privacy-date {
         font-size: 14px;
         font-weight: bold;
       }
+
       .privacy-form {
         font-size: 14px;
         padding-top: 40px;
+
         form {
           margin: 0 auto;
           max-width: 350px;
         }
+        
         button {
           padding-right: 50px;
           padding-left: 50px;

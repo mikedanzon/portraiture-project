@@ -5,6 +5,7 @@ import Register from './pages/Register';
 import Login from './pages/Login';
 import Privacy from './pages/Privacy';
 import Download from './pages/Download';
+import CollectionNew from './pages/CollectionNew';
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
         <Route exact path="/login" component={Login} />
         <Route exact path="/privacy" component={Privacy} />
         <Route exact path="/download" component={Download} />
+        <Route exact path="/collections/new" component={CollectionNew} />
       </Switch>
     </>
   );

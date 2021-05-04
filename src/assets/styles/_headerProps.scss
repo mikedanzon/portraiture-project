@@ -1,0 +1,85 @@
+.hprops-background {
+  @media (max-width: 715px) {
+    background: #0e203d;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    color: white;
+
+    .hprops-text {
+      font-size: 24px;
+
+      .hprops-text-mid {
+        text-align: center;
+        font-weight: 500;
+        text-align: center;
+      }
+
+      .hprops-text-close {
+        position: absolute;
+        right: 30px;
+        top: 28px;
+
+        a {
+          text-decoration: none;
+          color: white;
+        }
+      }
+    }
+  }
+
+  @media (min-width: 715px) and (max-width: 990px) {
+    background: #0e203d;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    color: white;
+
+    .hprops-text {
+      font-size: 24px;
+
+      .hprops-text-mid {
+        text-align: center;
+        font-weight: 500;
+        text-align: center;
+      }
+
+      .hprops-text-close {
+        position: absolute;
+        right: 45px;
+        top: 28px;
+
+        a {
+          text-decoration: none;
+          color: white;
+        }
+      }
+    }
+  }
+
+  @media (min-width: 990px) {
+    background: #0e203d;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    color: white;
+
+    .hprops-text {
+      font-size: 24px;
+
+      .hprops-text-mid {
+        text-align: center;
+        font-weight: 500;
+        text-align: center;
+      }
+
+      .hprops-text-close {
+        position: absolute;
+        right: 60px;
+        top: 28px;
+        
+        a {
+          text-decoration: none;
+          color: white;
+        }
+      }
+    }
+  }
+}
