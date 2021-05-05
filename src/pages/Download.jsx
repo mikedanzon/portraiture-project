@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 function Download() {
   const [email, setEmail] = useState('');
-  const [download, setDownload] = useState('email');
+  const [download, setDownload] = useState();
 
   function handleSubmit(event) {
     event.preventDefault();

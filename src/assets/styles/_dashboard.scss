@@ -32,90 +32,14 @@
 	}
 }
 }
-.dashboard-container {
-	height: 1404px;
+.dashboard-inner {
 	width: 100%;
+	height: 1404px;
 	border: 1px solid red;
-	padding-right: 10px;
-	.dashboard-inner-container {
-		border: 1px solid blue;
-		display: flex;
-		flex-direction: column;
-		// justify-content: center;
-		// align-items: center;
-		height: 1056px;
-		margin: 103px 231px 245px 254px;
-		.dashboard-quick {
-		}
-		.dashboard-inner-recent-collection{
-				border: 1px solid red;
-				height: 466px;
-			}
-	}
+	display: flex;
+	justify-content: center;
+
 }
-// .dashboard-inner-container {
-// 	height: 1404px;
-// 	width: 100%;
-// 	display: flex;
-// 	flex-direction:column;
-// 	align-items: center;
-// 	justify-content: center;
-// 	border: 1px solid red;
-// 	.dashboard-inner-container-two {
-// 		border: 1px solid yellow;
-// 		width: 68%;
-// 		height:1056px;
-// 		.dashboard-inner-quick {
-// 			color:#000000;
-// 			font-size: 24px;
-// 			font-weight: bold;
-// 		}
-// 		.dashboard-inner-recent-collection {
-// 			height: 466px;
-// 			background-color: #F8F8F8;
-// 			margin-top: 45px;
-// 			padding: 16px 32px 38px 32px;
-// 			border: 1px solid yellow;
-// 			.dashboard-inner-recent-collection-container {
-// 				display: flex;
-// 				border: 1px solid black;
-// 				height: 350px;
-// 				// flex-direction: column;
-// 				flex-wrap: wrap;
-// 				.dashboard-collection-card-img {
-// 					margin-left: 32px;
-// 				}
-// 				.dashboard-collection-card-info {
-// 					height: 98px;
-// 					width: 35%;
-// 					// margin-left: 32px;
-// 					background-color: white;
-// 					border: 1px solid red;
-// 				}
-				
-			
-// 			}
-			
-// 		}
-// 		.dashboard-inner-recent-container {
-// 			border: 1px solid blue;
-// 			height: 471px;
-// 			margin-top: 45px;
-// 			display: flex;
-// 			justify-content: space-between;
-// 			.dashboard-inner-recent-projects {
-// 				height: 471px;
-// 				width: 47%;
-// 				background-color: #F8F8F8;
-// 			}
-// 			.dashboard-inner-recent-packages {
-// 				height: 471px;
-// 				width: 47%;
-// 				background-color: #F8F8F8;
-// 			}
-// 		}
-// 	}
-// }
 
 
 

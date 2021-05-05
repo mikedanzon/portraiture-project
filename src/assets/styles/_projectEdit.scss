@@ -1,77 +1,76 @@
-.profile-container {
+.project-edit-container {
 	display:flex;
 	justify-content: center;
 	padding-top: 80px;
-	.profile-inner-container {
+	.project-edit-inner-container {
 		width: 59%;
-		.profile-bd {
+		.project-edit-pd {
 			font-size: 18px;
 			font-style: normal;
 			font-weight: 400;
 			color: #C2A47E;
 		}
-		.profile-bn {
+		.project-edit-pt {
 			padding-top: 24px;
 			font-size: 16px;
 			font-style: normal;
 			font-weight: 700;
 			color: #373737;
 		}
-		.profile-bn-input {
+		.project-edit-pt-input {
 
 		}
-		.profile-ad {
+		.project-edit-date {
 			padding-top: 24px;
 			font-size: 16px;
 			font-style: normal;
 			font-weight: 700;
 			color: #373737;
 		}
-		.profile-ad-input {
+		.project-edit-date-input {
 
 		}
-		.profile-image {
+		.project-edit-desc {
 			padding-top: 24px;
 			font-size: 16px;
 			font-style: normal;
 			font-weight: 700;
 			color: #373737;
 		}
-		.profile-image-logo {
-			width: 100px;
-			border: 1px solid #999999;
+		.project-edit-desc-input {
+
 		}
-		.profile-ac {
+		.project-edit-cd {
 			padding-top: 44px;
 			font-size: 18px;
 			font-style: normal;
 			font-weight: 400;
 			color: #C2A47E;
 		}
-		.profile-name {
+		.project-edit-cn {
 			padding-top: 24px;
 			font-size: 16px;
 			font-style: normal;
 			font-weight: 700;
 			color: #373737;
 		}
-		.profile-name-input {
+		.project-edit-cn-input {
 
 		}
-		.profile-email {
+		.project-edit-ca {
 			padding-top: 24px;
 			font-size: 16px;
 			font-style: normal;
 			font-weight: 700;
 			color: #373737;
 		}
-		.profile-email-input {
+		.project-edit-ca-input {
 
 		}
-		.profile-button-container {
+		.project-edit-button-container {
 			display: flex;
 			justify-content: flex-end;
-			.profile-button {
+			.project-edit-button {
 				margin-top: 119px;
 				margin-bottom: 127px;
 				color: #FFFFFF;
