@@ -28,7 +28,13 @@
 }
 
 .color-gold {
-  color: #c2a47e;
+  color: $color-gold;
+}
+
+.cursor-pointer {
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .custom-form-port {

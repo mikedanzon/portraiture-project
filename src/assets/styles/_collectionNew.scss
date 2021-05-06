@@ -2,22 +2,56 @@
   background: #f3f8f8;
 
   .cnew-header-title {
-    padding: 20px 220px 20px 220px;
-    display: flex;
-    justify-content: space-between;
     color: $color-ash;
     font-weight: bold;
+
     .cnew-header-active {
       color: #0e203d;
     }
+
+    .cnew-header-border {
+      border: 0 none #ccc;
+      border-top: 2px solid $color-ash;
+      border-radius: 0;
+    }
   }
 
-  .cnew-header-border {
-    width: 100px;
-    margin-top: 10px;
-    border: 0 none #ccc;
-    border-top: 2px solid $color-ash;
-    border-radius: 0;
+  @media (max-width: 650px) {
+    .cnew-header-title {
+      padding: 20px 30px 20px 30px;
+      text-align: center;
+    }
+
+    .cnew-header-border {
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+  }
+
+  @media (min-width: 650px) and (max-width: 1100px) {
+    .cnew-header-title {
+      padding: 20px 30px 20px 30px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .cnew-header-border {
+      width: 70px;
+      margin-top: 10px;
+    }
+  }
+
+  @media (min-width: 1100px) {
+    .cnew-header-title {
+      padding: 20px 220px 20px 220px;
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .cnew-header-border {
+      width: 100px;
+      margin-top: 10px;
+    }
   }
 }
 
@@ -46,10 +80,12 @@
     color: #c2a47e;
     font-size: 12px;
     font-weight: 500;
+
     :hover {
       cursor: pointer;
     }
   }
+
   .cnew-advance-options {
     .cnew-advance-1 {
       padding-top: 35px;
@@ -303,11 +339,5 @@
         }
       }
     }
-  }
-}
-
-.theme-pointer {
-  :hover {
-    cursor: pointer;
   }
 }
