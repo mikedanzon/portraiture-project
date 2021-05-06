@@ -149,6 +149,8 @@ function CollectionNew() {
             <Form.Group>
               <Form.Label>Title*</Form.Label>
               <Form.Control
+                autoFocus
+                className="custom-form-port"
                 type="text"
                 placeholder="e.g. Leon & Stella"
                 value={title}
@@ -158,6 +160,7 @@ function CollectionNew() {
             <Form.Group controlId="formBasicEmail">
               <Form.Label>Date*</Form.Label>
               <Form.Control
+                className="custom-form-port"
                 type="date"
                 placeholder="Select date"
                 value={date}
@@ -167,6 +170,7 @@ function CollectionNew() {
             <Form.Group controlId="formBasicEmail">
               <Form.Label>Description</Form.Label>
               <Form.Control
+                className="custom-form-port"
                 as="textarea"
                 rows={4}
                 type="text"

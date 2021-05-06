@@ -30,6 +30,7 @@ function Login() {
                 <Form.Label>Email</Form.Label>
                 <Form.Control
                   autoFocus
+                  className="custom-form-port"
                   type="email"
                   value={email}
                   placeholder="e.g. justinjunaedi@gmail.com"
@@ -39,6 +40,7 @@ function Login() {
               <Form.Group size="lg" controlId="password">
                 <Form.Label>Password</Form.Label>
                 <Form.Control
+                  className="custom-form-port"
                   type="password"
                   value={password}
                   placeholder="********"
