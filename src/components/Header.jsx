@@ -2,8 +2,8 @@ import React from 'react';
 import { Navbar } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import Logo from '../assets/img/portraiture.png';
-import LogoBell from '../assets/img/logo_bell.png';
-import LogoUser from '../assets/img/logo_user.png';
+import LogoBell from '../assets/img/header/logo_bell.png';
+import LogoUser from '../assets/img/header/logo_user.png';
 
 function Header() {
   return (

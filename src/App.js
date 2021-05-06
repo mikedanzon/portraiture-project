@@ -6,6 +6,8 @@ import Login from './pages/Login';
 import Privacy from './pages/Privacy';
 import Download from './pages/Download';
 import CollectionNew from './pages/CollectionNew';
+import Testing from './pages/Testing';
+import CollectionEdit from './pages/CollectionEdit';
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
         <Route exact path="/privacy" component={Privacy} />
         <Route exact path="/download" component={Download} />
         <Route exact path="/collections/new" component={CollectionNew} />
+        <Route exact path="/collections/edit" component={CollectionEdit} />
+        <Route exact path="/testing" component={Testing} />
       </Switch>
     </>
   );

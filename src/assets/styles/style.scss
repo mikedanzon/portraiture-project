@@ -10,6 +10,8 @@
 @import './dashboard';
 @import './collectionNew';
 @import './headerProps';
+@import './template';
+@import './collectionEdit';
 
 * {
   margin: 0;
@@ -23,4 +25,18 @@
 
 .color-gold {
   color: #c2a47e;
+}
+
+.custom-form-port {
+  border-radius: 0;
+  border: 0;
+  border-bottom: 2px solid $color-ash;
+  background: #fcfcfc;
+  height: 42px;
+
+  &:focus {
+    box-shadow: none !important;
+    border-bottom: 2px solid black;
+    background: #fcfcfc;
+  }
 }

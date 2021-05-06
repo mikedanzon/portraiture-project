@@ -1,0 +1,74 @@
+.breadcrumb {
+  background: none;
+
+  .breadcrumb-item {
+    a {
+      color: $color-ash !important;
+    }
+  }
+
+  .breadcrumb-item.active {
+    color: #c2a47e;
+  }
+}
+
+.cedit {
+  padding: 120px 190px 120px 190px;
+
+  .cedit-header-menu {
+    margin-left: -17px;
+  }
+
+  .cedit-header-text {
+    padding-bottom: 70px;
+
+    .cedit-header-text-name {
+      font-size: 24px;
+      font-weight: bold;
+      padding-bottom: 5px;
+    }
+
+    .cedit-header-text-date {
+      font-size: 18px;
+    }
+  }
+
+  .cedit-main-menu {
+    .cedit-menu {
+      display: flex;
+
+      .cedit-menu-style {
+        padding: 7px 15px 7px 15px;
+        margin-right: 20px;
+        color: #0e203d;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+
+      .cedit-menu-style.active {
+        background: #f2ebdc;
+      }
+    }
+
+    .cedit-menu-border {
+      border: 2px solid #c2a47e;
+    }
+  }
+
+  .cedit-content {
+    padding: 50px 100px 50px 100px;
+
+    button {
+      float: right;
+      background: #0e203d;
+      color: white;
+      padding: 10px 30px;
+
+      &:hover {
+        background: #122e3d;
+      }
+    }
+  }
+}

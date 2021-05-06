@@ -3,6 +3,10 @@ import { Button, Form } from 'react-bootstrap';
 import HeaderProps from '../components/HeaderProps';
 import { useDropzone } from 'react-dropzone';
 import { AiOutlineCloudUpload } from 'react-icons/ai';
+import ThemeClass from '../assets/img/collections/theme-classic.png';
+import ThemeMin from '../assets/img/collections/theme-minimalism.png';
+import ThemeDark from '../assets/img/collections/theme-dark.png';
+import { AiFillEye } from 'react-icons/ai';
 
 function CollectionNew() {
   const [page, setPage] = useState(0);
@@ -13,21 +17,23 @@ function CollectionNew() {
   const [download, setDownload] = useState(true);
   const [advOpen, setAdvOpen] = useState(false);
   const [image, setImage] = useState();
+  const [theme, setTheme] = useState();
 
   const onDrop = useCallback((acceptedFiles) => {
     setImage(acceptedFiles);
   }, []);
+
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
 
-  // const objectURL = URL.createObjectURL(image)
-
   const previewImages = () => {
-    return image.map((val) => {
+    return image.map((val, index) => {
       return (
-        <img src={URL.createObjectURL(val)} alt="previewImages"/>
-      )
-    })
-  }
+        <div className="image-preview-list">
+          <img src={URL.createObjectURL(val)} alt="previewImages" />
+        </div>
+      );
+    });
+  };
 
   const onSubmitFirst = () => {
     if (!title) {
@@ -40,38 +46,34 @@ function CollectionNew() {
   };
 
   const onUploadImage = () => {
-    console.log(image);
+    setPage(2);
+  };
+
+  const onSaveTheme = () => {
+    console.log('succes, just need to wait backend');
+  };
+
+  const previewTheme = () => {
+    console.log(theme);
   };
 
   return (
     <>
       <HeaderProps title="Create Collections" link="/" />
       <div className="cnew-header">
-        {page === 1 ? (
-          <div className="cnew-header-title">
-            <div>1. Collection Details</div>
-            <div className="cnew-header-border"></div>
-            <div className="cnew-header-active">2. Upload Photos</div>
-            <div className="cnew-header-border"></div>
-            <div>3. Select Theme</div>
+        <div className="cnew-header-title">
+          <div className={`${page ? '' : 'cnew-header-active'}`}>
+            1. Collection Details
           </div>
-        ) : page === 2 ? (
-          <div className="cnew-header-title">
-            <div>1. Collection Details</div>
-            <div className="cnew-header-border"></div>
-            <div>2. Upload Photos</div>
-            <div className="cnew-header-border"></div>
-            <div className="cnew-header-active">3. Select Theme</div>
+          <div className="cnew-header-border"></div>
+          <div className={`${page === 1 ? 'cnew-header-active' : ''}`}>
+            2. Upload Photos
           </div>
-        ) : (
-          <div className="cnew-header-title">
-            <div className="cnew-header-active">1. Collection Details</div>
-            <div className="cnew-header-border"></div>
-            <div>2. Upload Photos</div>
-            <div className="cnew-header-border"></div>
-            <div>3. Select Theme</div>
+          <div className="cnew-header-border"></div>
+          <div className={`${page === 2 ? 'cnew-header-active' : ''}`}>
+            3. Select Theme
           </div>
-        )}
+        </div>
       </div>
       {page === 1 ? (
         <div className="cnew-main">
@@ -91,21 +93,54 @@ function CollectionNew() {
               </div>
             </div>
           </div>
-          {image ? (
-            <div className="port-image">
-              {previewImages()}
+          {image && <div className="port-image">{previewImages()}</div>}
+          <div
+            className={`${
+              image ? 'port-upload-button-2' : 'port-upload-button'
+            }`}
+          >
+            <Button variant="none" onClick={onUploadImage} disabled={!image}>
+              Next
+            </Button>
+          </div>
+        </div>
+      ) : page === 2 ? (
+        <div className="cnew-main">
+          <div className="cnew-theme">
+            <div className="cnew-theme-1">
+              <span className="theme-pointer" onClick={() => setTheme(1)}>
+                <img src={ThemeClass} alt="classTheme" />
+              </span>
+            </div>
+            <div className="cnew-theme-2">
+              <span className="theme-pointer" onClick={() => setTheme(2)}>
+                <img src={ThemeMin} alt="classTheme" />
+              </span>
+            </div>
+            <div className="cnew-theme-3">
+              <span className="theme-pointer" onClick={() => setTheme(3)}>
+                <img src={ThemeDark} alt="classTheme" />
+              </span>
+            </div>
+          </div>
+          {theme ? (
+            <div className="cnew-theme-preview">
+              <div className="theme-preview">
+                <span className="theme-pointer" onClick={previewTheme}>
+                  <div className="theme-preview-wrap">
+                    <div className="theme-preview-text-1">
+                      <AiFillEye />
+                    </div>
+                    <div className="theme-preview-text-2">Preview</div>
+                  </div>
+                </span>
+              </div>
             </div>
           ) : null}
-          <div className="port-upload-button">
-            {image ? (
-              <Button variant="none" onClick={onUploadImage}>
-                Next
-              </Button>
-            ) : (
-              <Button variant="none" disabled>
-                Next
-              </Button>
-            )}
+          <div className="cnew-theme-button">
+            <Button variant="none" onClick={onSaveTheme} disabled={!theme}>
+              Save
+            </Button>
           </div>
         </div>
       ) : (
