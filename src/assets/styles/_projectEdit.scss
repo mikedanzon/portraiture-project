@@ -1,0 +1,85 @@
+.project-edit-container {
+	display:flex;
+	justify-content: center;
+	padding-top: 80px;
+	.project-edit-inner-container {
+		width: 59%;
+		.project-edit-pd {
+			font-size: 18px;
+			font-style: normal;
+			font-weight: 400;
+			color: #C2A47E;
+		}
+		.project-edit-pt {
+			padding-top: 24px;
+			font-size: 16px;
+			font-style: normal;
+			font-weight: 700;
+			color: #373737;
+		}
+		.project-edit-pt-input {
+
+		}
+		.project-edit-date {
+			padding-top: 24px;
+			font-size: 16px;
+			font-style: normal;
+			font-weight: 700;
+			color: #373737;
+		}
+		.project-edit-date-input {
+
+		}
+		.project-edit-desc {
+			padding-top: 24px;
+			font-size: 16px;
+			font-style: normal;
+			font-weight: 700;
+			color: #373737;
+		}
+		.project-edit-desc-input {
+
+		}
+		.project-edit-cd {
+			padding-top: 44px;
+			font-size: 18px;
+			font-style: normal;
+			font-weight: 400;
+			color: #C2A47E;
+		}
+		.project-edit-cn {
+			padding-top: 24px;
+			font-size: 16px;
+			font-style: normal;
+			font-weight: 700;
+			color: #373737;
+		}
+		.project-edit-cn-input {
+
+		}
+		.project-edit-ca {
+			padding-top: 24px;
+			font-size: 16px;
+			font-style: normal;
+			font-weight: 700;
+			color: #373737;
+		}
+		.project-edit-ca-input {
+
+		}
+		.project-edit-button-container {
+			display: flex;
+			justify-content: flex-end;
+			.project-edit-button {
+				margin-top: 119px;
+				margin-bottom: 127px;
+				color: #FFFFFF;
+				background-color: #0E203D;
+				width: 99px;
+				height: 42px;
+				border-radius: 0px;
+				border: none;
+			}
+		}
+	}
+}

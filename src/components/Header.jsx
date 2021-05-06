@@ -27,15 +27,23 @@ function Header() {
               <Link to="/">Package</Link>
             </div>
             <div className="port-header-bell pr-4">
-              {/* Tambahin tulisan Notification */}
               <Link to="/">
                 <img src={LogoBell} alt="imageLogo" />
               </Link>
             </div>
             <div className="port-header-user pr-5">
-              {/* Tambahin tulisan Profile */}
               <Link to="/">
                 <img src={LogoUser} alt="imageLogo" />
+              </Link>
+            </div>
+            <div className="port-header-bell-notif pr-4">
+              <Link to="/">
+                <Link to="/">Notifications</Link>
+              </Link>
+            </div>
+            <div className="port-header-user-profile pr-5">
+              <Link to="/">
+                <Link to="/">Profile</Link>
               </Link>
             </div>
           </div>

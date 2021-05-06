@@ -1,0 +1,85 @@
+.project-new-container {
+	display:flex;
+	justify-content: center;
+	padding-top: 80px;
+	.project-new-inner-container {
+		width: 59%;
+		.project-new-pd {
+			font-size: 18px;
+			font-style: normal;
+			font-weight: 400;
+			color: #C2A47E;
+		}
+		.project-new-pt {
+			padding-top: 24px;
+			font-size: 16px;
+			font-style: normal;
+			font-weight: 700;
+			color: #373737;
+		}
+		.project-new-pt-input {
+
+		}
+		.project-new-date {
+			padding-top: 24px;
+			font-size: 16px;
+			font-style: normal;
+			font-weight: 700;
+			color: #373737;
+		}
+		.project-new-date-input {
+
+		}
+		.project-new-desc {
+			padding-top: 24px;
+			font-size: 16px;
+			font-style: normal;
+			font-weight: 700;
+			color: #373737;
+		}
+		.project-new-desc-input {
+
+		}
+		.project-new-cd {
+			padding-top: 44px;
+			font-size: 18px;
+			font-style: normal;
+			font-weight: 400;
+			color: #C2A47E;
+		}
+		.project-new-cn {
+			padding-top: 24px;
+			font-size: 16px;
+			font-style: normal;
+			font-weight: 700;
+			color: #373737;
+		}
+		.project-new-cn-input {
+
+		}
+		.project-new-ca {
+			padding-top: 24px;
+			font-size: 16px;
+			font-style: normal;
+			font-weight: 700;
+			color: #373737;
+		}
+		.project-new-ca-input {
+
+		}
+		.project-new-button-container {
+			display: flex;
+			justify-content: flex-end;
+			.project-new-button {
+				margin-top: 119px;
+				margin-bottom: 127px;
+				color: #FFFFFF;
+				background-color: #0E203D;
+				width: 99px;
+				height: 42px;
+				border-radius: 0px;
+				border: none;
+			}
+		}
+	}
+}

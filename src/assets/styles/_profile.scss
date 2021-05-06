@@ -1,0 +1,86 @@
+.profile-container {
+	display:flex;
+	justify-content: center;
+	padding-top: 80px;
+	.profile-inner-container {
+		width: 59%;
+		.profile-bd {
+			font-size: 18px;
+			font-style: normal;
+			font-weight: 400;
+			color: #C2A47E;
+		}
+		.profile-bn {
+			padding-top: 24px;
+			font-size: 16px;
+			font-style: normal;
+			font-weight: 700;
+			color: #373737;
+		}
+		.profile-bn-input {
+
+		}
+		.profile-ad {
+			padding-top: 24px;
+			font-size: 16px;
+			font-style: normal;
+			font-weight: 700;
+			color: #373737;
+		}
+		.profile-ad-input {
+
+		}
+		.profile-image {
+			padding-top: 24px;
+			font-size: 16px;
+			font-style: normal;
+			font-weight: 700;
+			color: #373737;
+		}
+		.profile-image-logo {
+			width: 100px;
+			border: 1px solid #999999;
+		}
+		.profile-ac {
+			padding-top: 44px;
+			font-size: 18px;
+			font-style: normal;
+			font-weight: 400;
+			color: #C2A47E;
+		}
+		.profile-name {
+			padding-top: 24px;
+			font-size: 16px;
+			font-style: normal;
+			font-weight: 700;
+			color: #373737;
+		}
+		.profile-name-input {
+
+		}
+		.profile-email {
+			padding-top: 24px;
+			font-size: 16px;
+			font-style: normal;
+			font-weight: 700;
+			color: #373737;
+		}
+		.profile-email-input {
+
+		}
+		.profile-button-container {
+			display: flex;
+			justify-content: flex-end;
+			.profile-button {
+				margin-top: 119px;
+				margin-bottom: 127px;
+				color: #FFFFFF;
+				background-color: #0E203D;
+				width: 99px;
+				height: 42px;
+				border-radius: 0px;
+				border: none;
+			}
+		}
+	}
+}
