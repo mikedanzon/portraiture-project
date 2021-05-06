@@ -10,6 +10,7 @@ import Dashboard from './pages/Dashboard';
 import Profile from './pages/Profile';
 import ProjectNew from './pages/ProjectNew'
 import ProjectEdit from './pages/ProjectEdit'
+import Collections from './pages/Collections'
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route exact path="/collections/new" component={CollectionNew} />
         <Route exact path="/dashboard" component={Dashboard} />
         <Route exact path="/dashboard/profile" component={Profile} />
+        <Route exact path="/dashboard/collections" component={Collections} />
         <Route exact path="/project/new" component={ProjectNew} />
         <Route exact path="/project/edit" component={ProjectEdit} />
       </Switch>

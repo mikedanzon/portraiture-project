@@ -19,7 +19,7 @@ function ProjectNew() {
   				</Form.Group>
     			<Form.Group controlId="exampleForm.ControlTextarea1">
     				<Form.Label className="project-new-desc">Description</Form.Label>
-    				<Form.Control className="project-new-desc-input" as="textarea" rows={3} placeholder="Type collection description"/>
+    				<Form.Control className="project-new-desc-input" as="textarea" rows={4} placeholder="Type collection description"/>
   				</Form.Group>
   				<div className="project-new-cd">Client Details</div>
   				<Form.Group>
@@ -28,7 +28,7 @@ function ProjectNew() {
   				</Form.Group>
    					<Form.Group controlId="exampleForm.ControlTextarea1">
     				<Form.Label className="project-new-ca">Client Address*</Form.Label>
-    				<Form.Control className="project-new-ca-input" as="textarea" rows={3} placeholder="e.g. Sunset Boulevard, Pakuwon City Kecamatan Mulyorejo, Surabaya Jawa Timur 60111"/>
+    				<Form.Control className="project-new-ca-input" as="textarea" rows={4} placeholder="e.g. Sunset Boulevard, Pakuwon City Kecamatan Mulyorejo, Surabaya Jawa Timur 60111"/>
   				</Form.Group>
   				<div className="project-new-button-container">
   					<Button className="project-new-button" variant="primary" type="submit">Save</Button>
