@@ -1,9 +1,8 @@
 .project-new-container {
 	display:flex;
 	justify-content: center;
-	padding-top: 80px;
+
 	.project-new-inner-container {
-		width: 59%;
 		.project-new-pd {
 			font-size: 18px;
 			font-style: normal;
@@ -17,28 +16,17 @@
 			font-weight: 700;
 			color: #373737;
 		}
-		.project-new-pt-input {
-
-		}
 		.project-new-date {
-			padding-top: 24px;
 			font-size: 16px;
 			font-style: normal;
 			font-weight: 700;
 			color: #373737;
-		}
-		.project-new-date-input {
-
 		}
 		.project-new-desc {
-			padding-top: 24px;
 			font-size: 16px;
 			font-style: normal;
 			font-weight: 700;
 			color: #373737;
-		}
-		.project-new-desc-input {
-
 		}
 		.project-new-cd {
 			padding-top: 44px;
@@ -54,32 +42,63 @@
 			font-weight: 700;
 			color: #373737;
 		}
-		.project-new-cn-input {
-
-		}
 		.project-new-ca {
-			padding-top: 24px;
 			font-size: 16px;
 			font-style: normal;
 			font-weight: 700;
 			color: #373737;
 		}
-		.project-new-ca-input {
-
-		}
 		.project-new-button-container {
 			display: flex;
 			justify-content: flex-end;
 			.project-new-button {
-				margin-top: 119px;
-				margin-bottom: 127px;
 				color: #FFFFFF;
 				background-color: #0E203D;
-				width: 99px;
-				height: 42px;
+				width: 84.4px;
+				height: 35px;
 				border-radius: 0px;
 				border: none;
+				font-size: 14px;
 			}
 		}
+	}
+
+	@media (max-width: 650px) {
+	padding-top: 30px;
+	.project-new-inner-container {
+		width: 80%;
+		.project-new-button-container {
+			.project-new-button {
+				margin-top: 50px;
+				margin-bottom: 50px;
+			}
+		}
+	}
+	}
+
+	@media (min-width: 650px) and (max-width: 1100px) {
+	padding-top: 80px;
+	.project-new-inner-container {
+		width: 70%;
+		.project-new-button-container {
+			.project-new-button {
+				margin-top: 100px;
+				margin-bottom: 120px;
+			}
+		}
+	}
+	}
+
+	@media (min-width: 1100px) {
+	padding-top: 80px;
+	.project-new-inner-container {
+		width: 60%;
+		.project-new-button-container {
+			.project-new-button {
+				margin-top: 100px;
+				margin-bottom: 120px;
+			}
+		}
+	}
 	}
 }

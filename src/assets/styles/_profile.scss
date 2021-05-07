@@ -1,9 +1,7 @@
 .profile-container {
 	display:flex;
 	justify-content: center;
-	padding-top: 80px;
 	.profile-inner-container {
-		width: 59%;
 		.profile-bd {
 			font-size: 18px;
 			font-style: normal;
@@ -17,18 +15,12 @@
 			font-weight: 700;
 			color: #373737;
 		}
-		.profile-bn-input {
-
-		}
 		.profile-ad {
 			padding-top: 24px;
 			font-size: 16px;
 			font-style: normal;
 			font-weight: 700;
 			color: #373737;
-		}
-		.profile-ad-input {
-
 		}
 		.profile-image {
 			padding-top: 24px;
@@ -55,9 +47,6 @@
 			font-weight: 700;
 			color: #373737;
 		}
-		.profile-name-input {
-
-		}
 		.profile-email {
 			padding-top: 24px;
 			font-size: 16px;
@@ -65,22 +54,60 @@
 			font-weight: 700;
 			color: #373737;
 		}
-		.profile-email-input {
-
-		}
 		.profile-button-container {
 			display: flex;
 			justify-content: flex-end;
 			.profile-button {
-				margin-top: 119px;
-				margin-bottom: 127px;
+				margin-top: 50px;
+				margin-bottom: 50px;
 				color: #FFFFFF;
 				background-color: #0E203D;
-				width: 99px;
-				height: 42px;
+				width: 84.4px;
+				height: 35px;
 				border-radius: 0px;
 				border: none;
+				font-size: 14px;
 			}
 		}
+	}
+
+	@media (max-width: 650px) {
+	
+	padding-top: 30px;
+	.profile-inner-container {
+		width: 80%;
+			.profile-button-container {
+				.profile-button {
+					margin-top: 50px;
+					margin-bottom: 50px;
+			}
+		}
+	}
+	}
+
+	@media (min-width: 650px) and (max-width: 1100px) {
+	padding-top: 80px;
+	.profile-inner-container {
+		width: 70%;
+		.profile-button-container {
+			.profile-button {
+				margin-top: 100px;
+				margin-bottom: 120px;
+			}
+		}
+	}
+	}
+
+	@media (min-width: 1100px) {
+	padding-top: 80px;
+	.profile-inner-container {
+		width: 60%;
+		.profile-button-container {
+			.profile-button {
+				margin-top: 100px;
+				margin-bottom: 120px;
+			}
+		}
+	}
 	}
 }

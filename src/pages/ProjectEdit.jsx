@@ -11,24 +11,24 @@ function ProjectEdit() {
 				<div className="project-edit-pd">Project Details</div>
   				<Form.Group>
     				<Form.Label className="project-edit-pt">Project Title*</Form.Label>
-    				<Form.Control className="project-edit-pt-input" type="text" placeholder="Leon & Stella" />
+    				<Form.Control autoFocus className="custom-form-port" type="text" placeholder="Leon & Stella" />
   				</Form.Group>
   				<Form.Group>
     				<Form.Label className="project-edit-date">Date*</Form.Label>
-    				<Form.Control className="project-edit-date-input" type="date" placeholder="28 June 2021" />
+    				<Form.Control className="custom-form-port" type="date" placeholder="28 June 2021" />
   				</Form.Group>
     			<Form.Group controlId="exampleForm.ControlTextarea1">
     				<Form.Label className="project-edit-desc">Description</Form.Label>
-    				<Form.Control className="project-edit-desc-input" as="textarea" rows={4} placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lectus tristique mi mi ut malesuada ut "/>
+    				<Form.Control className="custom-form-port" as="textarea" rows={4} placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lectus tristique mi mi ut malesuada ut "/>
   				</Form.Group>
   				<div className="project-edit-cd">Client Details</div>
   				<Form.Group>
     				<Form.Label className="project-edit-cn">Client Name*</Form.Label>
-    				<Form.Control className="project-edit-cn-input" type="text" placeholder="Leon Handoko" />
+    				<Form.Control className="custom-form-port" type="text" placeholder="Leon Handoko" />
   				</Form.Group>
    					<Form.Group controlId="exampleForm.ControlTextarea1">
     				<Form.Label className="project-edit-ca">Client Address*</Form.Label>
-    				<Form.Control className="project-edit-ca-input" as="textarea" rows={4} placeholder="Sunset Boulevard, Pakuwon City Kecamatan Mulyorejo, Surabaya Jawa Timur 60111"/>
+    				<Form.Control className="custom-form-port" as="textarea" rows={4} placeholder="Sunset Boulevard, Pakuwon City Kecamatan Mulyorejo, Surabaya Jawa Timur 60111"/>
   				</Form.Group>
   				<div className="project-edit-button-container">
   					<Button className="project-edit-button" variant="primary" type="submit">Save</Button>

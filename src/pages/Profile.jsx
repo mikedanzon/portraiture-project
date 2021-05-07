@@ -12,11 +12,11 @@ function Profile() {
 				<div className="profile-bd">Business Details</div>
   				<Form.Group>
     				<Form.Label className="profile-bn">Business Name*</Form.Label>
-    				<Form.Control className="profile-bn-input" type="text" placeholder="Justin Studio" />
+    				<Form.Control autoFocus className="custom-form-port" type="text" placeholder="Justin Studio" />
   				</Form.Group>
     			<Form.Group controlId="exampleForm.ControlTextarea1">
     				<Form.Label className="profile-ad">Address</Form.Label>
-    				<Form.Control className="profile-ad-input" as="textarea" rows={4} placeholder="Jl Mekar Sari No 21 Kecamatan Gubeng, Surabaya Jawa Timur 60111"/>
+    				<Form.Control className="custom-form-port" as="textarea" rows={4} placeholder="Jl Mekar Sari No 21 Kecamatan Gubeng, Surabaya Jawa Timur 60111"/>
   				</Form.Group>
   				<div>
   					<p className="profile-image">Images</p>
@@ -25,11 +25,11 @@ function Profile() {
   				<div className="profile-ac">Account Details</div>
   				<Form.Group>
     				<Form.Label className="profile-name">Name*</Form.Label>
-    				<Form.Control className="profile-name-input" type="text" placeholder="Justin Junaedi" />
+    				<Form.Control className="custom-form-port" type="text" placeholder="Justin Junaedi" />
   				</Form.Group>
    				<Form.Group>
     				<Form.Label className="profile-email">Email*</Form.Label>
-    				<Form.Control className="profile-email-input" type="text" placeholder="studio@justin.com" />
+    				<Form.Control className="custom-form-port" type="text" placeholder="studio@justin.com" />
   				</Form.Group>
   				<div className="profile-button-container">
   					<Button className="profile-button" variant="primary" type="submit">Save</Button>

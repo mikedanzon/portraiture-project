@@ -29,8 +29,8 @@ function App() {
         <Route exact path="/dashboard" component={Dashboard} />
         <Route exact path="/dashboard/profile" component={Profile} />
         <Route exact path="/dashboard/collections" component={Collections} />
-        <Route exact path="/project/new" component={ProjectNew} />
-        <Route exact path="/project/edit" component={ProjectEdit} />
+        <Route exact path="/projects/new" component={ProjectNew} />
+        <Route exact path="/projects/edit" component={ProjectEdit} />
       </Switch>
     </>
   );
