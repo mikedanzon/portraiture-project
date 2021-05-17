@@ -1,39 +1,406 @@
 .dashboard-background {
-	background-image: url(../img/dummy-img/dummy1.png);
-	height: 330px;
-	margin-top: 73px;
-	background-position: center;
-	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	align-items: center;		
-	.dashboard-background-container {
-		grid-column: 2 / 3;
-		margin-bottom: 30px;
-		.dashboard-logo {
-			text-align: center;
-			margin-bottom: 20px;
-		}
-		.dashboard-name {
-			text-align: center;
-			color: #ffffff;
-			margin-bottom: 20px;
-			font-size: 24px;
-			font-style: normal;
-			font-weight: 700;
-			line-height: 25px;
-		}
-		.dashboard-button {
-			text-align: center;
-			.dashboard-button-btn {
-				width: 171px;
-				height: 42px;
-				background-color: transparent;
-				color: #ffffff;
-				border: 1px solid #999999;
-			}
-		}
-	}
+    background-image: url(../img/dummy-img/dummy1.png);
+    background-repeat: no-repeat;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    height: 330px;
+    margin-top: 73px;
+    background-position: center;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    align-items: center;
+    .dashboard-background-container {
+        grid-column: 2 / 3;
+        margin-bottom: 30px;
+        .dashboard-logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .dashboard-name {
+            text-align: center;
+            color: #ffffff;
+            margin-bottom: 20px;
+            font-size: 24px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: 25px;
+        }
+        .dashboard-button {
+            text-align: center;
+            .dashboard-button-btn {
+                width: 171px;
+                height: 42px;
+                background-color: transparent;
+                color: #ffffff;
+                border: 1px solid #999999;
+            }
+        }
+    }
 }
-.isi {
-	height: 5560px;
+.dinner-container {
+    display: flex;
+    flex-direction: column; 
+    // margin: 100px 220px 220px 220px;
+    .dinner-quick {
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 700;
+        color: #000000;
+    }
+    .dinner-rcollections {
+        background-color: #f8f8f8;
+        padding: 30px;
+        margin-top: 45px;
+        .dinner-rcollections-title {
+            font-size: 16px;
+            font-style: normal;
+            color: #000000;
+        }
+        .dinner-rcollections-cards-container {
+            margin-top: 10px;
+            display: inline-flex;
+            flex-wrap: wrap;
+            row-gap: 20px;
+            // column-gap: 122px;
+            .dinner-rcollections-cards {
+                display: flex;
+                background-color: #ffffff;
+                .dinner-rcollections-cards-info {
+                    .dinner-rcollections-cards-info-1 {
+                        display: flex;
+                        padding: 10px;
+                        .rcollections-text1 {
+                            font-size: 12px;
+                            font-style: normal;
+                            font-weight: 500;
+                            color: #000000;
+                        }
+                        .rcollections-text2 {
+                            font-size: 10px;
+                            font-style: normal;
+                            font-weight: 400;
+                            color: #999999;
+                        }
+                        .rcollections-preview {
+                            display: flex;
+                            // margin-left: 120px;
+                            .rcollections-preview-img {
+                                width: 12px;
+                                height: 12px;
+                                margin-top: 1px;
+                                margin-right: 5px;
+                            }
+                            .rcollections-text3 {
+                                font-size: 10px;
+                                font-style: normal;
+                                font-weight: 500;
+                                color: #999999;
+                            }
+                        }
+                    }
+                    .dinner-rcollections-cards-info-2 {
+                        display: flex;
+                        padding: 20px 10px 10px 10px;
+                        justify-content: space-between;
+                        .rcollections-imgdow {
+                            display: flex;
+                            .rcollections-img {
+                                width: 12px;
+                                height: 12px;
+                                margin-top: 1px;
+                                margin-right: 5px;
+                            }
+                            .rcollections-text4 {
+                                font-size: 10px;
+                                font-style: normal;
+                                font-weight: 400;
+                                color: #000000;
+                                margin-right: 20px;
+                            }
+                            .rcollections-dow {
+                                width: 12px;
+                                height: 12px;
+                                margin-right: 5px;
+                            }
+                            .rcollections-text5 {
+                                font-size: 10px;
+                                font-style: normal;
+                                font-weight: 400;
+                                color: #000000;
+                            }
+                        }
+                        .rcollections-edit {
+                            display: flex;
+                            .rcollections-edit-img {
+                                width: 12px;
+                                height: 12px;
+                                margin-top: 0.4px;
+                                margin-right: 5px;
+                            }
+                            .rcollections-text6 {
+                                font-size: 10px;
+                                font-style: normal;
+                                font-weight: 500;
+                                color: #999999;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .dinner-rcollections-seeall {
+            display: flex;
+            justify-content: center;
+            margin-top: 40px;
+            text-decoration-line: underline;
+            font-size: 12px;
+            font-style: normal;
+            font-weight: 500;
+            color: #999999;
+        }
+    }
+    .dinner-propac-contanier {
+        // display: flex; 
+        // justify-content: space-between;
+        margin-top: 50px;
+        .dinner-rprojects {
+            background-color: #f8f8f8;
+            padding: 30px;
+            .dinner-rprojects-title {
+                font-size: 16px;
+                font-style: normal;
+                color: #000000;
+            }
+            .dinner-rprojects-cards-container {
+                margin-top: 10px;
+                .dinner-rprojects-cards {
+                    display: flex;
+                    // width: 400px;
+                    height: 98px;
+                    background-color: #ffffff;
+                    padding: 10px;
+                    margin-bottom: 20px;
+                    .dinner-rprojects-cards-info {
+                        width: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-between;
+                        .dinner-rprojects-cards-info1 {
+                            display: flex;
+                            justify-content: space-between;
+                            .rprojects-text1 {
+                                font-size: 12px;
+                                font-style: normal;
+                                font-weight: 500;
+                                color: #000000;
+                            }
+                            .rprojects-text2 {
+                                font-size: 10px;
+                                font-style: normal;
+                                font-weight: 400;
+                                color: #999999;
+                            }
+                        }
+                        .dinner-rprojects-cards-info2 {
+                            display: flex;
+                            justify-content: space-between;
+                            .rprojects-checks {
+                                display: flex;
+                                .rprojects-checks-img {
+                                    width: 12px;
+                                    height: 12px;
+                                    margin-top: 1px;
+                                    margin-right: 5px;
+                                    color: #0e203d;
+                                }
+                                .rprojects-checks-text {
+                                    font-size: 10px;
+                                    font-style: normal;
+                                    font-weight: 400;
+                                    color: #000000;
+                                    margin-right: 10px;
+                                }
+                            }
+                            .rprojects-edit {
+                                display: flex;
+                                justify-content: space-between;
+                                .rprojects-edit-img {
+                                    width: 12px;
+                                    height: 12px;
+                                    margin-top: 0.4px;
+                                    margin-right: 5px;
+                                }
+                                .rprojects-edit-text {
+                                    font-size: 10px;
+                                    font-style: normal;
+                                    font-weight: 500;
+                                    color: #999999;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            .dinner-rprojects-seeall {
+                display: flex;
+                justify-content: center;
+                margin-top: 40px;
+                text-decoration-line: underline;
+                font-size: 12px;
+                font-style: normal;
+                font-weight: 500;
+                color: #999999;
+            }
+        }
+        .dinner-rpackages {
+            background-color: #f8f8f8;
+            padding: 30px;
+            .dinner-rpackages-title {
+                font-size: 16px;
+                font-style: normal;
+                color: #000000;
+            }
+            .dinner-rpackages-cards-container {
+                margin-top: 10px;
+                .dinner-rpackages-cards {
+                    display: flex;
+                    // width: 400px;
+                    background-color: #ffffff;
+                    margin-bottom: 20px;
+                    .dinner-rpackages-cards-info {
+                        .dinner-rpackages-cards-info1 {
+                            padding: 10px;
+                            .rpackages-text1 {
+                                font-size: 12px;
+                                font-style: normal;
+                                font-weight: 500;
+                                color: #000000;
+                            }
+                            .rpackages-text2 {
+                                font-size: 10px;
+                                font-style: normal;
+                                font-weight: 400;
+                                color: #999999;
+                            }
+                        }
+                        .dinner-rpackages-cards-info2 {
+                            padding: 16px 10px 10px 10px;
+                            display: flex;
+                            .rpackages-text3 {
+                                font-size: 12px;
+                                font-style: normal;
+                                font-weight: 500;
+                                color: #000000;
+                            }
+                            .rpackages-edit {
+                                width: 12px;
+                                height: 12px;
+                                margin-top: 2px;
+                                margin-right: 5px;
+                                margin-left: 154px;
+                            }
+                            .rpackages-text4 {
+                                font-size: 10px;
+                                font-style: normal;
+                                font-weight: 500;
+                                color: #999999;
+                                margin-top: 2px;
+                            }
+                        }
+                    }
+                }
+            }
+            .dinner-rpackages-seeall {
+                display: flex;
+                justify-content: center;
+                margin-top: 40px;
+                text-decoration-line: underline;
+                font-size: 12px;
+                font-style: normal;
+                font-weight: 500;
+                color: #999999;
+            }
+        }
+    }
+    @media (min-width: 692px) and (max-width: 1390px) {
+        margin: 100px 120px 220px 120px;
+        .rcollections-preview {
+            margin-left: 80px;
+        }
+        .dinner-rcollections-cards-container {
+            justify-content: space-between;
+        }
+        .dinner-rprojects {
+            margin-bottom: 50px;
+        }
+        .dinner-rprojects-cards-container {
+            display: inline-flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .dinner-rprojects-cards {
+            width: 350px;
+        }
+        .dinner-rpackages-cards-container {
+            display: inline-flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+        .dinner-rpackages-cards {
+            width: 350px;
+        }
+    }
+    @media (min-width: 1390px) and (max-width: 1440px) {
+        margin: 100px 220px 220px 220px;
+        .dinner-propac-contanier {
+            display: flex; 
+            justify-content: space-between;
+        }
+        .dinner-rcollections-cards-container {
+            justify-content: space-between;
+        }
+        .rcollections-preview {
+            margin-left: 120px;
+        }
+        .dinner-rprojects-cards {
+            width: 400px;
+        }
+        .dinner-rpackages-cards {
+            width: 400px;
+        }
+    }
+    @media (min-width: 1441px) {
+        margin: 100px 220px 220px 220px;
+        .dinner-propac-contanier {
+        }
+        .dinner-rprojects {
+            margin-bottom: 50px;
+        }
+        .dinner-rprojects-cards-container {
+            display: inline-flex;
+            flex-wrap: wrap;
+            row-gap: 20px;
+            column-gap: 122px;
+        }
+         .dinner-rpackages-cards-container {
+            display: inline-flex;
+            flex-wrap: wrap;
+            row-gap: 20px;
+            column-gap: 122px;
+        }
+        .dinner-rcollections-cards-container {
+            column-gap: 122px;
+        }
+        .rcollections-preview {
+            margin-left: 120px;
+        }
+        .dinner-rprojects-cards {
+            width: 400px;
+        }
+        .dinner-rpackages-cards {
+            width: 400px;
+        }
+    }
 }
