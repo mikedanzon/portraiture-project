@@ -108,16 +108,16 @@ function CollectionNew() {
         <div className="cnew-main">
           <div className="cnew-theme">
             <div className="cnew-theme-1">
-              <span className="theme-pointer" onClick={() => setTheme(1)}>
+              <span className="theme-pointer pb-2" onClick={() => setTheme(1)}>
                 <img src={ThemeClass} alt="classTheme" />
               </span>
             </div>
-            <div className="cnew-theme-2">
+            <div className="cnew-theme-2 pb-2">
               <span className="theme-pointer" onClick={() => setTheme(2)}>
                 <img src={ThemeMin} alt="classTheme" />
               </span>
             </div>
-            <div className="cnew-theme-3">
+            <div className="cnew-theme-3 pb-2">
               <span className="theme-pointer" onClick={() => setTheme(3)}>
                 <img src={ThemeDark} alt="classTheme" />
               </span>

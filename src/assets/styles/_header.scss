@@ -1,9 +1,13 @@
 .port-header {
   @media (max-width: 992px) {
-    background: white;
+    background: $color-wheat;
     position: fixed;
     top: 0;
     width: 100%;
+    border-width: 0;
+    border-top-width: 4px;
+    border-style: solid;
+    border-image: linear-gradient(260.06deg, #0e203d 10.76%, #eab197 94.23%) 3;
 
     .port-header-logo {
       img {
@@ -51,9 +55,11 @@
         padding-bottom: 5px;
         display: none;
       }
+
       .port-header-bell-notif {
         padding-bottom: 5px;
       }
+
       .port-header-user-profile {
         padding-bottom: 5px;
       }
@@ -61,12 +67,16 @@
   }
 
   @media (min-width: 992px) {
-    background: white;
+    background: $color-wheat;
     position: fixed;
     top: 0;
     width: 100%;
     padding-top: 6px;
     padding-bottom: 6px;
+    border-width: 0;
+    border-top-width: 4px;
+    border-style: solid;
+    border-image: linear-gradient(260.06deg, #0e203d 10.76%, #eab197 94.23%) 3;
 
     .port-header-logo {
       padding-left: 45px;
@@ -90,14 +100,14 @@
         text-decoration: none;
         color: $color-brand-primary;
       }
-      
+
       button {
         padding: 5px 20px 5px 20px;
         border: 1px solid #0e203d;
         box-sizing: border-box;
         font-weight: bold;
       }
-       .port-header-bell-notif {
+      .port-header-bell-notif {
         display: none;
       }
       .port-header-user-profile {

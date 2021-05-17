@@ -1,14 +1,56 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import { Button, Form } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { URL_API } from '../helper/url';
+import { useDispatch, useSelector } from 'react-redux';
 import Logo from '../assets/img/logo.png';
+import Home from './Home';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const auth = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+
+  if (auth.isLogin === true) {
+    return <Home />
+  }
 
   function handleSubmit(event) {
     event.preventDefault();
+    var data = {
+      email: email,
+      password: password,
+    };
+    axios
+      .post(`${URL_API}/auth/signin`, data)
+      .then((res) => {
+        var configGetOneUser = {
+          headers: { Authorization: `Bearer ${res.data.token}` },
+        };
+        axios
+          .get(`${URL_API}/user/one`, configGetOneUser)
+          .then((res2) => {
+            dispatch({
+              type: 'LOGIN',
+              payload: {
+                id: res2.data.result.id,
+                token: res.data.token,
+                name: res2.data.result.name,
+                businessName: res2.data.result.businessName,
+                photo: res2.data.result.photo
+              }
+            })
+            localStorage.setItem('token', res.data.token);
+          })
+          .catch((err2) => {
+            console.log(err2.response.data.message);
+          });
+      })
+      .catch((err) => {
+        console.log(err.response.data.message);
+      });
   }
 
   return (

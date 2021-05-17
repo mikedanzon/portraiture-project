@@ -13,8 +13,41 @@ import Profile from './pages/Profile';
 import ProjectNew from './pages/ProjectNew';
 import ProjectEdit from './pages/ProjectEdit';
 import Collections from './pages/Collections';
+import { useEffect } from 'react';
+import { URL_API } from './helper/url';
+import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
 
 function App() {
+  const auth = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (localStorage.getItem('token')) {
+      var configGetOneUser = {
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+      };
+      axios
+        .get(`${URL_API}/user/one`, configGetOneUser)
+        .then((res) => {
+          dispatch({
+            type: 'LOGIN',
+            payload: {
+              id: res.data.result.id,
+              token: localStorage.getItem('token'),
+              name: res.data.result.name,
+              businessName: res.data.result.businessName,
+              photo: res.data.result.photo,
+            },
+          });
+        })
+        .catch((err) => {
+          console.log(err.response.data.message);
+          localStorage.removeItem('token');
+        });
+    }
+  }, []);
+
   return (
     <>
       <Switch>

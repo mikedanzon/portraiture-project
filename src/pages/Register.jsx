@@ -1,16 +1,42 @@
 import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, Route } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import Logo from '../assets/img/logo.png';
+import Home from './Home';
+import { URL_API } from '../helper/url';
+import axios from 'axios';
 
 function Login() {
   const [name, setName] = useState('');
   const [bsName, setBsName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const auth = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
+
+  if (auth.isLogin === true) {
+    return <Home />;
+  }
 
   function handleSubmit(event) {
     event.preventDefault();
+    var data = {
+      email: email,
+      password: password,
+      confirmPassword: password,
+      name: name,
+      businessName: bsName,
+    };
+    axios
+      .post(`${URL_API}/auth/signup`, data)
+      .then((res) => {
+        localStorage.setItem('token', res.data.token);
+        window.location = '/';
+      })
+      .catch((err) => {
+        console.log(err.response.data.message);
+      });
   }
 
   return (
@@ -32,6 +58,7 @@ function Login() {
                 <Form.Label>Name</Form.Label>
                 <Form.Control
                   autoFocus
+                  required
                   type="name"
                   value={name}
                   placeholder="e.g. justinjunaedi@gmail.com"
@@ -41,6 +68,7 @@ function Login() {
               <Form.Group size="lg" controlId="bsName">
                 <Form.Label>Business Name</Form.Label>
                 <Form.Control
+                  required
                   type="bsName"
                   value={bsName}
                   placeholder="e.g. justinjunaedi@gmail.com"
@@ -50,6 +78,7 @@ function Login() {
               <Form.Group size="lg" controlId="email">
                 <Form.Label>Email</Form.Label>
                 <Form.Control
+                  required
                   type="email"
                   value={email}
                   placeholder="e.g. justinjunaedi@gmail.com"
@@ -59,6 +88,7 @@ function Login() {
               <Form.Group size="lg" controlId="password">
                 <Form.Label>Password</Form.Label>
                 <Form.Control
+                  required
                   type="password"
                   value={password}
                   placeholder="********"
