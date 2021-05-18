@@ -4,12 +4,8 @@ import Header from '../components/Header'
 import Dummy3 from '../assets/img/dummy-img/dummy3.png'
 import Status from '../assets/img/dummy-img/status.png'
 import Baby from '../assets/img/dummy-img/baby.png'
-import { BsCardImage } from 'react-icons/bs'
-import { BsBoxArrowInDown } from 'react-icons/bs'
-import { AiOutlineEye } from 'react-icons/ai'
+import { BsImage, BsBoxArrowInDown, BsEyeFill, BsCheck, BsX } from 'react-icons/bs'
 import { AiFillEdit } from 'react-icons/ai'
-import { AiOutlineCheck } from 'react-icons/ai'
-import { AiOutlineClose } from 'react-icons/ai'
 
 function Dashboard() {
 	return (
@@ -22,318 +18,326 @@ function Dashboard() {
 				<div className="dashboard-button"><button className="dashboard-button-btn">Edit Profile</button></div>
 			</div>
 		</div>
-		<div className="dinner-container">
-			<div className="dinner-quick">Quick Access</div>
-			<div className="dinner-rcollections">
-				<div className="dinner-rcollections-title">Recent Collections</div>
-				<div className="dinner-rcollections-cards-container">
-					<div className="dinner-rcollections-cards">
-						<div><img src={Dummy3} alt=""/></div>
-						<div className="dinner-rcollections-cards-info">
-							<div className="dinner-rcollections-cards-info-1">
-								<div>
-									<div className="rcollections-text1">Justin & Stella</div>
-									<div className="rcollections-text2">28 March 2021</div>
+		<div className="dashboard-container">
+			<div className="dashboard-inner-container">
+				<div className="dic-title">Quick Access</div>
+				<div className="dic-rcollections">
+					<div className="dirc-rc-title">Recent Collections</div>
+					<div className="dirc-rc-card-container">
+						<div className="dirc-rc-cards">
+							<div className="dirc-rc-image"><img src={Dummy3} alt=""/></div>
+							<div className="dirc-rc-info">
+								<div className="dirc-rc-info-1">
+									<div>
+										<div className="dirc-rc-text1">Justin & Stella</div>
+										<div className="dirc-rc-text2">28 March 2021</div>
+									</div>
+									<div className="dirc-rc-imgdown">
+										<BsImage size={14}/>
+										<div className="dirc-rc-text3">13</div>
+										<BsBoxArrowInDown size={14}/>
+										<div className="dirc-rc-text3">3</div>
+									</div>
 								</div>
-								<div className="rcollections-preview">
-									<AiOutlineEye className="rcollections-preview-img"/>
-									<div className="rcollections-text3">Preview</div>
-								</div>
-							</div>
-							<div className="dinner-rcollections-cards-info-2">
-								<div className="rcollections-imgdow">
-									<BsCardImage className="rcollections-img"/>
-									<div className="rcollections-text4">13</div>
-									<BsBoxArrowInDown className="rcollections-dow"/>
-									<div className="rcollections-text5">3</div>
-								</div>
-								<div className="rcollections-edit">
-									<AiFillEdit className="rcollections-edit-img"/>
-									<div className="rcollections-text6">Edit</div>
+								<div className="dirc-rc-info-2">
+									<div className="dirc-rc-preed">
+										<BsEyeFill size={14}/>
+										<div className="dirc-rc-text4">Preview</div>
+									</div>
+									<div className="dirc-rc-preed">
+										<AiFillEdit soze={14}/>
+										<div className="dirc-rc-text4">Edit</div>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
 
-						<div className="dinner-rcollections-cards">
-						<div><img src={Dummy3} alt=""/></div>
-						<div className="dinner-rcollections-cards-info">
-							<div className="dinner-rcollections-cards-info-1">
-								<div>
-									<div className="rcollections-text1">Justin & Stella</div>
-									<div className="rcollections-text2">28 March 2021</div>
+												<div className="dirc-rc-cards">
+							<div className="dirc-rc-image"><img src={Dummy3} alt=""/></div>
+							<div className="dirc-rc-info">
+								<div className="dirc-rc-info-1">
+									<div>
+										<div className="dirc-rc-text1">Justin & Stella</div>
+										<div className="dirc-rc-text2">28 March 2021</div>
+									</div>
+									<div className="dirc-rc-imgdown">
+										<BsImage size={14}/>
+										<div className="dirc-rc-text3">13</div>
+										<BsBoxArrowInDown size={14}/>
+										<div className="dirc-rc-text3">3</div>
+									</div>
 								</div>
-								<div className="rcollections-preview">
-									<AiOutlineEye className="rcollections-preview-img"/>
-									<div className="rcollections-text3">Preview</div>
-								</div>
-							</div>
-							<div className="dinner-rcollections-cards-info-2">
-								<div className="rcollections-imgdow">
-									<BsCardImage className="rcollections-img"/>
-									<div className="rcollections-text4">13</div>
-									<BsBoxArrowInDown className="rcollections-dow"/>
-									<div className="rcollections-text5">3</div>
-								</div>
-								<div className="rcollections-edit">
-									<AiFillEdit className="rcollections-edit-img"/>
-									<div className="rcollections-text6">Edit</div>
-								</div>
-							</div>
-						</div>
-					</div>
-						<div className="dinner-rcollections-cards">
-						<div><img src={Dummy3} alt=""/></div>
-						<div className="dinner-rcollections-cards-info">
-							<div className="dinner-rcollections-cards-info-1">
-								<div>
-									<div className="rcollections-text1">Justin & Stella</div>
-									<div className="rcollections-text2">28 March 2021</div>
-								</div>
-								<div className="rcollections-preview">
-									<AiOutlineEye className="rcollections-preview-img"/>
-									<div className="rcollections-text3">Preview</div>
-								</div>
-							</div>
-							<div className="dinner-rcollections-cards-info-2">
-								<div className="rcollections-imgdow">
-									<BsCardImage className="rcollections-img"/>
-									<div className="rcollections-text4">13</div>
-									<BsBoxArrowInDown className="rcollections-dow"/>
-									<div className="rcollections-text5">3</div>
-								</div>
-								<div className="rcollections-edit">
-									<AiFillEdit className="rcollections-edit-img"/>
-									<div className="rcollections-text6">Edit</div>
+								<div className="dirc-rc-info-2">
+									<div className="dirc-rc-preed">
+										<BsEyeFill size={14}/>
+										<div className="dirc-rc-text4">Preview</div>
+									</div>
+									<div className="dirc-rc-preed">
+										<AiFillEdit soze={14}/>
+										<div className="dirc-rc-text4">Edit</div>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-						<div className="dinner-rcollections-cards">
-						<div><img src={Dummy3} alt=""/></div>
-						<div className="dinner-rcollections-cards-info">
-							<div className="dinner-rcollections-cards-info-1">
-								<div>
-									<div className="rcollections-text1">Justin & Stella</div>
-									<div className="rcollections-text2">28 March 2021</div>
+												<div className="dirc-rc-cards">
+							<div className="dirc-rc-image"><img src={Dummy3} alt=""/></div>
+							<div className="dirc-rc-info">
+								<div className="dirc-rc-info-1">
+									<div>
+										<div className="dirc-rc-text1">Justin & Stella</div>
+										<div className="dirc-rc-text2">28 March 2021</div>
+									</div>
+									<div className="dirc-rc-imgdown">
+										<BsImage size={14}/>
+										<div className="dirc-rc-text3">13</div>
+										<BsBoxArrowInDown size={14}/>
+										<div className="dirc-rc-text3">3</div>
+									</div>
 								</div>
-								<div className="rcollections-preview">
-									<AiOutlineEye className="rcollections-preview-img"/>
-									<div className="rcollections-text3">Preview</div>
-								</div>
-							</div>
-							<div className="dinner-rcollections-cards-info-2">
-								<div className="rcollections-imgdow">
-									<BsCardImage className="rcollections-img"/>
-									<div className="rcollections-text4">13</div>
-									<BsBoxArrowInDown className="rcollections-dow"/>
-									<div className="rcollections-text5">3</div>
-								</div>
-								<div className="rcollections-edit">
-									<AiFillEdit className="rcollections-edit-img"/>
-									<div className="rcollections-text6">Edit</div>
-								</div>
-							</div>
-						</div>
-					</div>
-						<div className="dinner-rcollections-cards">
-						<div><img src={Dummy3} alt=""/></div>
-						<div className="dinner-rcollections-cards-info">
-							<div className="dinner-rcollections-cards-info-1">
-								<div>
-									<div className="rcollections-text1">Justin & Stella</div>
-									<div className="rcollections-text2">28 March 2021</div>
-								</div>
-								<div className="rcollections-preview">
-									<AiOutlineEye className="rcollections-preview-img"/>
-									<div className="rcollections-text3">Preview</div>
-								</div>
-							</div>
-							<div className="dinner-rcollections-cards-info-2">
-								<div className="rcollections-imgdow">
-									<BsCardImage className="rcollections-img"/>
-									<div className="rcollections-text4">13</div>
-									<BsBoxArrowInDown className="rcollections-dow"/>
-									<div className="rcollections-text5">3</div>
-								</div>
-								<div className="rcollections-edit">
-									<AiFillEdit className="rcollections-edit-img"/>
-									<div className="rcollections-text6">Edit</div>
+								<div className="dirc-rc-info-2">
+									<div className="dirc-rc-preed">
+										<BsEyeFill size={14}/>
+										<div className="dirc-rc-text4">Preview</div>
+									</div>
+									<div className="dirc-rc-preed">
+										<AiFillEdit soze={14}/>
+										<div className="dirc-rc-text4">Edit</div>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
-						<div className="dinner-rcollections-cards">
-						<div><img src={Dummy3} alt=""/></div>
-						<div className="dinner-rcollections-cards-info">
-							<div className="dinner-rcollections-cards-info-1">
-								<div>
-									<div className="rcollections-text1">Justin & Stella</div>
-									<div className="rcollections-text2">28 March 2021</div>
+												<div className="dirc-rc-cards">
+							<div className="dirc-rc-image"><img src={Dummy3} alt=""/></div>
+							<div className="dirc-rc-info">
+								<div className="dirc-rc-info-1">
+									<div>
+										<div className="dirc-rc-text1">Justin & Stella</div>
+										<div className="dirc-rc-text2">28 March 2021</div>
+									</div>
+									<div className="dirc-rc-imgdown">
+										<BsImage size={14}/>
+										<div className="dirc-rc-text3">13</div>
+										<BsBoxArrowInDown size={14}/>
+										<div className="dirc-rc-text3">3</div>
+									</div>
 								</div>
-								<div className="rcollections-preview">
-									<AiOutlineEye className="rcollections-preview-img"/>
-									<div className="rcollections-text3">Preview</div>
-								</div>
-							</div>
-							<div className="dinner-rcollections-cards-info-2">
-								<div className="rcollections-imgdow">
-									<BsCardImage className="rcollections-img"/>
-									<div className="rcollections-text4">13</div>
-									<BsBoxArrowInDown className="rcollections-dow"/>
-									<div className="rcollections-text5">3</div>
-								</div>
-								<div className="rcollections-edit">
-									<AiFillEdit className="rcollections-edit-img"/>
-									<div className="rcollections-text6">Edit</div>
+								<div className="dirc-rc-info-2">
+									<div className="dirc-rc-preed">
+										<BsEyeFill size={14}/>
+										<div className="dirc-rc-text4">Preview</div>
+									</div>
+									<div className="dirc-rc-preed">
+										<AiFillEdit soze={14}/>
+										<div className="dirc-rc-text4">Edit</div>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
+												<div className="dirc-rc-cards">
+							<div className="dirc-rc-image"><img src={Dummy3} alt=""/></div>
+							<div className="dirc-rc-info">
+								<div className="dirc-rc-info-1">
+									<div>
+										<div className="dirc-rc-text1">Justin & Stella</div>
+										<div className="dirc-rc-text2">28 March 2021</div>
+									</div>
+									<div className="dirc-rc-imgdown">
+										<BsImage size={14}/>
+										<div className="dirc-rc-text3">13</div>
+										<BsBoxArrowInDown size={14}/>
+										<div className="dirc-rc-text3">3</div>
+									</div>
+								</div>
+								<div className="dirc-rc-info-2">
+									<div className="dirc-rc-preed">
+										<BsEyeFill size={14}/>
+										<div className="dirc-rc-text4">Preview</div>
+									</div>
+									<div className="dirc-rc-preed">
+										<AiFillEdit soze={14}/>
+										<div className="dirc-rc-text4">Edit</div>
+									</div>
+								</div>
+							</div>
+						</div>
+												<div className="dirc-rc-cards">
+							<div className="dirc-rc-image"><img src={Dummy3} alt=""/></div>
+							<div className="dirc-rc-info">
+								<div className="dirc-rc-info-1">
+									<div>
+										<div className="dirc-rc-text1">Justin & Stella</div>
+										<div className="dirc-rc-text2">28 March 2021</div>
+									</div>
+									<div className="dirc-rc-imgdown">
+										<BsImage size={14}/>
+										<div className="dirc-rc-text3">13</div>
+										<BsBoxArrowInDown size={14}/>
+										<div className="dirc-rc-text3">3</div>
+									</div>
+								</div>
+								<div className="dirc-rc-info-2">
+									<div className="dirc-rc-preed">
+										<BsEyeFill size={14}/>
+										<div className="dirc-rc-text4">Preview</div>
+									</div>
+									<div className="dirc-rc-preed">
+										<AiFillEdit soze={14}/>
+										<div className="dirc-rc-text4">Edit</div>
+									</div>
+								</div>
+							</div>
+						</div>						
 
+					</div>
+					<div className="dirc-rc-seeall">see all collections</div>
 				</div>
-				<div className="dinner-rcollections-seeall">see all collections</div>
-			</div>
-			<div className="dinner-propac-contanier">
-				<div className="dinner-rprojects">
-					<div className="dinner-rprojects-title">Recent Projects</div>
-					<div className="dinner-rprojects-cards-container">
-						<div className="dinner-rprojects-cards">
-							<div className="dinner-rprojects-cards-info">
-								<div className="dinner-rprojects-cards-info1">
+				<div className="dic-rpr-rpa">
+					<div className="dic-rprojects">
+						<div className="dirpr-title">Recent Projects</div>
+						<div className="dirpr-card-container">
+							<div className="dirpr-cards">
+								<div className="dirpr-info1">
 									<div>
-										<div className="rprojects-text1">Justin & Stella</div>
-										<div className="rprojects-text2">28 March 2021</div>
+										<div className="dirpr-text1">Justin & Stella</div>
+										<div className="dirpr-text2">28 March 2021</div>
 									</div>
-									<div>
-										<div><img src={Status} alt=""/></div>
+									<div className="dirpr-info2">
+										<BsCheck size={14}/>
+										<div className="dirpr-text3">Packages</div>
+										<BsX size={14}/>
+										<div className="dirpr-text3">Rundown</div>
+										<BsCheck size={14}/>
+										<div className="dirpr-text3">Invoice</div>
 									</div>
 								</div>
-								<div className="dinner-rprojects-cards-info2">
-									<div className="rprojects-checks">
-										<AiOutlineCheck className="rprojects-checks-img"/>
-										<div className="rprojects-checks-text">Packages</div>
-										<AiOutlineCheck className="rprojects-checks-img"/>
-										<div className="rprojects-checks-text">Rundown</div>
-										<AiOutlineCheck className="rprojects-checks-img"/>
-										<div className="rprojects-checks-text">Invoice</div>
-									</div>
-									<div className="rprojects-edit">
-										<AiFillEdit className="rprojects-edit-img"/>
-										<div className="rprojects-edit-text">Edit</div>
+								<div className="dirpr-planedit">
+									<div>
+										<img src={Status} alt=""/>
+									</div>	
+									<div className="dirpr-edit">
+										<AiFillEdit size={14} />
+										<div className="dirpr-text4">Edit</div>
 									</div>
 								</div>
 							</div>
-						</div>
 
-						<div className="dinner-rprojects-cards">
-							<div className="dinner-rprojects-cards-info">
-								<div className="dinner-rprojects-cards-info1">
+														<div className="dirpr-cards">
+								<div className="dirpr-info1">
 									<div>
-										<div className="rprojects-text1">Justin & Stella</div>
-										<div className="rprojects-text2">28 March 2021</div>
+										<div className="dirpr-text1">Justin & Stella</div>
+										<div className="dirpr-text2">28 March 2021</div>
 									</div>
-									<div>
-										<div><img src={Status} alt=""/></div>
+									<div className="dirpr-info2">
+										<BsCheck size={14}/>
+										<div className="dirpr-text3">Packages</div>
+										<BsX size={14}/>
+										<div className="dirpr-text3">Rundown</div>
+										<BsCheck size={14}/>
+										<div className="dirpr-text3">Invoice</div>
 									</div>
 								</div>
-								<div className="dinner-rprojects-cards-info2">
-									<div className="rprojects-checks">
-										<AiOutlineCheck className="rprojects-checks-img"/>
-										<div className="rprojects-checks-text">Packages</div>
-										<AiOutlineCheck className="rprojects-checks-img"/>
-										<div className="rprojects-checks-text">Rundown</div>
-										<AiOutlineCheck className="rprojects-checks-img"/>
-										<div className="rprojects-checks-text">Invoice</div>
-									</div>
-									<div className="rprojects-edit">
-										<AiFillEdit className="rprojects-edit-img"/>
-										<div className="rprojects-edit-text">Edit</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div className="dinner-rprojects-cards">
-							<div className="dinner-rprojects-cards-info">
-								<div className="dinner-rprojects-cards-info1">
+								<div className="dirpr-planedit">
 									<div>
-										<div className="rprojects-text1">Justin & Stella</div>
-										<div className="rprojects-text2">28 March 2021</div>
-									</div>
-									<div>
-										<div><img src={Status} alt=""/></div>
-									</div>
-								</div>
-								<div className="dinner-rprojects-cards-info2">
-									<div className="rprojects-checks">
-										<AiOutlineCheck className="rprojects-checks-img"/>
-										<div className="rprojects-checks-text">Packages</div>
-										<AiOutlineCheck className="rprojects-checks-img"/>
-										<div className="rprojects-checks-text">Rundown</div>
-										<AiOutlineCheck className="rprojects-checks-img"/>
-										<div className="rprojects-checks-text">Invoice</div>
-									</div>
-									<div className="rprojects-edit">
-										<AiFillEdit className="rprojects-edit-img"/>
-										<div className="rprojects-edit-text">Edit</div>
+										<img src={Status} alt=""/>
+									</div>	
+									<div className="dirpr-edit">
+										<AiFillEdit size={14} />
+										<div className="dirpr-text4">Edit</div>
 									</div>
 								</div>
 							</div>
-						</div>
+														<div className="dirpr-cards">
+								<div className="dirpr-info1">
+									<div>
+										<div className="dirpr-text1">Justin & Stella</div>
+										<div className="dirpr-text2">28 March 2021</div>
+									</div>
+									<div className="dirpr-info2">
+										<BsCheck size={14}/>
+										<div className="dirpr-text3">Packages</div>
+										<BsX size={14}/>
+										<div className="dirpr-text3">Rundown</div>
+										<BsCheck size={14}/>
+										<div className="dirpr-text3">Invoice</div>
+									</div>
+								</div>
+								<div className="dirpr-planedit">
+									<div>
+										<img src={Status} alt=""/>
+									</div>	
+									<div className="dirpr-edit">
+										<AiFillEdit size={14} />
+										<div className="dirpr-text4">Edit</div>
+									</div>
+								</div>
+							</div>
 
+
+						</div>
+						<div className="dirpr-seeall">see all projects</div>
 					</div>
-					<div className="dinner-rprojects-seeall">see all projects</div>
-				</div>
-				<div className="dinner-rpackages">
-					<div className="dinner-rpackages-title">Recent Packages</div>
-					<div className="dinner-rpackages-cards-container">
-						<div className="dinner-rpackages-cards">
-							<div><img src={Baby} alt=""/></div>
-							<div className="dinner-rpackages-cards-info">
-								<div className="dinner-rpackages-cards-info1">
-									<div className="rpackages-text1">Baby Photo Session</div>
-									<div className="rpackages-text2">3 Items</div>
+					<div className="dic-rpackages">
+						<div className="dirpa-title">Recent Packages</div>
+						<div className="dirpa-card-container">
+							<div className="dirpa-cards">
+								<div className="dirpa-img">
+									<img src={Baby} alt=""/>
 								</div>
-								<div className="dinner-rpackages-cards-info2">
-									<div className="rpackages-text3">Rp.2,500,000</div>
-									<AiFillEdit className="rpackages-edit"/>
-									<div className="rpackages-text4">Edit</div>
-								</div>
-							</div>
-						</div>
-
-						<div className="dinner-rpackages-cards">
-							<div><img src={Baby} alt=""/></div>
-							<div className="dinner-rpackages-cards-info">
-								<div className="dinner-rpackages-cards-info1">
-									<div className="rpackages-text1">Baby Photo Session</div>
-									<div className="rpackages-text2">3 Items</div>
-								</div>
-								<div className="dinner-rpackages-cards-info2">
-									<div className="rpackages-text3">Rp.2,500,000</div>
-									<AiFillEdit className="rpackages-edit"/>
-									<div className="rpackages-text4">Edit</div>
+								<div className="dirpa-info">
+									<div className="dirpa-info1">
+										<div>
+											<div className="dirpa-text1">Baby Photo Session</div>
+											<div className="dirpa-text2">3 Items</div>
+										</div>
+										<div className="dirpa-text3">Rp.2,500,000</div>
+									</div>
+									<div className="dirpa-info2">
+										<AiFillEdit size={14}/>
+										<div className="dirpa-text4">Edit</div>
+									</div>
 								</div>
 							</div>
-						</div>
-						<div className="dinner-rpackages-cards">
-							<div><img src={Baby} alt=""/></div>
-							<div className="dinner-rpackages-cards-info">
-								<div className="dinner-rpackages-cards-info1">
-									<div className="rpackages-text1">Baby Photo Session</div>
-									<div className="rpackages-text2">3 Items</div>
+
+														<div className="dirpa-cards">
+								<div className="dirpa-img">
+									<img src={Baby} alt=""/>
 								</div>
-								<div className="dinner-rpackages-cards-info2">
-									<div className="rpackages-text3">Rp.2,500,000</div>
-									<AiFillEdit className="rpackages-edit"/>
-									<div className="rpackages-text4">Edit</div>
+								<div className="dirpa-info">
+									<div className="dirpa-info1">
+										<div>
+											<div className="dirpa-text1">Baby Photo Session</div>
+											<div className="dirpa-text2">3 Items</div>
+										</div>
+										<div className="dirpa-text3">Rp.2,500,000</div>
+									</div>
+									<div className="dirpa-info2">
+										<AiFillEdit size={14}/>
+										<div className="dirpa-text4">Edit</div>
+									</div>
 								</div>
 							</div>
+														<div className="dirpa-cards">
+								<div className="dirpa-img">
+									<img src={Baby} alt=""/>
+								</div>
+								<div className="dirpa-info">
+									<div className="dirpa-info1">
+										<div>
+											<div className="dirpa-text1">Baby Photo Session</div>
+											<div className="dirpa-text2">3 Items</div>
+										</div>
+										<div className="dirpa-text3">Rp.2,500,000</div>
+									</div>
+									<div className="dirpa-info2">
+										<AiFillEdit size={14}/>
+										<div className="dirpa-text4">Edit</div>
+									</div>
+								</div>
+							</div>
+
 						</div>
-
-
+						<div className="dirpa-seeall">see all packages</div>
 					</div>
-					<div className="dinner-rpackages-seeall">see all projects</div>
 				</div>
 			</div>
 		</div>

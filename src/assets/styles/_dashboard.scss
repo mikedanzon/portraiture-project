@@ -39,200 +39,80 @@
         }
     }
 }
-.dinner-container {
-    display: flex;
-    flex-direction: column; 
-    // margin: 100px 220px 220px 220px;
-    .dinner-quick {
-        font-size: 24px;
-        font-style: normal;
-        font-weight: 700;
-        color: #000000;
-    }
-    .dinner-rcollections {
-        background-color: #f8f8f8;
-        padding: 30px;
-        margin-top: 45px;
-        .dinner-rcollections-title {
-            font-size: 16px;
+.dashboard-container {
+    .dashboard-inner-container {
+        width: 100%;
+        .dic-title {
+            font-size: 24px;
             font-style: normal;
+            font-weight: 700;
             color: #000000;
         }
-        .dinner-rcollections-cards-container {
-            margin-top: 10px;
-            display: inline-flex;
-            flex-wrap: wrap;
-            row-gap: 20px;
-            // column-gap: 122px;
-            .dinner-rcollections-cards {
-                display: flex;
-                background-color: #ffffff;
-                .dinner-rcollections-cards-info {
-                    .dinner-rcollections-cards-info-1 {
-                        display: flex;
-                        padding: 10px;
-                        .rcollections-text1 {
-                            font-size: 12px;
-                            font-style: normal;
-                            font-weight: 500;
-                            color: #000000;
-                        }
-                        .rcollections-text2 {
-                            font-size: 10px;
-                            font-style: normal;
-                            font-weight: 400;
-                            color: #999999;
-                        }
-                        .rcollections-preview {
-                            display: flex;
-                            // margin-left: 120px;
-                            .rcollections-preview-img {
-                                width: 12px;
-                                height: 12px;
-                                margin-top: 1px;
-                                margin-right: 5px;
-                            }
-                            .rcollections-text3 {
-                                font-size: 10px;
-                                font-style: normal;
-                                font-weight: 500;
-                                color: #999999;
-                            }
-                        }
-                    }
-                    .dinner-rcollections-cards-info-2 {
-                        display: flex;
-                        padding: 20px 10px 10px 10px;
-                        justify-content: space-between;
-                        .rcollections-imgdow {
-                            display: flex;
-                            .rcollections-img {
-                                width: 12px;
-                                height: 12px;
-                                margin-top: 1px;
-                                margin-right: 5px;
-                            }
-                            .rcollections-text4 {
-                                font-size: 10px;
-                                font-style: normal;
-                                font-weight: 400;
-                                color: #000000;
-                                margin-right: 20px;
-                            }
-                            .rcollections-dow {
-                                width: 12px;
-                                height: 12px;
-                                margin-right: 5px;
-                            }
-                            .rcollections-text5 {
-                                font-size: 10px;
-                                font-style: normal;
-                                font-weight: 400;
-                                color: #000000;
-                            }
-                        }
-                        .rcollections-edit {
-                            display: flex;
-                            .rcollections-edit-img {
-                                width: 12px;
-                                height: 12px;
-                                margin-top: 0.4px;
-                                margin-right: 5px;
-                            }
-                            .rcollections-text6 {
-                                font-size: 10px;
-                                font-style: normal;
-                                font-weight: 500;
-                                color: #999999;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        .dinner-rcollections-seeall {
-            display: flex;
-            justify-content: center;
-            margin-top: 40px;
-            text-decoration-line: underline;
-            font-size: 12px;
-            font-style: normal;
-            font-weight: 500;
-            color: #999999;
-        }
-    }
-    .dinner-propac-contanier {
-        // display: flex; 
-        // justify-content: space-between;
-        margin-top: 50px;
-        .dinner-rprojects {
+        .dic-rcollections {
             background-color: #f8f8f8;
-            padding: 30px;
-            .dinner-rprojects-title {
+            // margin-top: 50px;
+            // padding: 30px;
+            .dirc-rc-title {
                 font-size: 16px;
                 font-style: normal;
+                font-weight: 500;
                 color: #000000;
             }
-            .dinner-rprojects-cards-container {
-                margin-top: 10px;
-                .dinner-rprojects-cards {
+            .dirc-rc-card-container {
+                margin-top: 30px;
+                margin-bottom: 30px;
+                display: flex;
+                // flex-wrap: wrap;
+                row-gap: 20px;
+                justify-content: space-between;
+                .dirc-rc-cards {
                     display: flex;
-                    // width: 400px;
-                    height: 98px;
                     background-color: #ffffff;
-                    padding: 10px;
-                    margin-bottom: 20px;
-                    .dinner-rprojects-cards-info {
-                        width: 100%;
+                    // flex-basis: 45%;
+                    .dirc-rc-image {
+
+                    }
+                    .dirc-rc-info {
                         display: flex;
-                        flex-direction: column;
+                        flex-grow: 1;
+                        display: flex;
                         justify-content: space-between;
-                        .dinner-rprojects-cards-info1 {
+                        padding: 10px;
+                        .dirc-rc-info-1 {
                             display: flex;
+                            flex-direction: column;
                             justify-content: space-between;
-                            .rprojects-text1 {
+                            .dirc-rc-text1 {
                                 font-size: 12px;
                                 font-style: normal;
                                 font-weight: 500;
                                 color: #000000;
                             }
-                            .rprojects-text2 {
+                            .dirc-rc-text2 {
                                 font-size: 10px;
                                 font-style: normal;
                                 font-weight: 400;
                                 color: #999999;
                             }
-                        }
-                        .dinner-rprojects-cards-info2 {
-                            display: flex;
-                            justify-content: space-between;
-                            .rprojects-checks {
+                            .dirc-rc-imgdown {
                                 display: flex;
-                                .rprojects-checks-img {
-                                    width: 12px;
-                                    height: 12px;
-                                    margin-top: 1px;
-                                    margin-right: 5px;
-                                    color: #0e203d;
-                                }
-                                .rprojects-checks-text {
-                                    font-size: 10px;
-                                    font-style: normal;
-                                    font-weight: 400;
-                                    color: #000000;
-                                    margin-right: 10px;
-                                }
+                                .dirc-rc-text3 {
+                                font-size: 10px;
+                                font-style: normal;
+                                font-weight: 400;
+                                color: #000000;
                             }
-                            .rprojects-edit {
+                            }
+
+                        }
+                        .dirc-rc-info-2 {
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: space-between;
+                            .dirc-rc-preed {
                                 display: flex;
-                                justify-content: space-between;
-                                .rprojects-edit-img {
-                                    width: 12px;
-                                    height: 12px;
-                                    margin-top: 0.4px;
-                                    margin-right: 5px;
-                                }
-                                .rprojects-edit-text {
+                                align-self: flex-end;
+                                .dirc-rc-text4 {
                                     font-size: 10px;
                                     font-style: normal;
                                     font-weight: 500;
@@ -243,164 +123,254 @@
                     }
                 }
             }
-            .dinner-rprojects-seeall {
-                display: flex;
-                justify-content: center;
-                margin-top: 40px;
-                text-decoration-line: underline;
+            .dirc-rc-seeall {
                 font-size: 12px;
                 font-style: normal;
                 font-weight: 500;
                 color: #999999;
+                text-align: -webkit-center;
+                text-decoration: underline;
             }
         }
-        .dinner-rpackages {
-            background-color: #f8f8f8;
-            padding: 30px;
-            .dinner-rpackages-title {
-                font-size: 16px;
-                font-style: normal;
-                color: #000000;
-            }
-            .dinner-rpackages-cards-container {
-                margin-top: 10px;
-                .dinner-rpackages-cards {
+        .dic-rpr-rpa {
+            margin-top: 50px;
+            margin-bottom: 50px;
+            // display: flex;
+            // justify-content: space-between;
+            .dic-rprojects {
+                background-color: #f8f8f8;
+                // padding: 30px;
+                flex-basis: 45%;
+                .dirpr-title {
+                    font-size: 16px;
+                    font-style: normal;
+                    font-weight: 500;
+                    color: #000000;
+                }
+                .dirpr-card-container {
+                    margin-top: 30px;
+                    margin-bottom: 30px;
                     display: flex;
-                    // width: 400px;
-                    background-color: #ffffff;
-                    margin-bottom: 20px;
-                    .dinner-rpackages-cards-info {
-                        .dinner-rpackages-cards-info1 {
-                            padding: 10px;
-                            .rpackages-text1 {
+                    flex-direction: column;
+                    row-gap: 20px;
+                    .dirpr-cards {
+                        display: flex;
+                        flex-direction: row;
+                        justify-content: space-between;
+                        background-color: #ffffff;
+                        height: 98px;
+                        padding: 10px;
+                        .dirpr-info1 {
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: space-between;
+                            .dirpr-text1 {
                                 font-size: 12px;
                                 font-style: normal;
                                 font-weight: 500;
                                 color: #000000;
                             }
-                            .rpackages-text2 {
+                            .dirpr-text2 {
                                 font-size: 10px;
                                 font-style: normal;
                                 font-weight: 400;
                                 color: #999999;
                             }
                         }
-                        .dinner-rpackages-cards-info2 {
-                            padding: 16px 10px 10px 10px;
+                        .dirpr-info2 {
                             display: flex;
-                            .rpackages-text3 {
-                                font-size: 12px;
-                                font-style: normal;
-                                font-weight: 500;
-                                color: #000000;
-                            }
-                            .rpackages-edit {
-                                width: 12px;
-                                height: 12px;
-                                margin-top: 2px;
-                                margin-right: 5px;
-                                margin-left: 154px;
-                            }
-                            .rpackages-text4 {
+                            .dirpr-text3 {
                                 font-size: 10px;
                                 font-style: normal;
-                                font-weight: 500;
-                                color: #999999;
-                                margin-top: 2px;
+                                font-weight: 400;
+                                color: #000000;
+                            }
+                        }
+                        .dirpr-planedit {
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: space-between;
+                            .dirpr-edit {
+                                display: flex;
+                                justify-content: flex-end;
+                                .dirpr-text4 {
+                                    font-size: 10px;
+                                    font-style: normal;
+                                    font-weight: 500;
+                                    color: #999999;
+                                }
                             }
                         }
                     }
+
+                }
+                .dirpr-seeall {
+                    font-size: 12px;
+                    font-style: normal;
+                    font-weight: 500;
+                    color: #999999;
+                    text-align: -webkit-center;
+                    text-decoration: underline;
                 }
             }
-            .dinner-rpackages-seeall {
-                display: flex;
-                justify-content: center;
-                margin-top: 40px;
-                text-decoration-line: underline;
-                font-size: 12px;
-                font-style: normal;
-                font-weight: 500;
-                color: #999999;
+            .dic-rpackages {
+                background-color: #f8f8f8;
+                // padding: 30px;
+                flex-basis: 45%;
+                .dirpa-title {
+                    font-size: 16px;
+                    font-style: normal;
+                    font-weight: 500;
+                    color: #000000;
+                }
+                .dirpa-card-container {
+                    margin-top: 30px;
+                    margin-bottom: 30px;
+                    display: flex;
+                    flex-direction: column;
+                    row-gap: 20px;
+                    .dirpa-cards {
+                        display: flex;
+                        background-color: #ffffff;
+                        height: 98px;
+                        .dirpa-img {
+
+                        }
+                        .dirpa-info {
+                            display: flex;
+                            padding: 10px;
+                            flex-grow: 1;
+                            justify-content: space-between;
+                            .dirpa-info1 {
+                                display: flex;
+                                flex-direction: column;
+                                justify-content: space-between;
+                                .dirpa-text1 {
+                                    font-size: 12px;
+                                    font-style: normal;
+                                    font-weight: 700;
+                                    color: #000000;
+                                }
+                                .dirpa-text2 {
+                                    font-size: 10px;
+                                    font-style: normal;
+                                    font-weight: 400;
+                                    color: #999999;
+                                }
+                                .dirpa-text3 {
+                                    font-size: 12px;
+                                    font-style: normal;
+                                    font-weight: 500;
+                                    color: #000000;
+                                }
+                             }
+                        .dirpa-info2 {
+                            display: flex;
+                            font-size: 10px;
+                            font-style: normal;
+                            font-weight: 500;
+                            color: #999999;
+                            display: flex;
+                            align-items: flex-end;
+                        }
+                        }
+
+                    }
+                }
+                .dirpa-seeall {
+                    font-size: 12px;
+                    font-style: normal;
+                    font-weight: 500;
+                    color: #999999;
+                    text-align: -webkit-center;
+                    text-decoration: underline;
+                }
             }
         }
     }
-    @media (min-width: 692px) and (max-width: 1390px) {
-        margin: 100px 120px 220px 120px;
-        .rcollections-preview {
-            margin-left: 80px;
+    @media (max-width: 425px) {
+        padding: 20px 10px 50px 10px;
+        .dirc-rc-card-container {
+            flex-direction: column;
         }
-        .dinner-rcollections-cards-container {
-            justify-content: space-between;
+        .dic-rcollections {
+            margin-top: 20px;
+            margin-bottom: 20px;
+            padding: 2px;
         }
-        .dinner-rprojects {
+        .dic-rprojects {
+            margin-bottom: 20px;
+            padding: 2px;
+        }
+        .dic-rpackages {
+            padding: 2px;
+        } 
+    }
+    @media (min-width: 425px) and (max-width: 650px) {
+        padding: 50px 20px 50px 20px;
+        .dirc-rc-cards {
+            flex-basis: 100%;
+        }
+        .dirc-rc-card-container {
+            flex-direction: column;
+        }
+        .dic-rcollections {
+            margin-top: 50px;
+            padding: 30px;
+        }
+        .dic-rprojects {
             margin-bottom: 50px;
+            padding: 30px;
         }
-        .dinner-rprojects-cards-container {
-            display: inline-flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-        }
-        .dinner-rprojects-cards {
-            width: 350px;
-        }
-        .dinner-rpackages-cards-container {
-            display: inline-flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-        }
-        .dinner-rpackages-cards {
-            width: 350px;
-        }
+        .dic-rpackages {
+            padding: 30px;
+        } 
     }
-    @media (min-width: 1390px) and (max-width: 1440px) {
-        margin: 100px 220px 220px 220px;
-        .dinner-propac-contanier {
-            display: flex; 
+    @media (min-width: 650px) and (max-width: 1100px) {
+        padding: 100px 20px 100px 20px;
+        .dirc-rc-cards {
+            flex-basis: 45%;
+        }
+        .dic-rpr-rpa { 
+            display: flex;
             justify-content: space-between;
         }
-        .dinner-rcollections-cards-container {
+        .dirc-rc-card-container {
+            flex-wrap: wrap;
+        }
+        .dic-rcollections {
+            margin-top: 50px;
+            padding: 30px;
+        }
+        .dic-rprojects {
+            padding: 30px;
+        }
+        .dic-rpackages {
+            padding: 30px;
+        }   
+    }
+    @media (min-width: 1100px) {
+        padding: 100px 220px 100px 220px;
+        .dirc-rc-cards {
+            flex-basis: 45%;
+        }
+        .dic-rpr-rpa {
+            display: flex;
             justify-content: space-between;
         }
-        .rcollections-preview {
-            margin-left: 120px;
-        }
-        .dinner-rprojects-cards {
-            width: 400px;
-        }
-        .dinner-rpackages-cards {
-            width: 400px;
-        }
-    }
-    @media (min-width: 1441px) {
-        margin: 100px 220px 220px 220px;
-        .dinner-propac-contanier {
-        }
-        .dinner-rprojects {
-            margin-bottom: 50px;
-        }
-        .dinner-rprojects-cards-container {
-            display: inline-flex;
+        .dirc-rc-card-container {
             flex-wrap: wrap;
-            row-gap: 20px;
-            column-gap: 122px;
         }
-         .dinner-rpackages-cards-container {
-            display: inline-flex;
-            flex-wrap: wrap;
-            row-gap: 20px;
-            column-gap: 122px;
+        .dic-rcollections {
+            margin-top: 50px;
+            padding: 30px;
         }
-        .dinner-rcollections-cards-container {
-            column-gap: 122px;
+        .dic-rprojects {
+            padding: 30px;
         }
-        .rcollections-preview {
-            margin-left: 120px;
-        }
-        .dinner-rprojects-cards {
-            width: 400px;
-        }
-        .dinner-rpackages-cards {
-            width: 400px;
-        }
+        .dic-rpackages {
+            padding: 30px;
+        }   
     }
+
 }
