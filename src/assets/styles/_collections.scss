@@ -4,12 +4,14 @@
         display: flex;
         justify-content: center;
         .collections-inner-container {
-            margin-top: 80px;
+            margin-top: 30px;
             margin-bottom: 280px;
             width: 70%;
-            display: flex;
-            flex-direction: column;
+            // display: flex;
+            // flex-direction: column;
             .collection-first-inner-container {
+                // display: flex;
+                // justify-content: space-between;
                 .collections-title {
                     font-size: 24px;
                     font-style: normal;
@@ -30,10 +32,12 @@
                 }
             }
             .collection-second-inner-container {
-                width: 94%;
-                margin-top: 40px;
-                align-self: center;
-                align-items: center;
+                // width: 94%;
+                margin-top: 30px;
+                // display: flex;
+                // justify-content: space-between;
+                // align-self: center;
+                // align-items: center;
                 .collections-searchbar {
                     font-size: 14px;
                     width: 100%;
@@ -45,20 +49,21 @@
                 }
                 .collections-filter {
                     display: flex;
-                    margin-top: 5px;
+                    margin-top: 20px;
                 }
             }
             .collections-third-inner-container {
-                margin-top: 50px;
-                width: 94%;
+                margin-top: 40px;
+                // width: 94%;
                 align-self: center;
                 display: inline-flex;
                 flex-wrap: wrap;
-                gap: 30px;
+                justify-content: space-between;
+                row-gap: 30px;
                 .collections-cards {
-                    width: 100%;
+                    flex-basis: 21%;
                     .collections-cards-img {
-                        width: 100%;
+                        width: 200px;
                         height: 175px;
                     }
                     .collections-cards-text-1 {
@@ -132,7 +137,7 @@
                     }
                 }
             }
-        }   
+        }
     }
     @media (min-width: 653px) and (max-width: 768px) {
     	margin-top: 71px;
@@ -192,11 +197,12 @@
                 align-self: center;
                 display: inline-flex;
                 flex-wrap: wrap;
-                gap: 30px;
+                row-gap: 30px;
+                justify-content: space-between;
                 .collections-cards {
-                    width: 200px;
+                    flex-basis: 21%;
                     .collections-cards-img {
-                        width: 100%;
+                        width: 200px;
                         height: 175px;
                     }
                     .collections-cards-text-1 {
@@ -331,11 +337,13 @@
                 display: inline-flex;
                 flex-wrap: wrap;
                 // gap: 30px;
-                column-gap: 105px;
+                // column-gap: 30px;
+                justify-content: space-between;
+                row-gap: 30px;
                 .collections-cards {
-                    width: 200px;
+                    flex-basis: 21%;
                     .collections-cards-img {
-                        width: 100%;
+                        width: 200px;
                         height: 175px;
                     }
                     .collections-cards-text-1 {
@@ -469,13 +477,13 @@
                 align-self: center;
                 display: inline-flex;
                 flex-wrap: wrap;
-                // gap: 30px;
-                column-gap: 36px;
+                // column-gap: 30px;
+                justify-content: space-between;
                 row-gap: 30px;
                 .collections-cards {
-                    width: 200px;
+                    flex-basis: 21%;
                     .collections-cards-img {
-                        width: 100%;
+                        width: 200px;
                         height: 175px;
                     }
                     .collections-cards-text-1 {
@@ -551,7 +559,7 @@
             }
         }
     }
-    @media (min-width: 1440px) {
+    @media (min-width: 1441px) {
         margin-top: 71px;
         display: flex;
         justify-content: center;
@@ -609,13 +617,13 @@
                 align-self: center;
                 display: inline-flex;
                 flex-wrap: wrap;
-                // gap: 30px;
-                column-gap: 49px;
+                column-gap: 30px;
+                // justify-content: space-between;
                 row-gap: 30px;
                 .collections-cards {
-                    width: 200px;
+                    // flex-basis: 21%;
                     .collections-cards-img {
-                        width: 100%;
+                        width: 200px;
                         height: 175px;
                     }
                     .collections-cards-text-1 {
@@ -626,6 +634,7 @@
                         font-weight: 500;
                         color: #000000;
                         margin-top: 10px;
+                        width: 200px;
                         .collections-cards-text-1-date {
                             font-size: 10px;
                             font-style: normal;
@@ -654,6 +663,7 @@
                         margin-bottom: 10px;
                         font-size: 12px;
                         justify-content: space-between;
+                        width: 200px;
                         .collections-cards-text-2-imgdow {
                             display: flex;
                             .cct2p-img {

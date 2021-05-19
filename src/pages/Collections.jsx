@@ -2,10 +2,8 @@ import React from 'react'
 import Header from '../components/Header'
 import { CgOptions } from 'react-icons/cg'
 import Dummy3 from '../assets/img/dummy-img/dummy3.png'
-import { BsCardImage } from 'react-icons/bs'
-import { BsBoxArrowInDown } from 'react-icons/bs'
-import { AiOutlineEye } from 'react-icons/ai'
-import { AiFillEdit } from 'react-icons/ai'
+import { BsCardImage, BsBoxArrowInDown } from 'react-icons/bs'
+import { AiOutlineEye, AiFillEdit } from 'react-icons/ai'
 
 function Collections() {
 	return (
