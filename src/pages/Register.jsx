@@ -16,7 +16,7 @@ function Login() {
   const dispatch = useDispatch();
 
   if (auth.isLogin === true) {
-    return <Home />;
+    window.location = '/';
   }
 
   function handleSubmit(event) {

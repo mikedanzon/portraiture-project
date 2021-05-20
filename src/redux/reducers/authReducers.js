@@ -1,10 +1,12 @@
 const initialState = {
-  id: localStorage.getItem('id') || '',
+  id: '',
   token: localStorage.getItem('token') || '',
   isLogin: localStorage.getItem('token') ? true : false,
-  name: localStorage.getItem('name') || '',
-  businessName: localStorage.getItem('businessName') || '',
-  photo: localStorage.getItem('photo') || '',
+  name: '',
+  businessName: '',
+  photo: '',
+  address: '',
+  email: '',
 };
 
 const Reducers = (state = initialState, action) => {
@@ -12,7 +14,17 @@ const Reducers = (state = initialState, action) => {
     case 'LOGIN':
       return { ...state, ...action.payload, isLogin: true };
     case 'LOGOUT':
-      return { ...state, ...action.payload, isLogin: false };
+      return {
+        ...state,
+        id: '',
+        token: '',
+        name: '',
+        businessName: '',
+        photo: '',
+        address: '',
+        email: '',
+        isLogin: false,
+      };
     default:
       return state;
   }
