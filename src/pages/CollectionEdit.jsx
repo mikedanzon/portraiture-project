@@ -8,7 +8,7 @@ import ThemeClass from '../assets/img/collections/theme-classic.png';
 import ThemeMin from '../assets/img/collections/theme-minimalism.png';
 import ThemeDark from '../assets/img/collections/theme-dark.png';
 import { Link } from 'react-router-dom';
-
+import Switch from '../components/Fields/Switch';
 
 function CollectionEdit() {
   const [title, setTitle] = useState();
@@ -23,7 +23,6 @@ function CollectionEdit() {
   const [hidePass, setHidePass] = useState(true);
   const [downloadOption, setDownloadOption] = useState();
   const [limitDownload, setLimitDownload] = useState();
-  const [advDownload, setAdvDownload] = useState();
   const [imgHigh, setImgHigh] = useState();
   const [imgWeb, setImgWeb] = useState();
   const [restrictEmail, setRestrictEmail] = useState();
@@ -45,7 +44,7 @@ function CollectionEdit() {
   };
 
   const onUploadImage = () => {
-    setPage(2);
+    console.log('success');
   };
 
   function handleSubmit(event) {
@@ -66,9 +65,7 @@ function CollectionEdit() {
       <div className="cedit">
         <div className="cedit-header-menu">
           <Breadcrumb>
-            <Breadcrumb.Item Link to="#">
-              Dashboard
-            </Breadcrumb.Item>
+            <Breadcrumb.Item href="/dashboard">Dashboard</Breadcrumb.Item>
             <Breadcrumb.Item Link to="#" active>
               Collections
             </Breadcrumb.Item>
@@ -119,12 +116,14 @@ function CollectionEdit() {
           </div>
           <div className="cedit-menu-border"></div>
         </div>
-        {
-          page === 'theme' ?
+        {page === 'theme' ? (
           <div className="cedit-content">
             <div className="cedit-theme">
               <div className="cedit-theme-1">
-                <span className="theme-pointer pb-2" onClick={() => setTheme(1)}>
+                <span
+                  className="theme-pointer pb-2"
+                  onClick={() => setTheme(1)}
+                >
                   <img src={ThemeClass} alt="classTheme" />
                 </span>
               </div>
@@ -159,8 +158,7 @@ function CollectionEdit() {
               </Button>
             </div>
           </div>
-          :
-          page === 'photos' ?
+        ) : page === 'photos' ? (
           <div className="cedit-content">
             <div className="cedit-upload">
               <div {...getRootProps()}>
@@ -189,8 +187,7 @@ function CollectionEdit() {
               </Button>
             </div>
           </div>
-          :
-          page === 'privacy' ?
+        ) : page === 'privacy' ? (
           <div className="cedit-content">
             <div className="cedit-privacy">
               <div className="cedit-advance-1">
@@ -198,6 +195,7 @@ function CollectionEdit() {
                   <div className="cedit-1-1">
                     <label className="switch">
                       <input
+                        name="showGallery"
                         type="checkbox"
                         value={showGallery}
                         onChange={() => setShowGallery(!showGallery)}
@@ -205,35 +203,23 @@ function CollectionEdit() {
                       />
                       <span class="slider"></span>
                     </label>
+                    {/* <Switch
+                      name="showGallery"
+                      value={showGallery}
+                      onChange={() => setShowGallery(!showGallery)}
+                      defaultChecked={showGallery}
+                    /> */}
                   </div>
                   <div className="cedit-1-2">Show on Gallery</div>
                 </div>
                 <div className="cedit-advance-1-2">
-                  This collection available on your main page. <Link to="/">See page</Link>
+                  This collection available on your main page.{' '}
+                  <Link to="/">See page</Link>
                 </div>
               </div>
               <div className="cedit-advance-2">
                 <div className="cedit-advance-2-1">
                   <div className="cedit-2-1">
-                    <label className="switch">
-                      <input
-                        type="checkbox"
-                        value={emailReg}
-                        onChange={() => setEmailReg(!emailReg)}
-                        defaultChecked={emailReg}
-                      />
-                      <span class="slider"></span>
-                    </label>
-                  </div>
-                  <div className="cedit-2-2">Email Registration</div>
-                </div>
-                <div className="cedit-advance-2-2">
-                  Enable to require visitors to enter their email address to view this collection.
-                </div>
-              </div>
-              <div className="cedit-advance-3">
-                <div className="cedit-advance-3-1">
-                  <div className="cedit-3-1">
                     <label className="switch">
                       <input
                         type="checkbox"
@@ -243,47 +229,62 @@ function CollectionEdit() {
                       />
                       <span class="slider"></span>
                     </label>
+                    {/* <Switch
+                      name="collPass"
+                      value={collPass}
+                      onChange={() => setCollPass(!collPass)}
+                      defaultChecked={collPass}
+                    /> */}
                   </div>
-                  <div className="cedit-3-2">Collection Password</div>
+                  <div className="cedit-2-2">Collection Password</div>
                 </div>
-                <div className="cedit-advance-3-2">
-                  Turn on to have a generated password for all guest in order to see your collection
+                <div className="cedit-advance-2-2">
+                  Turn on to have a generated password for all guest in order to
+                  see your collection
                 </div>
-                <div className="cedit-advance-3-3" style={{display: `${collPass ? "block" : "none"}`}}>
-                  <input type={`${hidePass ? "password" : "text"}`} placeholder="Set a password" className="custom-form-port mr-3"/>
-                  <BiShow className="cedit-eye" onClick={() => setHidePass(!hidePass)}/>
+                <div
+                  className="cedit-advance-2-3"
+                  style={{ display: `${collPass ? 'block' : 'none'}` }}
+                >
+                  <input
+                    type={`${hidePass ? 'password' : 'text'}`}
+                    placeholder="Set a password"
+                    className="custom-form-port mr-3"
+                  />
+                  <BiShow
+                    className="cedit-eye"
+                    onClick={() => setHidePass(!hidePass)}
+                  />
                   <button>Save</button>
                 </div>
               </div>
             </div>
           </div>
-          :
-          page === 'download' ?
+        ) : page === 'download' ? (
           <div className="cedit-content">
             <div className="cedit-download">
               <div className="cedit-advance-1">
                 <div className="cedit-advance-1-1">
                   <div className="cedit-1-1">
-                    <label className="switch">
-                      <input
-                        type="checkbox"
-                        value={downloadOption}
-                        onChange={() => setDownloadOption(!downloadOption)}
-                        defaultChecked={downloadOption}
-                      />
-                      <span class="slider"></span>
-                    </label>
+                    <Switch
+                      name="downloadOption"
+                      value={downloadOption}
+                      onChange={() => setDownloadOption(!downloadOption)}
+                      defaultChecked={downloadOption}
+                    />
                   </div>
                   <div className="cedit-1-2">Download Option</div>
                 </div>
                 <div className="cedit-advance-1-2">
-                  Turn on to allow your client to download photos from this collection
+                  Turn on to allow your client to download photos from this
+                  collection
                 </div>
-                <div className="download-option-1" style={{display: `${downloadOption ? "block" : "none"}`}}>
+                <div
+                  className="download-option-1"
+                  style={{ display: `${downloadOption ? 'block' : 'none'}` }}
+                >
                   <div className="option-image">
-                    <div className="option-image-text pb-2">
-                      Image size
-                    </div>
+                    <div className="option-image-text pb-2">Image size</div>
                     <div className="option-image-1 pb-1">
                       <input
                         type="checkbox"
@@ -292,7 +293,8 @@ function CollectionEdit() {
                         defaultChecked={imgHigh}
                         className="mr-2"
                       />
-                      High Resolution <span style={{color: "#999999"}}>{'>'} 3600 px</span>
+                      High Resolution{' '}
+                      <span style={{ color: '#999999' }}>{'>'} 3600 px</span>
                     </div>
                     <div className="option-image-2 pb-1">
                       <input
@@ -302,22 +304,23 @@ function CollectionEdit() {
                         defaultChecked={imgWeb}
                         className="mr-2"
                       />
-                      Web size <span style={{color: "#999999"}}>640 px - 1024 px</span>
+                      Web size{' '}
+                      <span style={{ color: '#999999' }}>640 px - 1024 px</span>
                     </div>
                   </div>
                 </div>
-                <div className="download-option-2" style={{display: `${downloadOption ? "block" : "none"}`}}>
+                <div
+                  className="download-option-2"
+                  style={{ display: `${downloadOption ? 'block' : 'none'}` }}
+                >
                   <div className="option-email">
                     <div className="option-email-button">
-                      <label className="switch">
-                        <input
-                          type="checkbox"
-                          value={restrictEmail}
-                          onChange={() => setRestrictEmail(!restrictEmail)}
-                          defaultChecked={restrictEmail}
-                        />
-                        <span class="slider"></span>
-                      </label>
+                      <Switch
+                        name="restrictEmail"
+                        value={restrictEmail}
+                        onChange={() => setRestrictEmail(!restrictEmail)}
+                        defaultChecked={restrictEmail}
+                      />
                     </div>
                     <div className="option-email-text">
                       Restrict to Specific Emails
@@ -325,8 +328,15 @@ function CollectionEdit() {
                     <div className="option-email-text-2">
                       Restrict download to only emails you have been registered
                     </div>
-                    <div className="option-email-add" style={{display: `${restrictEmail ? "block" : "none"}`}}>
-                      <input type="text" placeholder="Add email" className="custom-form-port mr-3"/>
+                    <div
+                      className="option-email-add"
+                      style={{ display: `${restrictEmail ? 'block' : 'none'}` }}
+                    >
+                      <input
+                        type="text"
+                        placeholder="Add email"
+                        className="custom-form-port mr-3"
+                      />
                       <button>Add</button>
                     </div>
                   </div>
@@ -335,67 +345,74 @@ function CollectionEdit() {
               <div className="cedit-advance-2">
                 <div className="cedit-advance-2-1">
                   <div className="cedit-2-1">
-                    <label className="switch">
-                      <input
-                        type="checkbox"
-                        value={limitDownload}
-                        onChange={() => setLimitDownload(!limitDownload)}
-                        defaultChecked={limitDownload}
-                      />
-                      <span class="slider"></span>
-                    </label>
+                    <Switch
+                      name="limitDownload"
+                      value={limitDownload}
+                      onChange={() => setLimitDownload(!limitDownload)}
+                      defaultChecked={limitDownload}
+                    />
                   </div>
-                  <div className="cedit-2-2">Limit Total Collection Download</div>
+                  <div className="cedit-2-2">
+                    Limit Total Collection Download
+                  </div>
                 </div>
                 <div className="cedit-advance-2-2">
-                  Guess only able to download collection up to the download limit.
+                  Guess only able to download collection up to the download
+                  limit.
                 </div>
-                <div className="download-limit" style={{display: `${limitDownload ? "block" : "none"}`}}>
-                  <input type="text" placeholder="e.g. 2" className="custom-form-port mr-3"/>
+                <div
+                  className="download-limit"
+                  style={{ display: `${limitDownload ? 'block' : 'none'}` }}
+                >
+                  <input
+                    type="text"
+                    placeholder="e.g. 2"
+                    className="custom-form-port mr-3"
+                  />
                   <button>Save</button>
                 </div>
               </div>
             </div>
           </div>
-          :
+        ) : (
           <div className="cedit-content">
-          <Form onSubmit={handleSubmit} className="cedit-collection">
-            <Form.Group size="lg" controlId="title">
-              <Form.Label>Title*</Form.Label>
-              <Form.Control
-                className="custom-form-port"
-                type="text"
-                value={title}
-                placeholder="value dari backend"
-                onChange={(e) => setTitle(e.target.value)}
-              />
-            </Form.Group>
-            <Form.Group size="lg" controlId="title">
-              <Form.Label>Date*</Form.Label>
-              <Form.Control
-                className="custom-form-port"
-                type="text"
-                value={date}
-                placeholder="value dari backend"
-                onChange={(e) => setDate(e.target.value)}
-              />
-            </Form.Group>
-            <Form.Group size="lg" controlId="title">
-              <Form.Label>Description</Form.Label>
-              <Form.Control
-                className="custom-form-port"
-                type="text"
-                value={desc}
-                placeholder="value dari backend"
-                onChange={(e) => setDesc(e.target.value)}
-              />
-            </Form.Group>
-            <button size="lg" type="submit" className="mt-5">
-              Save
-            </button>
-          </Form>
-        </div>
-        }
+            <Form onSubmit={handleSubmit} className="cedit-collection">
+              <Form.Group size="lg" controlId="title">
+                <Form.Label>Title*</Form.Label>
+                <Form.Control
+                  className="custom-form-port"
+                  type="text"
+                  value={title}
+                  placeholder="value dari backend"
+                  onChange={(e) => setTitle(e.target.value)}
+                />
+              </Form.Group>
+              <Form.Group size="lg" controlId="title">
+                <Form.Label>Date*</Form.Label>
+                <Form.Control
+                  className="custom-form-port"
+                  type="text"
+                  value={date}
+                  placeholder="value dari backend"
+                  onChange={(e) => setDate(e.target.value)}
+                />
+              </Form.Group>
+              <Form.Group size="lg" controlId="title">
+                <Form.Label>Description</Form.Label>
+                <Form.Control
+                  className="custom-form-port"
+                  type="text"
+                  value={desc}
+                  placeholder="value dari backend"
+                  onChange={(e) => setDesc(e.target.value)}
+                />
+              </Form.Group>
+              <button size="lg" type="submit" className="mt-5">
+                Save
+              </button>
+            </Form>
+          </div>
+        )}
       </div>
     </>
   );

@@ -18,6 +18,9 @@
 @import './collections';
 @import './projects';
 @import './galleryAll';
+@import './packages';
+@import './packagesNew';
+@import './switch';
 
 * {
   margin: 0;
@@ -45,6 +48,8 @@
   border-bottom: 2px solid $color-ash;
   background: #fcfcfc;
   height: 42px;
+  padding-left: 20px;
+  padding-right: 20px;
 
   &:focus {
     box-shadow: none !important;

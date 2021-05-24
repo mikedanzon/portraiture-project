@@ -18,7 +18,10 @@ import GalleryAll from './pages/GalleryAll';
 import { useEffect } from 'react';
 import { URL_API } from './helper/url';
 import axios from 'axios';
+import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch, useSelector } from 'react-redux';
+import Packages from './pages/Packages';
+import PackagesNew from './pages/PackagesNew';
 
 function App() {
   const auth = useSelector((state) => state.auth);
@@ -26,11 +29,11 @@ function App() {
 
   useEffect(() => {
     if (localStorage.getItem('token')) {
-      var configGetOneUser = {
+      var config = {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       };
       axios
-        .get(`${URL_API}/user/one`, configGetOneUser)
+        .get(`${URL_API}/user/one`, config)
         .then((res) => {
           dispatch({
             type: 'LOGIN',
@@ -40,6 +43,8 @@ function App() {
               name: res.data.result.name,
               businessName: res.data.result.businessName,
               photo: res.data.result.photo,
+              address: res.data.result.address,
+              email: res.data.result.email,
             },
           });
         })
@@ -68,6 +73,8 @@ function App() {
         <Route exact path="/projects/edit" component={ProjectEdit} />
         <Route exact path="/projects" component={Projects} />
         <Route exact path="/gallery/all" component={GalleryAll} />
+        <Route exact path="/packages" component={Packages} />
+        <Route exact path="/packages/new" component={PackagesNew} />
       </Switch>
     </>
   );

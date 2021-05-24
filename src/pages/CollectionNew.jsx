@@ -7,6 +7,9 @@ import ThemeClass from '../assets/img/collections/theme-classic.png';
 import ThemeMin from '../assets/img/collections/theme-minimalism.png';
 import ThemeDark from '../assets/img/collections/theme-dark.png';
 import { AiFillEye } from 'react-icons/ai';
+import { URL_API } from '../helper/url';
+import { useSelector } from 'react-redux';
+import axios from 'axios';
 
 function CollectionNew() {
   const [page, setPage] = useState(0);
@@ -18,6 +21,7 @@ function CollectionNew() {
   const [advOpen, setAdvOpen] = useState(false);
   const [image, setImage] = useState();
   const [theme, setTheme] = useState();
+  const auth = useSelector((state) => state.auth);
 
   const onDrop = useCallback((acceptedFiles) => {
     setImage(acceptedFiles);
@@ -51,6 +55,13 @@ function CollectionNew() {
 
   const onSaveTheme = () => {
     console.log('succes, just need to wait backend');
+    var data = {
+      title: title,
+      description: desc,
+      date: date,
+      id_user: auth.id
+    }
+    axios.post(`${URL_API}/collection`)
   };
 
   const previewTheme = () => {
