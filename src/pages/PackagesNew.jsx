@@ -1,9 +1,16 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import { Fragment } from 'react';
 import HeaderProps from '../components/HeaderProps';
 import { AiOutlineClose } from 'react-icons/ai';
+import axios from 'axios';
+import { URL_API } from '../helper/url';
+import { Toast } from 'react-bootstrap';
+import { toast, ToastContainer } from 'react-toastify';
 
 function PackagesNew() {
+  const [name, setName] = useState();
+  const [desc, setDesc] = useState();
+  const photo = useRef();
   const [inputFields, setInputFields] = useState([
     {
       itemName: '',
@@ -38,11 +45,59 @@ function PackagesNew() {
 
   const onSave = (e) => {
     e.preventDefault();
-    console.log(inputFields);
+    console.log(photo.current.files[0]);
+    var files = {
+      name: name,
+      description: desc,
+      image: photo.current.files[0].name,
+      // image: {
+      //   type: photo.current.files[0].type,
+      //   name: photo.current.files[0].name,
+      // },
+      packageItems: inputFields,
+    };
+    axios
+      .post(`${URL_API}/package`, files)
+      .then(() => {
+        toast.success('Success created a new package!', {
+          position: 'bottom-right',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        setTimeout(() => {
+          window.location = '/packages';
+        }, 2000);
+      })
+      .catch((err) => {
+        toast.error(`${err.response.data.message}`, {
+          position: 'bottom-right',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      });
   };
 
   return (
     <>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <HeaderProps title="Create Package" link="/" />
       <div className="pnew-wrapper">
         <div className="pnew-details">Package Details</div>
@@ -53,6 +108,8 @@ function PackagesNew() {
               type="text"
               className="custom-form-port"
               placeholder="e.g. Professional Photoshoot Session"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
             />
           </div>
         </div>
@@ -63,13 +120,15 @@ function PackagesNew() {
               type="text"
               className="custom-form-port"
               placeholder="Type collection description"
+              value={desc}
+              onChange={(e) => setDesc(e.target.value)}
             />
           </div>
         </div>
         <div className="pnew-image">
           <div className="pnew-image-1">Images</div>
           <div className="pnew-image-2">
-            <input type="file" />
+            <input type="file" ref={photo} />
           </div>
         </div>
         <div className="pnew-items">

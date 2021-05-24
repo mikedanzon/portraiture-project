@@ -109,7 +109,7 @@ function Home() {
                 portofolio and blog
               </div>
               <div className="collection-3">
-                <Link to="/">learn more</Link>
+                <Link to="/collections">learn more</Link>
               </div>
             </div>
             <div className="home-product-line mr-3"></div>
@@ -122,7 +122,7 @@ function Home() {
                 portofolio and blog
               </div>
               <div className="projects-3">
-                <Link to="/">learn more</Link>
+                <Link to="/projects">learn more</Link>
               </div>
             </div>
             <div className="home-product-line mr-3"></div>
@@ -135,7 +135,7 @@ function Home() {
                 portofolio and blog
               </div>
               <div className="package-3">
-                <Link to="/">learn more</Link>
+                <Link to="/packages">learn more</Link>
               </div>
             </div>
           </div>

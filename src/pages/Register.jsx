@@ -6,6 +6,7 @@ import Logo from '../assets/img/logo.png';
 import Home from './Home';
 import { URL_API } from '../helper/url';
 import axios from 'axios';
+import { toast, ToastContainer } from 'react-toastify';
 
 function Login() {
   const [name, setName] = useState('');
@@ -31,16 +32,46 @@ function Login() {
     axios
       .post(`${URL_API}/auth/signup`, data)
       .then((res) => {
-        localStorage.setItem('token', res.data.token);
-        window.location = '/';
+        toast.success('Success! You are now logged in with your new account!', {
+          position: 'bottom-right',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        setTimeout(() => {
+          localStorage.setItem('token', res.data.token);
+          window.location = '/';
+        }, 2000);
       })
       .catch((err) => {
-        console.log(err.response.data.message);
+        toast.error(`${err.response.data.message}`, {
+          position: 'bottom-right',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       });
   }
 
   return (
     <>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <div className="port-background">
         <div className="port-main">
           <div className="port-main-header">
