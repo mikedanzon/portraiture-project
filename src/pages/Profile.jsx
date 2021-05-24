@@ -6,7 +6,7 @@ import Dummy2 from '../assets/img/dummy-img/dummy2.png'
 function Profile() {
 	return (
 		<>
-		<HeaderProps title="Edit Profile" link="/" />
+		<HeaderProps title="Edit Profile" link="/dashboard" />
 		<div className="profile-container">
 			<Form className="profile-inner-container">
 				<div className="profile-bd">Business Details</div>

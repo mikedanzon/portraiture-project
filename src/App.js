@@ -13,6 +13,8 @@ import Profile from './pages/Profile';
 import ProjectNew from './pages/ProjectNew';
 import ProjectEdit from './pages/ProjectEdit';
 import Collections from './pages/Collections';
+import Projects from './pages/Projects';
+import GalleryAll from './pages/GalleryAll';
 import { useEffect } from 'react';
 import { URL_API } from './helper/url';
 import axios from 'axios';
@@ -60,10 +62,12 @@ function App() {
         <Route exact path="/collections/edit" component={CollectionEdit} />
         <Route exact path="/testing" component={Testing} />
         <Route exact path="/dashboard" component={Dashboard} />
-        <Route exact path="/dashboard/profile" component={Profile} />
-        <Route exact path="/dashboard/collections" component={Collections} />
+        <Route exact path="/profile" component={Profile} />
+        <Route exact path="/collections" component={Collections} />
         <Route exact path="/projects/new" component={ProjectNew} />
         <Route exact path="/projects/edit" component={ProjectEdit} />
+        <Route exact path="/projects" component={Projects} />
+        <Route exact path="/gallery/all" component={GalleryAll} />
       </Switch>
     </>
   );

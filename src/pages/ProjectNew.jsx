@@ -5,7 +5,7 @@ import { Form, Button } from 'react-bootstrap';
 function ProjectNew() {
 	return (
 		<>
-		<HeaderProps title="Create Project" link="/" />
+		<HeaderProps title="Create Project" link="/projects" />
 		<div className="project-new-container">
 			<Form className="project-new-inner-container">
 				<div className="project-new-pd">Project Details</div>

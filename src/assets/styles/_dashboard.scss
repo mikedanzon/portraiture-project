@@ -50,8 +50,6 @@
         }
         .dic-rcollections {
             background-color: #f8f8f8;
-            // margin-top: 50px;
-            // padding: 30px;
             .dirc-rc-title {
                 font-size: 16px;
                 font-style: normal;
@@ -60,15 +58,13 @@
             }
             .dirc-rc-card-container {
                 margin-top: 30px;
-                margin-bottom: 30px;
+                margin-bottom: 40px;
                 display: flex;
-                // flex-wrap: wrap;
                 row-gap: 20px;
                 justify-content: space-between;
                 .dirc-rc-cards {
                     display: flex;
                     background-color: #ffffff;
-                    // flex-basis: 45%;
                     .dirc-rc-image {
 
                     }
@@ -101,6 +97,8 @@
                                 font-style: normal;
                                 font-weight: 400;
                                 color: #000000;
+                                padding-left: 5px;
+                                padding-right: 10px;
                             }
                             }
 
@@ -109,6 +107,7 @@
                             display: flex;
                             flex-direction: column;
                             justify-content: space-between;
+                            color: #999999;
                             .dirc-rc-preed {
                                 display: flex;
                                 align-self: flex-end;
@@ -117,6 +116,7 @@
                                     font-style: normal;
                                     font-weight: 500;
                                     color: #999999;
+                                    padding-left: 5px;
                                 }
                             }
                         }
@@ -135,11 +135,8 @@
         .dic-rpr-rpa {
             margin-top: 50px;
             margin-bottom: 50px;
-            // display: flex;
-            // justify-content: space-between;
             .dic-rprojects {
                 background-color: #f8f8f8;
-                // padding: 30px;
                 flex-basis: 45%;
                 .dirpr-title {
                     font-size: 16px;
@@ -149,7 +146,7 @@
                 }
                 .dirpr-card-container {
                     margin-top: 30px;
-                    margin-bottom: 30px;
+                    margin-bottom: 40px;
                     display: flex;
                     flex-direction: column;
                     row-gap: 20px;
@@ -179,11 +176,14 @@
                         }
                         .dirpr-info2 {
                             display: flex;
+                            color:#0e203d;
                             .dirpr-text3 {
                                 font-size: 10px;
                                 font-style: normal;
                                 font-weight: 400;
                                 color: #000000;
+                                padding-left: 5px;
+                                padding-right: 5px;
                             }
                         }
                         .dirpr-planedit {
@@ -193,11 +193,13 @@
                             .dirpr-edit {
                                 display: flex;
                                 justify-content: flex-end;
+                                color: #999999;
                                 .dirpr-text4 {
                                     font-size: 10px;
                                     font-style: normal;
                                     font-weight: 500;
                                     color: #999999;
+                                    padding-left: 5px;
                                 }
                             }
                         }
@@ -215,7 +217,6 @@
             }
             .dic-rpackages {
                 background-color: #f8f8f8;
-                // padding: 30px;
                 flex-basis: 45%;
                 .dirpa-title {
                     font-size: 16px;
@@ -225,7 +226,7 @@
                 }
                 .dirpa-card-container {
                     margin-top: 30px;
-                    margin-bottom: 30px;
+                    margin-bottom: 40px;
                     display: flex;
                     flex-direction: column;
                     row-gap: 20px;
@@ -266,12 +267,16 @@
                              }
                         .dirpa-info2 {
                             display: flex;
-                            font-size: 10px;
-                            font-style: normal;
-                            font-weight: 500;
                             color: #999999;
                             display: flex;
                             align-items: flex-end;
+                            .dirpa-text4 {
+                                font-size: 10px;
+                                font-style: normal;
+                                font-weight: 500;
+                                color: #999999;
+                                padding-left: 5px;
+                            }
                         }
                         }
 
@@ -295,15 +300,14 @@
         }
         .dic-rcollections {
             margin-top: 20px;
-            margin-bottom: 20px;
-            padding: 2px;
+            padding: 20px 5px 30px 5px;
         }
         .dic-rprojects {
-            margin-bottom: 20px;
-            padding: 2px;
+            margin-bottom: 50px;
+            padding: 20px 5px 30px 5px;
         }
         .dic-rpackages {
-            padding: 2px;
+            padding: 20px 5px 30px 5px;
         } 
     }
     @media (min-width: 425px) and (max-width: 650px) {

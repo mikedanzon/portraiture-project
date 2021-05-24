@@ -59,7 +59,7 @@ function CollectionNew() {
 
   return (
     <>
-      <HeaderProps title="Create Collections" link="/" />
+      <HeaderProps title="Create Collections" link="/collections" />
       <div className="cnew-header">
         <div className="cnew-header-title">
           <div className={`${page ? '' : 'cnew-header-active'}`}>
