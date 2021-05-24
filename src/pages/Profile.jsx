@@ -1,9 +1,26 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import HeaderProps from '../components/HeaderProps'
 import { Form, Button } from 'react-bootstrap';
 import Dummy2 from '../assets/img/dummy-img/dummy2.png'
+import { useDispatch, useSelector } from 'react-redux';
 
 function Profile() {
+	const [busName, setBusName] = useState();
+	const [addrs, setAddrs] = useState();
+	const [image, setImage] = useState();
+	const [name, setName] = useState();
+	const [email, setEmail] = useState();
+	const auth = useSelector((state) => state.auth);
+	const dispatch = useDispatch();
+
+	useEffect(() => {
+		fetchUsers()
+	}, [])
+
+	const fetchUsers = () => {
+		console.log(auth.name)
+	}
+
 	return (
 		<>
 		<HeaderProps title="Edit Profile" link="/dashboard" />
@@ -32,7 +49,7 @@ function Profile() {
     				<Form.Control className="custom-form-port" type="text" placeholder="studio@justin.com" />
   				</Form.Group>
   				<div className="profile-button-container">
-  					<Button className="profile-button" variant="primary" type="submit">Save</Button>
+  					<Button className="profile-button" variant="primary">Save</Button>
   				</div>
 			</Form>
 		</div>
