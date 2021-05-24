@@ -4,6 +4,7 @@ import { BiFilter } from 'react-icons/bi';
 import { AiOutlineSearch } from 'react-icons/ai';
 import axios from 'axios';
 import { URL_API } from '../helper/url';
+import { Link } from 'react-router-dom';
 
 function Packages() {
   const [dataPackages, setDataPacakges] = useState([]);
@@ -25,7 +26,7 @@ function Packages() {
     return dataPackages.map((val, index) => {
       return (
         <div className={`data-item-list`} key={index}>
-          <img src={`${URL_API}/images/${val.image}`} alt="packagesNull" />
+          <img src={val.image} alt="packagesNull" />
         </div>
       );
     });
@@ -38,7 +39,9 @@ function Packages() {
         <div className="packages-header">
           <div className="packages-header-text">Packages</div>
           <div className="packages-header-new">
-            <button>New Packages</button>
+            <button>
+              <Link to="/packages/new">New Packages</Link>
+            </button>
           </div>
         </div>
         <div className="packages-header-2">

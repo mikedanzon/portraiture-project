@@ -71,6 +71,11 @@
         color: white;
         background: #c2a47e;
       }
+
+      a {
+        text-decoration: none;
+        color: white;
+      }
     }
   }
 
@@ -93,6 +98,21 @@
       .packages-header-search-icon {
         margin-left: -290px;
         font-size: 22px;
+      }
+    }
+  }
+
+  .packages-main {
+    display: flex;
+    flex-flow: row wrap;
+    flex-direction: row;
+    .data-item-list {
+      align-items: center;
+      flex-basis: 30%;
+      padding-bottom: 25px;
+      img {
+        width: 300px;
+        height: auto;
       }
     }
   }

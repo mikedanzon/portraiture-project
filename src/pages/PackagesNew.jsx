@@ -45,17 +45,13 @@ function PackagesNew() {
 
   const onSave = (e) => {
     e.preventDefault();
-    console.log(photo.current.files[0]);
     var files = {
       name: name,
       description: desc,
       image: photo.current.files[0].name,
-      // image: {
-      //   type: photo.current.files[0].type,
-      //   name: photo.current.files[0].name,
-      // },
       packageItems: inputFields,
     };
+    console.log(files);
     axios
       .post(`${URL_API}/package`, files)
       .then(() => {
@@ -69,7 +65,7 @@ function PackagesNew() {
           progress: undefined,
         });
         setTimeout(() => {
-          window.location = '/packages';
+          // window.location = '/packages';
         }, 2000);
       })
       .catch((err) => {
@@ -98,7 +94,7 @@ function PackagesNew() {
         draggable
         pauseOnHover
       />
-      <HeaderProps title="Create Package" link="/" />
+      <HeaderProps title="Create Package" link="/packages" />
       <div className="pnew-wrapper">
         <div className="pnew-details">Package Details</div>
         <div className="pnew-name">
