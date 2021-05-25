@@ -18,13 +18,13 @@ function Header() {
         <Navbar.Collapse id="basic-navbar-nav">
           <div className="port-header-nav">
             <div className="port-header-collection pr-3">
-              <Link to="/collections">Collection</Link>
+              <Link to="/collections">Collections</Link>
             </div>
             <div className="port-header-products pr-3">
               <Link to="/projects">Projects</Link>
             </div>
             <div className="port-header-package pr-5">
-              <Link to="/packages">Package</Link>
+              <Link to="/packages">Packages</Link>
             </div>
             <div className="port-header-bell pr-4">
               <Link to="/">

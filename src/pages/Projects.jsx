@@ -71,7 +71,7 @@ function Projects() {
 						<div className="ptic-fourth">
 							<div className="ptic-fourth-text1">
 								<div className="ptic-items1">
-									<BsX size={20}/>
+									<BsCheck size={20}/>
 									<div className="ptic-items2">Packages</div>
 								</div>
 								<div className="ptic-items3">
@@ -92,21 +92,41 @@ function Projects() {
 									<AiFillEdit size={20}/>
 									<div>Edit</div>
 								</div>
-								<div></div>
+								<div className="pticft2-item3">Total: <span className="span">RP.12,500,000</span></div>
 							</div>
 							<div className="ptic-fourth-text3">
 							    <div className="ptic-items4">
-							    	<BsX size={20}/>
+							    	<BsCheck size={20}/>
 							    	<div className="ptic-items4-text">Rundown</div>
 							    </div>
 							    <div className="ptic-items5">
-							    	<BsX size={20}/>
-							    	<div className="ptic-items5-text">Invoice</div>
+							    	<BsCheck size={20}/>
+							    	<div>
+							    		<div className="ptic-items5-text">Invoice</div>
+							    		<div className="ptic-items5-text-1">Down Payment Invoice</div>
+							    		<div className="ptic-items5-text-2">Full Payment Invoice</div>
+							    	</div>
 							    </div>
 							</div>
 							<div className="ptic-fourth-text4">
-								<div>+ add new rundown</div>
+								<div className="ptic-items8">
+									<div className="ptic-items7">
+										<BiArrowToBottom size={20}/>
+										<div>Download pdf</div>
+									</div>
+									<div>
+										<AiFillEdit size={20}/>
+									</div>
+								</div>
 								<div className="ptic-items6">+ add new invoice</div>
+								<div className="ptic-items7">
+									<BiArrowToBottom size={20}/>
+									<div>Download pdf</div>
+								</div>
+								<div className="ptic-items7">
+									<BiArrowToBottom size={20}/>
+									<div>Download pdf</div>
+								</div>
 							</div>
 						</div>
 					</div>
