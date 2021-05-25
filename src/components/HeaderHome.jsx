@@ -57,7 +57,7 @@ function HeaderHome() {
                 <a href="#product">Product</a>
               </div>
               <div className="hhome-gallery pr-5">
-                <Link to="/">Gallery</Link>
+                <Link to="/gallery/all">Gallery</Link>
               </div>
               <div className="hhome-button-login">
                 {auth.isLogin ? (

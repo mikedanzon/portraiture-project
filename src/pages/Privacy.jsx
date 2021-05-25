@@ -4,7 +4,7 @@ import { Button, Form } from 'react-bootstrap';
 function Privacy() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [privacy, setPrivacy] = useState();
+  const [privacy, setPrivacy] = useState(); // backend
 
   function handleSubmit(event) {
     event.preventDefault();

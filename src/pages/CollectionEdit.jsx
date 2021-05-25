@@ -3,29 +3,29 @@ import { Button, Form, Breadcrumb } from 'react-bootstrap';
 import { useDropzone } from 'react-dropzone';
 import { AiOutlineCloudUpload, AiFillEye } from 'react-icons/ai';
 import { BiShow } from 'react-icons/bi';
+import { Link } from 'react-router-dom';
 import Header from '../components/Header';
 import ThemeClass from '../assets/img/collections/theme-classic.png';
 import ThemeMin from '../assets/img/collections/theme-minimalism.png';
 import ThemeDark from '../assets/img/collections/theme-dark.png';
-import { Link } from 'react-router-dom';
 import Switch from '../components/Fields/Switch';
 
 function CollectionEdit() {
-  const [title, setTitle] = useState();
-  const [date, setDate] = useState();
-  const [desc, setDesc] = useState();
-  const [page, setPage] = useState();
-  const [theme, setTheme] = useState();
-  const [image, setImage] = useState();
-  const [showGallery, setShowGallery] = useState();
-  const [emailReg, setEmailReg] = useState();
-  const [collPass, setCollPass] = useState();
+  const [title, setTitle] = useState(); // backend
+  const [date, setDate] = useState(); // backend
+  const [desc, setDesc] = useState(); // backend
+  const [page, setPage] = useState(undefined);
+  const [theme, setTheme] = useState(0);
+  const [image, setImage] = useState(null);
+  const [showGallery, setShowGallery] = useState(true); // backend
+  // const [emailReg, setEmailReg] = useState();
+  const [collPass, setCollPass] = useState(false); // backend
   const [hidePass, setHidePass] = useState(true);
-  const [downloadOption, setDownloadOption] = useState();
-  const [limitDownload, setLimitDownload] = useState();
-  const [imgHigh, setImgHigh] = useState();
-  const [imgWeb, setImgWeb] = useState();
-  const [restrictEmail, setRestrictEmail] = useState();
+  const [downloadOption, setDownloadOption] = useState(true); // backend
+  const [limitDownload, setLimitDownload] = useState(false); // backend
+  const [imgHigh, setImgHigh] = useState(true); // backend
+  const [imgWeb, setImgWeb] = useState(true); // backend
+  const [restrictEmail, setRestrictEmail] = useState(false); // backend
 
   const onDrop = useCallback((acceptedFiles) => {
     setImage(acceptedFiles);

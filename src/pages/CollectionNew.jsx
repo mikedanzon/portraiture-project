@@ -1,26 +1,26 @@
 import React, { useState, useCallback } from 'react';
+import axios from 'axios';
 import { Button, Form } from 'react-bootstrap';
-import HeaderProps from '../components/HeaderProps';
 import { useDropzone } from 'react-dropzone';
 import { AiOutlineCloudUpload } from 'react-icons/ai';
-import ThemeClass from '../assets/img/collections/theme-classic.png';
-import ThemeMin from '../assets/img/collections/theme-minimalism.png';
-import ThemeDark from '../assets/img/collections/theme-dark.png';
 import { AiFillEye } from 'react-icons/ai';
 import { URL_API } from '../helper/url';
 import { useSelector } from 'react-redux';
-import axios from 'axios';
+import HeaderProps from '../components/HeaderProps';
+import ThemeClass from '../assets/img/collections/theme-classic.png';
+import ThemeMin from '../assets/img/collections/theme-minimalism.png';
+import ThemeDark from '../assets/img/collections/theme-dark.png';
 
 function CollectionNew() {
   const [page, setPage] = useState(0);
   const [title, setTitle] = useState('');
-  const [date, setDate] = useState();
+  const [date, setDate] = useState('');
   const [desc, setDesc] = useState('');
   const [gallery, setGallery] = useState(true);
   const [download, setDownload] = useState(true);
   const [advOpen, setAdvOpen] = useState(false);
-  const [image, setImage] = useState();
-  const [theme, setTheme] = useState();
+  const [image, setImage] = useState(null);
+  const [theme, setTheme] = useState(0);
   const auth = useSelector((state) => state.auth);
 
   const onDrop = useCallback((acceptedFiles) => {

@@ -8,8 +8,8 @@ import { Toast } from 'react-bootstrap';
 import { toast, ToastContainer } from 'react-toastify';
 
 function PackagesNew() {
-  const [name, setName] = useState();
-  const [desc, setDesc] = useState();
+  const [name, setName] = useState('');
+  const [desc, setDesc] = useState('');
   const [picture, setPicture] = useState(null);
   const [photo, setPhoto] = useState(null);
   const [inputFields, setInputFields] = useState([
@@ -51,10 +51,13 @@ function PackagesNew() {
 
   const onSave = (e) => {
     e.preventDefault();
-    console.log(inputFields);
     var itemFormData = new FormData();
-    itemFormData.append('itemName', 'testing');
-    itemFormData.append('price', 600000);
+    // for (let i = 0; i < inputFields.length; i++) {
+    //   itemFormData.append('itemName', inputFields[i].itemName);
+    //   itemFormData.append('price', inputFields[i].price);
+    // }
+    itemFormData.append('itemName', inputFields[0].itemName);
+    itemFormData.append('price', inputFields[0].price);
     axios({
       method: 'post',
       url: `${URL_API}/packageItem`,

@@ -5,6 +5,7 @@ import { AiOutlineSearch } from 'react-icons/ai';
 import axios from 'axios';
 import { URL_API } from '../helper/url';
 import { Link } from 'react-router-dom';
+import { MdEdit } from 'react-icons/md';
 
 function Packages() {
   const [dataPackages, setDataPacakges] = useState([]);
@@ -25,8 +26,15 @@ function Packages() {
   const packageItems = () => {
     return dataPackages.map((val, index) => {
       return (
-        <div className={`data-item-list`} key={index}>
+        <div className="data-item-list" key={index}>
           <img src={val.image} alt="packagesNull" />
+          <div className="data-item-content">
+            <div className="content-text">{val.name}</div>
+            <div className="content-edit">
+              <MdEdit />
+            </div>
+          </div>
+          <div className="data-item-count">{val.packageItems.length} Items</div>
         </div>
       );
     });

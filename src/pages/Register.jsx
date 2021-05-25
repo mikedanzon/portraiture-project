@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
-import { Button, Form } from 'react-bootstrap';
-import { Link, Route } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import Logo from '../assets/img/logo.png';
-import Home from './Home';
-import { URL_API } from '../helper/url';
 import axios from 'axios';
+import { Button, Form } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { URL_API } from '../helper/url';
 import { toast, ToastContainer } from 'react-toastify';
+import Logo from '../assets/img/logo.png';
 
 function Login() {
   const [name, setName] = useState('');
@@ -14,7 +13,6 @@ function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const auth = useSelector((state) => state.auth);
-  const dispatch = useDispatch();
 
   if (auth.isLogin === true) {
     window.location = '/';

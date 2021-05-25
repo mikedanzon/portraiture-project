@@ -18,13 +18,13 @@ function Header() {
         <Navbar.Collapse id="basic-navbar-nav">
           <div className="port-header-nav">
             <div className="port-header-collection pr-3">
-              <Link to="/">Collection</Link>
+              <Link to="/collections">Collection</Link>
             </div>
             <div className="port-header-products pr-3">
-              <Link to="/">Products</Link>
+              <Link to="/projects">Projects</Link>
             </div>
             <div className="port-header-package pr-5">
-              <Link to="/">Package</Link>
+              <Link to="/packages">Package</Link>
             </div>
             <div className="port-header-bell pr-4">
               <Link to="/">
@@ -32,7 +32,7 @@ function Header() {
               </Link>
             </div>
             <div className="port-header-user pr-5">
-              <Link to="/">
+              <Link to="/profile">
                 <img src={LogoUser} alt="imageLogo" />
               </Link>
             </div>
@@ -43,7 +43,7 @@ function Header() {
             </div>
             <div className="port-header-user-profile pr-5">
               <Link to="/">
-                <Link to="/">Profile</Link>
+                <Link to="/profile">Profile</Link>
               </Link>
             </div>
           </div>

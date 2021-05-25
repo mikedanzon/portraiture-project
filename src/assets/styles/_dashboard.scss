@@ -1,380 +1,374 @@
 .dashboard-background {
-    background-image: url(../img/dummy-img/dummy1.png);
-    background-repeat: no-repeat;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    height: 330px;
-    margin-top: 73px;
-    background-position: center;
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    align-items: center;
-    .dashboard-background-container {
-        grid-column: 2 / 3;
-        margin-bottom: 30px;
-        .dashboard-logo {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .dashboard-name {
-            text-align: center;
-            color: #ffffff;
-            margin-bottom: 20px;
-            font-size: 24px;
-            font-style: normal;
-            font-weight: 700;
-            line-height: 25px;
-        }
-        .dashboard-button {
-            text-align: center;
-            .dashboard-button-btn {
-                width: 171px;
-                height: 42px;
-                background-color: transparent;
-                color: #ffffff;
-                border: 1px solid #999999;
-            }
-        }
+  background-image: url(../img/dummy-img/dummy1.png);
+  background-repeat: no-repeat;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 330px;
+  margin-top: 73px;
+  background-position: center;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  align-items: center;
+  .dashboard-background-container {
+    grid-column: 2 / 3;
+    margin-bottom: 30px;
+    .dashboard-logo {
+      text-align: center;
+      margin-bottom: 20px;
+      img {
+        width: 95px;
+        height: 100%;
+      }
     }
+    .dashboard-name {
+      text-align: center;
+      color: #ffffff;
+      margin-bottom: 20px;
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 25px;
+    }
+    .dashboard-button {
+      text-align: center;
+      .dashboard-button-btn {
+        width: 171px;
+        height: 42px;
+        background-color: transparent;
+        color: #ffffff;
+        border: 1px solid #999999;
+      }
+    }
+  }
 }
 .dashboard-container {
-    .dashboard-inner-container {
-        width: 100%;
-        .dic-title {
-            font-size: 24px;
-            font-style: normal;
-            font-weight: 700;
-            color: #000000;
-        }
-        .dic-rcollections {
-            background-color: #f8f8f8;
-            .dirc-rc-title {
-                font-size: 16px;
-                font-style: normal;
-                font-weight: 500;
-                color: #000000;
-            }
-            .dirc-rc-card-container {
-                margin-top: 30px;
-                margin-bottom: 40px;
-                display: flex;
-                row-gap: 20px;
-                justify-content: space-between;
-                .dirc-rc-cards {
-                    display: flex;
-                    background-color: #ffffff;
-                    .dirc-rc-image {
-
-                    }
-                    .dirc-rc-info {
-                        display: flex;
-                        flex-grow: 1;
-                        display: flex;
-                        justify-content: space-between;
-                        padding: 10px;
-                        .dirc-rc-info-1 {
-                            display: flex;
-                            flex-direction: column;
-                            justify-content: space-between;
-                            .dirc-rc-text1 {
-                                font-size: 12px;
-                                font-style: normal;
-                                font-weight: 500;
-                                color: #000000;
-                            }
-                            .dirc-rc-text2 {
-                                font-size: 10px;
-                                font-style: normal;
-                                font-weight: 400;
-                                color: #999999;
-                            }
-                            .dirc-rc-imgdown {
-                                display: flex;
-                                .dirc-rc-text3 {
-                                font-size: 10px;
-                                font-style: normal;
-                                font-weight: 400;
-                                color: #000000;
-                                padding-left: 5px;
-                                padding-right: 10px;
-                            }
-                            }
-
-                        }
-                        .dirc-rc-info-2 {
-                            display: flex;
-                            flex-direction: column;
-                            justify-content: space-between;
-                            color: #999999;
-                            .dirc-rc-preed {
-                                display: flex;
-                                align-self: flex-end;
-                                .dirc-rc-text4 {
-                                    font-size: 10px;
-                                    font-style: normal;
-                                    font-weight: 500;
-                                    color: #999999;
-                                    padding-left: 5px;
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-            .dirc-rc-seeall {
+  .dashboard-inner-container {
+    width: 100%;
+    .dic-title {
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 700;
+      color: #000000;
+    }
+    .dic-rcollections {
+      background-color: #f8f8f8;
+      .dirc-rc-title {
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        color: #000000;
+      }
+      .dirc-rc-card-container {
+        margin-top: 30px;
+        margin-bottom: 40px;
+        display: flex;
+        row-gap: 20px;
+        justify-content: space-between;
+        .dirc-rc-cards {
+          display: flex;
+          background-color: #ffffff;
+          .dirc-rc-info {
+            display: flex;
+            flex-grow: 1;
+            display: flex;
+            justify-content: space-between;
+            padding: 10px;
+            .dirc-rc-info-1 {
+              display: flex;
+              flex-direction: column;
+              justify-content: space-between;
+              .dirc-rc-text1 {
                 font-size: 12px;
                 font-style: normal;
                 font-weight: 500;
+                color: #000000;
+              }
+              .dirc-rc-text2 {
+                font-size: 10px;
+                font-style: normal;
+                font-weight: 400;
                 color: #999999;
-                text-align: -webkit-center;
-                text-decoration: underline;
+              }
+              .dirc-rc-imgdown {
+                display: flex;
+                .dirc-rc-text3 {
+                  font-size: 10px;
+                  font-style: normal;
+                  font-weight: 400;
+                  color: #000000;
+                  padding-left: 5px;
+                  padding-right: 10px;
+                }
+              }
             }
-        }
-        .dic-rpr-rpa {
-            margin-top: 50px;
-            margin-bottom: 50px;
-            .dic-rprojects {
-                background-color: #f8f8f8;
-                flex-basis: 45%;
-                .dirpr-title {
-                    font-size: 16px;
-                    font-style: normal;
-                    font-weight: 500;
-                    color: #000000;
+            .dirc-rc-info-2 {
+              display: flex;
+              flex-direction: column;
+              justify-content: space-between;
+              color: #999999;
+              .dirc-rc-preed {
+                display: flex;
+                align-self: flex-end;
+                .dirc-rc-text4 {
+                  font-size: 10px;
+                  font-style: normal;
+                  font-weight: 500;
+                  color: #999999;
+                  padding-left: 5px;
                 }
-                .dirpr-card-container {
-                    margin-top: 30px;
-                    margin-bottom: 40px;
-                    display: flex;
-                    flex-direction: column;
-                    row-gap: 20px;
-                    .dirpr-cards {
-                        display: flex;
-                        flex-direction: row;
-                        justify-content: space-between;
-                        background-color: #ffffff;
-                        height: 98px;
-                        padding: 10px;
-                        .dirpr-info1 {
-                            display: flex;
-                            flex-direction: column;
-                            justify-content: space-between;
-                            .dirpr-text1 {
-                                font-size: 12px;
-                                font-style: normal;
-                                font-weight: 500;
-                                color: #000000;
-                            }
-                            .dirpr-text2 {
-                                font-size: 10px;
-                                font-style: normal;
-                                font-weight: 400;
-                                color: #999999;
-                            }
-                        }
-                        .dirpr-info2 {
-                            display: flex;
-                            color:#0e203d;
-                            .dirpr-text3 {
-                                font-size: 10px;
-                                font-style: normal;
-                                font-weight: 400;
-                                color: #000000;
-                                padding-left: 5px;
-                                padding-right: 5px;
-                            }
-                        }
-                        .dirpr-planedit {
-                            display: flex;
-                            flex-direction: column;
-                            justify-content: space-between;
-                            .dirpr-edit {
-                                display: flex;
-                                justify-content: flex-end;
-                                color: #999999;
-                                .dirpr-text4 {
-                                    font-size: 10px;
-                                    font-style: normal;
-                                    font-weight: 500;
-                                    color: #999999;
-                                    padding-left: 5px;
-                                }
-                            }
-                        }
-                    }
-
-                }
-                .dirpr-seeall {
-                    font-size: 12px;
-                    font-style: normal;
-                    font-weight: 500;
-                    color: #999999;
-                    text-align: -webkit-center;
-                    text-decoration: underline;
-                }
+              }
             }
-            .dic-rpackages {
-                background-color: #f8f8f8;
-                flex-basis: 45%;
-                .dirpa-title {
-                    font-size: 16px;
-                    font-style: normal;
-                    font-weight: 500;
-                    color: #000000;
-                }
-                .dirpa-card-container {
-                    margin-top: 30px;
-                    margin-bottom: 40px;
-                    display: flex;
-                    flex-direction: column;
-                    row-gap: 20px;
-                    .dirpa-cards {
-                        display: flex;
-                        background-color: #ffffff;
-                        height: 98px;
-                        .dirpa-img {
-
-                        }
-                        .dirpa-info {
-                            display: flex;
-                            padding: 10px;
-                            flex-grow: 1;
-                            justify-content: space-between;
-                            .dirpa-info1 {
-                                display: flex;
-                                flex-direction: column;
-                                justify-content: space-between;
-                                .dirpa-text1 {
-                                    font-size: 12px;
-                                    font-style: normal;
-                                    font-weight: 700;
-                                    color: #000000;
-                                }
-                                .dirpa-text2 {
-                                    font-size: 10px;
-                                    font-style: normal;
-                                    font-weight: 400;
-                                    color: #999999;
-                                }
-                                .dirpa-text3 {
-                                    font-size: 12px;
-                                    font-style: normal;
-                                    font-weight: 500;
-                                    color: #000000;
-                                }
-                             }
-                        .dirpa-info2 {
-                            display: flex;
-                            color: #999999;
-                            display: flex;
-                            align-items: flex-end;
-                            .dirpa-text4 {
-                                font-size: 10px;
-                                font-style: normal;
-                                font-weight: 500;
-                                color: #999999;
-                                padding-left: 5px;
-                            }
-                        }
-                        }
-
-                    }
-                }
-                .dirpa-seeall {
-                    font-size: 12px;
-                    font-style: normal;
-                    font-weight: 500;
-                    color: #999999;
-                    text-align: -webkit-center;
-                    text-decoration: underline;
-                }
-            }
+          }
         }
+      }
+      .dirc-rc-seeall {
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 500;
+        color: #999999;
+        text-align: -webkit-center;
+        text-decoration: underline;
+      }
     }
-    @media (max-width: 425px) {
-        padding: 20px 10px 50px 10px;
-        .dirc-rc-card-container {
-            flex-direction: column;
+    .dic-rpr-rpa {
+      margin-top: 50px;
+      margin-bottom: 50px;
+      .dic-rprojects {
+        background-color: #f8f8f8;
+        flex-basis: 45%;
+        .dirpr-title {
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 500;
+          color: #000000;
         }
-        .dic-rcollections {
-            margin-top: 20px;
-            padding: 20px 5px 30px 5px;
-        }
-        .dic-rprojects {
-            margin-bottom: 50px;
-            padding: 20px 5px 30px 5px;
-        }
-        .dic-rpackages {
-            padding: 20px 5px 30px 5px;
-        } 
-    }
-    @media (min-width: 425px) and (max-width: 760px) {
-        padding: 50px 20px 50px 20px;
-        .dirc-rc-cards {
-            flex-basis: 100%;
-        }
-        .dirc-rc-card-container {
-            flex-direction: column;
-        }
-        .dic-rcollections {
-            margin-top: 50px;
-            padding: 30px;
-        }
-        .dic-rprojects {
-            margin-bottom: 50px;
-            padding: 30px;
-        }
-        .dic-rpackages {
-            padding: 30px;
-        } 
-    }
-    @media (min-width: 760px) and (max-width: 1200px) {
-        padding: 100px 20px 100px 20px;
-        .dirc-rc-cards {
-            flex-basis: 45%;
-        }
-        .dic-rpr-rpa { 
+        .dirpr-card-container {
+          margin-top: 30px;
+          margin-bottom: 40px;
+          display: flex;
+          flex-direction: column;
+          row-gap: 20px;
+          .dirpr-cards {
             display: flex;
+            flex-direction: row;
             justify-content: space-between;
+            background-color: #ffffff;
+            height: 98px;
+            padding: 10px;
+            .dirpr-info1 {
+              display: flex;
+              flex-direction: column;
+              justify-content: space-between;
+              .dirpr-text1 {
+                font-size: 12px;
+                font-style: normal;
+                font-weight: 500;
+                color: #000000;
+              }
+              .dirpr-text2 {
+                font-size: 10px;
+                font-style: normal;
+                font-weight: 400;
+                color: #999999;
+              }
+            }
+            .dirpr-info2 {
+              display: flex;
+              color: #0e203d;
+              .dirpr-text3 {
+                font-size: 10px;
+                font-style: normal;
+                font-weight: 400;
+                color: #000000;
+                padding-left: 5px;
+                padding-right: 5px;
+              }
+            }
+            .dirpr-planedit {
+              display: flex;
+              flex-direction: column;
+              justify-content: space-between;
+              .dirpr-edit {
+                display: flex;
+                justify-content: flex-end;
+                color: #999999;
+                .dirpr-text4 {
+                  font-size: 10px;
+                  font-style: normal;
+                  font-weight: 500;
+                  color: #999999;
+                  padding-left: 5px;
+                }
+              }
+            }
+          }
         }
-        .dirc-rc-card-container {
-            flex-wrap: wrap;
+        .dirpr-seeall {
+          font-size: 12px;
+          font-style: normal;
+          font-weight: 500;
+          color: #999999;
+          text-align: -webkit-center;
+          text-decoration: underline;
         }
-        .dic-rcollections {
-            margin-top: 50px;
-            padding: 30px;
+      }
+      .dic-rpackages {
+        background-color: #f8f8f8;
+        flex-basis: 45%;
+        .dirpa-title {
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 500;
+          color: #000000;
         }
-        .dic-rprojects {
-            padding: 30px;
-        }
-        .dic-rpackages {
-            padding: 30px;
-        }   
-    }
-    @media (min-width: 1200px) {
-        padding: 100px 220px 100px 220px;
-        .dirc-rc-cards {
-            flex-basis: 45%;
-        }
-        .dic-rpr-rpa {
+        .dirpa-card-container {
+          margin-top: 30px;
+          margin-bottom: 40px;
+          display: flex;
+          flex-direction: column;
+          row-gap: 20px;
+          .dirpa-cards {
             display: flex;
-            justify-content: space-between;
+            background-color: #ffffff;
+            height: 98px;
+            .dirpa-info {
+              display: flex;
+              padding: 10px;
+              flex-grow: 1;
+              justify-content: space-between;
+              .dirpa-info1 {
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                .dirpa-text1 {
+                  font-size: 12px;
+                  font-style: normal;
+                  font-weight: 700;
+                  color: #000000;
+                }
+                .dirpa-text2 {
+                  font-size: 10px;
+                  font-style: normal;
+                  font-weight: 400;
+                  color: #999999;
+                }
+                .dirpa-text3 {
+                  font-size: 12px;
+                  font-style: normal;
+                  font-weight: 500;
+                  color: #000000;
+                }
+              }
+              .dirpa-info2 {
+                display: flex;
+                color: #999999;
+                display: flex;
+                align-items: flex-end;
+                .dirpa-text4 {
+                  font-size: 10px;
+                  font-style: normal;
+                  font-weight: 500;
+                  color: #999999;
+                  padding-left: 5px;
+                }
+              }
+            }
+          }
         }
-        .dirc-rc-card-container {
-            flex-wrap: wrap;
+        .dirpa-seeall {
+          font-size: 12px;
+          font-style: normal;
+          font-weight: 500;
+          color: #999999;
+          text-align: -webkit-center;
+          text-decoration: underline;
         }
-        .dic-rcollections {
-            margin-top: 50px;
-            padding: 30px;
-        }
-        .dic-rprojects {
-            padding: 30px;
-        }
-        .dic-rpackages {
-            padding: 30px;
-        }   
+      }
     }
-
+  }
+  @media (max-width: 425px) {
+    padding: 20px 10px 50px 10px;
+    .dirc-rc-card-container {
+      flex-direction: column;
+    }
+    .dic-rcollections {
+      margin-top: 20px;
+      padding: 20px 5px 30px 5px;
+    }
+    .dic-rprojects {
+      margin-bottom: 50px;
+      padding: 20px 5px 30px 5px;
+    }
+    .dic-rpackages {
+      padding: 20px 5px 30px 5px;
+    }
+  }
+  @media (min-width: 425px) and (max-width: 760px) {
+    padding: 50px 20px 50px 20px;
+    .dirc-rc-cards {
+      flex-basis: 100%;
+    }
+    .dirc-rc-card-container {
+      flex-direction: column;
+    }
+    .dic-rcollections {
+      margin-top: 50px;
+      padding: 30px;
+    }
+    .dic-rprojects {
+      margin-bottom: 50px;
+      padding: 30px;
+    }
+    .dic-rpackages {
+      padding: 30px;
+    }
+  }
+  @media (min-width: 760px) and (max-width: 1200px) {
+    padding: 100px 20px 100px 20px;
+    .dirc-rc-cards {
+      flex-basis: 45%;
+    }
+    .dic-rpr-rpa {
+      display: flex;
+      justify-content: space-between;
+    }
+    .dirc-rc-card-container {
+      flex-wrap: wrap;
+    }
+    .dic-rcollections {
+      margin-top: 50px;
+      padding: 30px;
+    }
+    .dic-rprojects {
+      padding: 30px;
+    }
+    .dic-rpackages {
+      padding: 30px;
+    }
+  }
+  @media (min-width: 1200px) {
+    padding: 100px 220px 100px 220px;
+    .dirc-rc-cards {
+      flex-basis: 45%;
+    }
+    .dic-rpr-rpa {
+      display: flex;
+      justify-content: space-between;
+    }
+    .dirc-rc-card-container {
+      flex-wrap: wrap;
+    }
+    .dic-rcollections {
+      margin-top: 50px;
+      padding: 30px;
+    }
+    .dic-rprojects {
+      padding: 30px;
+    }
+    .dic-rpackages {
+      padding: 30px;
+    }
+  }
 }

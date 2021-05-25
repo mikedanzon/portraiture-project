@@ -1,5 +1,7 @@
 import { Route, Switch } from 'react-router';
-import './assets/styles/style.scss';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { URL_API } from './helper/url';
 import Home from './pages/Home';
 import Register from './pages/Register';
 import Login from './pages/Login';
@@ -15,16 +17,13 @@ import ProjectEdit from './pages/ProjectEdit';
 import Collections from './pages/Collections';
 import Projects from './pages/Projects';
 import GalleryAll from './pages/GalleryAll';
-import { useEffect } from 'react';
-import { URL_API } from './helper/url';
 import axios from 'axios';
-import 'react-toastify/dist/ReactToastify.css';
-import { useDispatch, useSelector } from 'react-redux';
 import Packages from './pages/Packages';
 import PackagesNew from './pages/PackagesNew';
+import 'react-toastify/dist/ReactToastify.css';
+import './assets/styles/style.scss';
 
 function App() {
-  const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
   useEffect(() => {
