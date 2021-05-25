@@ -1,6 +1,6 @@
 .projects-container {
     .projects-third-inner-container {
-    width: 94%;
+    width: 100%;
     align-self: center;
     .ptic-one {
 
@@ -92,7 +92,7 @@
     } 
     }
     .projects-fourth-inner-container {
-    width: 94%;
+    width: 100%;
     align-self: center;
     .ptic-one {
 
@@ -283,7 +283,7 @@
                 }
             }
             .projects-second-inner-container {
-                width: 94%;
+                width: 100%;
                 margin-top: 50px;
                 display: flex;
                 justify-content: space-between;
@@ -340,7 +340,7 @@
                 }
             }
             .projects-second-inner-container {
-                width: 94%;
+                width: 100%;
                 margin-top: 50px;
                 display: flex;
                 justify-content: space-between;
@@ -397,7 +397,7 @@
                 }
             }
             .projects-second-inner-container {
-                width: 94%;
+                width: 100%;
                 margin-top: 50px;
                 display: flex;
                 justify-content: space-between;
@@ -454,7 +454,7 @@
                 }
             }
             .projects-second-inner-container {
-                width: 94%;
+                width: 100%;
                 margin-top: 50px;
                 display: flex;
                 justify-content: space-between;
@@ -479,4 +479,10 @@
             }
         }
     }
+}
+
+.project-custom-border {
+    border: 1px solid #999999;
+    margin-top: 25px;
+    margin-bottom: 25px;
 }

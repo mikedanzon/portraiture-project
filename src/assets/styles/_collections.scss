@@ -566,7 +566,7 @@
                 }
             }
             .collection-second-inner-container {
-                width: 94%;
+                width: 100%;
                 margin-top: 50px;
                 display: flex;
                 justify-content: space-between;
@@ -588,10 +588,10 @@
             }
             .collections-third-inner-container {
                 margin-top: 50px;
-                width: 94%;
-                align-self: center;
-                display: inline-flex;
-                flex-wrap: wrap;
+                display: flex;
+                flex-flow: row wrap;
+                flex-direction: row;
+                justify-content: space-between;
                 column-gap: 30px;
                 row-gap: 30px;
                 .collections-cards {

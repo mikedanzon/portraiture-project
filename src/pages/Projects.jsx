@@ -61,6 +61,7 @@ function Projects() {
 							</div>
 						</div>
 					</div>
+					<div className="project-custom-border"></div>
 					<div className="projects-fourth-inner-container">
 						<div className="ptic-one"><img src={Completed} alt=""/></div>
 						<div className="ptic-two">
