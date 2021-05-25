@@ -17,23 +17,28 @@ function Collections() {
 	}, [])
 
 	const fetchData = async () => {
+		// await fetch(`${URL_API}/collection`)
+		// .then(res => res.json())
+		// .then(data => setDataCollections(data.result))
     try {
       var res = await axios.get(`${URL_API}/collection`);
       setDataCollections(res.data.result);
+      console.log(res)
 	    } catch (error) {
 	      console.log(error.response.data.message);
 	    }
 	  };
-
-  	const packageItems = () => {
-    return dataCollections.map((val, index) => {
-      return (
-        <div className={`data-item-list`} key={index}>
-          <img src={`${URL_API}/images/${val.image}`} alt="packagesNull" />
-        </div>
-      );
-    });
-  };
+	  console.log(dataCollections)
+  // 	const collectionsName = () => {
+  //   return dataCollections.map((val, index) => {
+  //     return (
+  //       <div key={index}>
+  //        <div className="cct1-text">{val.title}</div>
+		// <div className="collections-cards-text-1-date">{val.date}</div>
+  //       </div>
+  //     );
+  //   });
+  // };
 
 	return (
 		<>
@@ -56,11 +61,20 @@ function Collections() {
 				</div>
 				<div className="collections-third-inner-container">
 					<div className="collections-cards">
-						<div><img className="collections-cards-img" src={Dummy3} alt="" /></div>
+
+						{
+								dataCollections.map(hasil => (
+									<div>
+						<div className="collections-cards-img"><img className="collections-cards-img" src="" alt="image not found" /></div>
 						<div className="collections-cards-text-1">
 							<div>
-								<div>Justin & Stella</div>
-								<div className="collections-cards-text-1-date">28 March 2021</div>
+							
+								
+										<div className="cct1-text">{hasil.title}</div>
+										<div className="collections-cards-text-1-date">{hasil.date}</div>
+									
+						
+								
 							</div>
 							<div>
 								<div className="collections-cards-text-1-preview">
@@ -81,6 +95,9 @@ function Collections() {
 								<div className="cct2p-text">Edit</div>
 							</div>
 						</div>
+						</div>
+									))
+							}
 					</div>
 				</div>
 			</div>

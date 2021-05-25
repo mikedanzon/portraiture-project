@@ -74,11 +74,13 @@
                     .collections-cards-text-1 {
                         display: flex;
                         justify-content: space-between;
-                        font-size: 12px;
-                        font-style: normal;
-                        font-weight: 500;
-                        color: #000000;
                         margin-top: 10px;
+                        .cct1-text {
+                            font-size: 12px;
+                            font-style: normal;
+                            font-weight: 500;
+                            color: #000000;
+                        }
                         .collections-cards-text-1-date {
                             font-size: 10px;
                             font-style: normal;
