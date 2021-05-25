@@ -44,7 +44,7 @@
   }
 
   @media (min-width: 1100px) {
-    padding: 155px 250px;
+    padding: 155px 200px;
 
     .packages-header {
       display: flex;
@@ -67,9 +67,11 @@
 
     .packages-header-new {
       button {
-        padding: 5px 25px;
+        padding: 11px 16px;
+        width: 199px;
         color: white;
         background: #c2a47e;
+        border: none;
       }
 
       a {
@@ -93,6 +95,7 @@
         border-radius: 3px;
         padding: 10px 20px 10px 35px;
         width: 300px;
+        border: none;
       }
 
       .packages-header-search-icon {
