@@ -16,24 +16,24 @@ import { URL_API } from '../helper/url';
 import { Link } from 'react-router-dom';
 
 function Collections() {
-  const [dataCollections, setDataCollections] = useState([]);
+//   const [dataCollections, setDataCollections] = useState([]);
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+//   useEffect(() => {
+//     fetchData();
+//   }, []);
 
-  const fetchData = async () => {
+//   const fetchData = async () => {
     // await fetch(`${URL_API}/collection`)
     // .then(res => res.json())
     // .then(data => setDataCollections(data.result))
-    try {
-      var res = await axios.get(`${URL_API}/collection`);
-      console.log(res.data.result);
-    } catch (error) {
-      console.log(error.response.data.message);
-    }
-  };
-  console.log(dataCollections);
+  //   try {
+  //     var res = await axios.get(`${URL_API}/collection`);
+  //     console.log(res.data.result);
+  //   } catch (error) {
+  //     console.log(error.response.data.message);
+  //   }
+  // };
+  // console.log(dataCollections);
   // 	const collectionsName = () => {
   //   return dataCollections.map((val, index) => {
   //     return (
@@ -74,21 +74,18 @@ function Collections() {
           </div>
           <div className="collections-third-inner-container">
             <div className="collections-cards">
-              {dataCollections.map((hasil) => (
                 <div>
                   <div className="collections-cards-img">
                     <img
                       className="collections-cards-img"
-                      src=""
+                      src={Dummy3}
                       alt="image not found"
                     />
                   </div>
                   <div className="collections-cards-text-1">
                     <div>
-                      <div className="cct1-text">{hasil.title}</div>
-                      <div className="collections-cards-text-1-date">
-                        {hasil.date}
-                      </div>
+                      <div className="cct1-text">Justin & Stella</div>
+                      <div className="collections-cards-text-1-date">28 March 2021</div>
                     </div>
                     <div>
                       <div className="collections-cards-text-1-preview">
@@ -110,8 +107,112 @@ function Collections() {
                     </div>
                   </div>
                 </div>
-              ))}
             </div>
+
+            <div className="collections-cards">
+                <div>
+                  <div className="collections-cards-img">
+                    <img
+                      className="collections-cards-img"
+                      src={Dummy3}
+                      alt="image not found"
+                    />
+                  </div>
+                  <div className="collections-cards-text-1">
+                    <div>
+                      <div className="cct1-text">Justin & Stella</div>
+                      <div className="collections-cards-text-1-date">28 March 2021</div>
+                    </div>
+                    <div>
+                      <div className="collections-cards-text-1-preview">
+                        <BsEyeFill size={16} />
+                        <div className="cct1p-text">Preview</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="collections-cards-text-2">
+                    <div className="collections-cards-text-2-imgdow">
+                      <BsImage size={16} />
+                      <div className="imgdow-text1">13</div>
+                      <BsBoxArrowInDown size={16} />
+                      <div className="imgdow-text2">3</div>
+                    </div>
+                    <div className="collections-cards-text-2-edit">
+                      <AiFillEdit size={16} />
+                      <div className="cct2p-text">Edit</div>
+                    </div>
+                  </div>
+                </div>
+            </div><div className="collections-cards">
+                <div>
+                  <div className="collections-cards-img">
+                    <img
+                      className="collections-cards-img"
+                      src={Dummy3}
+                      alt="image not found"
+                    />
+                  </div>
+                  <div className="collections-cards-text-1">
+                    <div>
+                      <div className="cct1-text">Justin & Stella</div>
+                      <div className="collections-cards-text-1-date">28 March 2021</div>
+                    </div>
+                    <div>
+                      <div className="collections-cards-text-1-preview">
+                        <BsEyeFill size={16} />
+                        <div className="cct1p-text">Preview</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="collections-cards-text-2">
+                    <div className="collections-cards-text-2-imgdow">
+                      <BsImage size={16} />
+                      <div className="imgdow-text1">13</div>
+                      <BsBoxArrowInDown size={16} />
+                      <div className="imgdow-text2">3</div>
+                    </div>
+                    <div className="collections-cards-text-2-edit">
+                      <AiFillEdit size={16} />
+                      <div className="cct2p-text">Edit</div>
+                    </div>
+                  </div>
+                </div>
+            </div><div className="collections-cards">
+                <div>
+                  <div className="collections-cards-img">
+                    <img
+                      className="collections-cards-img"
+                      src={Dummy3}
+                      alt="image not found"
+                    />
+                  </div>
+                  <div className="collections-cards-text-1">
+                    <div>
+                      <div className="cct1-text">Justin & Stella</div>
+                      <div className="collections-cards-text-1-date">28 March 2021</div>
+                    </div>
+                    <div>
+                      <div className="collections-cards-text-1-preview">
+                        <BsEyeFill size={16} />
+                        <div className="cct1p-text">Preview</div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="collections-cards-text-2">
+                    <div className="collections-cards-text-2-imgdow">
+                      <BsImage size={16} />
+                      <div className="imgdow-text1">13</div>
+                      <BsBoxArrowInDown size={16} />
+                      <div className="imgdow-text2">3</div>
+                    </div>
+                    <div className="collections-cards-text-2-edit">
+                      <AiFillEdit size={16} />
+                      <div className="cct2p-text">Edit</div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            
           </div>
         </div>
       </div>
