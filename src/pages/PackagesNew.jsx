@@ -10,14 +10,20 @@ import { toast, ToastContainer } from 'react-toastify';
 function PackagesNew() {
   const [name, setName] = useState();
   const [desc, setDesc] = useState();
-  const photo = useRef();
+  const [picture, setPicture] = useState(null);
+  const [photo, setPhoto] = useState(null);
   const [inputFields, setInputFields] = useState([
     {
       itemName: '',
-      price: '',
-      category: null,
+      price: 0,
+      // categories: null,
     },
   ]);
+
+  const onPhotoChange = (e) => {
+    setPicture(URL.createObjectURL(e.target.files[0]));
+    setPhoto(e.target.files[0]);
+  };
 
   const handleInputChange = (index, event) => {
     const values = [...inputFields];
@@ -45,17 +51,18 @@ function PackagesNew() {
 
   const onSave = (e) => {
     e.preventDefault();
-    var files = {
-      name: name,
-      description: desc,
-      image: photo.current.files[0].name,
-      packageItems: inputFields,
-    };
-    console.log(files);
-    axios
-      .post(`${URL_API}/package`, files)
+    console.log(inputFields);
+    var itemFormData = new FormData();
+    itemFormData.append('itemName', 'testing');
+    itemFormData.append('price', 600000);
+    axios({
+      method: 'post',
+      url: `${URL_API}/packageItem`,
+      data: itemFormData,
+      headers: { 'Content-Type': 'multipart/form-data' },
+    })
       .then(() => {
-        toast.success('Success created a new package!', {
+        toast.info('Please wait connecting!', {
           position: 'bottom-right',
           autoClose: 5000,
           hideProgressBar: false,
@@ -64,9 +71,41 @@ function PackagesNew() {
           draggable: true,
           progress: undefined,
         });
-        setTimeout(() => {
-          // window.location = '/packages';
-        }, 2000);
+        var bodyFormData = new FormData();
+        bodyFormData.append('name', name);
+        bodyFormData.append('description', desc);
+        bodyFormData.append('image', photo);
+        axios({
+          method: 'post',
+          url: `${URL_API}/package`,
+          data: bodyFormData,
+          headers: { 'Content-Type': 'multipart/form-data' },
+        })
+          .then(() => {
+            toast.success('Success created a new package!', {
+              position: 'bottom-right',
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
+            setTimeout(() => {
+              window.location = '/packages';
+            }, 2000);
+          })
+          .catch((err2) => {
+            toast.error(`${err2.response.data.message}`, {
+              position: 'bottom-right',
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
+          });
       })
       .catch((err) => {
         toast.error(`${err.response.data.message}`, {
@@ -124,7 +163,10 @@ function PackagesNew() {
         <div className="pnew-image">
           <div className="pnew-image-1">Images</div>
           <div className="pnew-image-2">
-            <input type="file" ref={photo} />
+            <input id="previewImage" type="file" onChange={onPhotoChange} />
+          </div>
+          <div className="pnew-image-show">
+            <img className="pnew-preview-image pt-3" src={picture && picture} />
           </div>
         </div>
         <div className="pnew-items">
