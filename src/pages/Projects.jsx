@@ -8,15 +8,23 @@ import { BsCheck, BsX } from 'react-icons/bs'
 import { AiFillEdit } from 'react-icons/ai'
 import { BiArrowToBottom } from 'react-icons/bi'
 import { Link } from 'react-router-dom';
+import HeaderUser from '../components/HeaderUser';
 
 function Projects() {
 	return (
 		<>
 		<Header/>
+		
 		<div>
 			<div className="projects-container">
 				<div className="projects-inner-container">
-					<div className="projects-first-inner-container">
+					<HeaderUser
+						headerOneText="Projects"
+						headerOneButton="New Project"
+						headerOneLink="/projects/new"
+						headerSearchText="Search Projects"
+					/>
+					{/* <div className="projects-first-inner-container">
 							<div className="projects-title">Projects</div>
 							<Link to="/projects/new">
 							<button className="projects-button">New Projects</button>
@@ -29,7 +37,7 @@ function Projects() {
 							<div><CgOptions/></div>
 							<div className="projects-filter-text">Filter</div>
 						</div>
-					</div>
+					</div> */}
 					<div className="projects-third-inner-container">
 						<div className="ptic-one"><img src={Status} alt=""/></div>
 						<div className="ptic-two">

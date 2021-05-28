@@ -1,14 +1,10 @@
 import React from 'react';
-import HeaderUser from '../components/HeaderUser';
+import Header from '../components/Header';
 
 function Testing() {
   return (
     <>
-      <HeaderUser
-        headerOneText="Packages"
-        headerOneButton="New Packages"
-        headerSearchText="Search Packages"
-      />
+      <Header />
     </>
   );
 }
