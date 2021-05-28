@@ -9,7 +9,7 @@ const initialState = {
   email: '',
 };
 
-const Reducers = (state = initialState, action) => {
+const authReducers = (state = initialState, action) => {
   switch (action.type) {
     case 'LOGIN':
       return { ...state, ...action.payload, isLogin: true };
@@ -30,4 +30,4 @@ const Reducers = (state = initialState, action) => {
   }
 };
 
-export default Reducers;
+export default authReducers;

@@ -1,0 +1,160 @@
+.pedit-wrapper {
+  @media (max-width: 650px) {
+    padding: 50px 20px;
+  }
+
+  @media (min-width: 650px) and (max-width: 1100px) {
+    padding: 100px 125px;
+  }
+
+  @media (min-width: 1100px) {
+    padding: 100px 250px;
+  }
+
+  .pedit-text {
+    color: #c2a47e;
+    font-size: 18px;
+    padding-bottom: 15px;
+  }
+
+  .pedit-name {
+    padding-bottom: 15px;
+    font-size: 14px;
+
+    .pedit-name-text {
+      font-weight: bold;
+    }
+
+    .pedit-name-input {
+      input {
+        width: 100%;
+      }
+    }
+  }
+
+  .pedit-desc {
+    padding-bottom: 15px;
+    font-size: 14px;
+
+    .pedit-desc-text {
+      font-weight: bold;
+    }
+
+    .pedit-desc-input {
+      input {
+        width: 100%;
+      }
+    }
+  }
+
+  .pedit-image {
+    padding-bottom: 55px;
+    font-size: 14px;
+
+    .pedit-image-text {
+      font-weight: bold;
+    }
+
+    .pedit-image-input {
+      padding-top: 10px;
+
+      :hover {
+        cursor: pointer;
+      }
+
+      ::-webkit-file-upload-button {
+        background: #c2a47e;
+        color: white;
+        padding: 5px 20px;
+        border: none;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+    }
+
+    .pedit-image-preview {
+      img {
+        width: 200px;
+        height: auto;
+      }
+    }
+  }
+
+  .pedit-items {
+    padding-bottom: 100px;
+
+    .pedit-items-text {
+      font-size: 18px;
+      color: #c2a47e;
+    }
+
+    .pedit-items-main {
+      border: 2px solid #e3e3e3;
+      font-weight: bold;
+      font-size: 14px;
+      margin-top: 10px;
+      margin-bottom: 20px;
+
+      .pedit-form {
+        padding: 15px;
+
+        input {
+          width: 100%;
+        }
+
+        select {
+          width: 100%;
+        }
+
+        .pedit-form-close {
+          float: right;
+          margin-top: -10px;
+          font-size: 20px;
+
+          &:hover {
+            cursor: pointer;
+          }
+        }
+
+        .pedit-form-text-1 {
+          padding-bottom: 15px;
+        }
+
+        .pedit-form-text-2 {
+          padding-bottom: 15px;
+        }
+
+        .pedit-form-text-3 {
+          padding-bottom: 15px;
+        }
+      }
+    }
+
+    .pedit-items-button {
+      button {
+        font-size: 12px;
+        font-weight: bold;
+        padding: 5px 10px;
+        background: none;
+        border: 1px solid #0e203d;
+      }
+    }
+  }
+
+  .pedit-save {
+    padding-bottom: 50px;
+
+    button {
+      float: right;
+      font-weight: bold;
+      font-size: 14px;
+      float: right;
+      background: #0e203d;
+      border-radius: 0px;
+      padding: 10px 35px;
+      color: white;
+    }
+  }
+}

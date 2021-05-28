@@ -20,7 +20,9 @@
 @import './galleryAll';
 @import './packages';
 @import './packagesNew';
+@import './packagesEdit';
 @import './switch';
+@import './headerUser';
 
 * {
   margin: 0;
@@ -42,6 +44,11 @@
   }
 }
 
+.button-none {
+  background: none;
+  border: none;
+}
+
 .custom-form-port {
   border-radius: 0;
   border: 0;
@@ -55,5 +62,37 @@
     box-shadow: none !important;
     border-bottom: 2px solid black;
     background: #fcfcfc;
+  }
+}
+
+.loader {
+  position: absolute;
+  left: 46%;
+  top: 30%;
+  z-index: 1;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #0e203d;
+  width: 120px;
+  height: 120px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+
+  @-webkit-keyframes spin {
+    0% {
+      -webkit-transform: rotate(0deg);
+    }
+    100% {
+      -webkit-transform: rotate(360deg);
+    }
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
   }
 }

@@ -22,6 +22,8 @@ import Packages from './pages/Packages';
 import PackagesNew from './pages/PackagesNew';
 import 'react-toastify/dist/ReactToastify.css';
 import './assets/styles/style.scss';
+import PackagesEdit from './pages/PackagesEdit';
+import { ToastContainer } from 'react-toastify';
 
 function App() {
   const dispatch = useDispatch();
@@ -56,6 +58,17 @@ function App() {
 
   return (
     <>
+      <ToastContainer
+        position="bottom-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/register" component={Register} />
@@ -74,6 +87,7 @@ function App() {
         <Route exact path="/gallery/all" component={GalleryAll} />
         <Route exact path="/packages" component={Packages} />
         <Route exact path="/packages/new" component={PackagesNew} />
+        <Route exact path="/packages/edit/:id" component={PackagesEdit} />
       </Switch>
     </>
   );

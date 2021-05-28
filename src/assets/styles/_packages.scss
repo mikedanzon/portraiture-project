@@ -1,4 +1,3 @@
-// padding 55px 300 px default
 .packages-wrapper {
   @media (max-width: 650px) {
     padding: 100px 20px;
@@ -14,10 +13,6 @@
     .packages-header-2 {
       .packages-header-search {
         display: flex;
-
-        input {
-          width: 100% !important;
-        }
 
         .packages-header-search-icon {
           display: none;
@@ -130,6 +125,11 @@
         .content-edit {
           font-size: 20px;
 
+          a {
+            text-decoration: none;
+            color: black;
+          }
+
           &:hover {
             cursor: pointer;
           }
@@ -143,6 +143,7 @@
       img {
         width: 100%;
         height: 200px;
+        object-fit: cover;
       }
     }
   }

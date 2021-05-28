@@ -9,23 +9,28 @@ function Profile() {
   const [businessName, setBusinessName] = useState();
   const [address, setAddress] = useState();
   const [photo, setPhoto] = useState();
+  const [photoChanged, setPhotoChanged] = useState(false);
   const [picture, setPicture] = useState();
   const [name, setName] = useState();
   const [email, setEmail] = useState();
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     fetchUser();
   }, []);
 
   const fetchUser = async () => {
+    setIsLoading(true)
     try {
       var config = {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       };
       var res = await axios.get(`${URL_API}/user/one`, config);
       getUserData(res);
+      setIsLoading(false)
     } catch (error) {
       console.log(error.response.data.message);
+      setIsLoading(false)
     }
   };
 
@@ -45,7 +50,9 @@ function Profile() {
   const onSave = (e) => {
     e.preventDefault();
     var bodyFormData = new FormData();
-    bodyFormData.append('photo', photo);
+    if (picture) {
+      bodyFormData.append('photo', photo);
+    }
     bodyFormData.append('name', name);
     bodyFormData.append('businessName', businessName);
     bodyFormData.append('address', address);
@@ -85,6 +92,15 @@ function Profile() {
         });
       });
   };
+
+  if(isLoading) {
+    return (
+      <>
+        <HeaderProps title="Edit Profile" link="/dashboard" />
+        <div className="loader"></div>
+      </>
+    )
+  }
 
   return (
     <>

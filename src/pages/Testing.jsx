@@ -1,11 +1,14 @@
 import React from 'react';
-import TempClassic from '../components/TempClassic';
-import Background from '../assets/img/loginregister/background-user.png';
+import HeaderUser from '../components/HeaderUser';
 
 function Testing() {
   return (
     <>
-      <TempClassic background={Background} />
+      <HeaderUser
+        headerOneText="Packages"
+        headerOneButton="New Packages"
+        headerSearchText="Search Packages"
+      />
     </>
   );
 }

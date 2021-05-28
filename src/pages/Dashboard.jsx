@@ -14,27 +14,10 @@ import Status from '../assets/img/dummy-img/status.png';
 import Baby from '../assets/img/dummy-img/baby.png';
 import Dummy3 from '../assets/img/dummy-img/dummy3.png';
 import axios from 'axios';
+import { useSelector } from 'react-redux';
 
 function Dashboard() {
-  const [picture, setPicture] = useState();
-  const [businessName, setBusinessName] = useState();
-
-  useEffect(() => {
-    fetchUser();
-  }, []);
-
-  const fetchUser = async () => {
-    try {
-      var config = {
-        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
-      };
-      var res = await axios.get(`${URL_API}/user/one`, config);
-      setPicture(res.data.result.photo);
-      setBusinessName(res.data.result.businessName);
-    } catch (error) {
-      console.log(error.response.data.message);
-    }
-  };
+  const auth = useSelector((state) => state.auth);
 
   return (
     <>
@@ -42,9 +25,9 @@ function Dashboard() {
       <div className="dashboard-background">
         <div className="dashboard-background-container">
           <div className="dashboard-logo">
-            <img src={`${URL_API}${picture}`} alt="logo" />
+            <img src={`${URL_API}${auth.photo}`} alt="logo" />
           </div>
-          <div className="dashboard-name">{businessName}</div>
+          <div className="dashboard-name">{auth.businessName}</div>
           <div className="dashboard-button">
             <Link to="/profile">
               <button className="dashboard-button-btn">Edit Profile</button>

@@ -1,26 +1,48 @@
 import React, { useEffect, useState } from 'react';
-import Header from '../components/Header';
-import { BiFilter } from 'react-icons/bi';
-import { AiOutlineSearch } from 'react-icons/ai';
 import axios from 'axios';
 import { URL_API } from '../helper/url';
-import { Link } from 'react-router-dom';
 import { MdEdit } from 'react-icons/md';
+import { Link, useHistory } from 'react-router-dom';
+import Header from '../components/Header';
+import HeaderUser from '../components/HeaderUser';
+import SimplePopover from '../components/Popover/SimplePopover';
+import { useDispatch } from 'react-redux';
+import { deletePackage } from '../redux/actions';
 
 function Packages() {
   const [dataPackages, setDataPacakges] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const history = useHistory();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     fetchData();
   }, []);
 
   const fetchData = async () => {
+    setIsLoading(true);
     try {
-      var res = await axios.get(`${URL_API}/package`);
+      var config = {
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+      };
+      var res = await axios.get(`${URL_API}/package`, config);
       setDataPacakges(res.data.result);
+      setIsLoading(false);
     } catch (error) {
       console.log(error.response.data.message);
+      setIsLoading(false);
     }
+  };
+
+  const onEditClick = (id) => {
+    history.push(`/packages/edit/${id}`);
+  };
+
+  const onDeleteClick = (id) => {
+    dispatch(deletePackage(id));
+    setTimeout(() => {
+      fetchData();
+    }, 3000);
   };
 
   const packageItems = () => {
@@ -31,7 +53,13 @@ function Packages() {
           <div className="data-item-content">
             <div className="content-text">{val.name}</div>
             <div className="content-edit">
-              <MdEdit />
+              {/* <Link to={`/packages/edit/${val.id}`}> */}
+              {/* <MdEdit /> */}
+              {/* </Link> */}
+              <SimplePopover
+                onEditClick={() => onEditClick(val.id)}
+                onDeleteClick={() => onDeleteClick(val.id)}
+              />
             </div>
           </div>
           <div className="data-item-count">{val.packageItems.length} Items</div>
@@ -40,29 +68,24 @@ function Packages() {
     });
   };
 
+  if (isLoading) {
+    return (
+      <>
+        <div className="loader"></div>
+      </>
+    );
+  }
+
   return (
     <>
       <Header />
       <div className="packages-wrapper">
-        <div className="packages-header">
-          <div className="packages-header-text">Packages</div>
-          <div className="packages-header-new">
-            <button>
-              <Link to="/packages/new">New Packages</Link>
-            </button>
-          </div>
-        </div>
-        <div className="packages-header-2">
-          <div className="packages-header-search">
-            <input type="text" placeholder="Search packages" />
-            <span className="packages-header-search-icon">
-              <AiOutlineSearch />
-            </span>{' '}
-          </div>
-          <div className="packages-header-filter">
-            <BiFilter /> Filter
-          </div>
-        </div>
+        <HeaderUser
+          headerOneText="Packages"
+          headerOneButton="New Packages"
+          headerOneLink="/packages/new"
+          headerSearchText="Search Packages"
+        />
         <div className="packages-main">{packageItems()}</div>
       </div>
     </>

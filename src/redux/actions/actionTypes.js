@@ -1,0 +1,2 @@
+export const DELETE_PACKAGE = 'DELETE_PACKAGE';
+export const SET_LOADING = 'SET_LOADING';
