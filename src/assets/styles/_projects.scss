@@ -34,7 +34,7 @@
             .ptic-items2 {
                 font-size: 14px;
                 font-style: normal;
-                font-weight: 700;
+                font-weight: bold;
                 color: #000000;
                 margin-left: 5px;
             }
@@ -61,7 +61,7 @@
                 .ptic-items4-text {
                     font-size: 14px;
                     font-style: normal;
-                    font-weight: 700;
+                    font-weight: bold;
                     color: #000000;
                     margin-left: 5px;
                 }
@@ -72,7 +72,7 @@
                 .ptic-items5-text {
                     font-size: 14px;
                     font-style: normal;
-                    font-weight: 700;
+                    font-weight: bold;
                     color: #000000;
                     margin-left: 5px;
                 }
@@ -127,7 +127,7 @@
             .ptic-items2 {
                 font-size: 14px;
                 font-style: normal;
-                font-weight: 700;
+                font-weight: bold;
                 color: #000000;
                 margin-left: 5px;
             }
@@ -171,7 +171,7 @@
                 .ptic-items4-text {
                     font-size: 14px;
                     font-style: normal;
-                    font-weight: 700;
+                    font-weight: bold;
                     color: #000000;
                     margin-left: 5px;
                 }
@@ -182,7 +182,7 @@
                 .ptic-items5-text {
                     font-size: 14px;
                     font-style: normal;
-                    font-weight: 700;
+                    font-weight: bold;
                     color: #000000;
                     margin-left: 5px;
                 }
@@ -239,7 +239,7 @@
     }
     .projects-searchbar-logo {
         position: absolute;
-        margin-left: 15px;
+        margin-left: 15px;    
     }
     @media (max-width: 653px) {
         margin-top: 71px;
@@ -253,7 +253,7 @@
                 .projects-title {
                     font-size: 24px;
                     font-style: normal;
-                    font-weight: 500;
+                    font-weight: bold;
                     color: #000000;
                 }
                 a {
@@ -289,6 +289,17 @@
                 .projects-filter {
                     display: flex;
                     margin-top: 20px;
+                    &:hover {
+                        cursor: pointer;
+                    }
+                    .projects-filter-text {
+                        font-size: 12px;
+                        font-style: normal;
+                        font-weight: 400;
+                        color: #000000;
+                        align-self: center;
+                        margin-left: 5px;
+                    }
                 }
             }
             .projects-third-inner-container {
@@ -349,6 +360,17 @@
                 .projects-filter {
                     display: flex;
                     margin-top: 5px;
+                    &:hover {
+                        cursor: pointer;
+                    }
+                    .projects-filter-text {
+                        font-size: 12px;
+                        font-style: normal;
+                        font-weight: 400;
+                        color: #000000;
+                        align-self: center;
+                        margin-left: 5px;
+                    }
                 }
             }
             .projects-third-inner-container {
@@ -409,6 +431,17 @@
                 .projects-filter {
                     display: flex;
                     margin-top: 5px;
+                    &:hover {
+                        cursor: pointer;
+                    }
+                    .projects-filter-text {
+                        font-size: 12px;
+                        font-style: normal;
+                        font-weight: 400;
+                        color: #000000;
+                        align-self: center;
+                        margin-left: 5px;
+                    }
                 }
             }
             .projects-third-inner-container {
@@ -469,6 +502,17 @@
                 .projects-filter {
                     display: flex;
                     margin-top: 5px;
+                    &:hover {
+                        cursor: pointer;
+                    }
+                    .projects-filter-text {
+                        font-size: 12px;
+                        font-style: normal;
+                        font-weight: 400;
+                        color: #000000;
+                        align-self: center;
+                        margin-left: 5px;
+                    }
                 }
             }
             .projects-third-inner-container {
@@ -529,6 +573,17 @@
                 .projects-filter {
                     display: flex;
                     margin-top: 5px;
+                    &:hover {
+                        cursor: pointer;
+                    }
+                    .projects-filter-text {
+                        font-size: 12px;
+                        font-style: normal;
+                        font-weight: 400;
+                        color: #000000;
+                        align-self: center;
+                        margin-left: 5px;
+                    }
                 }
             }
             .projects-third-inner-container {

@@ -27,7 +27,7 @@ function Projects() {
 						<div className="projects-searchbar-logo"><FiSearch size={16}/></div>
 						<div className="projects-filter">
 							<div><CgOptions/></div>
-							<div>Filter</div>
+							<div className="projects-filter-text">Filter</div>
 						</div>
 					</div>
 					<div className="projects-third-inner-container">

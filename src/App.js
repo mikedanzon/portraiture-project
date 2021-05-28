@@ -17,6 +17,7 @@ import ProjectEdit from './pages/ProjectEdit';
 import Collections from './pages/Collections';
 import Projects from './pages/Projects';
 import GalleryAll from './pages/GalleryAll';
+import GalleryPhoto from './pages/GalleryPhoto';
 import axios from 'axios';
 import Packages from './pages/Packages';
 import PackagesNew from './pages/PackagesNew';
@@ -72,6 +73,7 @@ function App() {
         <Route exact path="/projects/edit" component={ProjectEdit} />
         <Route exact path="/projects" component={Projects} />
         <Route exact path="/gallery/all" component={GalleryAll} />
+        <Route exact path="/gallery/photographer" component={GalleryPhoto} />
         <Route exact path="/packages" component={Packages} />
         <Route exact path="/packages/new" component={PackagesNew} />
       </Switch>
