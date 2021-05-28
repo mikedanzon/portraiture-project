@@ -11,6 +11,12 @@
         position: absolute;
         margin-left: 15px;
     }
+    .cct1-text {
+        font-size: 12px;
+        font-style: normal;
+        font-weight: bold;
+        color: #000000;
+    }
     @media (max-width: 653px) {
         margin-top: 71px;
         display: flex;
@@ -23,7 +29,7 @@
                 .collections-title {
                     font-size: 24px;
                     font-style: normal;
-                    font-weight: 500;
+                    font-weight: bold;
                     color: #000000;
                 }
                 a {
@@ -59,6 +65,17 @@
                 .collections-filter {
                     display: flex;
                     margin-top: 20px;
+                    &:hover {
+                        cursor: pointer;
+                    }
+                    .collections-filter-text {
+                        font-size: 12px;
+                        font-style: normal;
+                        font-weight: 400;
+                        color: #000000;
+                        align-self: center;
+                        margin-left: 5px;
+                    }
                 }
             }
             .collections-third-inner-container {
@@ -78,12 +95,6 @@
                         display: flex;
                         justify-content: space-between;
                         margin-top: 10px;
-                        .cct1-text {
-                            font-size: 12px;
-                            font-style: normal;
-                            font-weight: 500;
-                            color: #000000;
-                        }
                         .collections-cards-text-1-date {
                             font-size: 10px;
                             font-style: normal;
@@ -93,6 +104,9 @@
                         .collections-cards-text-1-preview {
                             display: flex;
                             color: #999999;
+                            &:hover {
+                                cursor: pointer;
+                            }
                             .cct1p-text {
                                 font-size: 10px;
                                 font-style: normal;
@@ -108,7 +122,10 @@
                         font-size: 12px;
                         justify-content: space-between;
                         .collections-cards-text-2-imgdow {
-                            display: flex; 
+                            display: flex;
+                            &:hover {
+                                cursor: pointer;
+                            } 
                             .imgdow-text1 {
                                 font-size: 10px;
                                 font-style: normal;
@@ -129,6 +146,9 @@
                         .collections-cards-text-2-edit {
                             display: flex;
                             color: #999999;
+                            &:hover {
+                                cursor: pointer;
+                            }
                             .cct2p-text {
                                 font-size: 10px;
                                 font-style: normal;
@@ -158,7 +178,7 @@
                 .collections-title {
                     font-size: 24px;
                     font-style: normal;
-                    font-weight: 500;
+                    font-weight: bold;
                     color: #000000;
                 }
                 a {
@@ -195,6 +215,17 @@
                 .collections-filter {
                     display: flex;
                     margin-top: 5px;
+                    &:hover {
+                        cursor: pointer;
+                    }
+                    .collections-filter-text {
+                        font-size: 12px;
+                        font-style: normal;
+                        font-weight: 400;
+                        color: #000000;
+                        align-self: center;
+                        margin-left: 5px;
+                    }
                 }
             }
             .collections-third-inner-container {
@@ -228,6 +259,9 @@
                         .collections-cards-text-1-preview {
                             display: flex;
                             color: #999999;
+                            &:hover {
+                                cursor: pointer;
+                            }
                             .cct1p-text {
                                 font-size: 10px;
                                 font-style: normal;
@@ -244,6 +278,9 @@
                         justify-content: space-between;
                         .collections-cards-text-2-imgdow {
                             display: flex;
+                            &:hover {
+                                cursor: pointer;
+                            }
                             .imgdow-text1 {
                                 font-size: 10px;
                                 font-style: normal;
@@ -263,6 +300,9 @@
                         .collections-cards-text-2-edit {
                             display: flex;
                             color: #999999;
+                            &:hover {
+                                cursor: pointer;
+                            }
                             .cct2p-text {
                                 font-size: 10px;
                                 font-style: normal;
@@ -292,7 +332,7 @@
                 .collections-title {
                     font-size: 24px;
                     font-style: normal;
-                    font-weight: 500;
+                    font-weight: bold;
                     color: #000000;
                 }
                 a {
@@ -329,6 +369,17 @@
                 .collections-filter {
                     display: flex;
                     margin-top: 5px;
+                    &:hover {
+                        cursor: pointer;
+                    }
+                    .collections-filter-text {
+                        font-size: 12px;
+                        font-style: normal;
+                        font-weight: 400;
+                        color: #000000;
+                        align-self: center;
+                        margin-left: 5px;
+                    }
                 }
             }
             .collections-third-inner-container {
@@ -362,6 +413,9 @@
                         .collections-cards-text-1-preview {
                             display: flex;
                             color: #999999;
+                            &:hover {
+                                cursor: pointer;
+                            }
                             .cct1p-text {
                                 font-size: 10px;
                                 font-style: normal;
@@ -378,6 +432,9 @@
                         justify-content: space-between;
                         .collections-cards-text-2-imgdow {
                             display: flex;
+                            &:hover {
+                                cursor: pointer;
+                            }
                             .imgdow-text1 {
                                 font-size: 10px;
                                 font-style: normal;
@@ -398,6 +455,9 @@
                         .collections-cards-text-2-edit {
                             display: flex;
                             color: #999999;
+                            &:hover {
+                                cursor: pointer;
+                            }
                             .cct2p-text {
                                 font-size: 10px;
                                 font-style: normal;
@@ -427,7 +487,7 @@
                 .collections-title {
                     font-size: 24px;
                     font-style: normal;
-                    font-weight: 500;
+                    font-weight: bold;
                     color: #000000;
                 }
                 a {
@@ -464,6 +524,17 @@
                 .collections-filter {
                     display: flex;
                     margin-top: 5px;
+                    &:hover {
+                        cursor: pointer;
+                    }
+                    .collections-filter-text {
+                        font-size: 12px;
+                        font-style: normal;
+                        font-weight: 400;
+                        color: #000000;
+                        align-self: center;
+                        margin-left: 5px;
+                    }
                 }
             }
             .collections-third-inner-container {
@@ -496,6 +567,9 @@
                         .collections-cards-text-1-preview {
                             display: flex;
                             color: #999999;
+                            &:hover {
+                                cursor: pointer;
+                            }
                             .cct1p-text {
                                 font-size: 10px;
                                 font-style: normal;
@@ -512,6 +586,9 @@
                         justify-content: space-between;
                         .collections-cards-text-2-imgdow {
                             display: flex;
+                            &:hover {
+                                cursor: pointer;
+                            }
                             .imgdow-text1 {
                                 font-size: 10px;
                                 font-style: normal;
@@ -532,6 +609,9 @@
                         .collections-cards-text-2-edit {
                             display: flex;
                             color: #999999;
+                            &:hover {
+                                cursor: pointer;
+                            }
                             .cct2p-text {
                                 font-size: 10px;
                                 font-style: normal;
@@ -561,7 +641,7 @@
                 .collections-title {
                     font-size: 24px;
                     font-style: normal;
-                    font-weight: 500;
+                    font-weight: bold;
                     color: #000000;
                 }
                 a {
@@ -598,6 +678,17 @@
                 .collections-filter {
                     display: flex;
                     margin-top: 5px;
+                    &:hover {
+                        cursor: pointer;
+                    }
+                    .collections-filter-text {
+                        font-size: 12px;
+                        font-style: normal;
+                        font-weight: 400;
+                        color: #000000;
+                        align-self: center;
+                        margin-left: 5px;
+                    }
                 }
             }
             .collections-third-inner-container {
@@ -630,6 +721,9 @@
                         .collections-cards-text-1-preview {
                             display: flex;
                             color: #999999;
+                            &:hover {
+                                cursor: pointer;
+                            }
                             .cct1p-text {
                                 font-size: 10px;
                                 font-style: normal;
@@ -647,6 +741,9 @@
                         width: 200px;
                         .collections-cards-text-2-imgdow {
                             display: flex;
+                            &:hover {
+                                cursor: pointer;
+                            }
                             .imgdow-text1 {
                                 font-size: 10px;
                                 font-style: normal;
@@ -667,6 +764,9 @@
                         .collections-cards-text-2-edit {
                             display: flex;
                             color: #999999;
+                            &:hover {
+                                cursor: pointer;
+                            }
                             .cct2p-text {
                                 font-size: 10px;
                                 font-style: normal;

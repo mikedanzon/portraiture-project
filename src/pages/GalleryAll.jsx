@@ -19,95 +19,16 @@ function GalleryAll() {
 		<>
 		<HeaderHome/>
 		<div className="gallery-title">Explore Photographer Gallery</div>
-		<div className="gallery-container">
-			<div className="gallery-cards">
-				<div><img className="gallery-cards-img" src={Dummy4} alt=""/></div>
-				<div className="gallery-cards-text">
-					<div className="gallery-cards-text1">Jamal & Denise Wedding Ceremony</div>
-					<div className="gallery-cards-text2">Justin Studio</div>
+		<div className="galleryall-wrapper">
+			<div className="galleryall-cards">
+				<img className="cards-img" src={Dummy4} alt="no image found"/>
+				<div className="cards-text">
+					<div className="cards-text1">Leon & Stella</div>
+					<div className="cards-text2">Yedam Mansuri</div>
 				</div>
 			</div>
-			<div className="gallery-cards">
-				<div><img className="gallery-cards-img" src={Dummy4} alt=""/></div>
-				<div className="gallery-cards-text">
-					<div className="gallery-cards-text1">Jamal & Denise Wedding Ceremony</div>
-					<div className="gallery-cards-text2">Justin Studio</div>
-				</div>
-			</div>
-			<div className="gallery-cards">
-				<div><img className="gallery-cards-img" src={Dummy4} alt=""/></div>
-				<div className="gallery-cards-text">
-					<div className="gallery-cards-text1">Jamal & Denise Wedding Ceremony</div>
-					<div className="gallery-cards-text2">Justin Studio</div>
-				</div>
-			</div>
-			<div className="gallery-cards">
-				<div><img className="gallery-cards-img" src={Dummy4} alt=""/></div>
-				<div className="gallery-cards-text">
-					<div className="gallery-cards-text1">Jamal & Denise Wedding Ceremony</div>
-					<div className="gallery-cards-text2">Justin Studio</div>
-				</div>
-			</div>
-			<div className="gallery-cards">
-				<div><img className="gallery-cards-img" src={Dummy4} alt=""/></div>
-				<div className="gallery-cards-text">
-					<div className="gallery-cards-text1">Jamal & Denise Wedding Ceremony</div>
-					<div className="gallery-cards-text2">Justin Studio</div>
-				</div>
-			</div>
-			<div className="gallery-cards">
-				<div><img className="gallery-cards-img" src={Dummy4} alt=""/></div>
-				<div className="gallery-cards-text">
-					<div className="gallery-cards-text1">Jamal & Denise Wedding Ceremony</div>
-					<div className="gallery-cards-text2">Justin Studio</div>
-				</div>
-			</div>
-			<div className="gallery-cards">
-				<div><img className="gallery-cards-img" src={Dummy4} alt=""/></div>
-				<div className="gallery-cards-text">
-					<div className="gallery-cards-text1">Jamal & Denise Wedding Ceremony</div>
-					<div className="gallery-cards-text2">Justin Studio</div>
-				</div>
-			</div>
-			<div className="gallery-cards">
-				<div><img className="gallery-cards-img" src={Dummy4} alt=""/></div>
-				<div className="gallery-cards-text">
-					<div className="gallery-cards-text1">Jamal & Denise Wedding Ceremony</div>
-					<div className="gallery-cards-text2">Justin Studio</div>
-				</div>
-			</div>
-			<div className="gallery-cards">
-				<div><img className="gallery-cards-img" src={Dummy4} alt=""/></div>
-				<div className="gallery-cards-text">
-					<div className="gallery-cards-text1">Jamal & Denise Wedding Ceremony</div>
-					<div className="gallery-cards-text2">Justin Studio</div>
-				</div>
-			</div>
-			<div className="gallery-cards">
-				<div><img className="gallery-cards-img" src={Dummy4} alt=""/></div>
-				<div className="gallery-cards-text">
-					<div className="gallery-cards-text1">Jamal & Denise Wedding Ceremony</div>
-					<div className="gallery-cards-text2">Justin Studio</div>
-				</div>
-			</div>
-			<div className="gallery-cards">
-				<div><img className="gallery-cards-img" src={Dummy4} alt=""/></div>
-				<div className="gallery-cards-text">
-					<div className="gallery-cards-text1">Jamal & Denise Wedding Ceremony</div>
-					<div className="gallery-cards-text2">Justin Studio</div>
-				</div>
-			</div>
-			<div className="gallery-cards">
-				<div><img className="gallery-cards-img" src={Dummy4} alt=""/></div>
-				<div className="gallery-cards-text">
-					<div className="gallery-cards-text1">Jamal & Denise Wedding Ceremony</div>
-					<div className="gallery-cards-text2">Justin Studio</div>
-				</div>
-			</div>
-{/*			<div className={classes.root}>
-			      <Pagination count={10} shape="rounded" />
-    		</div>*/}
 		</div>
+		<div className="galleryall-pagination">pagination</div>	
 		<Footer/>
 		</>
 	)

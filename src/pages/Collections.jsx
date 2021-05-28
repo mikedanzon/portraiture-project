@@ -69,7 +69,7 @@ function Collections() {
               <div>
                 <CgOptions />
               </div>
-              <div>Filter</div>
+              <div className="collections-filter-text">Filter</div>
             </div>
           </div>
           <div className="collections-third-inner-container">
@@ -177,7 +177,8 @@ function Collections() {
                     </div>
                   </div>
                 </div>
-            </div><div className="collections-cards">
+            </div>
+            <div className="collections-cards">
                 <div>
                   <div className="collections-cards-img">
                     <img
