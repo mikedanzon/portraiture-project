@@ -14,6 +14,7 @@ import { FiSearch } from 'react-icons/fi';
 import axios from 'axios';
 import { URL_API } from '../helper/url';
 import { Link } from 'react-router-dom';
+import HeaderUser from '../components/HeaderUser';
 
 function Collections() {
 //   const [dataCollections, setDataCollections] = useState([]);
@@ -50,7 +51,13 @@ function Collections() {
       <Header />
       <div className="collections-container">
         <div className="collections-inner-container">
-          <div className="collection-first-inner-container">
+          <HeaderUser 
+            headerOneText="Collections"
+            headerOneButton="New Collection"
+            headerOneLink="/collections/new"
+            headerSearchText="Search Collections"
+          />
+          {/* <div className="collection-first-inner-container">
             <div className="collections-title">Collections</div>
             <Link to="/collections/new">
               <button className="collections-button">New Collection</button>
@@ -71,7 +78,7 @@ function Collections() {
               </div>
               <div>Filter</div>
             </div>
-          </div>
+          </div> */}
           <div className="collections-third-inner-container">
             <div className="collections-cards">
                 <div>
