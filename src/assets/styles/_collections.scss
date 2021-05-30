@@ -1,783 +1,150 @@
-.collections-container {
-    .collections-searchbar {
-        padding-left: 40px;
-        padding-right: 15px;
+.collections-wrapper {
+  @media (max-width: 650px) {
+    padding: 100px 20px;
+
+    .collections-header {
+      text-align: center;
+
+      .collections-header-text {
+        padding-bottom: 20px;
+      }
     }
-    .collections-searchbar {
-        padding-left: 40px;
-        padding-right: 15px;
+
+    .collections-header-2 {
+      .collections-header-search {
+        display: flex;
+
+        .collections-header-search-icon {
+          display: none;
+        }
+      }
+
+      .collections-header-filter {
+        float: right;
+        padding-top: 10px;
+      }
     }
-    .collections-searchbar-logo {
-        position: absolute;
-        margin-left: 15px;
+  }
+
+  @media (min-width: 650px) and (max-width: 1100px) {
+    padding: 155px 125px;
+
+    .collections-header {
+      display: flex;
     }
-    .cct1-text {
-        font-size: 12px;
-        font-style: normal;
+
+    .collections-header-2 {
+      display: flex;
+    }
+  }
+
+  @media (min-width: 1100px) {
+    padding: 155px 200px;
+
+    .collections-header {
+      display: flex;
+    }
+
+    .collections-header-2 {
+      display: flex;
+    }
+  }
+
+  .collections-header {
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 30px;
+
+    .collections-header-text {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .collections-header-new {
+      button {
+        padding: 11px 16px;
+        width: 199px;
+        color: white;
+        background: #c2a47e;
+        border: none;
+      }
+
+      a {
+        text-decoration: none;
+        color: white;
+      }
+    }
+  }
+
+  .collections-header-2 {
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 50px;
+
+    .collections-header-search {
+      font-size: 12px;
+
+      input {
+        background: #f8f8f8;
+        box-shadow: inset 0px 1px 2px rgba(0, 0, 0, 0.1);
+        border-radius: 3px;
+        padding: 10px 20px 10px 35px;
+        width: 300px;
+        border: none;
+      }
+
+      .collections-header-search-icon {
+        margin-left: -290px;
+        font-size: 22px;
+      }
+    }
+  }
+
+  .collections-main {
+    display: flex;
+    justify-content: space-between;
+    column-gap: 10px;
+    flex-flow: row wrap;
+    flex-direction: row;
+
+    .data-item-list {
+      align-items: center;
+      flex-basis: 30%;
+      padding-bottom: 25px;
+
+      .data-item-content {
+        display: flex;
+        justify-content: space-between;
         font-weight: bold;
-        color: #000000;
-    }
-    @media (max-width: 653px) {
-        margin-top: 71px;
-        display: flex;
-        justify-content: center;
-        .collections-inner-container {
-            margin-top: 30px;
-            margin-bottom: 280px;
-            width: 70%;  
-            .collection-first-inner-container {
-                .collections-title {
-                    font-size: 24px;
-                    font-style: normal;
-                    font-weight: bold;
-                    color: #000000;
-                }
-                a {
-                    text-decoration: none;
-                }
-                .collections-button {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    color: #ffffff;
-                    border: none;
-                    padding: 11px 16px;
-                    width: 100%;
-                    height: 42px;
-                    background: #C2A47E;
-                    margin-top: 20px;
-                }
-            }
-            .collection-second-inner-container {
-                margin-top: 30px;
-                .collections-searchbar {
-                    font-size: 14px;
-                    width: 100%;
-                    height: 40px;
-                    background: #F8F8F8;
-                    box-shadow: inset 0px 1px 2px rgba(0, 0, 0, 0.1);
-                    border-radius: 3px;
-                    border: none;
-                }
-                .collections-searchbar-logo {
-                    top: 237px;
-                }
-                .collections-filter {
-                    display: flex;
-                    margin-top: 20px;
-                    &:hover {
-                        cursor: pointer;
-                    }
-                    .collections-filter-text {
-                        font-size: 12px;
-                        font-style: normal;
-                        font-weight: 400;
-                        color: #000000;
-                        align-self: center;
-                        margin-left: 5px;
-                    }
-                }
-            }
-            .collections-third-inner-container {
-                margin-top: 40px;
-                align-self: center;
-                display: inline-flex;
-                flex-wrap: wrap;
-                justify-content: space-between;
-                row-gap: 30px;
-                .collections-cards {
-                    flex-basis: 21%;
-                    .collections-cards-img {
-                        width: 200px;
-                        height: 175px;
-                    }
-                    .collections-cards-text-1 {
-                        display: flex;
-                        justify-content: space-between;
-                        margin-top: 10px;
-                        .collections-cards-text-1-date {
-                            font-size: 10px;
-                            font-style: normal;
-                            font-weight: 500;
-                            color: #999999;
-                        }
-                        .collections-cards-text-1-preview {
-                            display: flex;
-                            color: #999999;
-                            &:hover {
-                                cursor: pointer;
-                            }
-                            .cct1p-text {
-                                font-size: 10px;
-                                font-style: normal;
-                                font-weight: 500;
-                                padding-left: 5px;
-                            }
-                        }
-                    }
-                    .collections-cards-text-2 {
-                        display: flex;
-                        margin-top: 10px;
-                        margin-bottom: 10px;
-                        font-size: 12px;
-                        justify-content: space-between;
-                        .collections-cards-text-2-imgdow {
-                            display: flex;
-                            &:hover {
-                                cursor: pointer;
-                            } 
-                            .imgdow-text1 {
-                                font-size: 10px;
-                                font-style: normal;
-                                font-weight: 400;
-                                color: #000000;
-                                padding-right: 10px;
-                                padding-left: 5px;
-                            }
-                            .imgdow-text2 {
-                                font-size: 10px;
-                                font-style: normal;
-                                font-weight: 400;
-                                color: #000000;
-                                padding-right: 5px;
-                                padding-left: 5px;
-                            }                       
-                        }
-                        .collections-cards-text-2-edit {
-                            display: flex;
-                            color: #999999;
-                            &:hover {
-                                cursor: pointer;
-                            }
-                            .cct2p-text {
-                                font-size: 10px;
-                                font-style: normal;
-                                font-weight: 500;
-                                align-self: center;
-                                padding-left: 5px;
-                            }
-                        }
-                    }
-                }
-            }
+        font-size: 16px;
+
+        .content-text {
+          padding-top: 5px;
         }
-    }
-    @media (min-width: 653px) and (max-width: 768px) {
-    	margin-top: 71px;
-        display: flex;
-        justify-content: center;
-        .collections-inner-container {
-            margin-top: 80px;
-            margin-bottom: 280px;
-            width: 70%;
-            display: flex;
-            flex-direction: column;
-            .collection-first-inner-container {
-                display: flex;
-                justify-content: space-between;
-                .collections-title {
-                    font-size: 24px;
-                    font-style: normal;
-                    font-weight: bold;
-                    color: #000000;
-                }
-                a {
-                    text-decoration: none;
-                }
-                .collections-button {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    color: #ffffff;
-                    border: none;
-                    padding: 11px 16px;
-                    width: 199px;
-                    height: 42px;
-                    background: #C2A47E;
-                }
-            }
-            .collection-second-inner-container {
-                width: 100%;
-                margin-top: 50px;
-                display: flex;
-                justify-content: space-between;
-                align-self: center;
-                align-items: center;
-                .collections-searchbar {
-                    font-size: 14px;
-                    width: 337px;
-                    height: 40px;
-                    background: #F8F8F8;
-                    box-shadow: inset 0px 1px 2px rgba(0, 0, 0, 0.1);
-                    border-radius: 3px;
-                    border: none;
-                }
-                .collections-filter {
-                    display: flex;
-                    margin-top: 5px;
-                    &:hover {
-                        cursor: pointer;
-                    }
-                    .collections-filter-text {
-                        font-size: 12px;
-                        font-style: normal;
-                        font-weight: 400;
-                        color: #000000;
-                        align-self: center;
-                        margin-left: 5px;
-                    }
-                }
-            }
-            .collections-third-inner-container {
-                margin-top: 50px;
-                width: 100%;
-                align-self: center;
-                display: inline-flex;
-                flex-wrap: wrap;
-                row-gap: 30px;
-                justify-content: space-between;
-                .collections-cards {
-                    flex-basis: 21%;
-                    .collections-cards-img {
-                        width: 200px;
-                        height: 175px;
-                    }
-                    .collections-cards-text-1 {
-                        display: flex;
-                        justify-content: space-between;
-                        font-size: 12px;
-                        font-style: normal;
-                        font-weight: 500;
-                        color: #000000;
-                        margin-top: 10px;
-                        .collections-cards-text-1-date {
-                            font-size: 10px;
-                            font-style: normal;
-                            font-weight: 500;
-                            color: #999999;
-                        }
-                        .collections-cards-text-1-preview {
-                            display: flex;
-                            color: #999999;
-                            &:hover {
-                                cursor: pointer;
-                            }
-                            .cct1p-text {
-                                font-size: 10px;
-                                font-style: normal;
-                                font-weight: 500;
-                                padding-left: 5px;
-                            }
-                        }
-                    }
-                    .collections-cards-text-2 {
-                        display: flex;
-                        margin-top: 10px;
-                        margin-bottom: 10px;
-                        font-size: 12px;
-                        justify-content: space-between;
-                        .collections-cards-text-2-imgdow {
-                            display: flex;
-                            &:hover {
-                                cursor: pointer;
-                            }
-                            .imgdow-text1 {
-                                font-size: 10px;
-                                font-style: normal;
-                                font-weight: 400;
-                                color: #000000;
-                                padding-right: 10px;
-                                padding-left: 5px;
-                            }
-                            .imgdow-text2 {
-                                font-size: 10px;
-                                font-style: normal;
-                                font-weight: 400;
-                                color: #000000;
-                                padding-right: 5px;
-                                padding-left: 5px;
-                            }                        }
-                        .collections-cards-text-2-edit {
-                            display: flex;
-                            color: #999999;
-                            &:hover {
-                                cursor: pointer;
-                            }
-                            .cct2p-text {
-                                font-size: 10px;
-                                font-style: normal;
-                                font-weight: 500;
-                                align-self: center;
-                                padding-left: 5px;
-                            }
-                        }
-                    }
-                }
-            }
+
+        .content-edit {
+          font-size: 20px;
+
+          a {
+            text-decoration: none;
+            color: black;
+          }
+
+          &:hover {
+            cursor: pointer;
+          }
         }
+      }
+
+      .data-item-count {
+        font-size: 12px;
+      }
+
+      img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+      }
     }
-    @media (min-width: 768px) and (max-width: 1024px) {
-    	margin-top: 71px;
-        display: flex;
-        justify-content: center;
-        .collections-inner-container {
-            margin-top: 80px;
-            margin-bottom: 280px;
-            width: 70%;
-            display: flex;
-            flex-direction: column;
-            .collection-first-inner-container {
-                display: flex;
-                justify-content: space-between;
-                .collections-title {
-                    font-size: 24px;
-                    font-style: normal;
-                    font-weight: bold;
-                    color: #000000;
-                }
-                a {
-                    text-decoration: none;
-                }
-                .collections-button {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    color: #ffffff;
-                    border: none;
-                    padding: 11px 16px;
-                    width: 199px;
-                    height: 42px;
-                    background: #C2A47E;
-                }
-            }
-            .collection-second-inner-container {
-                width: 100%;
-                margin-top: 50px;
-                display: flex;
-                justify-content: space-between;
-                align-self: center;
-                align-items: center;
-                .collections-searchbar {
-                    font-size: 14px;
-                    width: 337px;
-                    height: 40px;
-                    background: #F8F8F8;
-                    box-shadow: inset 0px 1px 2px rgba(0, 0, 0, 0.1);
-                    border-radius: 3px;
-                    border: none;
-                }
-                .collections-filter {
-                    display: flex;
-                    margin-top: 5px;
-                    &:hover {
-                        cursor: pointer;
-                    }
-                    .collections-filter-text {
-                        font-size: 12px;
-                        font-style: normal;
-                        font-weight: 400;
-                        color: #000000;
-                        align-self: center;
-                        margin-left: 5px;
-                    }
-                }
-            }
-            .collections-third-inner-container {
-                margin-top: 50px;
-                width: 100%;
-                align-self: center;
-                display: inline-flex;
-                flex-wrap: wrap;
-                column-gap: 30px;
-                row-gap: 30px;
-                .collections-cards {
-                    flex-basis: 21%;
-                    .collections-cards-img {
-                        width: 200px;
-                        height: 175px;
-                    }
-                    .collections-cards-text-1 {
-                        display: flex;
-                        justify-content: space-between;
-                        font-size: 12px;
-                        font-style: normal;
-                        font-weight: 500;
-                        color: #000000;
-                        margin-top: 10px;
-                        .collections-cards-text-1-date {
-                            font-size: 10px;
-                            font-style: normal;
-                            font-weight: 500;
-                            color: #999999;
-                        }
-                        .collections-cards-text-1-preview {
-                            display: flex;
-                            color: #999999;
-                            &:hover {
-                                cursor: pointer;
-                            }
-                            .cct1p-text {
-                                font-size: 10px;
-                                font-style: normal;
-                                font-weight: 500;
-                                padding-left: 5px;
-                            }
-                        }
-                    }
-                    .collections-cards-text-2 {
-                        display: flex;
-                        margin-top: 10px;
-                        margin-bottom: 10px;
-                        font-size: 12px;
-                        justify-content: space-between;
-                        .collections-cards-text-2-imgdow {
-                            display: flex;
-                            &:hover {
-                                cursor: pointer;
-                            }
-                            .imgdow-text1 {
-                                font-size: 10px;
-                                font-style: normal;
-                                font-weight: 400;
-                                color: #000000;
-                                padding-right: 10px;
-                                padding-left: 5px;
-                            }
-                            .imgdow-text2 {
-                                font-size: 10px;
-                                font-style: normal;
-                                font-weight: 400;
-                                color: #000000;
-                                padding-right: 5px;
-                                padding-left: 5px;
-                            }
-                        }
-                        .collections-cards-text-2-edit {
-                            display: flex;
-                            color: #999999;
-                            &:hover {
-                                cursor: pointer;
-                            }
-                            .cct2p-text {
-                                font-size: 10px;
-                                font-style: normal;
-                                font-weight: 500;
-                                align-self: center;
-                                padding-left: 5px;
-                            }
-                        }
-                    }
-                }
-            }
-        }	
-    }
-    @media (min-width: 1024px) and (max-width: 1440px) {
-    	margin-top: 71px;
-        display: flex;
-        justify-content: center;
-        .collections-inner-container {
-            margin-top: 80px;
-            margin-bottom: 280px;
-            width: 70%;
-            display: flex;
-            flex-direction: column;
-            .collection-first-inner-container {
-                display: flex;
-                justify-content: space-between;
-                .collections-title {
-                    font-size: 24px;
-                    font-style: normal;
-                    font-weight: bold;
-                    color: #000000;
-                }
-                a {
-                    text-decoration: none;
-                }
-                .collections-button {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    color: #ffffff;
-                    border: none;
-                    padding: 11px 16px;
-                    width: 199px;
-                    height: 42px;
-                    background: #C2A47E;
-                }
-            }
-            .collection-second-inner-container {
-                width: 100%;
-                margin-top: 50px;
-                display: flex;
-                justify-content: space-between;
-                align-self: center;
-                align-items: center;
-                .collections-searchbar {
-                    font-size: 14px;
-                    width: 337px;
-                    height: 40px;
-                    background: #F8F8F8;
-                    box-shadow: inset 0px 1px 2px rgba(0, 0, 0, 0.1);
-                    border-radius: 3px;
-                    border: none;
-                }
-                .collections-filter {
-                    display: flex;
-                    margin-top: 5px;
-                    &:hover {
-                        cursor: pointer;
-                    }
-                    .collections-filter-text {
-                        font-size: 12px;
-                        font-style: normal;
-                        font-weight: 400;
-                        color: #000000;
-                        align-self: center;
-                        margin-left: 5px;
-                    }
-                }
-            }
-            .collections-third-inner-container {
-                margin-top: 50px;
-                display: flex;
-                flex-flow: row wrap;
-                flex-direction: row;
-                justify-content: space-between;
-                row-gap: 30px;
-                .collections-cards {
-                    flex-basis: 21%;
-                    .collections-cards-img {
-                        width: 200px;
-                        height: 175px;
-                    }
-                    .collections-cards-text-1 {
-                        display: flex;
-                        justify-content: space-between;
-                        font-size: 12px;
-                        font-style: normal;
-                        font-weight: 500;
-                        color: #000000;
-                        margin-top: 10px;
-                        .collections-cards-text-1-date {
-                            font-size: 10px;
-                            font-style: normal;
-                            font-weight: 500;
-                            color: #999999;
-                        }
-                        .collections-cards-text-1-preview {
-                            display: flex;
-                            color: #999999;
-                            &:hover {
-                                cursor: pointer;
-                            }
-                            .cct1p-text {
-                                font-size: 10px;
-                                font-style: normal;
-                                font-weight: 500;
-                                padding-left: 5px;
-                            }
-                        }
-                    }
-                    .collections-cards-text-2 {
-                        display: flex;
-                        margin-top: 10px;
-                        margin-bottom: 10px;
-                        font-size: 12px;
-                        justify-content: space-between;
-                        .collections-cards-text-2-imgdow {
-                            display: flex;
-                            &:hover {
-                                cursor: pointer;
-                            }
-                            .imgdow-text1 {
-                                font-size: 10px;
-                                font-style: normal;
-                                font-weight: 400;
-                                color: #000000;
-                                padding-right: 10px;
-                                padding-left: 5px;
-                            }
-                            .imgdow-text2 {
-                                font-size: 10px;
-                                font-style: normal;
-                                font-weight: 400;
-                                color: #000000;
-                                padding-right: 5px;
-                                padding-left: 5px;
-                            }
-                        }
-                        .collections-cards-text-2-edit {
-                            display: flex;
-                            color: #999999;
-                            &:hover {
-                                cursor: pointer;
-                            }
-                            .cct2p-text {
-                                font-size: 10px;
-                                font-style: normal;
-                                font-weight: 500;
-                                align-self: center;
-                                padding-left: 5px;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
-    @media (min-width: 1441px) {
-        margin-top: 71px;
-        display: flex;
-        justify-content: center;
-        .collections-inner-container {
-            margin-top: 80px;
-            margin-bottom: 280px;
-            width: 70%;
-            display: flex;
-            flex-direction: column;
-            .collection-first-inner-container {
-                display: flex;
-                justify-content: space-between;
-                .collections-title {
-                    font-size: 24px;
-                    font-style: normal;
-                    font-weight: bold;
-                    color: #000000;
-                }
-                a {
-                    text-decoration: none;
-                }
-                .collections-button {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    color: #ffffff;
-                    border: none;
-                    padding: 11px 16px;
-                    width: 199px;
-                    height: 42px;
-                    background: #C2A47E;
-                }
-            }
-            .collection-second-inner-container {
-                width: 100%;
-                margin-top: 50px;
-                display: flex;
-                justify-content: space-between;
-                align-self: center;
-                align-items: center;
-                .collections-searchbar {
-                    font-size: 14px;
-                    width: 337px;
-                    height: 40px;
-                    background: #F8F8F8;
-                    box-shadow: inset 0px 1px 2px rgba(0, 0, 0, 0.1);
-                    border-radius: 3px;
-                    border: none;
-                }
-                .collections-filter {
-                    display: flex;
-                    margin-top: 5px;
-                    &:hover {
-                        cursor: pointer;
-                    }
-                    .collections-filter-text {
-                        font-size: 12px;
-                        font-style: normal;
-                        font-weight: 400;
-                        color: #000000;
-                        align-self: center;
-                        margin-left: 5px;
-                    }
-                }
-            }
-            .collections-third-inner-container {
-                margin-top: 50px;
-                display: flex;
-                flex-flow: row wrap;
-                flex-direction: row;
-                justify-content: space-between;
-                row-gap: 30px;
-                .collections-cards {
-                    .collections-cards-img {
-                        width: 200px;
-                        height: 175px;
-                    }
-                    .collections-cards-text-1 {
-                        display: flex;
-                        justify-content: space-between;
-                        font-size: 12px;
-                        font-style: normal;
-                        font-weight: 500;
-                        color: #000000;
-                        margin-top: 10px;
-                        width: 200px;
-                        .collections-cards-text-1-date {
-                            font-size: 10px;
-                            font-style: normal;
-                            font-weight: 500;
-                            color: #999999;
-                        }
-                        .collections-cards-text-1-preview {
-                            display: flex;
-                            color: #999999;
-                            &:hover {
-                                cursor: pointer;
-                            }
-                            .cct1p-text {
-                                font-size: 10px;
-                                font-style: normal;
-                                font-weight: 500;
-                                padding-left: 5px;
-                            }
-                        }
-                    }
-                    .collections-cards-text-2 {
-                        display: flex;
-                        margin-top: 10px;
-                        margin-bottom: 10px;
-                        font-size: 12px;
-                        justify-content: space-between;
-                        width: 200px;
-                        .collections-cards-text-2-imgdow {
-                            display: flex;
-                            &:hover {
-                                cursor: pointer;
-                            }
-                            .imgdow-text1 {
-                                font-size: 10px;
-                                font-style: normal;
-                                font-weight: 400;
-                                color: #000000;
-                                padding-right: 10px;
-                                padding-left: 5px;
-                            }
-                            .imgdow-text2 {
-                                font-size: 10px;
-                                font-style: normal;
-                                font-weight: 400;
-                                color: #000000;
-                                padding-right: 5px;
-                                padding-left: 5px;
-                            }
-                        }
-                        .collections-cards-text-2-edit {
-                            display: flex;
-                            color: #999999;
-                            &:hover {
-                                cursor: pointer;
-                            }
-                            .cct2p-text {
-                                font-size: 10px;
-                                font-style: normal;
-                                font-weight: 500;
-                                align-self: center;
-                                padding-left: 5px;
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
+  }
 }

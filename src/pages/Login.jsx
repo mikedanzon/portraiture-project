@@ -1,21 +1,21 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Button, Form } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { URL_API } from '../helper/url';
 import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 import Logo from '../assets/img/logo.png';
-import Home from './Home';
-import { toast, ToastContainer } from 'react-toastify';
 
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const history = useHistory();
   const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
   if (auth.isLogin === true) {
-    window.location = '/';
+    history.push('/');
   }
 
   function handleSubmit(event) {
@@ -29,7 +29,7 @@ function Login() {
       .then((res) => {
         toast.info('Please wait getting user data...', {
           position: 'bottom-right',
-          autoClose: 5000,
+          autoClose: 3000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
@@ -44,7 +44,7 @@ function Login() {
           .then((res2) => {
             toast.success('You are now logged in!', {
               position: 'bottom-right',
-              autoClose: 5000,
+              autoClose: 3000,
               hideProgressBar: false,
               closeOnClick: true,
               pauseOnHover: true,
@@ -70,7 +70,7 @@ function Login() {
           .catch((err2) => {
             toast.error(`${err2.response.data.message}`, {
               position: 'bottom-right',
-              autoClose: 5000,
+              autoClose: 3000,
               hideProgressBar: false,
               closeOnClick: true,
               pauseOnHover: true,
@@ -82,7 +82,7 @@ function Login() {
       .catch((err) => {
         toast.error(`${err.response.data.message}`, {
           position: 'bottom-right',
-          autoClose: 5000,
+          autoClose: 3000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
@@ -94,17 +94,6 @@ function Login() {
 
   return (
     <>
-      <ToastContainer
-        position="bottom-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
       <div className="port-background">
         <div className="port-main">
           <div className="port-main-header">

@@ -4,12 +4,14 @@ import { URL_API } from '../helper/url';
 import { toast, ToastContainer } from 'react-toastify';
 import axios from 'axios';
 import HeaderProps from '../components/HeaderProps';
+import { useHistory } from 'react-router';
 
 function PackagesNew() {
   const [name, setName] = useState('');
   const [desc, setDesc] = useState('');
   const [picture, setPicture] = useState(null);
   const [photo, setPhoto] = useState(null);
+  const history = useHistory();
   const [inputFields, setInputFields] = useState([
     {
       itemName: '',
@@ -49,6 +51,9 @@ function PackagesNew() {
 
   const onSave = (e) => {
     e.preventDefault();
+    if (inputFields[0].itemName === '') {
+      return postData();
+    }
     var itemFormData = new FormData();
     for (var i = 0; i < inputFields.length; i++) {
       itemFormData.append('itemName', inputFields[i].itemName);
@@ -70,44 +75,46 @@ function PackagesNew() {
           draggable: true,
           progress: undefined,
         });
-        var bodyFormData = new FormData();
-        bodyFormData.append('name', name);
-        bodyFormData.append('description', desc);
-        bodyFormData.append('image', photo);
-        axios({
-          method: 'post',
-          url: `${URL_API}/package`,
-          data: bodyFormData,
-          headers: {
-            'Content-Type': 'multipart/form-data',
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
-          },
-        })
-          .then(() => {
-            toast.success('Success created a new package!', {
-              position: 'bottom-right',
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-            });
-            setTimeout(() => {
-              window.location = '/packages';
-            }, 2000);
-          })
-          .catch((err2) => {
-            toast.error(`${err2.response.data.message}`, {
-              position: 'bottom-right',
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-            });
-          });
+        postData();
+      })
+      .catch((err) => {
+        toast.error(`${err.response.data.message}`, {
+          position: 'bottom-right',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      });
+  };
+
+  const postData = () => {
+    var bodyFormData = new FormData();
+    bodyFormData.append('name', name);
+    bodyFormData.append('description', desc);
+    bodyFormData.append('image', photo);
+    axios({
+      method: 'post',
+      url: `${URL_API}/package`,
+      data: bodyFormData,
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    })
+      .then(() => {
+        toast.success('Success created a new package!', {
+          position: 'bottom-right',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        history.push('/packages')
       })
       .catch((err) => {
         toast.error(`${err.response.data.message}`, {
@@ -124,17 +131,6 @@ function PackagesNew() {
 
   return (
     <>
-      <ToastContainer
-        position="bottom-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
       <HeaderProps title="Create Package" link="/packages" />
       <div className="pnew-wrapper">
         <div className="pnew-details">Package Details</div>
@@ -205,7 +201,7 @@ function PackagesNew() {
                       <div className="pnew-form-text-1-input">
                         <input
                           className="custom-form-port"
-                          type="text"
+                          type="number"
                           id="price"
                           name="price"
                           value={inputField.price}
@@ -225,6 +221,7 @@ function PackagesNew() {
                         >
                           <option hidden>Select Category</option>
                           <option value="photoSession">Photo Session</option>
+                          <option value="videography">Videography</option>
                           <option value="print">Print</option>
                           <option value="digital">Digital</option>
                           <option value="other">Other</option>

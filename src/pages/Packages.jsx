@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { URL_API } from '../helper/url';
-import { MdEdit } from 'react-icons/md';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { deletePackage } from '../redux/actions';
+import { toast } from 'react-toastify';
 import Header from '../components/Header';
 import HeaderUser from '../components/HeaderUser';
 import SimplePopover from '../components/Popover/SimplePopover';
-import { useDispatch } from 'react-redux';
-import { deletePackage } from '../redux/actions';
 
 function Packages() {
   const [dataPackages, setDataPacakges] = useState([]);
@@ -29,7 +29,15 @@ function Packages() {
       setDataPacakges(res.data.result);
       setIsLoading(false);
     } catch (error) {
-      console.log(error.response.data.message);
+      toast.error(`${error.response.data.message}`, {
+        position: 'bottom-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
       setIsLoading(false);
     }
   };
@@ -53,9 +61,6 @@ function Packages() {
           <div className="data-item-content">
             <div className="content-text">{val.name}</div>
             <div className="content-edit">
-              {/* <Link to={`/packages/edit/${val.id}`}> */}
-              {/* <MdEdit /> */}
-              {/* </Link> */}
               <SimplePopover
                 onEditClick={() => onEditClick(val.id)}
                 onDeleteClick={() => onDeleteClick(val.id)}
@@ -68,9 +73,14 @@ function Packages() {
     });
   };
 
+  const onClickFilter = () => {
+    alert('success filter');
+  };
+
   if (isLoading) {
     return (
       <>
+        <Header />
         <div className="loader"></div>
       </>
     );
@@ -82,9 +92,10 @@ function Packages() {
       <div className="packages-wrapper">
         <HeaderUser
           headerOneText="Packages"
-          headerOneButton="New Packages"
+          headerOneButton="New Package"
           headerOneLink="/packages/new"
           headerSearchText="Search Packages"
+          onClick={onClickFilter}
         />
         <div className="packages-main">{packageItems()}</div>
       </div>

@@ -10,6 +10,8 @@ import HeaderProps from '../components/HeaderProps';
 import ThemeClass from '../assets/img/collections/theme-classic.png';
 import ThemeMin from '../assets/img/collections/theme-minimalism.png';
 import ThemeDark from '../assets/img/collections/theme-dark.png';
+import { toast } from 'react-toastify';
+import { useHistory } from 'react-router';
 
 function CollectionNew() {
   const [page, setPage] = useState(0);
@@ -21,6 +23,7 @@ function CollectionNew() {
   const [advOpen, setAdvOpen] = useState(false);
   const [image, setImage] = useState(null);
   const [theme, setTheme] = useState(0);
+  const history = useHistory();
   const auth = useSelector((state) => state.auth);
 
   const onDrop = useCallback((acceptedFiles) => {
@@ -41,9 +44,25 @@ function CollectionNew() {
 
   const onSubmitFirst = () => {
     if (!title) {
-      return console.log('Please insert title first!');
+      return toast.error(`Please insert collection title!`, {
+        position: 'bottom-right',
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     } else if (!date) {
-      return console.log('Please insert date!');
+      return toast.error(`Please insert collection date!`, {
+        position: 'bottom-right',
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     } else {
       setPage(1);
     }
@@ -54,14 +73,100 @@ function CollectionNew() {
   };
 
   const onSaveTheme = () => {
-    console.log('succes, just need to wait backend');
-    var data = {
-      title: title,
-      description: desc,
-      date: date,
-      id_user: auth.id
-    }
-    axios.post(`${URL_API}/collection`)
+    var bodyFormData = new FormData();
+    bodyFormData.append('id_user', auth.id);
+    bodyFormData.append('title', title);
+    bodyFormData.append('description', desc);
+    bodyFormData.append('date', date);
+    axios({
+      method: 'post',
+      url: `${URL_API}/collection`,
+      data: bodyFormData,
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        // Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    })
+      .then(() => {
+        toast.info('Please wait connecting!', {
+          position: 'bottom-right',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        postImage();
+      })
+      .catch((err) => {
+        toast.error(`${err.response.data.message}`, {
+          position: 'bottom-right',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      });
+  };
+
+  const postImage = () => {
+    axios
+      .get(`${URL_API}/collection`)
+      .then((res) => {
+        var response = res.data.result;
+        var potong = response.slice(-1).pop();
+        var imageFormDara = new FormData();
+        imageFormDara.append('id_collection', potong.id);
+        for (var i = 0; i < image.length; i++) {
+          imageFormDara.append('image', image[i]);
+        }
+        axios({
+          method: 'post',
+          url: `${URL_API}/collectionImages`,
+          data: imageFormDara,
+          headers: {
+            'Content-Type': 'multipart/form-data',
+            // Authorization: `Bearer ${localStorage.getItem('token')}`,
+          },
+        })
+          .then(() => {
+            toast.success('Success created a new collection!', {
+              position: 'bottom-right',
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
+            history.push('/collections');
+          })
+          .catch((err) => {
+            toast.error(`${err.response.data.message}`, {
+              position: 'bottom-right',
+              autoClose: 5000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+            });
+          });
+      })
+      .catch((err) => {
+        toast.error(`${err.response.data.message}`, {
+          position: 'bottom-right',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      });
   };
 
   const previewTheme = () => {
@@ -70,7 +175,7 @@ function CollectionNew() {
 
   return (
     <>
-      <HeaderProps title="Create Collections" link="/collections" />
+      <HeaderProps title="Create Collection" link="/collections" />
       <div className="cnew-header">
         <div className="cnew-header-title">
           <div className={`${page ? '' : 'cnew-header-active'}`}>

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Button, Form } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { URL_API } from '../helper/url';
 import { toast, ToastContainer } from 'react-toastify';
@@ -12,10 +12,11 @@ function Login() {
   const [bsName, setBsName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const history = useHistory();
   const auth = useSelector((state) => state.auth);
 
   if (auth.isLogin === true) {
-    window.location = '/';
+    history.push('/');
   }
 
   function handleSubmit(event) {
@@ -32,22 +33,22 @@ function Login() {
       .then((res) => {
         toast.success('Success! You are now logged in with your new account!', {
           position: 'bottom-right',
-          autoClose: 5000,
+          autoClose: 3000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
           draggable: true,
           progress: undefined,
         });
+        localStorage.setItem('token', res.data.token);
         setTimeout(() => {
-          localStorage.setItem('token', res.data.token);
           window.location = '/';
-        }, 2000);
+        }, 3000);
       })
       .catch((err) => {
         toast.error(`${err.response.data.message}`, {
           position: 'bottom-right',
-          autoClose: 5000,
+          autoClose: 3000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
@@ -59,17 +60,6 @@ function Login() {
 
   return (
     <>
-      <ToastContainer
-        position="bottom-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
       <div className="port-background">
         <div className="port-main">
           <div className="port-main-header">

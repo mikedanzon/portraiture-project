@@ -53,6 +53,7 @@
   .header-user-1 {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 
     .header-1-text {
       font-size: 24px;
@@ -97,6 +98,17 @@
       .header-2-search-2 {
         padding-top: 10px;
         margin-left: -25px;
+      }
+    }
+
+    .header-2-filter {
+      button {
+        border: none;
+        background: inherit;
+
+        &:focus {
+          outline: none;
+        }
       }
     }
   }

@@ -1,19 +1,24 @@
 import React, { useState } from 'react';
-import HeaderProps from '../components/HeaderProps';
-import { Form, Button } from 'react-bootstrap';
 import axios from 'axios';
+import { Form, Button } from 'react-bootstrap';
 import { URL_API } from '../helper/url';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
+import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router';
+import HeaderProps from '../components/HeaderProps';
 
 function ProjectNew() {
-  const [title, setTitle] = useState();
-  const [date, setDate] = useState();
-  const [desc, setDesc] = useState();
-  const [cname, setCname] = useState();
-  const [caddrs, setCaddrs] = useState();
+  const [title, setTitle] = useState('');
+  const [date, setDate] = useState(null);
+  const [desc, setDesc] = useState('');
+  const [cname, setCname] = useState('');
+  const [caddrs, setCaddrs] = useState('');
+  const history = useHistory();
+  const auth = useSelector((state) => state.auth);
 
   const onSave = () => {
     var data = {
+      id_user: auth.id,
       title: title,
       date: date,
       description: desc,
@@ -36,7 +41,7 @@ function ProjectNew() {
           progress: undefined,
         });
         setTimeout(() => {
-          window.location = '/dashboard';
+          history.push('/projects')
         }, 3000);
       })
       .catch((err) => {
@@ -54,17 +59,6 @@ function ProjectNew() {
 
   return (
     <>
-      <ToastContainer
-        position="bottom-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
       <HeaderProps title="Create Project" link="/projects" />
       <div className="project-new-container">
         <Form className="project-new-inner-container">

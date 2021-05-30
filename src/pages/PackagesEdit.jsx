@@ -40,7 +40,6 @@ function PackagesEdit() {
       setDesc(res.data.result.description);
       setImage(res.data.result.image);
       setPackageItemId(res.data.result.id_package);
-      console.log(res.data.result.id_package);
       setInputFields(res.data.result.packageItems);
       setIsLoading(false);
     } catch (error) {
@@ -86,7 +85,11 @@ function PackagesEdit() {
     setInputFields(values);
   };
 
-  const onSave = () => {
+  const onSave = (e) => {
+    e.preventDefault();
+    if (inputFields.length === 0) {
+      return postData();
+    }
     var itemFormData = new FormData();
     for (var i = 0; i < inputFields.length; i++) {
       itemFormData.append('itemName', inputFields[i].itemName);
@@ -113,44 +116,51 @@ function PackagesEdit() {
           draggable: true,
           progress: undefined,
         });
-        var bodyFormData = new FormData();
-        bodyFormData.append('name', name);
-        bodyFormData.append('description', desc);
-        if (picture) {
-          bodyFormData.append('image', image);
-        }
-        bodyFormData.append('packageId', id);
-        axios({
-          method: 'put',
-          url: `${URL_API}/package`,
-          data: bodyFormData,
-          headers: { 'Content-Type': 'multipart/form-data' },
-        })
-          .then(() => {
-            toast.success('Success edited the package!', {
-              position: 'bottom-right',
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-            });
-            setTimeout(() => {
-              window.location = '/packages';
-            }, 2000);
-          })
-          .catch((err2) => {
-            toast.error(`${err2.response.data.message}`, {
-              position: 'bottom-right',
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-            });
-          });
+        postData();
+      })
+      .catch((err) => {
+        toast.error(`${err.response.data.message}`, {
+          position: 'bottom-right',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+      });
+  };
+
+  const postData = () => {
+    var bodyFormData = new FormData();
+    bodyFormData.append('name', name);
+    bodyFormData.append('description', desc);
+    if (picture) {
+      bodyFormData.append('image', image);
+    }
+    bodyFormData.append('packageId', id);
+    axios({
+      method: 'put',
+      url: `${URL_API}/package`,
+      data: bodyFormData,
+      headers: {
+        'Content-Type': 'multipart/form-data',
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
+      },
+    })
+      .then(() => {
+        toast.success('Success edited the package!', {
+          position: 'bottom-right',
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        setTimeout(() => {
+          window.location = '/packages';
+        }, 2000);
       })
       .catch((err) => {
         toast.error(`${err.response.data.message}`, {
@@ -176,17 +186,6 @@ function PackagesEdit() {
 
   return (
     <>
-      <ToastContainer
-        position="bottom-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
       <HeaderProps title="Edit Package" link="/packages" />
       <div className="pedit-wrapper">
         <div className="pedit-text">Package Details</div>
@@ -264,7 +263,7 @@ function PackagesEdit() {
                       <div className="pedit-form-text-1-input">
                         <input
                           className="custom-form-port"
-                          type="text"
+                          type="number"
                           id="price"
                           name="price"
                           value={inputField.price}
@@ -284,6 +283,7 @@ function PackagesEdit() {
                         >
                           <option hidden>Select Category</option>
                           <option value="photoSession">Photo Session</option>
+                          <option value="videography">Videography</option>
                           <option value="print">Print</option>
                           <option value="digital">Digital</option>
                           <option value="other">Other</option>

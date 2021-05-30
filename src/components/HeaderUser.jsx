@@ -4,8 +4,13 @@ import { FiSearch } from 'react-icons/fi';
 import { Link } from 'react-router-dom';
 
 function HeaderUser(props) {
-  const { headerOneText, headerOneButton, headerSearchText, headerOneLink } =
-    props;
+  const {
+    headerOneText,
+    headerOneButton,
+    headerSearchText,
+    headerOneLink,
+    onClick,
+  } = props;
 
   return (
     <div className="header-user-wrapper">
@@ -31,7 +36,9 @@ function HeaderUser(props) {
           </div>
         </div>
         <div className="header-2-filter">
-          <CgOptions /> Filter
+          <button onClick={onClick}>
+            <CgOptions /> Filter
+          </button>
         </div>
       </div>
     </div>

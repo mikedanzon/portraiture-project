@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Form, Button } from 'react-bootstrap';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { URL_API } from '../helper/url';
 import HeaderProps from '../components/HeaderProps';
 
@@ -20,17 +20,17 @@ function Profile() {
   }, []);
 
   const fetchUser = async () => {
-    setIsLoading(true)
+    setIsLoading(true);
     try {
       var config = {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       };
       var res = await axios.get(`${URL_API}/user/one`, config);
       getUserData(res);
-      setIsLoading(false)
+      setIsLoading(false);
     } catch (error) {
       console.log(error.response.data.message);
-      setIsLoading(false)
+      setIsLoading(false);
     }
   };
 
@@ -93,28 +93,17 @@ function Profile() {
       });
   };
 
-  if(isLoading) {
+  if (isLoading) {
     return (
       <>
         <HeaderProps title="Edit Profile" link="/dashboard" />
         <div className="loader"></div>
       </>
-    )
+    );
   }
 
   return (
     <>
-      <ToastContainer
-        position="bottom-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-      />
       <HeaderProps title="Edit Profile" link="/dashboard" />
       <div className="profile-container">
         <Form onSubmit={onSave} className="profile-inner-container">
