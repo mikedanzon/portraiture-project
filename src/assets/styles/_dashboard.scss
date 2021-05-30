@@ -223,61 +223,7 @@
           font-weight: 500;
           color: #000000;
         }
-        .dirpa-card-container {
-          margin-top: 30px;
-          margin-bottom: 40px;
-          display: flex;
-          flex-direction: column;
-          row-gap: 20px;
-          .dirpa-cards {
-            display: flex;
-            background-color: #ffffff;
-            height: 98px;
-            .dirpa-info {
-              display: flex;
-              padding: 10px;
-              flex-grow: 1;
-              justify-content: space-between;
-              .dirpa-info1 {
-                display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-                .dirpa-text1 {
-                  font-size: 12px;
-                  font-style: normal;
-                  font-weight: 700;
-                  color: #000000;
-                }
-                .dirpa-text2 {
-                  font-size: 10px;
-                  font-style: normal;
-                  font-weight: 400;
-                  color: #999999;
-                }
-                .dirpa-text3 {
-                  font-size: 12px;
-                  font-style: normal;
-                  font-weight: 500;
-                  color: #000000;
-                }
-              }
-              .dirpa-info2 {
-                display: flex;
-                color: #999999;
-                display: flex;
-                align-items: flex-end;
-                .dirpa-text4 {
-                  font-size: 10px;
-                  font-style: normal;
-                  font-weight: 500;
-                  color: #999999;
-                  padding-left: 5px;
-                }
-              }
-            }
-          }
-        }
-        .dirpa-seeall {
+        .rpackages-seeall {
           font-size: 12px;
           font-style: normal;
           font-weight: 500;
@@ -369,6 +315,57 @@
     }
     .dic-rpackages {
       padding: 30px;
+    }
+  }
+  .rpackages-wrapper {
+    margin-top: 30px;
+    margin-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+    .rpackages-cards {
+      display: flex;
+      background-color: #ffffff;
+      .rpackages-image {
+        img {
+          height: 100%;
+          width: 120px;
+          object-fit: cover;
+        }
+      }
+      .rpackages-text {
+        padding: 10px;
+        flex-grow: 1;
+        .rpackages-name {
+          font-size: 12px;
+          font-style: normal;
+          font-weight: bold;
+          color: #000000;
+        }
+        .rpackages-itemcount {
+          font-size: 10px;
+          color: #999999;
+        }
+        .rpackages-priceedit {
+          display: flex;
+          justify-content: space-between;
+          padding-top:  30px;
+          .rpackages-price {
+            font-size: 12px;
+            color: #000000;
+            
+          }
+          .rpackages-edit {
+            display: flex;
+            color: #999999;
+            .rpackages-edittext {
+              font-family: Montserrat;
+              font-size: 10px;
+              padding-left: 5px;
+            }
+          }
+        }
+      }
     }
   }
 }

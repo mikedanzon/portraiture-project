@@ -18,17 +18,19 @@ function GalleryAll() {
 	return (
 		<>
 		<HeaderHome/>
-		<div className="gallery-title">Explore Photographer Gallery</div>
 		<div className="galleryall-wrapper">
-			<div className="galleryall-cards">
-				<img className="cards-img" src={Dummy4} alt="no image found"/>
-				<div className="cards-text">
-					<div className="cards-text1">Leon & Stella</div>
-					<div className="cards-text2">Yedam Mansuri</div>
+			<div className="gallery-title">Explore Photographer Gallery</div>
+			<div className="galleryall-cards-container">
+				<div className="galleryall-cards">
+					<img className="cards-img" src={Dummy4} alt="no image found"/>
+					<div className="cards-text">
+						<div className="cards-text1">Leon & Stella</div>
+						<div className="cards-text2">Yedam Mansuri</div>
+					</div>
 				</div>
 			</div>
-		</div>
-		<div className="galleryall-pagination">pagination</div>	
+			<div className="galleryall-pagination">pagination</div>
+		</div>	
 		<Footer/>
 		</>
 	)
