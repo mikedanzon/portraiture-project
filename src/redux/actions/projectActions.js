@@ -2,18 +2,15 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { URL_API } from '../../helper/url';
 
-export const deletePackage = (id) => {
+export const deleteProject = (id) => {
   return (dispatch) => {
-    // dispatch({
-    //     type: SET_LOADING,
-    // })
     var config = {
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
     };
     axios
-      .delete(`${URL_API}/package/delete?packageId=${id}`, config)
+      .delete(`${URL_API}/project?id=${id}`, config)
       .then(() => {
-        toast.success('Success, package deleted!', {
+        toast.success('Success, project deleted!', {
           position: 'bottom-right',
           autoClose: 5000,
           hideProgressBar: false,
@@ -34,8 +31,5 @@ export const deletePackage = (id) => {
           progress: undefined,
         });
       });
-    // dispatch({
-    //     type: SET_LOADING,
-    // })
   };
 };

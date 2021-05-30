@@ -24,6 +24,7 @@
 @import './switch';
 @import './headerUser';
 @import './galleryphoto';
+@import './simplePopover';
 
 * {
   margin: 0;
@@ -67,6 +68,14 @@
 }
 
 .loader {
+  @media (max-width: 650px) {
+    left: 40% !important;
+  }
+
+  @media (min-width: 650px) and (max-width: 970px) {
+    left: 44% !important;
+  }
+
   position: absolute;
   left: 46%;
   top: 30%;

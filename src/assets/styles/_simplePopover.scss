@@ -1,0 +1,7 @@
+.MuiPopover-root {
+  .button-none {
+    &:focus {
+      outline: none;
+    }
+  }
+}

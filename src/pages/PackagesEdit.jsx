@@ -1,6 +1,6 @@
 import React, { useEffect, useState, Fragment } from 'react';
 import { useParams } from 'react-router';
-import { toast, ToastContainer } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { URL_API } from '../helper/url';
 import { AiOutlineClose } from 'react-icons/ai';
 import axios from 'axios';

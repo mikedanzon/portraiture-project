@@ -9,15 +9,14 @@ import {
 import { AiFillEdit } from 'react-icons/ai';
 import { Link, useHistory } from 'react-router-dom';
 import { URL_API } from '../helper/url';
-import Header from '../components/Header';
-import Status from '../assets/img/dummy-img/status.png';
-import Baby from '../assets/img/dummy-img/baby.png';
-import Dummy3 from '../assets/img/dummy-img/dummy3.png';
-import axios from 'axios';
 import { useSelector } from 'react-redux';
-import SimplePopover from '../components/Popover/SimplePopover';
 import { useDispatch } from 'react-redux';
 import { deletePackage } from '../redux/actions';
+import Header from '../components/Header';
+import Status from '../assets/img/dummy-img/status.png';
+import Dummy3 from '../assets/img/dummy-img/dummy3.png';
+import axios from 'axios';
+import SimplePopover from '../components/Popover/SimplePopover';
 
 function Dashboard() {
   const auth = useSelector((state) => state.auth);
@@ -55,7 +54,7 @@ function Dashboard() {
 
     const packageItems = () => {
     return dataPackages
-    .sort((a, b) => a.updatedAt < b.updatedAt ? 1 : -1)
+    .sort((a, b) => a.id < b.id ? 1 : -1)
     .slice(0, 3)
     .map((val, index) => {
       return (

@@ -25,6 +25,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import './assets/styles/style.scss';
 import PackagesEdit from './pages/PackagesEdit';
 import { ToastContainer } from 'react-toastify';
+import ProjectDetails from './pages/ProjectDetails';
 
 function App() {
   const dispatch = useDispatch();
@@ -83,7 +84,8 @@ function App() {
         <Route exact path="/profile" component={Profile} />
         <Route exact path="/collections" component={Collections} />
         <Route exact path="/projects/new" component={ProjectNew} />
-        <Route exact path="/projects/edit" component={ProjectEdit} />
+        <Route exact path="/projects/edit/:id" component={ProjectEdit} />
+        <Route exact path="/projects/details/:id" component={ProjectDetails} />
         <Route exact path="/projects" component={Projects} />
         <Route exact path="/gallery/all" component={GalleryAll} />
         <Route exact path="/gallery/photographer" component={GalleryPhoto} />

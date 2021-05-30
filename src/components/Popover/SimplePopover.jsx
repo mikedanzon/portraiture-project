@@ -1,9 +1,9 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import { MdEdit } from 'react-icons/md';
 import Popover from '@material-ui/core/Popover';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
-import { MdEdit } from 'react-icons/md';
 
 const useStyles = makeStyles((theme) => ({
   typography: {
@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function SimplePopover(props) {
-  const { onDeleteClick, onEditClick } = props;
+  const { onDeleteClick, onEditClick, buttonName } = props;
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -60,7 +60,7 @@ export default function SimplePopover(props) {
       >
         <Typography className={classes.typography}>
           <button className="button-none" onClick={onEditClick}>
-            Edit
+            {buttonName}
           </button>
         </Typography>
         <Typography className={classes.typography}>

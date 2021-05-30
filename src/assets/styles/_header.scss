@@ -99,6 +99,14 @@
       a {
         text-decoration: none;
         color: $color-brand-primary;
+
+        &:active {
+          color: #c2a47e;
+        }
+
+        &:hover {
+          color: #c2a47e;
+        }
       }
 
       button {
@@ -114,5 +122,11 @@
         display: none;
       }
     }
+  }
+}
+
+.header-link-active {
+  a {
+    color: #c2a47e !important;
   }
 }

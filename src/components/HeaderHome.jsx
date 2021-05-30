@@ -2,8 +2,7 @@ import React from 'react';
 import { Navbar } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
-import Swal from 'sweetalert2';
+import { toast } from 'react-toastify';
 import Logo from '../assets/img/portraiture.png';
 
 function HeaderHome() {
@@ -11,23 +10,21 @@ function HeaderHome() {
   const dispatch = useDispatch();
 
   const handleLogout = () => {
-    Swal.fire({
-      title: 'Logging out',
-      text: 'Are you sure to logout ?',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, log me out!',
-    }).then((result) => {
-      if (result.isConfirmed) {
-        localStorage.removeItem('token');
-        dispatch({
-          type: 'LOGOUT',
-        });
-        Swal.fire('Logged out', 'You have been logged out!', 'success');
-      }
+    toast.success('You are now logged out!', {
+      position: 'bottom-right',
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
     });
+    setTimeout(() => {
+      localStorage.removeItem('token');
+      dispatch({
+        type: 'LOGOUT',
+      });
+    }, 2000);
   };
 
   return (

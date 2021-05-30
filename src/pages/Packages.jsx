@@ -64,6 +64,7 @@ function Packages() {
               <SimplePopover
                 onEditClick={() => onEditClick(val.id)}
                 onDeleteClick={() => onDeleteClick(val.id)}
+                buttonName="Edit"
               />
             </div>
           </div>

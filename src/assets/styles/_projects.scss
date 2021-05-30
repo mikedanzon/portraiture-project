@@ -11,5 +11,119 @@
     padding: 155px 200px;
   }
 
-  
+  .projects-planned {
+    .planned-items {
+      padding: 10px;
+      margin-bottom: 30px;
+      background: #f8f8f8;
+
+      .item-header {
+        display: flex;
+        justify-content: space-between;
+        padding-bottom: 10px;
+        align-items: center;
+
+        .item-header-text {
+          color: white;
+          font-size: 12px;
+          padding: 3px 5px 3px 5px;
+          background: #3e89ae;
+          border-radius: 4px;
+        }
+      }
+
+      .item-name {
+        font-weight: bold;
+        text-decoration: underline;
+      }
+
+      .item-date {
+        padding-bottom: 15px;
+        color: $color-ash;
+        font-size: 12px;
+      }
+
+      .item-content {
+        display: flex;
+
+        .item-left-wrapper {
+          width: 47%;
+
+          .item-packages {
+            display: flex;
+            justify-content: space-between;
+
+            .item-packages-name {
+              font-weight: bold;
+            }
+
+            .item-packages-link {
+              a {
+                font-size: 12px;
+                text-decoration: none;
+                color: #c2a47e;
+              }
+            }
+          }
+
+          .item-packages-content {
+            padding-top: 10px;
+            padding-left: 23px;
+            color: $color-ash;
+            font-size: 12px;
+            font-style: italic;
+          }
+        }
+
+        .item-right-wrapper {
+          width: 47%;
+          margin-left: 6%;
+
+          .item-rundown {
+            display: flex;
+            justify-content: space-between;
+            padding-bottom: 10px;
+
+            .item-rundown-name {
+              font-weight: bold;
+            }
+
+            .item-rundown-link {
+              a {
+                font-size: 12px;
+                text-decoration: none;
+                color: #c2a47e;
+              }
+            }
+          }
+
+          .item-invoice {
+            display: flex;
+            justify-content: space-between;
+
+            .item-invoice-name {
+              font-weight: bold;
+            }
+
+            .item-invoice-link {
+              a {
+                font-size: 12px;
+                text-decoration: none;
+                color: #c2a47e;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .projects-border {
+    border: 1px solid #999999;
+    margin-bottom: 30px;
+  }
+}
+
+.mdclose-styling {
+  margin-top: -3px;
 }
