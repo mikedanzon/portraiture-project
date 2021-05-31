@@ -44,6 +44,10 @@ function Collections() {
     });
   };
 
+  const onClickFilter = () => {
+    alert('success filter');
+  };
+
   if (isLoading) {
     return (
       <>
@@ -62,6 +66,7 @@ function Collections() {
           headerOneButton="New Collection"
           headerOneLink="/collections/new"
           headerSearchText="Search Collections"
+          onClick={onClickFilter}
         />
         <div className="collections-main">{collectionItems()}</div>
       </div>

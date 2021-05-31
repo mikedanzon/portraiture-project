@@ -8,12 +8,19 @@ function GalleryPhoto() {
 		<>
 		<div className="galleryphoto-wrapper">
 			<div className="gallery-head">
-					<img className="gallery-logo" src={Dummy2} alt=""/>
-					<div className="logo-name">Justin Studio</div>
-					<div className="gallery-search">
-						<input className="search-input" type="search" placeholder="Search gallery"/>
-						<div className="search-input-icon"><FiSearch size={16}/></div>
-					</div>
+				<img className="gallery-logo" src={Dummy2} alt=""/>
+				<div className="logo-name">Justin Studio</div>
+				<div className="gallery-search">
+	          		<div className="search-input">
+			            <input
+			              type="search"
+			              placeholder="Search gallery"
+			            />
+	          		</div>
+	          		<div className="search-icon">
+	            		<FiSearch size={16} />
+	          		</div>
+        		</div>
 			</div>
 			<div className="gallery-wrapper">
 				<div className="gallery-cards">
