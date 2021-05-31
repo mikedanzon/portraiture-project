@@ -43,286 +43,144 @@
     }
   }
 }
-.dashboard-container {
-  .dashboard-inner-container {
+.dashboard-main {
+  .dashboard-wrapper {
     width: 100%;
-    .dic-title {
+    .dashboard-title {
       font-size: 24px;
       font-style: normal;
       font-weight: 700;
       color: #000000;
     }
-    .dic-rcollections {
+    .recent-collections {
       background-color: #f8f8f8;
-      .dirc-rc-title {
+      .recent-collections-title {
         font-size: 16px;
         font-style: normal;
         font-weight: 500;
         color: #000000;
       }
-      .dirc-rc-card-container {
-        margin-top: 30px;
-        margin-bottom: 40px;
-        display: flex;
-        row-gap: 20px;
-        justify-content: space-between;
-        .dirc-rc-cards {
-          display: flex;
-          background-color: #ffffff;
-          .dirc-rc-info {
-            display: flex;
-            flex-grow: 1;
-            display: flex;
-            justify-content: space-between;
-            padding: 10px;
-            .dirc-rc-info-1 {
-              display: flex;
-              flex-direction: column;
-              justify-content: space-between;
-              .dirc-rc-text1 {
-                font-size: 12px;
-                font-style: normal;
-                font-weight: 500;
-                color: #000000;
-              }
-              .dirc-rc-text2 {
-                font-size: 10px;
-                font-style: normal;
-                font-weight: 400;
-                color: #999999;
-              }
-              .dirc-rc-imgdown {
-                display: flex;
-                .dirc-rc-text3 {
-                  font-size: 10px;
-                  font-style: normal;
-                  font-weight: 400;
-                  color: #000000;
-                  padding-left: 5px;
-                  padding-right: 10px;
-                }
-              }
-            }
-            .dirc-rc-info-2 {
-              display: flex;
-              flex-direction: column;
-              justify-content: space-between;
-              color: #999999;
-              .dirc-rc-preed {
-                display: flex;
-                align-self: flex-end;
-                .dirc-rc-text4 {
-                  font-size: 10px;
-                  font-style: normal;
-                  font-weight: 500;
-                  color: #999999;
-                  padding-left: 5px;
-                }
-              }
-            }
-          }
-        }
-      }
-      .dirc-rc-seeall {
+      .recent-collections-seeall {
         font-size: 12px;
         font-style: normal;
         font-weight: 500;
         color: #999999;
-        text-align: -webkit-center;
+        text-align: center;
         text-decoration: underline;
       }
     }
-    .dic-rpr-rpa {
+    .recent-projects-packages-wrapper {
       margin-top: 50px;
       margin-bottom: 50px;
-      .dic-rprojects {
+      .recent-projects {
         background-color: #f8f8f8;
         flex-basis: 45%;
-        .dirpr-title {
+        .recent-projects-title {
           font-size: 16px;
           font-style: normal;
           font-weight: 500;
           color: #000000;
         }
-        .dirpr-card-container {
-          margin-top: 30px;
-          margin-bottom: 40px;
-          display: flex;
-          flex-direction: column;
-          row-gap: 20px;
-          .dirpr-cards {
-            display: flex;
-            flex-direction: row;
-            justify-content: space-between;
-            background-color: #ffffff;
-            height: 98px;
-            padding: 10px;
-            .dirpr-info1 {
-              display: flex;
-              flex-direction: column;
-              justify-content: space-between;
-              .dirpr-text1 {
-                font-size: 12px;
-                font-style: normal;
-                font-weight: 500;
-                color: #000000;
-              }
-              .dirpr-text2 {
-                font-size: 10px;
-                font-style: normal;
-                font-weight: 400;
-                color: #999999;
-              }
-            }
-            .dirpr-info2 {
-              display: flex;
-              color: #0e203d;
-              .dirpr-text3 {
-                font-size: 10px;
-                font-style: normal;
-                font-weight: 400;
-                color: #000000;
-                padding-left: 5px;
-                padding-right: 5px;
-              }
-            }
-            .dirpr-planedit {
-              display: flex;
-              flex-direction: column;
-              justify-content: space-between;
-              .dirpr-edit {
-                display: flex;
-                justify-content: flex-end;
-                color: #999999;
-                .dirpr-text4 {
-                  font-size: 10px;
-                  font-style: normal;
-                  font-weight: 500;
-                  color: #999999;
-                  padding-left: 5px;
-                }
-              }
-            }
-          }
-        }
-        .dirpr-seeall {
+        .recent-projects-seeall {
           font-size: 12px;
           font-style: normal;
           font-weight: 500;
           color: #999999;
-          text-align: -webkit-center;
+          text-align: center;
           text-decoration: underline;
         }
       }
-      .dic-rpackages {
+      .recent-packages {
         background-color: #f8f8f8;
         flex-basis: 45%;
-        .dirpa-title {
+        .recent-packages-title {
           font-size: 16px;
           font-style: normal;
           font-weight: 500;
           color: #000000;
         }
-        .rpackages-seeall {
+        .recent-packages-seeall {
           font-size: 12px;
           font-style: normal;
           font-weight: 500;
           color: #999999;
-          text-align: -webkit-center;
+          text-align: center;
           text-decoration: underline;
         }
       }
     }
   }
-  @media (max-width: 425px) {
+  @media (max-width: 650px) {
     padding: 20px 10px 50px 10px;
-    .dirc-rc-card-container {
+    .rcollections-wrapper {
       flex-direction: column;
     }
-    .dic-rcollections {
+    .recent-collections {
       margin-top: 20px;
       padding: 20px 5px 30px 5px;
     }
-    .dic-rprojects {
+    .recent-projects {
       margin-bottom: 50px;
       padding: 20px 5px 30px 5px;
     }
-    .dic-rpackages {
+    .recent-packages {
       padding: 20px 5px 30px 5px;
     }
   }
-  @media (min-width: 425px) and (max-width: 760px) {
-    padding: 50px 20px 50px 20px;
-    .dirc-rc-cards {
-      flex-basis: 100%;
+  @media (min-width: 650px) and (max-width: 1100px) {
+    padding: 100px 80px;
+    .rcollections-cards {
+      flex-basis: 45%;
     }
-    .dirc-rc-card-container {
+    // .recent-projects-packages-wrapper {
+    //   display: flex;
+    //   justify-content: space-between;
+    // }
+    .rcollections-wrapper {
+      // flex-wrap: wrap;
       flex-direction: column;
     }
-    .dic-rcollections {
+    .recent-collections {
       margin-top: 50px;
       padding: 30px;
     }
-    .dic-rprojects {
+    .recent-projects {
+      padding: 30px;
       margin-bottom: 50px;
-      padding: 30px;
     }
-    .dic-rpackages {
-      padding: 30px;
-    }
-  }
-  @media (min-width: 760px) and (max-width: 1200px) {
-    padding: 100px 20px 100px 20px;
-    .dirc-rc-cards {
-      flex-basis: 45%;
-    }
-    .dic-rpr-rpa {
-      display: flex;
-      justify-content: space-between;
-    }
-    .dirc-rc-card-container {
-      flex-wrap: wrap;
-    }
-    .dic-rcollections {
-      margin-top: 50px;
-      padding: 30px;
-    }
-    .dic-rprojects {
-      padding: 30px;
-    }
-    .dic-rpackages {
+    .recent-packages {
       padding: 30px;
     }
   }
-  @media (min-width: 1200px) {
-    padding: 100px 220px 100px 220px;
-    .dirc-rc-cards {
+  @media (min-width: 1100px) {
+    padding: 100px 150px 200px 150px;
+    .rcollections-cards {
       flex-basis: 45%;
     }
-    .dic-rpr-rpa {
+    .recent-projects-packages-wrapper {
       display: flex;
       justify-content: space-between;
     }
-    .dirc-rc-card-container {
+    .rcollections-wrapper {
       flex-wrap: wrap;
     }
-    .dic-rcollections {
+    .recent-collections {
       margin-top: 50px;
-      padding: 30px;
+      padding: 20px 30px;
     }
-    .dic-rprojects {
-      padding: 30px;
+    .recent-projects {
+      padding: 20px 30px 50px 30px;
     }
-    .dic-rpackages {
-      padding: 30px;
+    .recent-packages {
+      padding: 20px 30px;
     }
   }
   .rpackages-wrapper {
-    margin-top: 30px;
-    margin-bottom: 40px;
+    margin-top: 20px;
+    margin-bottom: 30px;
     display: flex;
     flex-direction: column;
-    row-gap: 20px;
+    row-gap: 30px;
     .rpackages-cards {
       display: flex;
       background-color: #ffffff;
@@ -334,16 +192,15 @@
         }
       }
       .rpackages-text {
-        padding: 10px;
+        padding: 10px 20px;
         flex-grow: 1;
         .rpackages-name {
-          font-size: 12px;
-          font-style: normal;
+          font-size: 14px;
           font-weight: bold;
           color: #000000;
         }
         .rpackages-itemcount {
-          font-size: 10px;
+          font-size: 12px;
           color: #999999;
         }
         .rpackages-priceedit {
@@ -351,17 +208,110 @@
           justify-content: space-between;
           padding-top: 30px;
           .rpackages-price {
+            font-size: 14px;
+            color: #000000;
+            padding-top: 10px;
+          }
+        }
+      }
+    }
+  }
+  .rprojects-wrapper {
+    margin-top: 20px;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+    .rprojects-cards {
+      background-color: #ffffff;
+      padding: 10px 20px;
+      height: 120px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      .cards-top-wrapper {
+        display: flex;
+        justify-content: space-between;
+        .cards-name-date {
+          .cards-name {
+            font-size: 14px;
+            font-weight: bold;
+            color: #000000;
+          }
+          .cards-date {
+            font-size: 12px;
+            color: #999999;
+          }
+        }
+        .cards-planned {
+          color: white;
+          font-size: 12px;
+          padding: 1px 5px 0px 5px;
+          background: #3e89ae;
+          border-radius: 4px;
+          height: 20px;
+          width: 60px;
+        }
+      }
+      .cards-bottom-wrapper {
+        display: flex;
+        justify-content: space-between;
+        .cards-packages-rundown-invoice {
+          font-size: 12px
+        }
+      }
+    }
+  }
+  .rcollections-wrapper {
+    margin-top: 30px;
+    margin-bottom: 40px;
+    display: flex;
+    row-gap: 30px;
+    justify-content: space-between;
+    .rcollections-cards {
+      display: flex;
+      background-color: #ffffff;
+      .cards-img {
+        img {
+          height: 120px;
+          width: 120px;
+          object-fit: cover;
+        }
+      }
+      .cards-content {
+        flex-grow: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 10px 20px;
+        .cards-top-wrapper {
+          display: flex;
+          justify-content: space-between;
+          .cards-name-date {
+            .cards-name {
+              font-size: 14px;
+              font-weight: bold;
+              color: #000000;
+            }
+            .cards-date {
+              font-size: 12px;
+              color: #999999;
+            }
+          }
+          .cards-preview {
+            font-size: 12px;
+            color: #999999;
+          }
+        }
+        .cards-bottom-wrapper {
+          display: flex;
+          justify-content: space-between;
+          .cards-img-down {
             font-size: 12px;
             color: #000000;
           }
-          .rpackages-edit {
-            display: flex;
-            color: #999999;
-            .rpackages-edittext {
-              font-family: Montserrat;
-              font-size: 10px;
-              padding-left: 5px;
-            }
+          .cards-edit {
+
           }
         }
       }

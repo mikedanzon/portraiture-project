@@ -99,6 +99,10 @@ function Projects() {
     });
   };
 
+  const onClickFilter = () => {
+    alert('success filter');
+  };
+
   if (isLoading) {
     return (
       <>
@@ -117,6 +121,7 @@ function Projects() {
           headerOneButton="New Project"
           headerOneLink="/projects/new"
           headerSearchText="Search Projects"
+          onClick={onClickFilter}
         />
         <div className="projects-planned">{projectItems()}</div>
         <div className="projects-border"></div>
