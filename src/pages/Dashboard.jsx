@@ -12,8 +12,8 @@ import { URL_API } from '../helper/url';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { deletePackage } from '../redux/actions';
+import { toast } from 'react-toastify';
 import Header from '../components/Header';
-import Status from '../assets/img/dummy-img/status.png';
 import Dummy3 from '../assets/img/dummy-img/dummy3.png';
 import axios from 'axios';
 import SimplePopover from '../components/Popover/SimplePopover';
@@ -21,14 +21,18 @@ import SimplePopover from '../components/Popover/SimplePopover';
 function Dashboard() {
   const auth = useSelector((state) => state.auth);
   const [dataPackages, setDataPackages] = useState([]);
+  const [dataProjects, setDataProjects] = useState([]);
+  const [dataCollections, setDataCollections] = useState([]);
   const history = useHistory();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    fetchData();
+    fetchDataPackages();
+    fetchDataProjects();
+    fetchDataCollections();
   }, []);
 
-  const fetchData = async () => {
+  const fetchDataPackages = async () => {
     try {
       var config = {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
@@ -37,19 +41,75 @@ function Dashboard() {
       setDataPackages(res.data.result);
       console.log(res)
     } catch (error) {
+      toast.error(`${error.response.data.message}`, {
+        position: 'bottom-right',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
+  };
+
+  const fetchDataProjects = async () => {
+    try {
+      var config = {
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+      };
+      var res = await axios.get(`${URL_API}/project/?page=0&limit=3`, config);
+      setDataProjects(res.data.result);
+      console.log(res)
+    } catch (error) {
       console.log(error.response.data.message);
     }
   };
 
-  const onEditClick = (id) => {
+  const fetchDataCollections = async () => {
+    try {
+      // var config = {
+      //   headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+      // };
+      var res = await axios.get(`${URL_API}/collection`);
+      setDataCollections(res.data.result);
+      console.log(res)
+    } catch (error) {
+      console.log(error.response.data.message);
+    }
+  };
+
+  const onEditClickPackages = (id) => {
     history.push(`/packages/edit/${id}`);
   };
 
-  const onDeleteClick = (id) => {
+  const onDeleteClickPackages = (id) => {
     dispatch(deletePackage(id));
     setTimeout(() => {
-      fetchData();
+      fetchDataPackages();
     }, 3000);
+  };
+
+  const onEditClickProjects = (id) => {
+    // history.push(`/packages/edit/${id}`);
+  };
+
+  const onDeleteClickProjects = (id) => {
+    // dispatch(deletePackage(id));
+    // setTimeout(() => {
+    //   fetchDataPackages();
+    // }, 3000);
+  };
+
+  const onEditClickCollections = (id) => {
+    // history.push(`/packages/edit/${id}`);
+  };
+
+  const onDeleteClickCollections = (id) => {
+    // dispatch(deletePackage(id));
+    // setTimeout(() => {
+    //   fetchDataPackages();
+    // }, 3000);
   };
 
     const packageItems = () => {
@@ -58,7 +118,6 @@ function Dashboard() {
     .slice(0, 3)
     .map((val, index) => {
       return (
-        
           <div className="rpackages-cards" key={index}>
                   <div className="rpackages-image">
                     <img src={val.image} alt="" />
@@ -67,18 +126,84 @@ function Dashboard() {
                       <div className="rpackages-name">{val.name}</div>
                       <div className="rpackages-itemcount">{val.packageItems.length} Items</div>
                       <div className="rpackages-priceedit">
-                          <div className="rpackages-price">Rp.2,500,000</div>
-                          <div className="rpackages-edit">
-                              {/*<AiFillEdit size={16} />
-                              <div className="rpackages-edittext">Edit</div>*/}
-                              <SimplePopover
-                                onEditClick={() => onEditClick(val.id)}
-                                onDeleteClick={() => onDeleteClick(val.id)}
-                              />
-                          </div>
-                      </div>
-                      
+                        <div className="rpackages-price">Rp.2,500,000</div>
+                        <SimplePopover
+                          onEditClick={() => onEditClickPackages(val.id)}
+                          onDeleteClick={() => onDeleteClickPackages(val.id)}
+                          buttonName="Edit"
+                        />   
+                      </div>  
                   </div>
+          </div>
+        
+      );
+    });
+  };
+
+  const projectItems = () => {
+    return dataProjects
+    .sort((a, b) => a.id < b.id ? 1 : -1)
+    // .slice(0, 3)
+    .map((val, index) => {
+      return (
+          <div className="rprojects-cards" key={index}>
+              <div className="cards-top-wrapper">
+                <div className="cards-name-date">
+                  <div className="cards-name">{val.clientName}</div>
+                  <div className="cards-date">{val.date.slice(0, 10).split('-').reverse().join('-')}</div>
+                </div>
+                <div className="cards-planned">Planned</div>
+              </div>
+              <div className="cards-bottom-wrapper">
+                <div className="cards-packages-rundown-invoice">
+                  <BsCheck size={25} style={{marginBottom:"3px"}}/> Packages
+                  <BsCheck size={25} style={{marginBottom:"3px", marginLeft:"10px"}}/> Rundown
+                  <BsCheck size={25} style={{marginBottom:"3px", marginLeft:"10px"}}/> Invoice
+                </div>
+                <SimplePopover
+                  onEditClick={() => onEditClickProjects(val.id)}
+                  onDeleteClick={() => onDeleteClickProjects(val.id)}
+                  buttonName="Edit"
+                /> 
+              </div>
+          </div>
+        
+      );
+    });
+  };
+
+  const collectionItems = () => {
+    return dataCollections
+    .sort((a, b) => a.id < b.id ? 1 : -1)
+    .slice(0, 6)
+    .map((val, index) => {
+      return (
+          <div className="rcollections-cards" key={index}>
+            <div className="cards-img">
+              <img src={Dummy3} alt=""/>
+            </div>
+            <div className="cards-content">
+              <div className="cards-top-wrapper">
+                <div className="cards-name-date">
+                  <div className="cards-name">{val.title}</div>
+                  <div className="cards-date">{val.date.slice(0, 10).split('-').reverse().join('-')}</div>
+                </div>
+                <div className="cards-preview">
+                  <BsEyeFill size={20} style={{marginBottom:"3px"}}/> Preview
+                </div>
+              </div>
+              <div className="cards-bottom-wrapper">
+                <div className="cards-img-down">
+                  <BsImage size={20} style={{marginBottom:"3px"}}/> 13
+                  <BsBoxArrowInDown size={20} style={{marginBottom:"4px", marginLeft:"20px"}}/> 3
+                </div>
+                <SimplePopover
+                  onEditClick={() => onEditClickCollections(val.id)}
+                  onDeleteClick={() => onDeleteClickCollections(val.id)}
+                  buttonName="Edit"
+                /> 
+              </div>
+            </div>
           </div>
         
       );
@@ -101,89 +226,29 @@ function Dashboard() {
           </div>
         </div>
       </div>
-      <div className="dashboard-container">
-        <div className="dashboard-inner-container">
-          <div className="dic-title">Quick Access</div>
-          <div className="dic-rcollections">
-            <div className="dirc-rc-title">Recent Collections</div>
-            <div className="dirc-rc-card-container">
-              <div className="dirc-rc-cards">
-                <div className="dirc-rc-image">
-                  <img src={Dummy3} alt="" />
-                </div>
-                <div className="dirc-rc-info">
-                  <div className="dirc-rc-info-1">
-                    <div>
-                      <div className="dirc-rc-text1">Justin & Stella</div>
-                      <div className="dirc-rc-text2">28 March 2021</div>
-                    </div>
-                    <div className="dirc-rc-imgdown">
-                      <BsImage size={16} />
-                      <div className="dirc-rc-text3">13</div>
-                      <BsBoxArrowInDown size={16} />
-                      <div className="dirc-rc-text3">3</div>
-                    </div>
-                  </div>
-                  <div className="dirc-rc-info-2">
-                    <div className="dirc-rc-preed">
-                      <BsEyeFill size={16} />
-                      <div className="dirc-rc-text4">Preview</div>
-                    </div>
-                    <div className="dirc-rc-preed">
-                      <AiFillEdit soze={16} />
-                      <div className="dirc-rc-text4">Edit</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div className="dirc-rc-seeall">
-              <Link to="/collections">
-                <a className="dirc-rc-seeall">see all collections</a>
+      <div className="dashboard-main">
+        <div className="dashboard-wrapper">
+          <div className="dashboard-title">Quick Access</div>
+          <div className="recent-collections">
+            <div className="recent-collections-title">Recent Collections</div>
+            <div className="rcollections-wrapper">{collectionItems()} </div>
+            <Link to="/collections">
+              <div className="recent-collections-seeall">see all collections</div>
+            </Link>
+          </div>
+          <div className="recent-projects-packages-wrapper">
+            <div className="recent-projects">
+              <div className="recent-projects-title">Recent Projects</div>
+              <div className="rprojects-wrapper">{projectItems()}</div>
+              <Link to="/projects">
+                <div className="recent-projects-seeall">see all projects</div>
               </Link>
             </div>
-          </div>
-          <div className="dic-rpr-rpa">
-            <div className="dic-rprojects">
-              <div className="dirpr-title">Recent Projects</div>
-              <div className="dirpr-card-container">
-                <div className="dirpr-cards">
-                  <div className="dirpr-info1">
-                    <div>
-                      <div className="dirpr-text1">Justin & Stella</div>
-                      <div className="dirpr-text2">28 March 2021</div>
-                    </div>
-                    <div className="dirpr-info2">
-                      <BsCheck size={16} />
-                      <div className="dirpr-text3">Packages</div>
-                      <BsX size={16} />
-                      <div className="dirpr-text3">Rundown</div>
-                      <BsCheck size={16} />
-                      <div className="dirpr-text3">Invoice</div>
-                    </div>
-                  </div>
-                  <div className="dirpr-planedit">
-                    <div>
-                      <img src={Status} alt="" />
-                    </div>
-                    <div className="dirpr-edit">
-                      <AiFillEdit size={16} />
-                      <div className="dirpr-text4">Edit</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="dirpr-seeall">
-                <Link to="/projects">
-                  <a className="dirpr-seeall">see all projects</a>
-                </Link>
-              </div>
-            </div>
-            <div className="dic-rpackages">
-              <div className="dirpa-title">Recent Packages</div>
+            <div className="recent-packages">
+              <div className="recent-packages-title">Recent Packages</div>
               <div className="rpackages-wrapper">{packageItems()}</div>
               <Link to="/packages">
-              <div className="rpackages-seeall">see all packages</div>
+                <div className="recent-packages-seeall">see all packages</div>
               </Link>
             </div>
           </div>
