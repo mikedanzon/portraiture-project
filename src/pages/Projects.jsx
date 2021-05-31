@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { MdClose } from 'react-icons/md';
 import { useDispatch } from 'react-redux';
 import { deleteProject } from '../redux/actions';
+import { toast } from 'react-toastify';
 import Header from '../components/Header';
 import HeaderUser from '../components/HeaderUser';
 import SimplePopover from '../components/Popover/SimplePopover';
@@ -17,7 +18,7 @@ function Projects() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    fetchData(); //clientName, date
+    fetchData();
   }, []);
 
   const fetchData = async () => {
@@ -28,10 +29,17 @@ function Projects() {
       };
       var res = await axios.get(`${URL_API}/project/?page=0&limit=2`, config);
       setProjects(res.data.result);
-      console.log(res.data.result);
       setIsLoading(false);
     } catch (error) {
-      console.log(error.response.data.message);
+      toast.error(`${error.response.data.message}`, {
+        position: 'bottom-right',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
       setIsLoading(false);
     }
   };

@@ -1,0 +1,63 @@
+.petail-wrapper {
+  padding: 120px 190px;
+
+  .breadcrumb {
+    margin-left: -17px;
+  }
+
+  .petail-header-menu-second {
+    display: flex;
+    justify-content: space-between;
+
+    .petail-header-text {
+      padding-bottom: 70px;
+
+      .petail-header-text-name {
+        font-size: 24px;
+        font-weight: bold;
+        padding-bottom: 5px;
+      }
+
+      .petail-header-text-date {
+        font-size: 18px;
+      }
+    }
+
+    .petail-header-link {
+      a {
+        text-decoration: none;
+        color: #0e203d;
+        background: inherit;
+        color: #0e203d;
+        font-weight: bold;
+        border: 1px solid #0e203d;
+        padding: 10px 30px;
+      }
+    }
+  }
+
+  .petail-main-menu {
+    .petail-menu {
+      display: flex;
+
+      .petail-menu-style {
+        color: #0e203d;
+        padding: 7px 15px;
+        margin-right: 20px;
+
+        &:hover {
+          cursor: pointer;
+        }
+      }
+
+      .petail-menu-style.active {
+        background: #f2ebdc;
+        font-weight: bold;
+      }
+    }
+
+    .petail-menu-border {
+      border: 2px solid #c2a47e;
+    }
+  }
+}

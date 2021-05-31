@@ -2,6 +2,7 @@ import { Route, Switch } from 'react-router';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { URL_API } from './helper/url';
+import { ToastContainer } from 'react-toastify';
 import Home from './pages/Home';
 import Register from './pages/Register';
 import Login from './pages/Login';
@@ -21,11 +22,11 @@ import GalleryPhoto from './pages/GalleryPhoto';
 import axios from 'axios';
 import Packages from './pages/Packages';
 import PackagesNew from './pages/PackagesNew';
+import PackagesEdit from './pages/PackagesEdit';
+import ProjectDetails from './pages/ProjectDetails';
 import 'react-toastify/dist/ReactToastify.css';
 import './assets/styles/style.scss';
-import PackagesEdit from './pages/PackagesEdit';
-import { ToastContainer } from 'react-toastify';
-import ProjectDetails from './pages/ProjectDetails';
+import 'react-awesome-lightbox/build/style.css';
 
 function App() {
   const dispatch = useDispatch();
@@ -54,6 +55,9 @@ function App() {
         .catch((err) => {
           console.log(err.response.data.message);
           localStorage.removeItem('token');
+          setTimeout(() => {
+            window.location = '/';
+          }, 2000);
         });
     }
   }, []);

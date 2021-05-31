@@ -78,9 +78,9 @@ function Login() {
                 <Form.Control
                   autoFocus
                   required
-                  type="name"
+                  type="text"
                   value={name}
-                  placeholder="e.g. justinjunaedi@gmail.com"
+                  placeholder="Justin Junaedi"
                   onChange={(e) => setName(e.target.value)}
                 />
               </Form.Group>
@@ -88,7 +88,7 @@ function Login() {
                 <Form.Label>Business Name</Form.Label>
                 <Form.Control
                   required
-                  type="bsName"
+                  type="text"
                   value={bsName}
                   placeholder="e.g. justinjunaedi@gmail.com"
                   onChange={(e) => setBsName(e.target.value)}

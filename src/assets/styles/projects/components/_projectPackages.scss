@@ -1,0 +1,64 @@
+.projects-package-wrapper {
+  padding: 30px;
+  background: #fcfcfc;
+
+  .package-content {
+    button {
+      background: inherit;
+      padding: 70px;
+      border: 2px dashed #0e203d;
+      color: #0e203d;
+      font-weight: bold;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .package-true {
+      display: flex;
+
+      .package-true-left {
+        margin-right: 40px;
+
+        .package-true-image {
+          img {
+            width: 320px;
+            height: 220px;
+            object-fit: cover;
+
+            &:hover {
+              cursor: pointer;
+            }
+          }
+        }
+      }
+
+      .package-true-right {
+        .package-true-name {
+          font-weight: bold;
+          text-decoration: underline;
+        }
+
+        .package-true-price {
+          font-size: 13px;
+          padding-bottom: 20px;
+        }
+
+        .package-true-items {
+          font-size: 12px;
+
+          .package-true-items-text {
+            color: $color-ash;
+          }
+
+          .package-true-items-content {
+            .package-true-items-list {
+              padding-left: 20px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

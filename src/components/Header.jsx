@@ -51,22 +51,22 @@ function Header() {
               <Link to="/packages">Packages</Link>
             </div>
             <div className="port-header-bell pr-4">
-              <Link to="/">
+              <Link>
                 <img src={LogoBell} alt="imageLogo" />
               </Link>
             </div>
             <div className="port-header-user pr-5">
-              <Link to="/profile">
+              <Link to="/dashboard">
                 <img src={LogoUser} alt="imageLogo" />
               </Link>
             </div>
             <div className="port-header-bell-notif pr-4">
-              <Link to="/">
+              <Link>
                 <Link to="/">Notifications</Link>
               </Link>
             </div>
             <div className="port-header-user-profile pr-5">
-              <Link to="/">
+              <Link to="/dashboard">
                 <Link to="/profile">Profile</Link>
               </Link>
             </div>

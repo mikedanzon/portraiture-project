@@ -87,9 +87,9 @@ function PackagesEdit() {
 
   const onSave = (e) => {
     e.preventDefault();
-    if (inputFields.length === 0) {
-      return postData();
-    }
+    // if (inputFields.length === 0) {
+    //   return postData();
+    // }
     var itemFormData = new FormData();
     for (var i = 0; i < inputFields.length; i++) {
       itemFormData.append('itemName', inputFields[i].itemName);

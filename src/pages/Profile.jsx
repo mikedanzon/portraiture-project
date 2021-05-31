@@ -7,7 +7,7 @@ import HeaderProps from '../components/HeaderProps';
 
 function Profile() {
   const [businessName, setBusinessName] = useState();
-  const [address, setAddress] = useState();
+  const [address, setAddress] = useState('');
   const [photo, setPhoto] = useState();
   const [photoChanged, setPhotoChanged] = useState(false);
   const [picture, setPicture] = useState();
@@ -36,7 +36,9 @@ function Profile() {
 
   const getUserData = (res) => {
     setBusinessName(res.data.result.businessName);
-    setAddress(res.data.result.address);
+    if (res.data.result.address !== null) {
+      setAddress(res.data.result.address);
+    }
     setEmail(res.data.result.email);
     setName(res.data.result.name);
     setPhoto(res.data.result.photo);
@@ -120,7 +122,7 @@ function Profile() {
             />
           </Form.Group>
           <Form.Group controlId="exampleForm.ControlTextarea1">
-            <Form.Label className="profile-ad">Address</Form.Label>
+            <Form.Label className="profile-ad">Address*</Form.Label>
             <Form.Control
               className="custom-form-port"
               as="textarea"
