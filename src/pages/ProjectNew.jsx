@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { Form, Button } from 'react-bootstrap';
 import { URL_API } from '../helper/url';
-import { toast } from 'react-toastify';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router';
+import { toastError, toastSuccess } from '../redux/actions/toastActions';
 import HeaderProps from '../components/HeaderProps';
 
 function ProjectNew() {
@@ -15,6 +15,7 @@ function ProjectNew() {
   const [caddrs, setCaddrs] = useState('');
   const history = useHistory();
   const auth = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
 
   const onSave = () => {
     var data = {
@@ -31,29 +32,13 @@ function ProjectNew() {
     axios
       .post(`${URL_API}/project`, data, config)
       .then(() => {
-        toast.success('Success, you can now check your new project!', {
-          position: 'bottom-right',
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
+        dispatch(toastSuccess('Success, you can now check your new project!'));
         setTimeout(() => {
-          history.push('/projects')
+          history.push('/projects');
         }, 3000);
       })
       .catch((err) => {
-        toast.error(`${err.response.data.message}`, {
-          position: 'bottom-right',
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
+        dispatch(toastError(`${err.response.data.message}`));
       });
   };
 

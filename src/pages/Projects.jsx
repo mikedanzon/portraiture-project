@@ -5,8 +5,7 @@ import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
 import { MdClose } from 'react-icons/md';
 import { useDispatch } from 'react-redux';
-import { deleteProject } from '../redux/actions';
-import { toast } from 'react-toastify';
+import { deleteProject, toastError } from '../redux/actions';
 import Header from '../components/Header';
 import HeaderUser from '../components/HeaderUser';
 import SimplePopover from '../components/Popover/SimplePopover';
@@ -31,15 +30,7 @@ function Projects() {
       setProjects(res.data.result);
       setIsLoading(false);
     } catch (error) {
-      toast.error(`${error.response.data.message}`, {
-        position: 'bottom-right',
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      dispatch(toastError(`${error.response.data.message}`));
       setIsLoading(false);
     }
   };

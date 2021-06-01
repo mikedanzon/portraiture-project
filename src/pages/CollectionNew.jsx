@@ -5,13 +5,17 @@ import { useDropzone } from 'react-dropzone';
 import { AiOutlineCloudUpload } from 'react-icons/ai';
 import { AiFillEye } from 'react-icons/ai';
 import { URL_API } from '../helper/url';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router';
+import {
+  toastError,
+  toastInfo,
+  toastSuccess,
+} from '../redux/actions/toastActions';
 import HeaderProps from '../components/HeaderProps';
 import ThemeClass from '../assets/img/collections/theme-classic.png';
 import ThemeMin from '../assets/img/collections/theme-minimalism.png';
 import ThemeDark from '../assets/img/collections/theme-dark.png';
-import { toast } from 'react-toastify';
-import { useHistory } from 'react-router';
 
 function CollectionNew() {
   const [page, setPage] = useState(0);
@@ -25,6 +29,7 @@ function CollectionNew() {
   const [theme, setTheme] = useState(0);
   const history = useHistory();
   const auth = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
 
   const onDrop = useCallback((acceptedFiles) => {
     setImage(acceptedFiles);
@@ -44,25 +49,9 @@ function CollectionNew() {
 
   const onSubmitFirst = () => {
     if (!title) {
-      return toast.error(`Please insert collection title!`, {
-        position: 'bottom-right',
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      return dispatch(toastError(`Please insert collection title!`));
     } else if (!date) {
-      return toast.error(`Please insert collection date!`, {
-        position: 'bottom-right',
-        autoClose: 2000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      return dispatch(toastError(`Please insert collection date!`));
     } else {
       setPage(1);
     }
@@ -88,27 +77,11 @@ function CollectionNew() {
       },
     })
       .then(() => {
-        toast.info('Please wait connecting!', {
-          position: 'bottom-right',
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
+        dispatch(toastInfo('Please wait connecting!'));
         postImage();
       })
       .catch((err) => {
-        toast.error(`${err.response.data.message}`, {
-          position: 'bottom-right',
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
+        dispatch(toastError(`${err.response.data.message}`));
       });
   };
 
@@ -133,39 +106,15 @@ function CollectionNew() {
           },
         })
           .then(() => {
-            toast.success('Success created a new collection!', {
-              position: 'bottom-right',
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-            });
+            dispatch(toastSuccess('Success created a new collection!'));
             history.push('/collections');
           })
           .catch((err) => {
-            toast.error(`${err.response.data.message}`, {
-              position: 'bottom-right',
-              autoClose: 5000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-            });
+            dispatch(toastError(`${err.response.data.message}`));
           });
       })
       .catch((err) => {
-        toast.error(`${err.response.data.message}`, {
-          position: 'bottom-right',
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
+        dispatch(toastError(`${err.response.data.message}`));
       });
   };
 

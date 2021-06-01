@@ -1,9 +1,14 @@
 import React, { useEffect, useState, Fragment } from 'react';
+import axios from 'axios';
 import { useParams } from 'react-router';
-import { toast } from 'react-toastify';
 import { URL_API } from '../helper/url';
 import { AiOutlineClose } from 'react-icons/ai';
-import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import {
+  toastError,
+  toastInfo,
+  toastSuccess,
+} from '../redux/actions/toastActions';
 import HeaderProps from '../components/HeaderProps';
 
 function PackagesEdit() {
@@ -21,6 +26,7 @@ function PackagesEdit() {
       // categories: null,
     },
   ]);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     fetchData();
@@ -43,15 +49,7 @@ function PackagesEdit() {
       setInputFields(res.data.result.packageItems);
       setIsLoading(false);
     } catch (error) {
-      toast.error(`${error.response.data.message}`, {
-        position: 'bottom-right',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      dispatch(toastError(`${error.response.data.message}`));
       setIsLoading(false);
     }
   };
@@ -107,27 +105,11 @@ function PackagesEdit() {
       },
     })
       .then(() => {
-        toast.info('Please wait connecting!', {
-          position: 'bottom-right',
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
+        dispatch(toastInfo('Please wait connecting!'));
         postData();
       })
       .catch((err) => {
-        toast.error(`${err.response.data.message}`, {
-          position: 'bottom-right',
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
+        dispatch(toastError(`${err.response.data.message}`));
       });
   };
 
@@ -149,29 +131,13 @@ function PackagesEdit() {
       },
     })
       .then(() => {
-        toast.success('Success edited the package!', {
-          position: 'bottom-right',
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
+        dispatch(toastSuccess('Success edited the package!'));
         setTimeout(() => {
           window.location = '/packages';
         }, 2000);
       })
       .catch((err) => {
-        toast.error(`${err.response.data.message}`, {
-          position: 'bottom-right',
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
+        dispatch(toastError(`${err.response.data.message}`));
       });
   };
 

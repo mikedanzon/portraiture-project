@@ -15,7 +15,7 @@ export const deletePackage = (id) => {
       .then(() => {
         toast.success('Success, package deleted!', {
           position: 'bottom-right',
-          autoClose: 5000,
+          autoClose: 3000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,
@@ -26,7 +26,7 @@ export const deletePackage = (id) => {
       .catch((err) => {
         toast.error(`${err.response.data.message}`, {
           position: 'bottom-right',
-          autoClose: 5000,
+          autoClose: 3000,
           hideProgressBar: false,
           closeOnClick: true,
           pauseOnHover: true,

@@ -3,7 +3,8 @@ import { useParams } from 'react-router';
 import { URL_API } from '../helper/url';
 import { Breadcrumb } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import { useDispatch } from 'react-redux';
+import { toastError } from '../redux/actions/toastActions';
 import Header from '../components/Header';
 import axios from 'axios';
 import ProjectPackages from '../components/DetailsPage/ProjectPackages';
@@ -13,6 +14,7 @@ function ProjectDetails() {
   const [page, setPage] = useState(null);
   const [project, setProject] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     fetchData();
@@ -28,15 +30,7 @@ function ProjectDetails() {
       setProject(res.data.result);
       setIsLoading(false);
     } catch (error) {
-      toast.error(`${error.response.data.message}`, {
-        position: 'bottom-right',
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      dispatch(toastError(`${error.response.data.message}`));
       setIsLoading(false);
     }
   };
@@ -98,20 +92,15 @@ function ProjectDetails() {
           </div>
           <div className="petail-menu-border"></div>
         </div>
-        {
-          page === 'rundown' ?
+        {page === 'rundown' ? (
+          <div className="petail-content">Rundown still pending</div>
+        ) : page === 'invoice' ? (
+          <div className="petail-content">Invoice still pending</div>
+        ) : (
           <div className="petail-content">
-            Rundown still pending
+            <ProjectPackages id={project.id_package} />
           </div>
-          : page === 'invoice' ?
-          <div className="petail-content">
-            Invoice still pending
-          </div>
-          :
-          <div className="petail-content">
-            <ProjectPackages id={project.id_package}/>
-          </div>
-        }
+        )}
       </div>
     </>
   );

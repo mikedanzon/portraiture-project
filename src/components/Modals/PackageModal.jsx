@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { AiOutlineClose } from 'react-icons/ai';
-import { toast } from 'react-toastify';
 import { URL_API } from '../../helper/url';
+import { useDispatch } from 'react-redux';
+import { toastError } from '../../redux/actions/toastActions';
 
 function PackageModal(props) {
   const { show, handleClose, onModalImageClick } = props;
   const [packages, setPackages] = useState([]);
   const showModal = show ? 'package-modal d-block' : 'package-modal d-none';
+  const dispatch = useDispatch();
 
   useEffect(() => {
     fetchData();
@@ -21,15 +23,7 @@ function PackageModal(props) {
       var res = await axios.get(`${URL_API}/package`, config);
       setPackages(res.data.result);
     } catch (error) {
-      toast.error(`${error.response.data.message}`, {
-        position: 'bottom-right',
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      dispatch(toastError(`${error.response.data.message}`));
     }
   };
 

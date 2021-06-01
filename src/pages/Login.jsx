@@ -4,7 +4,11 @@ import { Button, Form } from 'react-bootstrap';
 import { Link, useHistory } from 'react-router-dom';
 import { URL_API } from '../helper/url';
 import { useDispatch, useSelector } from 'react-redux';
-import { toast } from 'react-toastify';
+import {
+  toastError,
+  toastInfo,
+  toastSuccess,
+} from '../redux/actions/toastActions';
 import Logo from '../assets/img/logo.png';
 
 function Login() {
@@ -27,30 +31,14 @@ function Login() {
     axios
       .post(`${URL_API}/auth/signin`, data)
       .then((res) => {
-        toast.info('Please wait getting user data...', {
-          position: 'bottom-right',
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
+        dispatch(toastInfo('Please wait getting user data...'));
         var configGetOneUser = {
           headers: { Authorization: `Bearer ${res.data.token}` },
         };
         axios
           .get(`${URL_API}/user/one`, configGetOneUser)
           .then((res2) => {
-            toast.success('You are now logged in!', {
-              position: 'bottom-right',
-              autoClose: 3000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-            });
+            dispatch(toastSuccess('You are now logged in!'));
             setTimeout(() => {
               dispatch({
                 type: 'LOGIN',
@@ -68,27 +56,11 @@ function Login() {
             }, 2000);
           })
           .catch((err2) => {
-            toast.error(`${err2.response.data.message}`, {
-              position: 'bottom-right',
-              autoClose: 3000,
-              hideProgressBar: false,
-              closeOnClick: true,
-              pauseOnHover: true,
-              draggable: true,
-              progress: undefined,
-            });
+            dispatch(toastError(`${err2.response.data.message}`));
           });
       })
       .catch((err) => {
-        toast.error(`${err.response.data.message}`, {
-          position: 'bottom-right',
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
+        dispatch(toastError(`${err.response.data.message}`));
       });
   }
 

@@ -8,7 +8,7 @@ export const deleteProject = (id) => {
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
     };
     axios
-      .delete(`${URL_API}/project?id=${id}`, config)
+      .delete(`${URL_API}/project/delete?id=${id}`, config)
       .then(() => {
         toast.success('Success, project deleted!', {
           position: 'bottom-right',

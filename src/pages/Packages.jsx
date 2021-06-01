@@ -3,7 +3,7 @@ import axios from 'axios';
 import { URL_API } from '../helper/url';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { deletePackage } from '../redux/actions';
+import { deletePackage, toastError } from '../redux/actions';
 import { toast } from 'react-toastify';
 import Header from '../components/Header';
 import HeaderUser from '../components/HeaderUser';
@@ -32,15 +32,7 @@ function Packages() {
       setDataPacakges(res.data.result);
       setIsLoading(false);
     } catch (error) {
-      toast.error(`${error.response.data.message}`, {
-        position: 'bottom-right',
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      dispatch(toastError(`${error.response.data.message}`));
       setIsLoading(false);
     }
   };
