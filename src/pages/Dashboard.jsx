@@ -39,7 +39,7 @@ function Dashboard() {
       };
       var res = await axios.get(`${URL_API}/package`, config);
       setDataPackages(res.data.result);
-      console.log(res)
+      // console.log(res)
     } catch (error) {
       toast.error(`${error.response.data.message}`, {
         position: 'bottom-right',
@@ -60,7 +60,7 @@ function Dashboard() {
       };
       var res = await axios.get(`${URL_API}/project/?page=0&limit=3`, config);
       setDataProjects(res.data.result);
-      console.log(res)
+      // console.log(res)
     } catch (error) {
       console.log(error.response.data.message);
     }
@@ -73,7 +73,7 @@ function Dashboard() {
       // };
       var res = await axios.get(`${URL_API}/collection`);
       setDataCollections(res.data.result);
-      console.log(res)
+      // console.log(res)
     } catch (error) {
       console.log(error.response.data.message);
     }
@@ -116,8 +116,8 @@ function Dashboard() {
     return dataPackages
     .sort((a, b) => a.id < b.id ? 1 : -1)
     .slice(0, 3)
-    .map((val, index) => {
-      return (
+    .map((val, index)  => {
+      return ( 
           <div className="rpackages-cards" key={index}>
                   <div className="rpackages-image">
                     <img src={val.image} alt="" />
@@ -137,8 +137,8 @@ function Dashboard() {
           </div>
         
       );
-    });
-  };
+    });  
+  };  console.log(packageItems())
 
   const projectItems = () => {
     return dataProjects
@@ -157,20 +157,20 @@ function Dashboard() {
               <div className="cards-bottom-wrapper">
                 <div className="cards-packages-rundown-invoice">
                   <BsCheck size={25} style={{marginBottom:"3px"}}/> Packages
-                  <BsCheck size={25} style={{marginBottom:"3px", marginLeft:"10px"}}/> Rundown
-                  <BsCheck size={25} style={{marginBottom:"3px", marginLeft:"10px"}}/> Invoice
+                  <BsCheck size={25} style={{marginBottom:"3px", marginLeft:"10px"}}/> <span>Rundown</span>
+                  <BsCheck size={25} style={{marginBottom:"3px"}}/> Invoice
                 </div>
                 <SimplePopover
+                  className="cards-edit"
                   onEditClick={() => onEditClickProjects(val.id)}
                   onDeleteClick={() => onDeleteClickProjects(val.id)}
                   buttonName="Edit"
                 /> 
               </div>
           </div>
-        
-      );
-    });
-  };
+        );
+      });
+    };
 
   const collectionItems = () => {
     return dataCollections
@@ -189,7 +189,7 @@ function Dashboard() {
                   <div className="cards-date">{val.date.slice(0, 10).split('-').reverse().join('-')}</div>
                 </div>
                 <div className="cards-preview">
-                  <BsEyeFill size={20} style={{marginBottom:"3px"}}/> Preview
+                  <BsEyeFill size={20} style={{marginBottom:"3px"}}/> <span>Preview</span>
                 </div>
               </div>
               <div className="cards-bottom-wrapper">
@@ -213,43 +213,45 @@ function Dashboard() {
   return (
     <>
       <Header />
-      <div className="dashboard-background">
-        <div className="dashboard-background-container">
-          <div className="dashboard-logo">
-            <img src={`${URL_API}${auth.photo}`} alt="logo" />
-          </div>
-          <div className="dashboard-name">{auth.businessName}</div>
-          <div className="dashboard-button">
-            <Link to="/profile">
-              <button className="dashboard-button-btn">Edit Profile</button>
-            </Link>
-          </div>
-        </div>
-      </div>
-      <div className="dashboard-main">
-        <div className="dashboard-wrapper">
-          <div className="dashboard-title">Quick Access</div>
-          <div className="recent-collections">
-            <div className="recent-collections-title">Recent Collections</div>
-            <div className="rcollections-wrapper">{collectionItems()} </div>
-            <Link to="/collections">
-              <div className="recent-collections-seeall">see all collections</div>
-            </Link>
-          </div>
-          <div className="recent-projects-packages-wrapper">
-            <div className="recent-projects">
-              <div className="recent-projects-title">Recent Projects</div>
-              <div className="rprojects-wrapper">{projectItems()}</div>
-              <Link to="/projects">
-                <div className="recent-projects-seeall">see all projects</div>
+      <div className="dashboard-wrapper">
+        <div className="dashboard-background">
+          <div className="dashboard-background-container">
+            <div className="dashboard-logo">
+              <img src={`${URL_API}${auth.photo}`} alt="logo" />
+            </div>
+            <div className="dashboard-name">{auth.businessName}</div>
+            <div className="dashboard-button">
+              <Link to="/profile">
+                <button className="dashboard-button-btn">Edit Profile</button>
               </Link>
             </div>
-            <div className="recent-packages">
-              <div className="recent-packages-title">Recent Packages</div>
-              <div className="rpackages-wrapper">{packageItems()}</div>
-              <Link to="/packages">
-                <div className="recent-packages-seeall">see all packages</div>
+          </div>
+        </div>
+        <div className="dashboard-main">
+          <div className="dashboard-wrapper">
+            <div className="dashboard-title">Quick Access</div>
+            <div className="recent-collections">
+              <div className="recent-collections-title">Recent Collections</div>
+              <div className="rcollections-wrapper">{collectionItems()} </div>
+              <Link to="/collections">
+                <div className="recent-collections-seeall">see all collections</div>
               </Link>
+            </div>
+            <div className="recent-projects-packages-wrapper">
+              <div className="recent-projects">
+                <div className="recent-projects-title">Recent Projects</div>
+                <div className="rprojects-wrapper">{projectItems()}</div>
+                <Link to="/projects">
+                  <div className="recent-projects-seeall">see all projects</div>
+                </Link>
+              </div>
+              <div className="recent-packages">
+                <div className="recent-packages-title">Recent Packages</div>
+                <div className="rpackages-wrapper">{packageItems()}</div>
+                <Link to="/packages">
+                  <div className="recent-packages-seeall">see all packages</div>
+                </Link>
+              </div>
             </div>
           </div>
         </div>
