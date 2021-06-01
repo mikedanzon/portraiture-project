@@ -1,14 +1,81 @@
-import React from 'react';
-import HeaderProps from '../components/HeaderProps';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import { Form, Button } from 'react-bootstrap';
-import { useParams } from 'react-router';
+import { useHistory, useParams } from 'react-router';
+import { URL_API } from '../helper/url';
+import { useDispatch } from 'react-redux';
+import { toastError, toastSuccess } from '../redux/actions/toastActions';
+import HeaderProps from '../components/HeaderProps';
 
 function ProjectEdit() {
   const { id } = useParams();
+  const [isLoading, setIsLoading] = useState(false);
+  const [title, setTitle] = useState('');
+  const [date, setDate] = useState('');
+  const [desc, setDesc] = useState('');
+  const [clientName, setClientName] = useState('');
+  const [clientAddrs, setClientAddrs] = useState('');
+  const history = useHistory();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    setIsLoading(true);
+    try {
+      var config = {
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+      };
+      var res = await axios.get(`${URL_API}/project/one?id=${id}`, config);
+      setTitle(res.data.result.title);
+      setDate(res.data.result.date);
+      setDesc(res.data.result.description);
+      setClientName(res.data.result.clientName);
+      setClientAddrs(res.data.result.clientAddress);
+      setIsLoading(false);
+    } catch (error) {
+      dispatch(toastError(`${error.response.data.message}`));
+      setIsLoading(false);
+    }
+  };
+
+  const onSaveClick = () => {
+    var bodyFormData = new FormData();
+    bodyFormData.append('title', title);
+    bodyFormData.append('date', date);
+    bodyFormData.append('description', desc);
+    bodyFormData.append('clientName', clientName);
+    bodyFormData.append('clientAddress', clientAddrs);
+    var config = {
+      headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+    };
+    axios
+      .put(`${URL_API}/project?id=${id}`, bodyFormData, config)
+      .then(() => {
+        dispatch(toastSuccess('Success edited the project!'));
+        setTimeout(() => {
+          window.location = `/projects/details/${id}`;
+        }, 2000);
+      })
+      .catch((err) => {
+        dispatch(toastError(`${err.response.data.message}`));
+      });
+  };
+
+  if (isLoading) {
+    return (
+      <>
+        <HeaderProps title="Edit Project" link={`/projects/details/${id}`} />
+        <div className="loader"></div>
+      </>
+    );
+  }
 
   return (
     <>
-      <HeaderProps title="Edit Project" link="/" />
+      <HeaderProps title="Edit Project" link={`/projects/details/${id}`} />
       <div className="project-edit-container">
         <Form className="project-edit-inner-container">
           <div className="project-edit-pd">Project Details</div>
@@ -18,7 +85,8 @@ function ProjectEdit() {
               autoFocus
               className="custom-form-port"
               type="text"
-              placeholder="Leon & Stella"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
             />
           </Form.Group>
           <Form.Group>
@@ -26,7 +94,8 @@ function ProjectEdit() {
             <Form.Control
               className="custom-form-port"
               type="date"
-              placeholder="28 June 2021"
+              value={date}
+              onChange={(e) => setDate(e.target.value)}
             />
           </Form.Group>
           <Form.Group controlId="exampleForm.ControlTextarea1">
@@ -35,7 +104,8 @@ function ProjectEdit() {
               className="custom-form-port"
               as="textarea"
               rows={4}
-              placeholder="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lectus tristique mi mi ut malesuada ut "
+              value={desc}
+              onChange={(e) => setDesc(e.target.value)}
             />
           </Form.Group>
           <div className="project-edit-cd">Client Details</div>
@@ -45,6 +115,8 @@ function ProjectEdit() {
               className="custom-form-port"
               type="text"
               placeholder="Leon Handoko"
+              value={clientName}
+              onChange={(e) => setClientName(e.target.value)}
             />
           </Form.Group>
           <Form.Group controlId="exampleForm.ControlTextarea1">
@@ -53,14 +125,15 @@ function ProjectEdit() {
               className="custom-form-port"
               as="textarea"
               rows={4}
-              placeholder="Sunset Boulevard, Pakuwon City Kecamatan Mulyorejo, Surabaya Jawa Timur 60111"
+              value={clientAddrs}
+              onChange={(e) => setClientAddrs(e.target.value)}
             />
           </Form.Group>
           <div className="project-edit-button-container">
             <Button
               className="project-edit-button"
               variant="primary"
-              type="submit"
+              onClick={onSaveClick}
             >
               Save
             </Button>

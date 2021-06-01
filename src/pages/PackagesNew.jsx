@@ -1,10 +1,15 @@
 import React, { useState, Fragment } from 'react';
+import axios from 'axios';
 import { AiOutlineClose } from 'react-icons/ai';
 import { URL_API } from '../helper/url';
-import { toast, ToastContainer } from 'react-toastify';
-import axios from 'axios';
-import HeaderProps from '../components/HeaderProps';
 import { useHistory } from 'react-router';
+import { useDispatch } from 'react-redux';
+import {
+  toastError,
+  toastInfo,
+  toastSuccess,
+} from '../redux/actions/toastActions';
+import HeaderProps from '../components/HeaderProps';
 
 function PackagesNew() {
   const [name, setName] = useState('');
@@ -19,6 +24,7 @@ function PackagesNew() {
       // categories: null,
     },
   ]);
+  const dispatch = useDispatch();
 
   const onPhotoChange = (e) => {
     setPicture(URL.createObjectURL(e.target.files[0]));
@@ -66,27 +72,11 @@ function PackagesNew() {
       headers: { 'Content-Type': 'multipart/form-data' },
     })
       .then(() => {
-        toast.info('Please wait connecting!', {
-          position: 'bottom-right',
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
+        dispatch(toastInfo('Please wait connecting!'));
         postData();
       })
       .catch((err) => {
-        toast.error(`${err.response.data.message}`, {
-          position: 'bottom-right',
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
+        dispatch(toastError(`${err.response.data.message}`));
       });
   };
 
@@ -105,27 +95,11 @@ function PackagesNew() {
       },
     })
       .then(() => {
-        toast.success('Success created a new package!', {
-          position: 'bottom-right',
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-        history.push('/packages')
+        dispatch(toastSuccess('Success created a new package!'));
+        history.push('/packages');
       })
       .catch((err) => {
-        toast.error(`${err.response.data.message}`, {
-          position: 'bottom-right',
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
+        dispatch(toastError(`${err.response.data.message}`));
       });
   };
 

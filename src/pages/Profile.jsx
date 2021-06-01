@@ -3,17 +3,19 @@ import axios from 'axios';
 import { Form, Button } from 'react-bootstrap';
 import { toast } from 'react-toastify';
 import { URL_API } from '../helper/url';
+import { useDispatch } from 'react-redux';
+import { toastError, toastSuccess } from '../redux/actions/toastActions';
 import HeaderProps from '../components/HeaderProps';
 
 function Profile() {
   const [businessName, setBusinessName] = useState();
   const [address, setAddress] = useState('');
   const [photo, setPhoto] = useState();
-  const [photoChanged, setPhotoChanged] = useState(false);
   const [picture, setPicture] = useState();
   const [name, setName] = useState();
   const [email, setEmail] = useState();
   const [isLoading, setIsLoading] = useState(false);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     fetchUser();
@@ -26,22 +28,18 @@ function Profile() {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       };
       var res = await axios.get(`${URL_API}/user/one`, config);
-      getUserData(res);
+      setBusinessName(res.data.result.businessName);
+      if (res.data.result.address !== null) {
+        setAddress(res.data.result.address);
+      }
+      setEmail(res.data.result.email);
+      setName(res.data.result.name);
+      setPhoto(res.data.result.photo);
       setIsLoading(false);
     } catch (error) {
-      console.log(error.response.data.message);
+      dispatch(toastError(`${error.response.data.message}`));
       setIsLoading(false);
     }
-  };
-
-  const getUserData = (res) => {
-    setBusinessName(res.data.result.businessName);
-    if (res.data.result.address !== null) {
-      setAddress(res.data.result.address);
-    }
-    setEmail(res.data.result.email);
-    setName(res.data.result.name);
-    setPhoto(res.data.result.photo);
   };
 
   const onPhotoChange = (e) => {
@@ -69,29 +67,13 @@ function Profile() {
       },
     })
       .then(() => {
-        toast.success('Your profile has been updated!', {
-          position: 'bottom-right',
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
+        dispatch(toastSuccess('Your profile has been updated!'));
         setTimeout(() => {
           window.location = '/dashboard';
         }, 2000);
       })
       .catch((err) => {
-        toast.error(`${err.response.data.message}`, {
-          position: 'bottom-right',
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
+        dispatch(toastError(`${err.response.data.message}`));
       });
   };
 

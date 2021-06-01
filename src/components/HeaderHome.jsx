@@ -2,7 +2,7 @@ import React from 'react';
 import { Navbar } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { toast } from 'react-toastify';
+import { toastSuccess } from '../redux/actions/toastActions';
 import Logo from '../assets/img/portraiture.png';
 
 function HeaderHome() {
@@ -10,15 +10,7 @@ function HeaderHome() {
   const dispatch = useDispatch();
 
   const handleLogout = () => {
-    toast.success('You are now logged out!', {
-      position: 'bottom-right',
-      autoClose: 5000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-    });
+    dispatch(toastSuccess('You are now logged out!'));
     setTimeout(() => {
       localStorage.removeItem('token');
       dispatch({

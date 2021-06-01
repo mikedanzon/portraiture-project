@@ -4,7 +4,7 @@ import { Button, Form } from 'react-bootstrap';
 import { Link, useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { URL_API } from '../helper/url';
-import { toast, ToastContainer } from 'react-toastify';
+import { toastError, toastSuccess } from '../redux/actions';
 import Logo from '../assets/img/logo.png';
 
 function Login() {
@@ -14,6 +14,7 @@ function Login() {
   const [password, setPassword] = useState('');
   const history = useHistory();
   const auth = useSelector((state) => state.auth);
+  const dispatch = useDispatch();
 
   if (auth.isLogin === true) {
     history.push('/');
@@ -31,30 +32,16 @@ function Login() {
     axios
       .post(`${URL_API}/auth/signup`, data)
       .then((res) => {
-        toast.success('Success! You are now logged in with your new account!', {
-          position: 'bottom-right',
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
+        dispatch(
+          toastSuccess('Success! You are now logged in with your new account!')
+        );
         localStorage.setItem('token', res.data.token);
         setTimeout(() => {
           window.location = '/';
         }, 3000);
       })
       .catch((err) => {
-        toast.error(`${err.response.data.message}`, {
-          position: 'bottom-right',
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
+        dispatch(toastError(`${err.response.data.message}`));
       });
   }
 

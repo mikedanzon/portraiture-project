@@ -1,8 +1,9 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router';
-import { toast } from 'react-toastify';
 import { URL_API } from '../../helper/url';
+import { toastError, toastSuccess } from '../../redux/actions/toastActions';
 import PackageModal from '../Modals/PackageModal';
 
 function ProjectPackages() {
@@ -14,6 +15,7 @@ function ProjectPackages() {
   const [packageItems, setPackageItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (id) {
@@ -35,15 +37,7 @@ function ProjectPackages() {
       setData(res.data.result);
       setIsLoading(false);
     } catch (error) {
-      toast.error(`${error.response.data.message}`, {
-        position: 'bottom-right',
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      dispatch(toastError(`${error.response.data.message}`));
       setIsLoading(false);
     }
   };
@@ -65,15 +59,7 @@ function ProjectPackages() {
       }
       setIsLoading(false);
     } catch (error) {
-      toast.error(`${error.response.data.message}`, {
-        position: 'bottom-right',
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      dispatch(toastError(`${error.response.data.message}`));
       setIsLoading(false);
     }
   };
@@ -95,27 +81,11 @@ function ProjectPackages() {
     axios
       .put(`${URL_API}/project/addPackage?id=${id}`, bodyFormData, config)
       .then(() => {
-        toast.success('Success added a new package!', {
-          position: 'bottom-right',
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
+        dispatch(toastSuccess('Success added a new package!'));
         fetchData();
       })
       .catch((err) => {
-        toast.error(`${err.response.data.message}`, {
-          position: 'bottom-right',
-          autoClose: 3000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
+        dispatch(toastError(`${err.response.data.message}`));
       });
     setModal(!modal);
   };

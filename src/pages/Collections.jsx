@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import { toast } from 'react-toastify';
 import { URL_API } from '../helper/url';
+import { useDispatch } from 'react-redux';
+import { toastError } from '../redux/actions/toastActions';
 import Header from '../components/Header';
 import HeaderUser from '../components/HeaderUser';
 
@@ -9,6 +10,7 @@ function Collections() {
   const [isLoading, setIsLoading] = useState(false);
   const [dataCollections, setDataCollections] = useState([]);
   const [imageCollections, setImageCollections] = useState([]);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     fetchData();
@@ -21,15 +23,7 @@ function Collections() {
       setDataCollections(res.data.result);
       setIsLoading(false);
     } catch (error) {
-      toast.error(`${error.response.data.message}`, {
-        position: 'bottom-right',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      dispatch(toastError(`${error.response.data.message}`));
       setIsLoading(false);
     }
   };
