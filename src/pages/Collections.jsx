@@ -4,7 +4,7 @@ import { URL_API } from '../helper/url';
 import { useDispatch } from 'react-redux';
 import { toastError, toastSuccess } from '../redux/actions/toastActions';
 import { AiFillEye } from 'react-icons/ai';
-import { BsCardImage, BsCloudDownload } from 'react-icons/bs';
+import { BsCardImage, BsBoxArrowInDown } from 'react-icons/bs';
 import Header from '../components/Header';
 import HeaderUser from '../components/HeaderUser';
 import SimplePopover from '../components/Popover/SimplePopover';
@@ -79,10 +79,10 @@ function Collections() {
             </div>
             <div className="collections-etc">
               <div className="collections-etc-image">
-                <BsCardImage /> 1
+                <BsCardImage size={16} /> 1
               </div>
               <div className="collections-etc-download">
-                <BsCloudDownload /> 2
+                <BsBoxArrowInDown size={16} /> 2
               </div>
               <div className="collections-etc-edit">
                 <SimplePopover
