@@ -4,12 +4,10 @@ import { URL_API } from '../helper/url';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { deletePackage, toastError } from '../redux/actions';
-import { toast } from 'react-toastify';
 import Header from '../components/Header';
 import HeaderUser from '../components/HeaderUser';
 import SimplePopover from '../components/Popover/SimplePopover';
 import Lightbox from 'react-awesome-lightbox';
-import Skeleton from 'react-loading-skeleton';
 
 function Packages() {
   const [dataPackages, setDataPacakges] = useState([]);

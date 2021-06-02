@@ -24,6 +24,8 @@ import Packages from './pages/Packages';
 import PackagesNew from './pages/PackagesNew';
 import PackagesEdit from './pages/PackagesEdit';
 import ProjectDetails from './pages/ProjectDetails';
+import InvoiceNew from './pages/InvoiceNew';
+import InvoiceEdit from './pages/InvoiceEdit';
 import 'react-toastify/dist/ReactToastify.css';
 import './assets/styles/style.scss';
 import 'react-awesome-lightbox/build/style.css';
@@ -81,12 +83,12 @@ function App() {
         <Route exact path="/login" component={Login} />
         <Route exact path="/privacy" component={Privacy} />
         <Route exact path="/download" component={Download} />
+        <Route exact path="/collections" component={Collections} />
         <Route exact path="/collections/new" component={CollectionNew} />
         <Route exact path="/collections/edit" component={CollectionEdit} />
         <Route exact path="/testing" component={Testing} />
         <Route exact path="/dashboard" component={Dashboard} />
         <Route exact path="/profile" component={Profile} />
-        <Route exact path="/collections" component={Collections} />
         <Route exact path="/projects/new" component={ProjectNew} />
         <Route exact path="/projects/edit/:id" component={ProjectEdit} />
         <Route exact path="/projects/details/:id" component={ProjectDetails} />
@@ -96,6 +98,8 @@ function App() {
         <Route exact path="/packages" component={Packages} />
         <Route exact path="/packages/new" component={PackagesNew} />
         <Route exact path="/packages/edit/:id" component={PackagesEdit} />
+        <Route exact path="/invoice/new/:id" component={InvoiceNew} />
+        <Route exact path="/invoice/edit/:id" component={InvoiceEdit} />
       </Switch>
     </>
   );

@@ -43,7 +43,6 @@ function ProjectPackages() {
   };
 
   const fetchPackage = async (idPackage) => {
-    setIsLoading(true);
     try {
       var config = {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
@@ -57,10 +56,8 @@ function ProjectPackages() {
         getFullPrice(res.data.result.packageItems);
         setPackageItems(res.data.result.packageItems);
       }
-      setIsLoading(false);
     } catch (error) {
       dispatch(toastError(`${error.response.data.message}`));
-      setIsLoading(false);
     }
   };
 

@@ -8,12 +8,14 @@ import { toastError } from '../redux/actions/toastActions';
 import Header from '../components/Header';
 import axios from 'axios';
 import ProjectPackages from '../components/DetailsPage/ProjectPackages';
+import ProjectInvoice from '../components/DetailsPage/ProjectInvoice';
 
 function ProjectDetails() {
   const { id } = useParams();
   const [page, setPage] = useState(null);
   const [project, setProject] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const [date, setDate] = useState('');
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -28,6 +30,7 @@ function ProjectDetails() {
       };
       var res = await axios.get(`${URL_API}/project/one?id=${id}`, config);
       setProject(res.data.result);
+      setDate(res.data.result.date.split('-').reverse().join('-'));
       setIsLoading(false);
     } catch (error) {
       dispatch(toastError(`${error.response.data.message}`));
@@ -59,7 +62,7 @@ function ProjectDetails() {
         <div className="petail-header-menu-second">
           <div className="petail-header-text">
             <div className="petail-header-text-name">{project.clientName}</div>
-            <div className="petail-header-text-date">{project.date}</div>
+            <div className="petail-header-text-date">{date}</div>
           </div>
           <div className="petail-header-link">
             <Link to={`/projects/edit/${id}`}>Edit Project</Link>
@@ -95,7 +98,9 @@ function ProjectDetails() {
         {page === 'rundown' ? (
           <div className="petail-content">Rundown still pending</div>
         ) : page === 'invoice' ? (
-          <div className="petail-content">Invoice still pending</div>
+          <div className="petail-content">
+            <ProjectInvoice />
+          </div>
         ) : (
           <div className="petail-content">
             <ProjectPackages id={project.id_package} />

@@ -3,9 +3,10 @@ import axios from 'axios';
 import { URL_API } from '../helper/url';
 import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
-import { MdClose } from 'react-icons/md';
 import { useDispatch } from 'react-redux';
 import { deleteProject, toastError } from '../redux/actions';
+import { MdClose, MdDone } from 'react-icons/md';
+import { HiDownload } from 'react-icons/hi';
 import Header from '../components/Header';
 import HeaderUser from '../components/HeaderUser';
 import SimplePopover from '../components/Popover/SimplePopover';
@@ -13,6 +14,7 @@ import SimplePopover from '../components/Popover/SimplePopover';
 function Projects() {
   const [isLoading, setIsLoading] = useState(false);
   const [projects, setProjects] = useState([]);
+  const [packagesItems, setPackagesItems] = useState([]);
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -26,13 +28,40 @@ function Projects() {
       var config = {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       };
-      var res = await axios.get(`${URL_API}/project/?page=0&limit=2`, config);
-      setProjects(res.data.result);
+      var res = await axios.get(`${URL_API}/project/?page=0`, config);
+      let project = await Promise.all(
+        res.data.result.map(async (data) => {
+          if (data.id_package) {
+            let packages = await fetchPackage(data.id_package);
+            return {
+              ...data,
+              packages,
+            };
+          }
+          return data;
+        })
+      );
+      console.log(project);
+      setProjects(project);
       setIsLoading(false);
     } catch (error) {
       dispatch(toastError(`${error.response.data.message}`));
       setIsLoading(false);
     }
+  };
+
+  const fetchPackage = (id) => {
+    var config = {
+      headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+    };
+    return axios
+      .get(`${URL_API}/package/one?packageId=${id}`, config)
+      .then((res) => {
+        return res.data.result;
+      })
+      .catch((err) => {
+        dispatch(toastError(`${err.response.data.message}`));
+      });
   };
 
   const onEditClick = (id) => {
@@ -49,9 +78,13 @@ function Projects() {
   const projectItems = () => {
     return projects.map((val, index) => {
       return (
-        <div className="planned-items" key={index}>
+        <div className="content-items" key={index}>
           <div className="item-header">
-            <div className="item-header-text">Planned</div>
+            {val.isCompleted ? (
+              <div className="item-header-completed">Completed</div>
+            ) : (
+              <div className="item-header-planned">Planned</div>
+            )}
             <div className="item-header-button">
               <SimplePopover
                 onEditClick={() => onEditClick(val.id)}
@@ -61,19 +94,43 @@ function Projects() {
             </div>
           </div>
           <div className="item-name">{val.clientName}</div>
-          <div className="item-date">{val.date}</div>
+          <div className="item-date">
+            {val.date.split('-').reverse().join('-')}
+          </div>
           <div className="item-content">
-            <div className="item-left-wrapper">
-              <div className="item-packages">
-                <div className="item-packages-name">
-                  <MdClose size={19} className="mdclose-styling" /> Packages
+            {val.id_package ? (
+              <div className="item-left-wrapper">
+                <div className="item-packages">
+                  <div className="item-packages-name">
+                    <MdDone size={19} className="mdclose-styling" /> Packages
+                  </div>
+                  <div className="item-packages-link">
+                    <Link>
+                      <HiDownload size={20} /> Download pdf
+                    </Link>
+                  </div>
                 </div>
-                <div className="item-packages-link">
-                  <Link>+ Add new package</Link>
+                <div className="item-packages-content">
+                  {val.packages.packageItems.map((val) => {
+                    return <li>{val.itemName}</li>;
+                  })}
                 </div>
               </div>
-              <div className="item-packages-content">No package created</div>
-            </div>
+            ) : (
+              <div className="item-left-wrapper-empty">
+                <div className="item-packages">
+                  <div className="item-packages-name">
+                    <MdClose size={19} className="mdclose-styling" /> Packages
+                  </div>
+                  <div className="item-packages-link">
+                    <Link to={`/projects/details/${val.id}`}>
+                      + Add new package
+                    </Link>
+                  </div>
+                </div>
+                <div className="item-packages-content">No package created</div>
+              </div>
+            )}
             <div className="item-right-wrapper">
               <div className="item-rundown">
                 <div className="item-rundown-name">
@@ -93,6 +150,7 @@ function Projects() {
               </div>
             </div>
           </div>
+          <div className="projects-border"></div>
         </div>
       );
     });
@@ -122,9 +180,7 @@ function Projects() {
           headerSearchText="Search Projects"
           onClick={onClickFilter}
         />
-        <div className="projects-planned">{projectItems()}</div>
-        <div className="projects-border"></div>
-        <div className="projects-completed"></div>
+        <div className="projects-content">{projectItems()}</div>
       </div>
     </>
   );

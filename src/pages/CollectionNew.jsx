@@ -63,17 +63,18 @@ function CollectionNew() {
 
   const onSaveTheme = () => {
     var bodyFormData = new FormData();
-    bodyFormData.append('id_user', auth.id);
     bodyFormData.append('title', title);
     bodyFormData.append('description', desc);
     bodyFormData.append('date', date);
+    bodyFormData.append('image', image[0]);
+    bodyFormData.append('theme', theme);
     axios({
       method: 'post',
       url: `${URL_API}/collection`,
       data: bodyFormData,
       headers: {
         'Content-Type': 'multipart/form-data',
-        // Authorization: `Bearer ${localStorage.getItem('token')}`,
+        Authorization: `Bearer ${localStorage.getItem('token')}`,
       },
     })
       .then(() => {
@@ -91,18 +92,18 @@ function CollectionNew() {
       .then((res) => {
         var response = res.data.result;
         var potong = response.slice(-1).pop();
-        var imageFormDara = new FormData();
-        imageFormDara.append('id_collection', potong.id);
+        var imageFormData = new FormData();
+        imageFormData.append('id_collection', potong.id);
         for (var i = 0; i < image.length; i++) {
-          imageFormDara.append('image', image[i]);
+          imageFormData.append('image', image[i]);
         }
         axios({
           method: 'post',
           url: `${URL_API}/collectionImages`,
-          data: imageFormDara,
+          data: imageFormData,
           headers: {
             'Content-Type': 'multipart/form-data',
-            // Authorization: `Bearer ${localStorage.getItem('token')}`,
+            Authorization: `Bearer ${localStorage.getItem('token')}`,
           },
         })
           .then(() => {
@@ -173,17 +174,26 @@ function CollectionNew() {
         <div className="cnew-main">
           <div className="cnew-theme">
             <div className="cnew-theme-1">
-              <span className="theme-pointer pb-2" onClick={() => setTheme(1)}>
+              <span
+                className="theme-pointer pb-2"
+                onClick={() => setTheme('Classic')}
+              >
                 <img src={ThemeClass} alt="classTheme" />
               </span>
             </div>
             <div className="cnew-theme-2 pb-2">
-              <span className="theme-pointer" onClick={() => setTheme(2)}>
+              <span
+                className="theme-pointer"
+                onClick={() => setTheme('Minimalism')}
+              >
                 <img src={ThemeMin} alt="classTheme" />
               </span>
             </div>
             <div className="cnew-theme-3 pb-2">
-              <span className="theme-pointer" onClick={() => setTheme(3)}>
+              <span
+                className="theme-pointer"
+                onClick={() => setTheme('Darkmode')}
+              >
                 <img src={ThemeDark} alt="classTheme" />
               </span>
             </div>

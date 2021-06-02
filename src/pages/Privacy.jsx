@@ -37,34 +37,6 @@ function Privacy() {
                 Next
               </Button>
             </Form>
-          ) : privacy === 'passmail' ? (
-            <Form onSubmit={handleSubmit}>
-              <Form.Group size="lg" controlId="passmail">
-                <Form.Label>
-                  Please enter the password provided by
-                  <br />
-                  Justin Studio to download this photo collection
-                </Form.Label>
-                <Form.Control
-                  autoFocus
-                  type="email"
-                  value={email}
-                  placeholder="Email"
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-              </Form.Group>
-              <Form.Group size="lg" controlId="email">
-                <Form.Control
-                  type="password"
-                  value={password}
-                  placeholder="Collection Password"
-                  onChange={(e) => setPassword(e.target.value)}
-                />
-              </Form.Group>
-              <Button size="lg" type="submit">
-                Next
-              </Button>
-            </Form>
           ) : (
             <Form onSubmit={handleSubmit}>
               <Form.Group size="lg" controlId="email">
