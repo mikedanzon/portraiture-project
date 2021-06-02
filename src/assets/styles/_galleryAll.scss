@@ -5,6 +5,12 @@
 	font-weight: bold;
 	color: #000000;
 	text-align: center;
+	a {
+		color: #000000;
+	}
+	a:hover {
+		color: #c2a47e;
+	}
 }
 .galleryall-cards-container {
 	display: flex;
