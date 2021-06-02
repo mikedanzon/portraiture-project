@@ -21,7 +21,7 @@ function PackagesNew() {
     {
       itemName: '',
       price: 0,
-      // categories: null,
+      category: null,
     },
   ]);
   const dispatch = useDispatch();
@@ -64,6 +64,7 @@ function PackagesNew() {
     for (var i = 0; i < inputFields.length; i++) {
       itemFormData.append('itemName', inputFields[i].itemName);
       itemFormData.append('price', inputFields[i].price);
+      itemFormData.append('id_category', inputFields[i].category);
     }
     axios({
       method: 'post',
@@ -194,11 +195,11 @@ function PackagesNew() {
                           onChange={(event) => handleInputChange(index, event)}
                         >
                           <option hidden>Select Category</option>
-                          <option value="photoSession">Photo Session</option>
-                          <option value="videography">Videography</option>
-                          <option value="print">Print</option>
-                          <option value="digital">Digital</option>
-                          <option value="other">Other</option>
+                          <option value="1">Photo Session</option>
+                          <option value="2">Videography</option>
+                          <option value="3">Print</option>
+                          <option value="4">Digital</option>
+                          <option value="5">Other</option>
                         </select>
                       </div>
                     </div>

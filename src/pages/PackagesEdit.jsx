@@ -23,7 +23,7 @@ function PackagesEdit() {
     {
       itemName: '',
       price: 0,
-      // categories: null,
+      category: null,
     },
   ]);
   const dispatch = useDispatch();
@@ -46,7 +46,21 @@ function PackagesEdit() {
       setDesc(res.data.result.description);
       setImage(res.data.result.image);
       setPackageItemId(res.data.result.id_package);
-      setInputFields(res.data.result.packageItems);
+      var fields = res.data.result.packageItems;
+      for (var i = 0; i < fields.length; i++) {
+        if (fields[i].category.name === 'Photo Session') {
+          fields[i].category = 1;
+        } else if (fields[i].category.name === 'Videography') {
+          fields[i].category = 2;
+        } else if (fields[i].category.name === 'Print') {
+          fields[i].category = 3;
+        } else if (fields[i].category.name === 'Digital') {
+          fields[i].category = 4;
+        } else if (fields[i].category.name === 'Other') {
+          fields[i].category = 5;
+        }
+      }
+      setInputFields(fields);
       setIsLoading(false);
     } catch (error) {
       dispatch(toastError(`${error.response.data.message}`));
@@ -92,6 +106,7 @@ function PackagesEdit() {
     for (var i = 0; i < inputFields.length; i++) {
       itemFormData.append('itemName', inputFields[i].itemName);
       itemFormData.append('price', inputFields[i].price);
+      itemFormData.append('id_category', inputFields[i].category);
     }
     itemFormData.append('packageId', id);
     itemFormData.append('packageItemId', packageItemId);
@@ -248,11 +263,11 @@ function PackagesEdit() {
                           onChange={(event) => handleInputChange(index, event)}
                         >
                           <option hidden>Select Category</option>
-                          <option value="photoSession">Photo Session</option>
-                          <option value="videography">Videography</option>
-                          <option value="print">Print</option>
-                          <option value="digital">Digital</option>
-                          <option value="other">Other</option>
+                          <option value="1">Photo Session</option>
+                          <option value="2">Videography</option>
+                          <option value="3">Print</option>
+                          <option value="4">Digital</option>
+                          <option value="5">Other</option>
                         </select>
                       </div>
                     </div>
