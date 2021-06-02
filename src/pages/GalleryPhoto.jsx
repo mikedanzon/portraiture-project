@@ -2,14 +2,17 @@ import React from 'react'
 import Dummy2 from '../assets/img/dummy-img/dummy2.png';
 import Dummy3 from '../assets/img/dummy-img/dummy3.png';
 import { FiSearch } from 'react-icons/fi';
+import { Link } from 'react-router-dom';
 
 function GalleryPhoto() {
 	return (
 		<>
 		<div className="galleryphoto-wrapper">
 			<div className="gallery-head">
-				<img className="gallery-logo" src={Dummy2} alt=""/>
-				<div className="logo-name">Justin Studio</div>
+				<Link className="gallery-link" to="/dashboard">
+					<img className="gallery-logo" src={Dummy2} alt=""/>
+					<div className="logo-name">Justin Studio</div>
+				</Link>
 				<div className="gallery-search">
 	          		<div className="search-input">
 			            <input

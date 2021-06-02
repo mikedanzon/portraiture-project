@@ -12,15 +12,10 @@
   }
 
   .packages-main {
-    display: flex;
-    justify-content: space-between;
     column-gap: 10px;
-    flex-flow: row wrap;
-    flex-direction: row;
 
     .data-item-list {
       align-items: center;
-      flex-basis: 30%;
       padding-bottom: 25px;
 
       .data-item-content {
