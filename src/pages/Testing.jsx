@@ -1,10 +1,10 @@
 import React from 'react';
-import TemplateClassic from '../components/TemplateClassic';
+import TemplateMinimalist from '../components/TemplateMinimalist';
 
 function Testing() {
   return (
     <>
-      < TemplateClassic />
+      <TemplateMinimalist />
     </>
   );
 }

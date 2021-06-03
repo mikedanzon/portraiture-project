@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import axios from 'axios';
-import Dummy from '../assets/img/dummy-img/classic-background.png';
+import Dummy from '../assets/img/dummy-img/minimalist-background.png';
 import Dummy2 from '../assets/img/dummy-img/dummy2.png';
 import Height from '../assets/img/dummy-img/dummy-height.png';
 import { BsBoxArrowInDown } from 'react-icons/bs';
@@ -8,7 +8,7 @@ import { FaRegShareSquare } from 'react-icons/fa';
 import { useSelector } from 'react-redux';
 import { URL_API } from '../helper/url';
 
-function TemplateClassic() {
+function TemplateMinimalist() {
   const auth = useSelector((state) => state.auth);
   const [images, setImages] = useState([]);
 
@@ -73,8 +73,8 @@ function TemplateClassic() {
   };
 
 	return (
-		<div className="classic-wrapper">
-			<div className="classic-header">
+		<div className="minimalist-wrapper">
+			<div className="minimalist-header">
 				<div className="ch-background">
 					<img src={Dummy} alt=""/>
 				</div>
@@ -92,7 +92,7 @@ function TemplateClassic() {
 					<div className="ch-desc">Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas expedita eos nisi officiis.</div>
 				</div>
 			</div>
-			<div className="classic-main">
+			<div className="minimalist-main">
 				<div className="cm-title-studioname-info">
 					<div className="cm-title-studioname">
 						<div className="cm-title">Leon & Stella</div>
@@ -116,7 +116,7 @@ function TemplateClassic() {
 					<img src={Dummy} alt=""/>*/}
 				</div>
 			</div>
-			<div className="classic-footer">
+			<div className="minimalist-footer">
 				<div className="footer-text-top">Copyright &#xA9; 2021 <span>{auth.businessName}</span></div>
 				<div className="footer-text-bottom">powered by <span>portraiture</span></div>
 			</div>
@@ -124,4 +124,4 @@ function TemplateClassic() {
 	)
 }
 
-export default TemplateClassic
+export default TemplateMinimalist;

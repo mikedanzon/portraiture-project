@@ -1,6 +1,6 @@
-.classic-wrapper {
+.minimalist-wrapper {
 	padding-bottom: 100px;
-	.classic-header {
+	.minimalist-header {
 		display: flex;
 		.ch-background {
 			flex-basis: 60%;
@@ -52,7 +52,7 @@
 			}
 		}
 	}
-	.classic-main {
+	.minimalist-main {
 		padding: 80px 100px;
 		.cm-title-studioname-info {
 			display: flex;
@@ -76,7 +76,9 @@
 	}
 	.cm-cards-wrapper {
 			display: grid;
-			grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+			grid-template-columns: repeat(3, auto);
+			grid-template-rows: repeat(3, auto);
+			justify-items: stretch;
 			gap: 30px;
 			margin-top: 50px;
 			// grid-auto-columns: minmax(100px, auto)
@@ -86,7 +88,7 @@
 				object-fit: cover;
 			}
 		}
-	.classic-footer {
+	.minimalist-footer {
 		text-align: center;
 		.footer-text-top {
 			font-size: 14px;
