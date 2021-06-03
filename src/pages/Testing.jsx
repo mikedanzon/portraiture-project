@@ -1,11 +1,12 @@
 import React from 'react';
+import TemplateClassic from '../components/TemplateClassic';
 
 function Testing() {
   return (
-    <div>
-      
-    </div>
-  )
+    <>
+      < TemplateClassic />
+    </>
+  );
 }
 
 export default Testing;

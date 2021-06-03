@@ -15,15 +15,12 @@ function GalleryAll() {
   const dispatch = useDispatch();
 
 	useEffect(() => {
-    	fetchDataGallery();
+    	fetchDataGalleryAll();
   	}, []);
 
-	const fetchDataGallery = async () => {
+	const fetchDataGalleryAll = async () => {
     // setIsLoading(true);
     try {
-      // var config = {
-      //   headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
-      // };
       var res = await axios.get(`${URL_API}/collection`);
       setImage(res.data.result);
       // setIsLoading(false);
@@ -34,11 +31,11 @@ function GalleryAll() {
     }
   };
 
-  const galleryImage = () => {
+  const galleryAllImage = () => {
     return image.map((val, index) => {
       return (
         <div className="galleryall-cards" key={index}>
-			<img className="cards-img" src={val.cover} alt="no image found"/>
+			<img src={val.cover} alt="no image found"/>
 			<div className="cards-text">
 				<div className="cards-text1">{val.title}</div>
 				<div className="cards-text2">{auth.businessName}</div>
@@ -53,7 +50,7 @@ function GalleryAll() {
 		<HeaderHome/>
 		<div className="galleryall-wrapper">
 			<div className="gallery-title">Explore <Link to="/gallery/photographer"><span>Photographer Gallery</span></Link></div>
-			<div className="galleryall-cards-container">{galleryImage()}</div>
+			<div className="galleryall-cards-container">{galleryAllImage()}</div>
 			<div className="galleryall-pagination">pagination</div>
 		</div>	
 		<Footer/>
