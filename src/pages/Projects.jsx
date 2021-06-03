@@ -28,7 +28,7 @@ function Projects() {
       var config = {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       };
-      var res = await axios.get(`${URL_API}/project/?page=0`, config);
+      var res = await axios.get(`${URL_API}/project`, config);
       let project = await Promise.all(
         res.data.result.map(async (data) => {
           if (data.id_package) {
@@ -137,7 +137,9 @@ function Projects() {
                   <MdClose size={19} className="mdclose-styling" /> Rundown
                 </div>
                 <div className="item-rundown-link">
-                  <Link>+ Add new rundown</Link>
+                  <Link to={`/projects/details/${val.id}`}>
+                    + Add new rundown
+                  </Link>
                 </div>
               </div>
               <div className="item-invoice">
@@ -145,7 +147,9 @@ function Projects() {
                   <MdClose size={19} className="mdclose-styling" /> Invoice
                 </div>
                 <div className="item-invoice-link">
-                  <Link>+ Add new invoice</Link>
+                  <Link to={`/projects/details/${val.id}`}>
+                    + Add new invoice
+                  </Link>
                 </div>
               </div>
             </div>

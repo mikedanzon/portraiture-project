@@ -32,7 +32,12 @@ function ProjectPackages() {
       var res = await axios.get(`${URL_API}/project/one?id=${id}`, config);
       if (res.data.result.id_package) {
         setIsPackage(true);
-        fetchPackage(res.data.result.id_package);
+        let packages = await fetchPackage(res.data.result.id_package);
+        setPackageData(packages);
+        if (packages.packageItems) {
+          getFullPrice(packages.packageItems);
+          setPackageItems(packages.packageItems);
+        }
       }
       setData(res.data.result);
       setIsLoading(false);
@@ -42,23 +47,18 @@ function ProjectPackages() {
     }
   };
 
-  const fetchPackage = async (idPackage) => {
-    try {
-      var config = {
-        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
-      };
-      var res = await axios.get(
-        `${URL_API}/package/one?packageId=${idPackage}`,
-        config
-      );
-      setPackageData(res.data.result);
-      if (res.data.result.packageItems) {
-        getFullPrice(res.data.result.packageItems);
-        setPackageItems(res.data.result.packageItems);
-      }
-    } catch (error) {
-      dispatch(toastError(`${error.response.data.message}`));
-    }
+  const fetchPackage = (idPackage) => {
+    var config = {
+      headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+    };
+    return axios
+      .get(`${URL_API}/package/one?packageId=${idPackage}`, config)
+      .then((res) => {
+        return res.data.result;
+      })
+      .catch((err) => {
+        dispatch(toastError(`${err.response.data.message}`));
+      });
   };
 
   const getFullPrice = (x) => {

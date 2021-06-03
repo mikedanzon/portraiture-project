@@ -5,14 +5,17 @@ import { useDispatch } from 'react-redux';
 import { toastError, toastSuccess } from '../redux/actions/toastActions';
 import { AiFillEye } from 'react-icons/ai';
 import { BsCardImage, BsBoxArrowInDown } from 'react-icons/bs';
+import { useHistory } from 'react-router';
 import Header from '../components/Header';
 import HeaderUser from '../components/HeaderUser';
 import SimplePopover from '../components/Popover/SimplePopover';
-import { useHistory } from 'react-router';
+import Lightbox from 'react-awesome-lightbox';
 
 function Collections() {
   const [isLoading, setIsLoading] = useState(false);
   const [dataCollections, setDataCollections] = useState([]);
+  const [preview, setPreview] = useState([]);
+  const [images, setImages] = useState([]);
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -58,20 +61,41 @@ function Collections() {
       });
   };
 
+  const onImageClick = (image) => {
+    let colImages = [];
+    for (var i = 0; i < image.length; i++) {
+      if (i % 2 !== 0) {
+        colImages.push({ url: image[i].image, title: `image${i}` });
+      }
+    }
+    console.log(colImages);
+    setImages(colImages);
+  };
+
   const collectionItems = () => {
     return dataCollections.map((val, index) => {
       return (
         <div className="data-item-list" key={index}>
           <div className="collections-top">
             <div className="collections-image">
-              <img src={val.cover} alt="imageCollections" />
+              <img
+                src={val.cover}
+                alt="imageCollections"
+                onClick={() => onImageClick(val.collectionImages)}
+                className="cursor-pointer"
+              />
             </div>
           </div>
           <div className="collections-bottom">
             <div className="collections-text-preview">
               <div className="collections-text">{val.title}</div>
               <div className="collections-preview">
-                <AiFillEye /> Preview
+                <span
+                  onClick={() => onImageClick(val.collectionImages)}
+                  className="cursor-pointer"
+                >
+                  <AiFillEye /> Preview
+                </span>
               </div>
             </div>
             <div className="collections-date">
@@ -113,6 +137,9 @@ function Collections() {
 
   return (
     <>
+      {images.length ? (
+        <Lightbox images={images} onClose={() => setImages([])} />
+      ) : null}
       <Header />
       <div className="collections-wrapper">
         <HeaderUser

@@ -48,7 +48,7 @@ function ProjectInvoice() {
         ) : null}
         <div className="projects-invoice">
           <div className="projects-invoice-text">
-            <Link>+ Add new invoice</Link>
+            <Link to={`/invoice/new/${id}`}>+ Add new invoice</Link>
           </div>
         </div>
       </div>
