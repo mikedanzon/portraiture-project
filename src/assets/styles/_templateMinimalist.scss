@@ -1,7 +1,6 @@
 .minimalist-wrapper {
-	padding-bottom: 100px;
 	.minimalist-header {
-		display: flex;
+		// height: 100vh;
 		.ch-background {
 			flex-basis: 60%;
 			img {
@@ -11,13 +10,7 @@
 			}
 		}
 		.ch-info {
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			flex-basis: 40%;
-			padding-top: 100px;
-			padding-bottom: 200px;
-			justify-content: space-between;
+			text-align: center;
 			.ch-logo-studioname {
 				.ch-logo {
 					padding-bottom: 10px;
@@ -47,13 +40,16 @@
 			.ch-desc {
 				font-size: 14px;
 				color: #000000;
-				padding: 0px 150px;
 				text-align: -webkit-center;
+				padding: 0px 50px;
+			}
+			.arrow-open {
+				padding-top: 30px;
+				cursor: pointer;
 			}
 		}
 	}
 	.minimalist-main {
-		padding: 80px 100px;
 		.cm-title-studioname-info {
 			display: flex;
 			flex-grow: 1;
@@ -70,22 +66,36 @@
 				}
 			}
 			.cm-info {
-
+				font-size: 14px;
 			}
 		}
 	}
 	.cm-cards-wrapper {
-			display: grid;
+			// display: grid;
 			grid-template-columns: repeat(3, auto);
 			grid-template-rows: repeat(3, auto);
 			justify-items: stretch;
-			gap: 30px;
-			margin-top: 50px;
+			// gap: 30px;
 			// grid-auto-columns: minmax(100px, auto)
+			flex-wrap: wrap;
+			// column-width: 350px;
+			max-width: 1300px;
+			margin-right: auto;
+			margin-left: auto;
 			img {
 				height: auto;
 				width: 100%;
 				object-fit: cover;
+				display: inline-flex;
+				margin-bottom: 20px;
+			}
+		}
+		.arrow-back {
+			// cursor: pointer;
+			text-align:center;
+			padding: 50px 0px;
+			a:hover {
+				cursor: pointer;
 			}
 		}
 	.minimalist-footer {
@@ -105,6 +115,94 @@
 			}
 		}
 	} 
+	@media (max-width: 650px) {
+		.ch-info {
+			display: flex;
+			flex-direction: column;
+			padding-top: 30px;
+		}
+		.ch-title-date {
+			padding-top: 50px;
+			padding-bottom: 50px;
+		}
+		.ch-logo-studioname {
+			align-self: center;
+		}
+		.ch-title-date {
+			align-self: center;
+		}
+		.minimalist-main {
+			padding: 30px 20px;
+		}
+		.cm-cards-wrapper {
+			margin-top: 30px;
+			column-width: 300px;
+		}
+		.cm-title-studioname {
+			flex-basis: 50%;
+		}
+	}
+	@media (min-width: 650px) and (max-width: 900px) {
+		.ch-info {
+			padding-top: 50px;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			flex-basis: 40%;
+			justify-content: space-between;
+		}
+		.ch-desc {
+			padding: 0px 150px;
+		}
+		.minimalist-main {
+			padding: 50px 100px;
+		}
+		.cm-cards-wrapper {
+			margin-top: 50px;
+			column-width: 300px;
+		}
+		.cm-info {
+			display: flex;
+			.share {
+				padding-right: 20px;
+			}
+		}
+		.ch-title-date {
+			padding-top: 50px;
+			padding-bottom: 50px;
+		}
+	}
+	@media (min-width: 900px) {
+		.ch-info {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			flex-basis: 40%;
+			justify-content: space-between;
+			padding-top: 100px;
+			padding-bottom: 100px;
+		}
+		.minimalist-header {
+			display: flex;
+		}
+		.ch-desc {
+			padding: 0px 150px;
+		}
+		.minimalist-main {
+			padding: 50px 100px;
+		}
+		.cm-cards-wrapper {
+			margin-top: 50px;
+			column-width: 350px;
+		}
+		.cm-info {
+			display: flex;
+			.share {
+				padding-right: 20px;
+			}
+		}
+	}
 }
+
 			
 		
