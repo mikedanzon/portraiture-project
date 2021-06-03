@@ -1,31 +1,35 @@
 import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router';
 import { URL_API } from '../helper/url';
 import { Fragment } from 'react';
+import {
+  toastError,
+  toastInfo,
+  toastSuccess,
+} from '../redux/actions/toastActions';
 import { BsTrash } from 'react-icons/bs';
 import HeaderProps from '../components/HeaderProps';
-import { toastError } from '../redux/actions/toastActions';
-import axios from 'axios';
 
 function InvoiceNew() {
   const { id } = useParams();
   const [hidePackage, setHidePackage] = useState(false);
-  const [projects, setProjects] = useState({});
   const [clientName, setClientName] = useState('');
   const [clientAddress, setClientAddress] = useState('');
   const [issuedDate, setIssuedDate] = useState('');
   const [dueDate, setDueDate] = useState('');
-  const [isPackage, setIsPackage] = useState(false);
-  const [packages, setPackages] = useState({});
   const [packageItems, setPackageItems] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [paid, setPaid] = useState(0);
+  const [subtotal, setSubtotal] = useState(0);
+  const [amountdue, setAmountdue] = useState(0);
   const [inputFields, setInputFields] = useState([
     {
-      itemName: '',
-      quantity: 0,
-      price: 0,
-      amount: 0,
+      itemName: null,
+      quantity: null,
+      price: null,
+      amount: null,
     },
   ]);
   const auth = useSelector((state) => state.auth);
@@ -35,6 +39,24 @@ function InvoiceNew() {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    let total = 0;
+    for (let i = 0; i < inputFields.length; i++) {
+      total += inputFields[i].amount;
+    }
+    setSubtotal(total);
+  }, [inputFields]);
+
+  useEffect(() => {
+    let total = subtotal - paid;
+    setAmountdue(total);
+  }, [subtotal]);
+
+  useEffect(() => {
+    let total = subtotal - paid;
+    setAmountdue(total);
+  }, [paid]);
+
   const fetchData = async () => {
     setIsLoading(true);
     try {
@@ -43,16 +65,11 @@ function InvoiceNew() {
       };
       var res = await axios.get(`${URL_API}/project/one?id=${id}`, config);
       if (res.data.result.id_package) {
-        setIsPackage(true);
         let packages = await fetchPackages(res.data.result.id_package);
-        setPackages(packages);
         setPackageItems(packages.packageItems);
-        console.log(packages);
       }
-      setProjects(res.data.result);
       setClientName(res.data.result.clientName);
       setClientAddress(res.data.result.clientAddress);
-      console.log(res.data.result);
       setIsLoading(false);
     } catch (error) {
       dispatch(toastError(`${error.response.data.message}`));
@@ -80,10 +97,12 @@ function InvoiceNew() {
       values[index].itemName = event.target.value;
     } else if (event.target.name === 'quantity') {
       values[index].quantity = event.target.value;
+      values[index].amount = values[index].quantity * values[index].price;
     } else if (event.target.name === 'price') {
       values[index].price = event.target.value;
+      values[index].amount = values[index].quantity * values[index].price;
     } else {
-      values[index].amount = event.target.value;
+      values[index].amount = values[index].quantity * values[index].price;
     }
     setInputFields(values);
   };
@@ -98,6 +117,56 @@ function InvoiceNew() {
     const values = [...inputFields];
     values.splice(index, 1);
     setInputFields(values);
+  };
+
+  const onClickProceed = () => {
+    let data = [...inputFields];
+    for (let i = 0; i < packageItems.length; i++) {
+      data.push({
+        itemName: packageItems[i].itemName,
+        quantity: 1,
+        price: packageItems[i].price,
+        amount: packageItems[i].price,
+      });
+    }
+    setInputFields(data);
+  };
+
+  const onClickSave = () => {
+    var itemFormData = new FormData();
+    console.log(inputFields);
+    for (var i = 0; i < inputFields.length; i++) {
+      itemFormData.append('name', inputFields[i].itemName);
+      itemFormData.append('quantity', inputFields[i].quantity);
+      itemFormData.append('price', inputFields[i].price);
+    }
+    axios
+      .post(`${URL_API}/detailInvoice`, itemFormData)
+      .then(() => {
+        dispatch(toastInfo('Please wait connecting to database'));
+        createInvoice();
+      })
+      .catch((err) => {
+        dispatch(toastError(`${err.response.data.message}`));
+      });
+  };
+
+  const createInvoice = () => {
+    var bodyFormData = new FormData();
+    bodyFormData.append('issuedDate', issuedDate);
+    bodyFormData.append('dueDate', dueDate);
+    bodyFormData.append('isPaid', false);
+    bodyFormData.append('subtotal', subtotal);
+    bodyFormData.append('paidCost', paid);
+    bodyFormData.append('amountDue', amountdue);
+    axios
+      .post(`${URL_API}/invoice?id_project=${id}`, bodyFormData)
+      .then(() => {
+        dispatch(toastSuccess('Success created invoice!'));
+      })
+      .catch((err) => {
+        dispatch(toastError(`${err.response.data.message}`));
+      });
   };
 
   if (isLoading) {
@@ -152,7 +221,6 @@ function InvoiceNew() {
                 <input
                   type="text"
                   className="custom-form-port"
-                  placeholder="e.g. Leon Handoko"
                   value={clientName}
                   onChange={(e) => setClientName(e.target.value)}
                 />
@@ -233,10 +301,10 @@ function InvoiceNew() {
                             id="amount"
                             name="amount"
                             value={inputField.amount}
-                            onChange={(event) =>
-                              handleInputChange(index, event)
-                            }
                           />
+                          <span onClick={() => handleRemoveFields(index)}>
+                            <BsTrash />
+                          </span>
                         </div>
                       </Fragment>
                     </div>
@@ -250,15 +318,22 @@ function InvoiceNew() {
             </div>
             <div className="invoice-items-subtotal">
               <div className="invoice-items-subtotal-text">Subtotal</div>
-              <div className="invoice-items-subtotal-total">Rp.0</div>
+              <div className="invoice-items-subtotal-total">Rp.{subtotal}</div>
             </div>
             <div className="invoice-items-paid">
               <div className="invoice-items-paid-text">Paid</div>
-              <div className="invoice-items-paid-total">Rp.0</div>
+              <div className="invoice-items-paid-total">
+                Rp.
+                <input
+                  type="number"
+                  value={paid}
+                  onChange={(e) => setPaid(e.target.value)}
+                />
+              </div>
             </div>
             <div className="invoice-items-due">
               <div className="invoice-items-due-text">Amount Due</div>
-              <div className="invoice-items-due-total">Rp.0</div>
+              <div className="invoice-items-due-total">Rp.{amountdue}</div>
             </div>
           </div>
           <div className="invoice-footer">
@@ -274,9 +349,6 @@ function InvoiceNew() {
         <div className="invoice-right">
           <div className="invoice-right-header">
             <div className="invoice-right-header-text">Project</div>
-            <div className="invoice-right-header-delete">
-              <BsTrash size={16} />
-            </div>
           </div>
           <div className="invoice-right-name">Leon & Stella</div>
           <div className="invoice-right-date">28 June 2021</div>
@@ -306,12 +378,12 @@ function InvoiceNew() {
                 })}
               </div>
               <div className="invoice-right-content-button">
-                <button>Proceed</button>
+                <button onClick={onClickProceed}>Proceed</button>
               </div>
             </div>
           </div>
           <div className="invoice-right-button">
-            <button>Create Invoice</button>
+            <button onClick={onClickSave}>Create Invoice</button>
           </div>
         </div>
       </div>

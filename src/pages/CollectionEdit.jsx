@@ -1,37 +1,44 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { Button, Form, Breadcrumb } from 'react-bootstrap';
 import { useDropzone } from 'react-dropzone';
 import { AiOutlineCloudUpload, AiFillEye } from 'react-icons/ai';
 import { BiShow } from 'react-icons/bi';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import Header from '../components/Header';
 import ThemeClass from '../assets/img/collections/theme-classic.png';
 import ThemeMin from '../assets/img/collections/theme-minimalism.png';
 import ThemeDark from '../assets/img/collections/theme-dark.png';
 import Switch from '../components/Fields/Switch';
+import CollectionsCollection from '../components/CollectionsPage/CollectionsCollection';
+import { useDispatch } from 'react-redux';
+import { toastError } from '../redux/actions/toastActions';
+import { URL_API } from '../helper/url';
+import axios from 'axios';
 
 function CollectionEdit() {
-  const [title, setTitle] = useState(); // backend
-  const [date, setDate] = useState(); // backend
-  const [desc, setDesc] = useState(); // backend
+  const { id } = useParams();
   const [page, setPage] = useState(undefined);
   const [theme, setTheme] = useState(0);
   const [image, setImage] = useState(null);
-  const [showGallery, setShowGallery] = useState(true); // backend
+  const [showGallery, setShowGallery] = useState(true);
   // const [emailReg, setEmailReg] = useState();
-  const [collPass, setCollPass] = useState(false); // backend
+  const [collPass, setCollPass] = useState(false);
   const [hidePass, setHidePass] = useState(true);
-  const [downloadOption, setDownloadOption] = useState(true); // backend
-  const [limitDownload, setLimitDownload] = useState(false); // backend
-  const [imgHigh, setImgHigh] = useState(true); // backend
-  const [imgWeb, setImgWeb] = useState(true); // backend
-  const [restrictEmail, setRestrictEmail] = useState(false); // backend
+  const [downloadOption, setDownloadOption] = useState(true);
+  const [limitDownload, setLimitDownload] = useState(false);
+  const [imgHigh, setImgHigh] = useState(true);
+  const [imgWeb, setImgWeb] = useState(true);
+  const [restrictEmail, setRestrictEmail] = useState(false);
+  const [collection, setCollection] = useState({});
+  const dispatch = useDispatch();
 
   const onDrop = useCallback((acceptedFiles) => {
     setImage(acceptedFiles);
   }, []);
 
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
+
+  
 
   const previewImages = () => {
     return image.map((val, index) => {
@@ -375,43 +382,7 @@ function CollectionEdit() {
             </div>
           </div>
         ) : (
-          <div className="cedit-content">
-            <Form onSubmit={handleSubmit} className="cedit-collection">
-              <Form.Group size="lg" controlId="title">
-                <Form.Label>Title*</Form.Label>
-                <Form.Control
-                  className="custom-form-port"
-                  type="text"
-                  value={title}
-                  placeholder="value dari backend"
-                  onChange={(e) => setTitle(e.target.value)}
-                />
-              </Form.Group>
-              <Form.Group size="lg" controlId="title">
-                <Form.Label>Date*</Form.Label>
-                <Form.Control
-                  className="custom-form-port"
-                  type="text"
-                  value={date}
-                  placeholder="value dari backend"
-                  onChange={(e) => setDate(e.target.value)}
-                />
-              </Form.Group>
-              <Form.Group size="lg" controlId="title">
-                <Form.Label>Description</Form.Label>
-                <Form.Control
-                  className="custom-form-port"
-                  type="text"
-                  value={desc}
-                  placeholder="value dari backend"
-                  onChange={(e) => setDesc(e.target.value)}
-                />
-              </Form.Group>
-              <button size="lg" type="submit" className="mt-5">
-                Save
-              </button>
-            </Form>
-          </div>
+          <CollectionsCollection />
         )}
       </div>
     </>
