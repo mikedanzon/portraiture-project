@@ -51,7 +51,7 @@ function Header() {
               <Link to="/packages">Packages</Link>
             </div>
             <div className="port-header-bell pr-4">
-              <Link>
+              <Link to="/">
                 <img src={LogoBell} alt="imageLogo" />
               </Link>
             </div>
@@ -61,7 +61,7 @@ function Header() {
               </Link>
             </div>
             <div className="port-header-bell-notif pr-4">
-              <Link>
+              <Link to="/">
                 <Link to="/">Notifications</Link>
               </Link>
             </div>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Form, Button } from 'react-bootstrap';
-import { useHistory, useParams } from 'react-router';
+import { useParams } from 'react-router';
 import { URL_API } from '../helper/url';
 import { useDispatch } from 'react-redux';
 import { toastError, toastSuccess } from '../redux/actions/toastActions';
@@ -15,12 +15,11 @@ function ProjectEdit() {
   const [desc, setDesc] = useState('');
   const [clientName, setClientName] = useState('');
   const [clientAddrs, setClientAddrs] = useState('');
-  const history = useHistory();
   const dispatch = useDispatch();
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const fetchData = async () => {
     setIsLoading(true);

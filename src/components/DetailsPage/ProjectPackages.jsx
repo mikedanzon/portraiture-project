@@ -8,7 +8,7 @@ import PackageModal from '../Modals/PackageModal';
 
 function ProjectPackages() {
   const { id } = useParams();
-  const [data, setData] = useState({});
+  // const [data, setData] = useState({});
   const [modal, setModal] = useState(false);
   const [isPackage, setIsPackage] = useState(false);
   const [packageData, setPackageData] = useState({});
@@ -21,7 +21,7 @@ function ProjectPackages() {
     if (id) {
       fetchData();
     }
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const fetchData = async () => {
     setIsLoading(true);
@@ -39,7 +39,7 @@ function ProjectPackages() {
           setPackageItems(packages.packageItems);
         }
       }
-      setData(res.data.result);
+      // setData(res.data.result);
       setIsLoading(false);
     } catch (error) {
       dispatch(toastError(`${error.response.data.message}`));

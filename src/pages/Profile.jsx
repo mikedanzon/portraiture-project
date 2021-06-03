@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Form, Button } from 'react-bootstrap';
-import { toast } from 'react-toastify';
 import { URL_API } from '../helper/url';
 import { useDispatch } from 'react-redux';
 import { toastError, toastSuccess } from '../redux/actions/toastActions';
@@ -19,7 +18,7 @@ function Profile() {
 
   useEffect(() => {
     fetchUser();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const fetchUser = async () => {
     setIsLoading(true);

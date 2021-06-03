@@ -17,13 +17,12 @@ function ProjectInvoice() {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const fetchData = async () => {
     setIsLoading(true);
     try {
       var res = await axios.get(`${URL_API}/invoice?id_project=${id}`);
-      console.log(res.data.result);
       setDataInvoice(res.data.result);
       setIssuedDate(
         res.data.result[0].issuedDate.split('-').reverse().join('-')

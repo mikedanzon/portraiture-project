@@ -14,14 +14,13 @@ import Lightbox from 'react-awesome-lightbox';
 function Collections() {
   const [isLoading, setIsLoading] = useState(false);
   const [dataCollections, setDataCollections] = useState([]);
-  const [preview, setPreview] = useState([]);
   const [images, setImages] = useState([]);
   const dispatch = useDispatch();
   const history = useHistory();
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const fetchData = async () => {
     setIsLoading(true);
@@ -31,7 +30,6 @@ function Collections() {
       };
       var res = await axios.get(`${URL_API}/collection/all`, config);
       setDataCollections(res.data.result);
-      console.log(res.data.result);
       setIsLoading(false);
     } catch (error) {
       dispatch(toastError(`${error.response.data.message}`));
@@ -103,10 +101,10 @@ function Collections() {
             </div>
             <div className="collections-etc">
               <div className="collections-etc-image">
-                <BsCardImage size={16} /> 1
+                <BsCardImage size={16} /> {val.collectionImages.length / 2}
               </div>
               <div className="collections-etc-download">
-                <BsBoxArrowInDown size={16} /> 2
+                <BsBoxArrowInDown size={16} /> {val.totalDownload}
               </div>
               <div className="collections-etc-edit">
                 <SimplePopover

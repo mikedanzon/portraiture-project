@@ -1,23 +1,24 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Form } from 'react-bootstrap';
-import { useParams } from 'react-router';
+import { useHistory, useParams } from 'react-router';
 import { URL_API } from '../../helper/url';
 import { useDispatch } from 'react-redux';
 import { toastError, toastSuccess } from '../../redux/actions/toastActions';
 
-function CollectionsCollection(props) {
+function CollectionsCollection() {
   const { id } = useParams();
   const [title, setTitle] = useState();
   const [date, setDate] = useState();
   const [desc, setDesc] = useState();
-  const [collection, setCollection] = useState({});
+  // const [collection, setCollection] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const fetchData = async () => {
     setIsLoading(true);
@@ -32,8 +33,7 @@ function CollectionsCollection(props) {
       setTitle(res.data.result.title);
       setDate(res.data.result.date.slice(0, 10));
       setDesc(res.data.result.description);
-      setCollection(res.data.result);
-      console.log(res.data.result);
+      // setCollection(res.data.result);
       setIsLoading(false);
     } catch (error) {
       dispatch(toastError(`${error.response.data.message}`));
@@ -55,6 +55,9 @@ function CollectionsCollection(props) {
       .then((res) => {
         console.log(res.data.result);
         dispatch(toastSuccess('You have updated your collection!'));
+        setTimeout(() => {
+          history.push(`/collections`);
+        }, 2000);
       })
       .catch((err) => {
         dispatch(toastError(`${err.response.data.message}`));

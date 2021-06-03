@@ -62,7 +62,7 @@ function App() {
           }, 2000);
         });
     }
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <>

@@ -30,7 +30,7 @@ function PackagesEdit() {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const fetchData = async () => {
     setIsLoading(true);
@@ -204,9 +204,14 @@ function PackagesEdit() {
               <img
                 className="pedit-preview-image pt-3"
                 src={picture && picture}
+                alt="imagePreview"
               />
             ) : (
-              <img className="pedit-preview-image pt-3" src={image} />
+              <img
+                className="pedit-preview-image pt-3"
+                src={image}
+                alt="imagePreview"
+              />
             )}
           </div>
         </div>

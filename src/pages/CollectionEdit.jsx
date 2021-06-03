@@ -1,19 +1,19 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import { Button, Form, Breadcrumb } from 'react-bootstrap';
+import axios from 'axios';
+import { Button, Breadcrumb } from 'react-bootstrap';
 import { useDropzone } from 'react-dropzone';
 import { AiOutlineCloudUpload, AiFillEye } from 'react-icons/ai';
 import { BiShow } from 'react-icons/bi';
 import { Link, useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { toastError } from '../redux/actions/toastActions';
+import { URL_API } from '../helper/url';
 import Header from '../components/Header';
 import ThemeClass from '../assets/img/collections/theme-classic.png';
 import ThemeMin from '../assets/img/collections/theme-minimalism.png';
 import ThemeDark from '../assets/img/collections/theme-dark.png';
 import Switch from '../components/Fields/Switch';
 import CollectionsCollection from '../components/CollectionsPage/CollectionsCollection';
-import { useDispatch } from 'react-redux';
-import { toastError } from '../redux/actions/toastActions';
-import { URL_API } from '../helper/url';
-import axios from 'axios';
 
 function CollectionEdit() {
   const { id } = useParams();
@@ -22,6 +22,7 @@ function CollectionEdit() {
   const [image, setImage] = useState(null);
   const [showGallery, setShowGallery] = useState(true);
   // const [emailReg, setEmailReg] = useState();
+  const [date, setDate] = useState('');
   const [collPass, setCollPass] = useState(false);
   const [hidePass, setHidePass] = useState(true);
   const [downloadOption, setDownloadOption] = useState(true);
@@ -30,6 +31,7 @@ function CollectionEdit() {
   const [imgWeb, setImgWeb] = useState(true);
   const [restrictEmail, setRestrictEmail] = useState(false);
   const [collection, setCollection] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
 
   const onDrop = useCallback((acceptedFiles) => {
@@ -38,7 +40,28 @@ function CollectionEdit() {
 
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
 
-  
+  useEffect(() => {
+    fetchData();
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  const fetchData = async () => {
+    setIsLoading(true);
+    try {
+      var config = {
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+      };
+      var res = await axios.get(
+        `${URL_API}/collection/one?id_collection=${id}`,
+        config
+      );
+      setDate(res.data.result.date.slice(0, 10).split('-').reverse().join('-'));
+      setCollection(res.data.result);
+      setIsLoading(false);
+    } catch (error) {
+      dispatch(toastError(`${error.response.data.message}`));
+      setIsLoading(false);
+    }
+  };
 
   const previewImages = () => {
     return image.map((val, index) => {
@@ -54,10 +77,6 @@ function CollectionEdit() {
     console.log('success');
   };
 
-  function handleSubmit(event) {
-    event.preventDefault();
-  }
-
   const onSaveTheme = () => {
     console.log('succes, just need to wait backend');
   };
@@ -65,6 +84,14 @@ function CollectionEdit() {
   const previewTheme = () => {
     console.log(theme);
   };
+
+  if (isLoading) {
+    return (
+      <>
+        <div className="loader-project"></div>
+      </>
+    );
+  }
 
   return (
     <>
@@ -79,8 +106,8 @@ function CollectionEdit() {
           </Breadcrumb>
         </div>
         <div className="cedit-header-text">
-          <div className="cedit-header-text-name">Leon & Stella</div>
-          <div className="cedit-header-text-date">28 June 2021</div>
+          <div className="cedit-header-text-name">{collection.title}</div>
+          <div className="cedit-header-text-date">{date}</div>
         </div>
         <div className="cedit-main-menu">
           <div className="cedit-menu">

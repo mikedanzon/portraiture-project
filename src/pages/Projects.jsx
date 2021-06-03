@@ -14,13 +14,12 @@ import SimplePopover from '../components/Popover/SimplePopover';
 function Projects() {
   const [isLoading, setIsLoading] = useState(false);
   const [projects, setProjects] = useState([]);
-  const [packagesItems, setPackagesItems] = useState([]);
   const history = useHistory();
   const dispatch = useDispatch();
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const fetchData = async () => {
     setIsLoading(true);
@@ -41,7 +40,7 @@ function Projects() {
           return data;
         })
       );
-      console.log(project);
+      // console.log(project);
       setProjects(project);
       setIsLoading(false);
     } catch (error) {

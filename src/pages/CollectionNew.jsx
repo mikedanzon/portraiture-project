@@ -5,7 +5,7 @@ import { useDropzone } from 'react-dropzone';
 import { AiOutlineCloudUpload } from 'react-icons/ai';
 import { AiFillEye } from 'react-icons/ai';
 import { URL_API } from '../helper/url';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router';
 import {
   toastError,
@@ -28,7 +28,6 @@ function CollectionNew() {
   const [image, setImage] = useState(null);
   const [theme, setTheme] = useState(0);
   const history = useHistory();
-  const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
   const onDrop = useCallback((acceptedFiles) => {
@@ -62,6 +61,7 @@ function CollectionNew() {
   };
 
   const onSaveTheme = () => {
+    setTheme(!theme);
     var bodyFormData = new FormData();
     bodyFormData.append('title', title);
     bodyFormData.append('description', desc);
@@ -78,7 +78,7 @@ function CollectionNew() {
       },
     })
       .then(() => {
-        dispatch(toastInfo('Please wait connecting!'));
+        dispatch(toastInfo('Please wait, uploading images to the server!'));
         postImage();
       })
       .catch((err) => {
@@ -129,15 +129,21 @@ function CollectionNew() {
       <div className="cnew-header">
         <div className="cnew-header-title">
           <div className={`${page ? '' : 'cnew-header-active'}`}>
-            1. Collection Details
+            <span onClick={() => setPage(0)} className="cursor-pointer">
+              1. Collection Details
+            </span>
           </div>
           <div className="cnew-header-border"></div>
           <div className={`${page === 1 ? 'cnew-header-active' : ''}`}>
-            2. Upload Photos
+            <span onClick={() => setPage(1)} className="cursor-pointer">
+              2. Upload Photos
+            </span>
           </div>
           <div className="cnew-header-border"></div>
           <div className={`${page === 2 ? 'cnew-header-active' : ''}`}>
-            3. Select Theme
+            <span onClick={() => setPage(2)} className="cursor-pointer">
+              3. Select Theme
+            </span>
           </div>
         </div>
       </div>

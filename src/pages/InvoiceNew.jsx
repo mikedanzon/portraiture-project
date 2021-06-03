@@ -37,7 +37,7 @@ function InvoiceNew() {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     let total = 0;
@@ -45,17 +45,17 @@ function InvoiceNew() {
       total += inputFields[i].amount;
     }
     setSubtotal(total);
-  }, [inputFields]);
+  }, [inputFields]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     let total = subtotal - paid;
     setAmountdue(total);
-  }, [subtotal]);
+  }, [subtotal]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     let total = subtotal - paid;
     setAmountdue(total);
-  }, [paid]);
+  }, [paid]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const fetchData = async () => {
     setIsLoading(true);
@@ -185,7 +185,7 @@ function InvoiceNew() {
         <div className="invoice-left">
           <div className="invoice-left-studio">
             <div className="invoice-left-studio-image">
-              <img src={`${URL_API}${auth.photo}`} alt="image" />
+              <img src={`${URL_API}${auth.photo}`} alt="photoImage" />
             </div>
             <div className="invoice-left-studio-name">{auth.businessName}</div>
           </div>

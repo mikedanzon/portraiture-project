@@ -139,7 +139,11 @@ function PackagesNew() {
             <input id="previewImage" type="file" onChange={onPhotoChange} />
           </div>
           <div className="pnew-image-show">
-            <img className="pnew-preview-image pt-3" src={picture && picture} />
+            <img
+              className="pnew-preview-image pt-3"
+              src={picture && picture}
+              alt="previewImage"
+            />
           </div>
         </div>
         <div className="pnew-items">
