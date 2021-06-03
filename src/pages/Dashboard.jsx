@@ -12,9 +12,8 @@ import { URL_API } from '../helper/url';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { deletePackage, deleteProject } from '../redux/actions';
-import { toastError } from '../redux/actions/toastActions';
+import { toastError, toastSuccess } from '../redux/actions/toastActions';
 import Header from '../components/Header';
-import Dummy3 from '../assets/img/dummy-img/dummy3.png';
 import axios from 'axios';
 import SimplePopover from '../components/Popover/SimplePopover';
 
@@ -34,27 +33,51 @@ function Dashboard() {
   }, []);
 
   const fetchDataCollections = async () => {
+    setIsLoading(true);
     try {
-      // var config = {
-      //   headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
-      // };
-      var res = await axios.get(`${URL_API}/collection`);
+      var config = {
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+      };
+      var res = await axios.get(`${URL_API}/collection/all`, config);
       setDataCollections(res.data.result);
       console.log(res)
+      setIsLoading(false);
     } catch (error) {
       dispatch(toastError(`${error.response.data.message}`));
+      setIsLoading(false);
     }
   };
 
-  const onEditClickCollections = (id) => {
-    // history.push(`/packages/edit/${id}`);
+  const fetchDataProjects = async () => {
+    setIsLoading(true);
+    try {
+      var config = {
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+      };
+      var res = await axios.get(`${URL_API}/project/`, config);
+      setDataProjects(res.data.result);
+      // console.log(res)
+      setIsLoading(false);
+    } catch (error) {
+      dispatch(toastError(`${error.response.data.message}`));
+      setIsLoading(false);
+    }
   };
 
-  const onDeleteClickCollections = (id) => {
-    // dispatch(deletePackage(id));
-    // setTimeout(() => {
-    //   fetchDataPackages();
-    // }, 3000);
+  const fetchDataPackages = async () => {
+    setIsLoading(true);
+    try {
+      var config = {
+        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+      };
+      var res = await axios.get(`${URL_API}/package`, config);
+      setDataPackages(res.data.result);
+      // console.log(res)
+      setIsLoading(false);
+    } catch (error) {
+      dispatch(toastError(`${error.response.data.message}`));
+      setIsLoading(false);
+    }
   };
 
   const collectionItems = () => {
@@ -79,8 +102,8 @@ function Dashboard() {
               </div>
               <div className="cards-bottom-wrapper">
                 <div className="cards-img-down">
-                  <BsImage size={20} style={{marginBottom:"3px"}}/> {val.collectionImages.length}
-                  <BsBoxArrowInDown size={20} style={{marginBottom:"4px", marginLeft:"20px"}}/> 3
+                  <BsImage size={20} style={{marginBottom:"3px"}}/> {val.collectionImages.length / 2}
+                  <BsBoxArrowInDown size={20} style={{marginBottom:"4px", marginLeft:"20px"}}/> {val.totalDownload}
                 </div>
                 <SimplePopover
                   onEditClick={() => onEditClickCollections(val.id)}
@@ -92,33 +115,6 @@ function Dashboard() {
           </div>  
       );
     });
-  };
-
-  const fetchDataProjects = async () => {
-    setIsLoading(true);
-    try {
-      var config = {
-        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
-      };
-      var res = await axios.get(`${URL_API}/project/?page=0&limit=3`, config);
-      setDataProjects(res.data.result);
-      // console.log(res)
-      setIsLoading(false);
-    } catch (error) {
-      dispatch(toastError(`${error.response.data.message}`));
-      setIsLoading(false);
-    }
-  };
-
-  const onEditClickProjects = (id) => {
-    history.push(`/projects/edit/${id}`);
-  };
-
-  const onDeleteClickProjects = (id) => {
-    dispatch(deleteProject(id));
-    setTimeout(() => {
-      fetchDataProjects();
-    }, 3000);
   };
 
   const projectItems = () => {
@@ -153,31 +149,7 @@ function Dashboard() {
       });
     };
 
-  const fetchDataPackages = async () => {
-    try {
-      var config = {
-        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
-      };
-      var res = await axios.get(`${URL_API}/package`, config);
-      setDataPackages(res.data.result);
-      // console.log(res)
-    } catch (error) {
-      dispatch(toastError(`${error.response.data.message}`));
-    }
-  };
-
-  const onEditClickPackages = (id) => {
-    history.push(`/packages/edit/${id}`);
-  };
-
-  const onDeleteClickPackages = (id) => {
-    dispatch(deletePackage(id));
-    setTimeout(() => {
-      fetchDataPackages();
-    }, 3000);
-  };
-
-  const packageItems = () => {
+    const packageItems = () => {
     return dataPackages
     .sort((a, b) => a.id < b.id ? 1 : -1)
     .slice(0, 3)
@@ -202,6 +174,50 @@ function Dashboard() {
           </div>
       );
     });  
+  };
+
+  const onEditClickCollections = (id) => {
+    history.push(`/collections/edit/${id}`);
+  };
+
+  const onDeleteClickCollections = (idCol) => {
+    var config = {
+      headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+    };
+    axios
+      .delete(`${URL_API}/collection/delete?id_collection=${idCol}`, config)
+      .then((res) => {
+        console.log(res.data.result);
+        dispatch(toastSuccess('Success deleted a collection!'));
+        setTimeout(() => {
+          fetchDataCollections();
+        }, 3000);
+      })
+      .catch((err) => {
+        dispatch(toastError(`${err.response.data.message}`));
+      });
+  };
+
+  const onEditClickProjects = (id) => {
+    history.push(`/projects/edit/${id}`);
+  };
+
+  const onDeleteClickProjects = (id) => {
+    dispatch(deleteProject(id));
+    setTimeout(() => {
+      fetchDataProjects();
+    }, 3000);
+  };
+
+  const onEditClickPackages = (id) => {
+    history.push(`/packages/edit/${id}`);
+  };
+
+  const onDeleteClickPackages = (id) => {
+    dispatch(deletePackage(id));
+    setTimeout(() => {
+      fetchDataPackages();
+    }, 3000);
   };
 
   if (isLoading) {

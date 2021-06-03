@@ -1,10 +1,10 @@
 import React from 'react';
-import Header from '../components/Header';
+import TemplateClassic from '../components/TemplateClassic';
 
 function Testing() {
   return (
     <>
-      <Header />
+      < TemplateClassic />
     </>
   );
 }
