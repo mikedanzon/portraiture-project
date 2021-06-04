@@ -29,6 +29,7 @@ import InvoiceEdit from './pages/InvoiceEdit';
 import 'react-toastify/dist/ReactToastify.css';
 import './assets/styles/style.scss';
 import 'react-awesome-lightbox/build/style.css';
+import NotFound from './pages/NotFound';
 
 function App() {
   const dispatch = useDispatch();
@@ -100,6 +101,7 @@ function App() {
         <Route exact path="/packages/edit/:id" component={PackagesEdit} />
         <Route exact path="/invoice/new/:id" component={InvoiceNew} />
         <Route exact path="/invoice/edit/:id" component={InvoiceEdit} />
+        <Route path='*' component={NotFound} />
       </Switch>
     </>
   );

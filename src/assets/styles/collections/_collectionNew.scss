@@ -283,6 +283,10 @@
           display: flex;
           padding: 10px 20px 10px 20px;
 
+          &:hover {
+            cursor: pointer;
+          }
+
           .theme-preview-text-1 {
             padding-right: 4px;
             margin-top: -3px;
@@ -358,6 +362,10 @@
           display: flex;
           padding: 10px 20px 10px 20px;
 
+          &:hover {
+            cursor: pointer;
+          }
+
           .theme-preview-text-1 {
             padding-right: 4px;
             margin-top: -3px;
@@ -432,6 +440,10 @@
           color: #0e203d;
           display: flex;
           padding: 10px 20px 10px 20px;
+
+          &:hover {
+            cursor: pointer;
+          }
 
           .theme-preview-text-1 {
             padding-right: 4px;

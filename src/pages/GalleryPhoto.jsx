@@ -13,7 +13,9 @@ function GalleryPhoto() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    fetchDataGalleryPhoto();
+    if (localStorage.getItem('token')) {
+      fetchDataGalleryPhoto();
+    }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const fetchDataGalleryPhoto = async () => {
@@ -45,6 +47,16 @@ function GalleryPhoto() {
       );
     });
   };
+
+  if (!localStorage.getItem('token')) {
+    return (
+      <div className="notfound">
+        <div className="notfound-inside">
+          <h1>You need to login to view this page!</h1>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <>

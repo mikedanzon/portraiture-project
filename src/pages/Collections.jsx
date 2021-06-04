@@ -2,7 +2,11 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { URL_API } from '../helper/url';
 import { useDispatch } from 'react-redux';
-import { toastError, toastSuccess } from '../redux/actions/toastActions';
+import {
+  toastError,
+  toastSuccess,
+  toastWarning,
+} from '../redux/actions/toastActions';
 import { AiFillEye } from 'react-icons/ai';
 import { BsCardImage, BsBoxArrowInDown } from 'react-icons/bs';
 import { useHistory } from 'react-router';
@@ -19,7 +23,9 @@ function Collections() {
   const history = useHistory();
 
   useEffect(() => {
-    fetchData();
+    if (localStorage.getItem('token')) {
+      fetchData();
+    }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const fetchData = async () => {
@@ -70,6 +76,10 @@ function Collections() {
     setImages(colImages);
   };
 
+  const onPreviewClick = () => {
+    dispatch(toastWarning('Preview coming soon in 2 days!'));
+  };
+
   const collectionItems = () => {
     return dataCollections.map((val, index) => {
       return (
@@ -89,7 +99,7 @@ function Collections() {
               <div className="collections-text">{val.title}</div>
               <div className="collections-preview">
                 <span
-                  onClick={() => onImageClick(val.collectionImages)}
+                  onClick={() => onPreviewClick(val.collectionImages)}
                   className="cursor-pointer"
                 >
                   <AiFillEye /> Preview
@@ -130,6 +140,16 @@ function Collections() {
         <Header />
         <div className="loader"></div>
       </>
+    );
+  }
+
+  if (!localStorage.getItem('token')) {
+    return (
+      <div className="notfound">
+        <div className="notfound-inside">
+          <h1>You need to login to view this page!</h1>
+        </div>
+      </div>
     );
   }
 

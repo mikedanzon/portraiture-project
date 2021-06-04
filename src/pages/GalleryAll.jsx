@@ -20,15 +20,8 @@ function GalleryAll() {
     setIsLoading(true);
     try {
       var res = await axios.get(`${URL_API}/collection`);
-      // var collections = res.data.result;
-      // console.log(collections)
-      // for (let i = 0; i < collections.length; i++) {
-      //   var idUser = collections[i].id_user;
-      //   var res2 = await axios.get(`${URL_API}/collection/oneUser?id_user=${idUser}`)
-      //   console.log(res2.data.result[idUser])
-      // }
       setCollections(res.data.result);
-      // console.log(user.data.result);
+      console.log(res.data.result);
       setIsLoading(false);
     } catch (error) {
       dispatch(toastError(`${error.response.data.message}`));
@@ -43,7 +36,7 @@ function GalleryAll() {
           <img src={val.cover} alt="noImageFound" />
           <div className="cards-text">
             <div className="cards-text1">{val.title}</div>
-            <div className="cards-text2">Photographer Studio</div>
+            <div className="cards-text2">{val.user.businessName}</div>
           </div>
         </div>
       );

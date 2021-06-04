@@ -6,7 +6,7 @@ import { AiOutlineCloudUpload, AiFillEye } from 'react-icons/ai';
 import { BiShow } from 'react-icons/bi';
 import { Link, useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { toastError } from '../redux/actions/toastActions';
+import { toastError, toastWarning } from '../redux/actions/toastActions';
 import { URL_API } from '../helper/url';
 import Header from '../components/Header';
 import ThemeClass from '../assets/img/collections/theme-classic.png';
@@ -41,7 +41,9 @@ function CollectionEdit() {
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
 
   useEffect(() => {
-    fetchData();
+    if (localStorage.getItem('token')) {
+      fetchData();
+    }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const fetchData = async () => {
@@ -82,7 +84,7 @@ function CollectionEdit() {
   };
 
   const previewTheme = () => {
-    console.log(theme);
+    dispatch(toastWarning('Preview coming soon in 2 days!'));
   };
 
   if (isLoading) {
@@ -90,6 +92,16 @@ function CollectionEdit() {
       <>
         <div className="loader-project"></div>
       </>
+    );
+  }
+
+  if (!localStorage.getItem('token')) {
+    return (
+      <div className="notfound">
+        <div className="notfound-inside">
+          <h1>You need to login to view this page!</h1>
+        </div>
+      </div>
     );
   }
 
@@ -347,7 +359,7 @@ function CollectionEdit() {
                   className="download-option-2"
                   style={{ display: `${downloadOption ? 'block' : 'none'}` }}
                 >
-                  <div className="option-email">
+                  {/* <div className="option-email">
                     <div className="option-email-button">
                       <Switch
                         name="restrictEmail"
@@ -373,7 +385,7 @@ function CollectionEdit() {
                       />
                       <button>Add</button>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
               <div className="cedit-advance-2">

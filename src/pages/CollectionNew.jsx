@@ -11,6 +11,7 @@ import {
   toastError,
   toastInfo,
   toastSuccess,
+  toastWarning,
 } from '../redux/actions/toastActions';
 import HeaderProps from '../components/HeaderProps';
 import ThemeClass from '../assets/img/collections/theme-classic.png';
@@ -120,8 +121,18 @@ function CollectionNew() {
   };
 
   const previewTheme = () => {
-    console.log(theme);
+    dispatch(toastWarning('Preview coming soon in 2 days!'));
   };
+
+  if (!localStorage.getItem('token')) {
+    return (
+      <div className="notfound">
+        <div className="notfound-inside">
+          <h1>You need to login to view this page!</h1>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <>

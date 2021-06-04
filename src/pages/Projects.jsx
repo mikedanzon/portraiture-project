@@ -4,7 +4,7 @@ import { URL_API } from '../helper/url';
 import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { deleteProject, toastError } from '../redux/actions';
+import { deleteProject, toastError, toastWarning } from '../redux/actions';
 import { MdClose, MdDone } from 'react-icons/md';
 import { HiDownload } from 'react-icons/hi';
 import Header from '../components/Header';
@@ -18,7 +18,9 @@ function Projects() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    fetchData();
+    if (localStorage.getItem('token')) {
+      fetchData();
+    }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const fetchData = async () => {
@@ -104,9 +106,9 @@ function Projects() {
                     <MdDone size={19} className="mdclose-styling" /> Packages
                   </div>
                   <div className="item-packages-link">
-                    <Link>
+                    <button onClick={onPdfClick}>
                       <HiDownload size={20} /> Download pdf
-                    </Link>
+                    </button>
                   </div>
                 </div>
                 <div className="item-packages-content">
@@ -163,12 +165,26 @@ function Projects() {
     alert('success filter');
   };
 
+  const onPdfClick = () => {
+    dispatch(toastWarning('Feature in development! Please try again later'));
+  };
+
   if (isLoading) {
     return (
       <>
         <Header />
         <div className="loader"></div>
       </>
+    );
+  }
+
+  if (!localStorage.getItem('token')) {
+    return (
+      <div className="notfound">
+        <div className="notfound-inside">
+          <h1>You need to login to view this page!</h1>
+        </div>
+      </div>
     );
   }
 

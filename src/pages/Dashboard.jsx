@@ -26,9 +26,11 @@ function Dashboard() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    fetchDataCollections();
-    fetchDataProjects();
-    fetchDataPackages();
+    if (localStorage.getItem('token')) {
+      fetchDataCollections();
+      fetchDataProjects();
+      fetchDataPackages();
+    }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const fetchDataCollections = async () => {
@@ -255,6 +257,16 @@ function Dashboard() {
         <Header />
         <div className="loader"></div>
       </>
+    );
+  }
+
+  if (!localStorage.getItem('token')) {
+    return (
+      <div className="notfound">
+        <div className="notfound-inside">
+          <h1>You need to login to view this page!</h1>
+        </div>
+      </div>
     );
   }
 

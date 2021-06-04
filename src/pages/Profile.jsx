@@ -17,7 +17,9 @@ function Profile() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    fetchUser();
+    if (localStorage.getItem('token')) {
+      fetchUser();
+    }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const fetchUser = async () => {
@@ -82,6 +84,16 @@ function Profile() {
         <HeaderProps title="Edit Profile" link="/dashboard" />
         <div className="loader"></div>
       </>
+    );
+  }
+
+  if (!localStorage.getItem('token')) {
+    return (
+      <div className="notfound">
+        <div className="notfound-inside">
+          <h1>You need to login to view this page!</h1>
+        </div>
+      </div>
     );
   }
 

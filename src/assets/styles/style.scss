@@ -15,6 +15,7 @@
 @import './packageModal';
 @import './invoiceNew';
 @import './templateMinimalist';
+@import './notfound';
 // Headers Import
 @import './headers/header';
 @import './headers/headerProps';
@@ -128,8 +129,8 @@
   }
 
   position: absolute;
-  left: 46%;
-  top: 40%;
+  left: 45%;
+  top: 45%;
   z-index: 1;
   border: 16px solid #f3f3f3;
   border-radius: 50%;

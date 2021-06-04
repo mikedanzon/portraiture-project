@@ -36,7 +36,9 @@ function InvoiceNew() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    fetchData();
+    if (localStorage.getItem('token')) {
+      fetchData();
+    }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
@@ -175,6 +177,16 @@ function InvoiceNew() {
         <HeaderProps title="Invoice" link={`/projects/details/${id}`} />
         <div className="loader-project"></div>
       </>
+    );
+  }
+
+  if (!localStorage.getItem('token')) {
+    return (
+      <div className="notfound">
+        <div className="notfound-inside">
+          <h1>You need to login to view this page!</h1>
+        </div>
+      </div>
     );
   }
 

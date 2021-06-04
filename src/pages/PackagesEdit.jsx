@@ -29,7 +29,9 @@ function PackagesEdit() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    fetchData();
+    if (localStorage.getItem('token')) {
+      fetchData();
+    }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const fetchData = async () => {
@@ -162,6 +164,16 @@ function PackagesEdit() {
         <HeaderProps title="Edit Profile" link="/dashboard" />
         <div className="loader"></div>
       </>
+    );
+  }
+
+  if (!localStorage.getItem('token')) {
+    return (
+      <div className="notfound">
+        <div className="notfound-inside">
+          <h1>You need to login to view this page!</h1>
+        </div>
+      </div>
     );
   }
 

@@ -1,4 +1,52 @@
 .projects-package-wrapper {
+  @media (max-width: 650px) {
+    padding: 20px !important;
+
+    .package-content {
+      button {
+        padding: 50px !important;
+      }
+
+      .package-true {
+        display: block !important;
+        .package-true-left {
+          margin-right: auto !important;
+          padding-bottom: 20px;
+
+          .package-true-image {
+            img {
+              width: 100% !important;
+              height: 220px !important;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @media (min-width: 650px) and (max-width: 1100px) {
+    padding: 20px !important;
+
+    .package-content {
+      button {
+        padding: 50px !important;
+      }
+
+      .package-true {
+        .package-true-left {
+          margin-right: 20px !important;
+
+          .package-true-image {
+            img {
+              width: 270px !important;
+              height: 170px !important;
+            }
+          }
+        }
+      }
+    }
+  }
+
   padding: 30px;
   background: #fcfcfc;
 

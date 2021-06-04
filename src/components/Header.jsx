@@ -14,7 +14,7 @@ function Header() {
 
   const getUrl = () => {
     let url = window.location.href;
-    let result = url.match(/[^\/]+$/);
+    let result = url.match(/[^\/]+$/); // eslint-disable-line
     setPage(result[0]);
   };
 

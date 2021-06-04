@@ -18,7 +18,9 @@ function ProjectEdit() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    fetchData();
+    if (localStorage.getItem('token')) {
+      fetchData();
+    }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const fetchData = async () => {
@@ -69,6 +71,16 @@ function ProjectEdit() {
         <HeaderProps title="Edit Project" link={`/projects/details/${id}`} />
         <div className="loader"></div>
       </>
+    );
+  }
+
+  if (!localStorage.getItem('token')) {
+    return (
+      <div className="notfound">
+        <div className="notfound-inside">
+          <h1>You need to login to view this page!</h1>
+        </div>
+      </div>
     );
   }
 
