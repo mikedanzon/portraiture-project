@@ -1,4 +1,234 @@
 .invoice-wrapper {
+  @media (max-width: 650px) {
+    margin: 10px !important;
+    display: block !important;
+
+    .invoice-left {
+      width: 100% !important;
+      padding: 40px 10px !important;
+      text-align: center;
+
+      .invoice-left-name {
+        padding-bottom: 40px !important;
+      }
+
+      .invoice-date {
+        display: block !important;
+
+        .invoice-date-issued {
+          width: 100% !important;
+          padding-bottom: 20px;
+        }
+
+        .invoice-date-due {
+          width: 100% !important;
+
+          input {
+            width: 90% !important;
+          }
+        }
+      }
+
+      .invoice-info {
+        display: block !important;
+
+        .invoice-buyer {
+          width: 100% !important;
+          padding-bottom: 40px;
+
+          .invoice-buyer-address {
+            input {
+              width: 100% !important;
+            }
+          }
+        }
+
+        .invoice-studio {
+          width: 100% !important;
+        }
+
+        .invoice-studio-address {
+          width: 100% !important;
+        }
+      }
+    }
+
+    .invoice-items {
+      .invoice-items-header {
+        .invoice-header-name {
+          width: 40% !important;
+        }
+
+        .invoice-header-qty {
+          width: 10% !important;
+        }
+
+        .invoice-header-price {
+          width: 20% !important;
+        }
+
+        .invoice-header-amount {
+          width: 30% !important;
+        }
+      }
+    }
+
+    .invoice-items-content {
+      .invoice-items-main {
+        .invoice-form-name {
+          width: 40% !important;
+        }
+
+        .invoice-form-qty {
+          width: 10% !important;
+        }
+
+        .invoice-form-price {
+          width: 20% !important;
+        }
+
+        .invoice-form-amount {
+          width: 30% !important;
+        }
+      }
+    }
+
+    .invoice-items-button {
+      button {
+        float: left;
+      }
+    }
+
+    .invoice-footer {
+      display: block !important;
+      margin-top: 100px !important;
+
+      .invoice-footer-left {
+        padding-bottom: 20px;
+      }
+    }
+
+    .invoice-right {
+      width: 100% !important;
+      margin-top: 50px !important;
+    }
+  }
+
+  @media (min-width: 650px) and (max-width: 1100px) {
+    margin: 40px !important;
+    display: block !important;
+
+    .invoice-left {
+      width: 100% !important;
+      padding: 40px 10px !important;
+      text-align: center;
+
+      .invoice-left-name {
+        padding-bottom: 40px !important;
+      }
+
+      .invoice-date {
+        display: block !important;
+
+        .invoice-date-issued {
+          width: 100% !important;
+          padding-bottom: 20px;
+        }
+
+        .invoice-date-due {
+          width: 100% !important;
+
+          input {
+            width: 90% !important;
+          }
+        }
+      }
+
+      .invoice-info {
+        display: block !important;
+
+        .invoice-buyer {
+          width: 100% !important;
+          padding-bottom: 40px;
+
+          .invoice-buyer-address {
+            input {
+              width: 100% !important;
+            }
+          }
+        }
+
+        .invoice-studio {
+          width: 100% !important;
+        }
+
+        .invoice-studio-address {
+          width: 100% !important;
+        }
+      }
+    }
+
+    .invoice-items {
+      .invoice-items-header {
+        .invoice-header-name {
+          width: 40% !important;
+        }
+
+        .invoice-header-qty {
+          width: 10% !important;
+        }
+
+        .invoice-header-price {
+          width: 25% !important;
+        }
+
+        .invoice-header-amount {
+          width: 25% !important;
+        }
+      }
+    }
+
+    .invoice-items-content {
+      .invoice-items-main {
+        .invoice-form-name {
+          width: 40% !important;
+        }
+
+        .invoice-form-qty {
+          width: 10% !important;
+        }
+
+        .invoice-form-price {
+          width: 25% !important;
+        }
+
+        .invoice-form-amount {
+          width: 25% !important;
+        }
+      }
+    }
+
+    .invoice-items-button {
+      button {
+        float: left;
+      }
+    }
+
+    .invoice-footer {
+      display: block !important;
+      margin-top: 100px !important;
+
+      .invoice-footer-left {
+        padding-bottom: 20px;
+      }
+    }
+
+    .invoice-right {
+      width: 100% !important;
+      margin-top: 50px !important;
+    }
+  }
+
   margin: 70px;
   display: flex;
 

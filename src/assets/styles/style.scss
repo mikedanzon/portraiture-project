@@ -12,7 +12,6 @@
 @import './switch';
 @import './galleryPhoto';
 @import './simplePopover';
-@import './packageModal';
 @import './invoiceNew';
 @import './templateMinimalist';
 @import './notfound';
@@ -34,6 +33,7 @@
 @import './projects/projectEdit';
 @import './projects/projects';
 @import './projects/projectDetails';
+@import './projects/components/packageModal';
 @import './projects/components/projectInvoice';
 @import './projects/components/projectPackages';
 @import './projects/components/projectRundown';
@@ -80,6 +80,10 @@
 }
 
 .loader {
+  @media (max-width: 400px) {
+    left: 38% !important;
+  }
+
   @media (max-width: 650px) {
     left: 40% !important;
   }
@@ -120,6 +124,10 @@
 }
 
 .loader-project {
+  @media (max-width: 400px) {
+    left: 38% !important;
+  }
+
   @media (max-width: 650px) {
     left: 40% !important;
   }

@@ -241,7 +241,7 @@ function InvoiceNew() {
                 <textarea
                   rows="5"
                   cols="50"
-                  className="custom-form-port"
+                  className="custom-form-port invoice-buyer-address-text"
                   style={{ width: '90%' }}
                   value={clientAddress}
                   onChange={(e) => setClientAddress(e.target.value)}
