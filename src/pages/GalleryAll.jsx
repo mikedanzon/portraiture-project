@@ -28,7 +28,7 @@ function GalleryAll() {
       //   console.log(res2.data.result[idUser])
       // }
       setCollections(res.data.result);
-      // console.log(user.data.result);
+      console.log(res.data.result);
       setIsLoading(false);
     } catch (error) {
       dispatch(toastError(`${error.response.data.message}`));
@@ -40,10 +40,10 @@ function GalleryAll() {
     return collections.map((val, index) => {
       return (
         <div className="galleryall-cards" key={index}>
-          <img src={val.cover} alt="noImageFound" />
+          <img src={val.cover} alt="NoImageFound" />
           <div className="cards-text">
             <div className="cards-text1">{val.title}</div>
-            <div className="cards-text2">Photographer Studio</div>
+            <div className="cards-text2">{val.user.businessName}</div>
           </div>
         </div>
       );
