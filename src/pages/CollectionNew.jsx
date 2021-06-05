@@ -13,12 +13,15 @@ import {
   toastSuccess,
   toastWarning,
 } from '../redux/actions/toastActions';
+import { IoIosArrowBack } from 'react-icons/io';
 import HeaderProps from '../components/HeaderProps';
 import ThemeClass from '../assets/img/collections/theme-classic.png';
 import ThemeMin from '../assets/img/collections/theme-minimalism.png';
 import ThemeDark from '../assets/img/collections/theme-dark.png';
 import CollectionsDetails from '../components/CollectionsNew/CollectionsDetails';
 import CollectionsTheme from '../components/CollectionsNew/CollectionsTheme';
+import TempPreviewClassic from '../components/TemplatesPreview/TempPreviewClassic';
+import HeaderPreview from '../components/HeaderPreview';
 
 function CollectionNew() {
   const [isLoading, setIsLoading] = useState(false);
@@ -86,13 +89,13 @@ function CollectionNew() {
     } else if (!date) {
       return dispatch(toastError(`Please insert collection date!`));
     } else {
-      setPage(1);
+      setPage('photo');
     }
   };
 
   const onUploadImage = () => {
     if (image) {
-      return setPage(2);
+      return setPage('theme');
     }
     dispatch(toastError('Please upload image first!'));
   };
@@ -161,7 +164,13 @@ function CollectionNew() {
   };
 
   const previewTheme = () => {
-    dispatch(toastWarning('Preview coming soon in 2 days!'));
+    if (theme === 'Classic') {
+      setPage('previewClassic');
+    } else if (theme === 'Minimalism') {
+      setPage('previewMinimalism');
+    } else {
+      setPage('previewDarkmode');
+    }
   };
 
   if (isLoading) {
@@ -185,29 +194,39 @@ function CollectionNew() {
 
   return (
     <>
-      <HeaderProps title="Create Collection" link="/collections" />
-      <div className="cnew-header">
-        <div className="cnew-header-title">
-          <div className={`${page ? '' : 'cnew-header-active'}`}>
-            <span onClick={() => setPage(0)} className="cursor-pointer">
-              1. Collection Details
-            </span>
-          </div>
-          <div className="cnew-header-border"></div>
-          <div className={`${page === 1 ? 'cnew-header-active' : ''}`}>
-            <span onClick={onSubmitFirst} className="cursor-pointer">
-              2. Upload Photos
-            </span>
-          </div>
-          <div className="cnew-header-border"></div>
-          <div className={`${page === 2 ? 'cnew-header-active' : ''}`}>
-            <span onClick={onUploadImage} className="cursor-pointer">
-              3. Select Theme
-            </span>
+      {page === 'previewClassic' ||
+      page === 'previewMinimalism' ||
+      page === 'previewDarkmode' ? (
+        <HeaderPreview onClickBack={() => setPage('theme')} />
+      ) : (
+        <HeaderProps title="Create Collection" link="/collections" />
+      )}
+      {page === 'previewClassic' ||
+      page === 'previewMinimalism' ||
+      page === 'previewDarkmode' ? null : (
+        <div className="cnew-header">
+          <div className="cnew-header-title">
+            <div className={`${page ? '' : 'cnew-header-active'}`}>
+              <span onClick={() => setPage(0)} className="cursor-pointer">
+                1. Collection Details
+              </span>
+            </div>
+            <div className="cnew-header-border"></div>
+            <div className={`${page === 'photo' ? 'cnew-header-active' : ''}`}>
+              <span onClick={onSubmitFirst} className="cursor-pointer">
+                2. Upload Photos
+              </span>
+            </div>
+            <div className="cnew-header-border"></div>
+            <div className={`${page === 'theme' ? 'cnew-header-active' : ''}`}>
+              <span onClick={onUploadImage} className="cursor-pointer">
+                3. Select Theme
+              </span>
+            </div>
           </div>
         </div>
-      </div>
-      {page === 1 ? (
+      )}
+      {page === 'photo' ? (
         <div className="cnew-main">
           <div className="port-upload">
             <div {...getRootProps()}>
@@ -240,7 +259,7 @@ function CollectionNew() {
             </Button>
           </div>
         </div>
-      ) : page === 2 ? (
+      ) : page === 'theme' ? (
         <CollectionsTheme
           setThemeClassic={() => setTheme('Classic')}
           themeClass={ThemeClass}
@@ -257,7 +276,10 @@ function CollectionNew() {
           }
           darkmodeClick={theme === 'Darkmode' ? 'cnew-theme-img-active' : null}
         />
-      ) : (
+      ) : page === 'previewClassic' ? (
+        <TempPreviewClassic imagePreview={image} imageCover={cover} />
+      ) : page === 'previewMinimalism' ? null : page ===
+        'previewDarkmode' ? null : (
         <CollectionsDetails
           title={title}
           titleChange={(e) => setTitle(e.target.value)}

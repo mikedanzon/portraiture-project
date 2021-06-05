@@ -6,17 +6,17 @@
 @import './privacy';
 @import './download';
 @import './dashboard';
-@import './template';
 @import './profile';
 @import './galleryAll';
 @import './switch';
 @import './galleryPhoto';
 @import './simplePopover';
 @import './invoiceNew';
-@import './templateMinimalist';
 @import './notfound';
-@import './templateClassic';
-@import './templateDarkMode';
+// Templates Import
+@import './templates/tempMinimalism';
+@import './templates/tempClassic';
+@import './templates/tempDarkmode';
 // Headers Import
 @import './headers/header';
 @import './headers/headerProps';

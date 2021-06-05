@@ -26,10 +26,13 @@ import PackagesEdit from './pages/PackagesEdit';
 import ProjectDetails from './pages/ProjectDetails';
 import InvoiceNew from './pages/InvoiceNew';
 import InvoiceEdit from './pages/InvoiceEdit';
+import NotFound from './pages/NotFound';
+import TempClassic from './pages/TempClassic';
+import TempDarkmode from './pages/TempDarkmode';
+import TempMinimalism from './pages/TempClassic';
 import 'react-toastify/dist/ReactToastify.css';
 import './assets/styles/style.scss';
 import 'react-awesome-lightbox/build/style.css';
-import NotFound from './pages/NotFound';
 
 function App() {
   const dispatch = useDispatch();
@@ -95,12 +98,19 @@ function App() {
         <Route exact path="/projects/details/:id" component={ProjectDetails} />
         <Route exact path="/projects" component={Projects} />
         <Route exact path="/gallery/all" component={GalleryAll} />
-        <Route exact path="/gallery/photographer" component={GalleryPhoto} />
+        <Route
+          exact
+          path="/gallery/photographer/:id"
+          component={GalleryPhoto}
+        />
         <Route exact path="/packages" component={Packages} />
         <Route exact path="/packages/new" component={PackagesNew} />
         <Route exact path="/packages/edit/:id" component={PackagesEdit} />
         <Route exact path="/invoice/new/:id" component={InvoiceNew} />
         <Route exact path="/invoice/edit/:id" component={InvoiceEdit} />
+        <Route exact path="/temp/classic/:id" component={TempClassic} />
+        <Route exact path="/temp/minimalism/:id" component={TempMinimalism} />
+        <Route exact path="/temp/darkmode/:id" component={TempDarkmode} />
         <Route path="*" component={NotFound} />
       </Switch>
     </>

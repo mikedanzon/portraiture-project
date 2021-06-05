@@ -8,7 +8,7 @@ import { toastError } from '../redux/actions/toastActions';
 import { FaRegShareSquare } from 'react-icons/fa';
 import { BsBoxArrowInDown, BsArrowUp } from 'react-icons/bs';
 
-function TemplateDarkMode() {
+function TempDarkmode() {
   const auth = useSelector((state) => state.auth);
   const [images, setImages] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -126,4 +126,4 @@ function TemplateDarkMode() {
   );
 }
 
-export default TemplateDarkMode;
+export default TempDarkmode;
