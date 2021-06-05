@@ -11,8 +11,10 @@
 
   @media (min-width: 650px) and (max-width: 950px) {
     .collections-main {
+      column-gap: 2.5% !important;
+
       .data-item-list {
-        flex-basis: 48% !important;
+        flex-basis: 45% !important;
       }
     }
   }
@@ -27,10 +29,11 @@
 
   .collections-main {
     display: flex;
-    justify-content: space-between;
-    column-gap: 10px;
+    column-gap: 5%;
     flex-flow: row wrap;
     flex-direction: row;
+    max-width: 1300px;
+    margin: auto;
 
     .data-item-list {
       align-items: center;
@@ -43,6 +46,7 @@
           img {
             width: 100%;
             height: 200px;
+            object-fit: cover;
           }
         }
       }

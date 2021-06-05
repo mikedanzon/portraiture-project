@@ -340,6 +340,7 @@ function InvoiceNew() {
                   type="number"
                   value={paid}
                   onChange={(e) => setPaid(e.target.value)}
+                  style={{width: `${paid ? paid.length : "1"}ch`}}
                 />
               </div>
             </div>

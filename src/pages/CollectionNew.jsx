@@ -27,6 +27,7 @@ function CollectionNew() {
   const [download, setDownload] = useState(true);
   const [advOpen, setAdvOpen] = useState(false);
   const [image, setImage] = useState(null);
+  const [cover, setCover] = useState(0);
   const [theme, setTheme] = useState(0);
   const history = useHistory();
   const dispatch = useDispatch();
@@ -40,8 +41,14 @@ function CollectionNew() {
   const previewImages = () => {
     return image.map((val, index) => {
       return (
-        <div className="image-preview-list">
-          <img src={URL.createObjectURL(val)} alt="previewImages" />
+        // <div className="image-preview-list">
+        //   <img src={URL.createObjectURL(val)} alt="previewImages" />
+        // </div>
+        <div>
+          <button onClick={() => setCover(index)}>
+            {index === cover && <div>cover</div>}
+            <img src={URL.createObjectURL(val)} alt="previewImages" />
+          </button>
         </div>
       );
     });

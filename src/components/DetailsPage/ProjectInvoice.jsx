@@ -29,7 +29,7 @@ function ProjectInvoice() {
       );
       setIsLoading(false);
     } catch (error) {
-      dispatch(toastError(`${error.response.data.message}`));
+      dispatch(toastError(`${error}`));
       setIsLoading(false);
     }
   };
