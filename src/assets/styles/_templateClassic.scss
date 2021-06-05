@@ -1,7 +1,8 @@
-.minimalist-wrapper {
-	.minimalist-header {
-		.mh-background {
-			flex-basis: 60%;
+.classic-wrapper {
+	.classic-header {
+		display: grid;
+		grid-template-columns: repeat(6, 1fr);
+		.ch-background {
 			height: 100vh;
 			img {
 				width: 100%;
@@ -9,10 +10,12 @@
 				object-fit: cover;
 			}
 		}
-		.mh-info {
+		.ch-info {
 			text-align: center;
-			.mh-logo-studioname {
-				.mh-logo {
+			margin: 50px;
+			border: 2px solid #ffffff;
+			.ch-logo-studioname {
+				.ch-logo {
 					padding-bottom: 10px;
 					img {
 						width: 100px;
@@ -20,63 +23,65 @@
 						object-fit: cover;
 					}
 				}	
-				.mh-studioname {
-					font-size: 14px;
-					color: #000000;
+				.ch-studioname {
+					font-size: 18px;
+					color: #ffffff;
 					text-align: center;
 				}
 			}
-			.mh-title-date {
-				.mh-title {
-					font-size: 32px;
+			.ch-title-date {
+				.ch-title {
+					font-size: 50px;
 					font-weight: bold;
-					color: #373737;
+					color: #ffffff;
 				}	
-				.mh-date {
-					font-size: 14px;
-					color: #999999;
+				.ch-date {
+					font-size: 18px;
+					color: #ffffff;
 					text-align: center;
 				}
 			}	
-			.mh-desc {
-				font-size: 14px;
-				color: #000000;
-				text-align: -webkit-center;
-				padding: 0px 50px;
-			}
 			.arrow-open {
-				padding-top: 30px;
 				button {
 					background-color: transparent;
 					cursor: pointer;
-					border: none;
+					border: 1px solid #ffffff;
 					outline: none;
+					color: #ffffff;
+					padding: 10px 20px;
 				}
 			}
 		}
 	}
-	.minimalist-main {
-		.mm-title-studioname-info {
+	.classic-main {
+		.cm-title-studioname-info {
 			display: flex;
 			flex-grow: 1;
 			justify-content: space-between;
-			.mm-title-studioname{
-				.mm-title {
+			.cm-title-studioname{
+				.cm-title {
 					font-size: 16px;
 					color: #373737;
 					font-weight: bold;
 				}
-				.mm-studioname {
+				.cm-studioname {
 					font-size: 14px;
 					color: #999999;
 				}
 			}
-			.mm-info {
+			.cm-info {
 				font-size: 14px;
 			}
 		}
+		.ch-desc {
+				font-size: 14px;
+				color: #000000;
+				text-align: -webkit-center;
+				padding: 50px 50px;
+				font-style: italic;
+			}
 	}
-	.mm-cards-wrapper {
+	.cm-cards-wrapper {
 			grid-template-columns: repeat(3, auto);
 			grid-template-rows: repeat(3, auto);
 			justify-items: stretch;
@@ -102,7 +107,7 @@
 				outline: none;
 			}
 		}
-	.minimalist-footer {
+	.classic-footer {
 		text-align: center;
 		.footer-text-top {
 			font-size: 14px;
@@ -117,94 +122,85 @@
 		}
 	} 
 	@media (max-width: 650px) {
-		.mh-info {
+		.ch-info {
 			display: flex;
 			flex-direction: column;
 			padding-top: 30px;
-			height: 100vh;
-			padding: 100px 0px;
+			padding-bottom: 30px;
 			justify-content: space-between;
 		}
-		.mh-title-date {
-			padding-top: 50px;
-			padding-bottom: 50px;
-		}
-		.mh-logo-studioname {
+		.ch-logo-studioname {
 			align-self: center;
 		}
-		.mh-title-date {
+		.ch-title-date {
 			align-self: center;
 		}
-		.minimalist-main {
+		.classic-main {
 			padding: 30px 20px;
 		}
-		.mm-cards-wrapper {
+		.cm-cards-wrapper {
 			margin-top: 30px;
 			column-width: 300px;
 		}
-		.mm-title-studioname {
+		.cm-title-studioname {
 			flex-basis: 50%;
 		}
 	}
 	@media (min-width: 650px) and (max-width: 900px) {
-		.mh-info {
-			padding: 100px 0px;
+		.ch-info {
 			display: flex;
 			flex-direction: column;
 			align-items: center;
-			flex-basis: 40%;
 			justify-content: space-between;
-			height: 100vh;
-		}
-		.mh-desc {
-			padding: 0px 150px;
-		}
-		.minimalist-main {
-			padding: 50px 100px;
-		}
-		.mm-cards-wrapper {
-			margin-top: 50px;
-			column-width: 300px;
-		}
-		.mm-info {
-			display: flex;
-			.share {
-				padding-right: 20px;
-			}
-		}
-		.mh-title-date {
 			padding-top: 50px;
 			padding-bottom: 50px;
 		}
-	}
-	@media (min-width: 900px) {
-		.mh-info {
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			flex-basis: 40%;
-			justify-content: space-between;
-			padding-top: 100px;
-			padding-bottom: 100px;
-		}
-		.minimalist-header {
-			display: flex;
-		}
-		.mh-desc {
+		.ch-desc {
 			padding: 0px 150px;
 		}
-		.minimalist-main {
+		.classic-main {
 			padding: 50px 100px;
 		}
-		.mm-cards-wrapper {
+		.cm-cards-wrapper {
 			margin-top: 50px;
-			column-width: 350px;
+			column-width: 300px;
 		}
-		.mm-info {
+		.cm-info {
 			display: flex;
 			.share {
 				padding-right: 20px;
 			}
 		}
 	}
+	@media (min-width: 900px) {
+		.ch-info {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			flex-basis: 40%;
+			justify-content: space-between;
+			padding-top: 50px;
+			padding-bottom: 50px;
+		}
+		.ch-desc {
+			padding: 0px 150px;
+		}
+		.classic-main {
+			padding: 50px 100px;
+		}
+		.cm-cards-wrapper {
+			margin-top: 50px;
+			column-width: 350px;
+		}
+		.cm-info {
+			display: flex;
+			.share {
+				padding-right: 20px;
+			}
+		}
+	}
+	.ch-background, .ch-info {
+	grid-row: 1 / 7;
+	grid-column: 1 / 7;
+}
 }

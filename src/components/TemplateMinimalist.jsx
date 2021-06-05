@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import { URL_API } from '../helper/url';
 import { useDispatch } from 'react-redux';
 import { toastError } from '../redux/actions/toastActions';
+import Dummy from '../assets/img/dummy-img/minimalist-background.png';
 
 function TemplateMinimalist() {
   const auth = useSelector((state) => state.auth);
@@ -23,7 +24,7 @@ function TemplateMinimalist() {
     setIsLoading(true);
     try {
       var res = await axios.get(
-        `${URL_API}/collectionImages/bycollection?id_collection=14`
+        `${URL_API}/collectionImages/bycollection?id_collection=1`
       );
       let colImages = res.data.result.filter((item, index) => {
         return index % 2 !== 0;
@@ -60,38 +61,40 @@ function TemplateMinimalist() {
   return (
     <div className="minimalist-wrapper">
       <div ref={myRefBack} className="minimalist-header">
-        <div className="ch-background">
-          <img src={images[0].image} alt="" />
+        <div className="mh-background">
+          <img src={Dummy} alt="" />
         </div>
-        <div className="ch-info">
-          <div className="ch-logo-studioname">
-            <div className="ch-logo">
+        <div className="mh-info">
+          <div className="mh-logo-studioname">
+            <div className="mh-logo">
               <img src={`${URL_API}${auth.photo}`} alt="" />
             </div>
-            <div className="ch-studioname">{auth.businessName}</div>
+            <div className="mh-studioname">{auth.businessName}</div>
           </div>
-          <div className="ch-title-date">
-            <div className="ch-title">Leon & Stella</div>
-            <div className="ch-date">28 June 2021</div>
+          <div className="mh-title-date">
+            <div className="mh-title">Leon & Stella</div>
+            <div className="mh-date">28 June 2021</div>
           </div>
-          <div className="ch-desc">
+          <div className="mh-desc">
             Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas
             expedita eos nisi officiis.
           </div>
-          <div onClick={scrollOpen} className="arrow-open">
-            <div>Open</div>
-            <BsArrowDown size={30} />
+          <div className="arrow-open">
+            <button onClick={scrollOpen}>
+              <div>Open</div>
+              <BsArrowDown size={30} />
+            </button>  
           </div>
         </div>
       </div>
       <div className="minimalist-main">
         <div ref={myRefOpen} className="cobascroll">
-          <div className="cm-title-studioname-info">
-            <div className="cm-title-studioname">
-              <div className="cm-title">Leon & Stella</div>
-              <div className="cm-studioname">{auth.businessName}</div>
+          <div className="mm-title-studioname-info">
+            <div className="mm-title-studioname">
+              <div className="mm-title">Leon & Stella</div>
+              <div className="mm-studioname">{auth.businessName}</div>
             </div>
-            <div className="cm-info">
+            <div className="mm-info">
               <div>
                 <FaRegShareSquare style={{ marginBottom: '3px' }} />{' '}
                 <span className="share">Share</span>
@@ -102,7 +105,7 @@ function TemplateMinimalist() {
               </div>
             </div>
           </div>
-          <div className="cm-cards-wrapper">{collectionAllImage()}</div>
+          <div className="mm-cards-wrapper">{collectionAllImage()}</div>
         </div>
         <div>
           <div className="arrow-back">

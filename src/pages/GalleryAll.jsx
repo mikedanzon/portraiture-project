@@ -33,7 +33,7 @@ function GalleryAll() {
     return collections.map((val, index) => {
       return (
         <div className="galleryall-cards" key={index}>
-          <img src={val.cover} alt="noImageFound" />
+          <img src={val.cover} alt="NoImageFound" />
           <div className="cards-text">
             <div className="cards-text1">{val.title}</div>
             <div className="cards-text2">{val.user.businessName}</div>

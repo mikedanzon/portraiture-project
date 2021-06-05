@@ -1,7 +1,8 @@
-.minimalist-wrapper {
-	.minimalist-header {
-		.mh-background {
-			flex-basis: 60%;
+.darkmode-wrapper {
+	.darkmode-header {
+		display: grid;
+		grid-template-columns: repeat(6, 1fr);
+		.dmh-background-blur {
 			height: 100vh;
 			img {
 				width: 100%;
@@ -9,10 +10,12 @@
 				object-fit: cover;
 			}
 		}
-		.mh-info {
+		.dmh-info {
+			z-index: 1;
 			text-align: center;
-			.mh-logo-studioname {
-				.mh-logo {
+			backdrop-filter: blur(9px) brightness(0.5);
+			.dmh-logo-studioname {
+				.dmh-logo {
 					padding-bottom: 10px;
 					img {
 						width: 100px;
@@ -20,63 +23,83 @@
 						object-fit: cover;
 					}
 				}	
-				.mh-studioname {
-					font-size: 14px;
-					color: #000000;
+				.dmh-studioname {
+					font-size: 18px;
+					color: #ffffff;
 					text-align: center;
 				}
 			}
-			.mh-title-date {
-				.mh-title {
+			.dmh-background {
+				cursor: pointer;
+				img {
+					backdrop-filter: blur(5px);
+					height: 60vh;
+					width: 70vw;
+					object-fit: cover;
+				}
+			}
+			.dmh-titledate-desc {
+				width: 70vw;
+				align-self: center;
+				.dmh-title-date {
+					flex-basis: 50%;
+				.dmh-title {
 					font-size: 32px;
 					font-weight: bold;
-					color: #373737;
+					color: #ffffff;
 				}	
-				.mh-date {
-					font-size: 14px;
-					color: #999999;
+				.dmh-date {
+					font-size: 18px;
+					color: #ffffff;
 					text-align: center;
 				}
 			}	
-			.mh-desc {
-				font-size: 14px;
-				color: #000000;
-				text-align: -webkit-center;
-				padding: 0px 50px;
+			
+			.dmm-desc {
+				font-size: 18px;
+				color: #ffffff;
+				flex-basis: 50%;
+				// text-align: end;
+			}
 			}
 			.arrow-open {
-				padding-top: 30px;
 				button {
 					background-color: transparent;
 					cursor: pointer;
-					border: none;
+					border: 1px solid #ffffff;
 					outline: none;
+					color: #ffffff;
+					padding: 10px 20px;
 				}
 			}
 		}
 	}
-	.minimalist-main {
-		.mm-title-studioname-info {
+	.darkmode-main {
+		backdrop-filter: brightness(.2);
+		.dmm-title-studioname-info {
 			display: flex;
 			flex-grow: 1;
 			justify-content: space-between;
-			.mm-title-studioname{
-				.mm-title {
+			.dmm-title-studioname{
+				.dmm-title {
 					font-size: 16px;
 					color: #373737;
 					font-weight: bold;
 				}
-				.mm-studioname {
+				.dmm-studioname {
 					font-size: 14px;
 					color: #999999;
 				}
 			}
-			.mm-info {
+			.dmm-info {
 				font-size: 14px;
+				flex-grow: 1;
+				justify-content: center;
+				color: #ffffff;
 			}
 		}
 	}
-	.mm-cards-wrapper {
+	.dmm-cards-wrapper {
 			grid-template-columns: repeat(3, auto);
 			grid-template-rows: repeat(3, auto);
 			justify-items: stretch;
@@ -100,111 +123,121 @@
 				background-color: transparent;
 				border: none;
 				outline: none;
+				color: #ffffff;
 			}
 		}
-	.minimalist-footer {
+	.darkmode-footer {
 		text-align: center;
 		.footer-text-top {
 			font-size: 14px;
-			color: #999999;
+			color: #ffffff;
 		}
 		.footer-text-bottom {
 			font-size: 14px;
-			color: #000000;
+			color: #ffffff;
 			span {
 				text-decoration: underline;
 			}
 		}
 	} 
 	@media (max-width: 650px) {
-		.mh-info {
+		.dmh-info {
 			display: flex;
 			flex-direction: column;
-			padding-top: 30px;
-			height: 100vh;
-			padding: 100px 0px;
+			padding-top: 20px;
+			padding-bottom: 20px;
 			justify-content: space-between;
 		}
-		.mh-title-date {
-			padding-top: 50px;
-			padding-bottom: 50px;
-		}
-		.mh-logo-studioname {
+		.dmh-logo-studioname {
 			align-self: center;
 		}
-		.mh-title-date {
-			align-self: center;
-		}
-		.minimalist-main {
+		.darkmode-main {
 			padding: 30px 20px;
 		}
-		.mm-cards-wrapper {
+		.dmm-cards-wrapper {
 			margin-top: 30px;
 			column-width: 300px;
 		}
-		.mm-title-studioname {
+		.dmm-title-studioname {
 			flex-basis: 50%;
 		}
 	}
 	@media (min-width: 650px) and (max-width: 900px) {
-		.mh-info {
-			padding: 100px 0px;
+		.dmh-info {
 			display: flex;
 			flex-direction: column;
 			align-items: center;
-			flex-basis: 40%;
 			justify-content: space-between;
-			height: 100vh;
+			padding-top: 30px;
+			padding-bottom: 30px;
 		}
-		.mh-desc {
+		.dmh-desc {
 			padding: 0px 150px;
 		}
-		.minimalist-main {
+		.darkmode-main {
 			padding: 50px 100px;
 		}
-		.mm-cards-wrapper {
+		.dmm-cards-wrapper {
 			margin-top: 50px;
 			column-width: 300px;
 		}
-		.mm-info {
+		.dmm-info {
 			display: flex;
 			.share {
 				padding-right: 20px;
 			}
 		}
-		.mh-title-date {
-			padding-top: 50px;
-			padding-bottom: 50px;
-		}
+		.dmh-titledate-desc {
+				display: flex;
+				justify-content: space-between;
+				.dmh-title-date {
+					text-align-last: start;
+				}
+				.dmm-desc {
+				text-align: end;
+				}
+					
+			}
 	}
 	@media (min-width: 900px) {
-		.mh-info {
+		.dmh-info {
 			display: flex;
 			flex-direction: column;
-			align-items: center;
-			flex-basis: 40%;
 			justify-content: space-between;
-			padding-top: 100px;
-			padding-bottom: 100px;
+			flex-basis: 40%;
+			padding-top: 30px;
+			padding-bottom: 30px;
 		}
-		.minimalist-header {
-			display: flex;
-		}
-		.mh-desc {
+		.dmh-desc {
 			padding: 0px 150px;
 		}
-		.minimalist-main {
+		.darkmode-main {
 			padding: 50px 100px;
 		}
-		.mm-cards-wrapper {
+		.dmm-cards-wrapper {
 			margin-top: 50px;
 			column-width: 350px;
 		}
-		.mm-info {
+		.dmm-info {
 			display: flex;
 			.share {
 				padding-right: 20px;
 			}
 		}
-	}
+		.dmh-titledate-desc {
+				display: flex;
+				justify-content: space-between;
+				.dmh-title-date {
+					text-align-last: start;
+				}
+				.dmm-desc {
+				text-align: end;
+				}
+					
+			}		
+		}
+	.dmh-background, .dmh-info, .dmh-background-blur {
+	grid-row: 1 / 7;
+	grid-column: 1 / 7;
+}
 }
