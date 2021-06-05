@@ -11,7 +11,6 @@ function CollectionsCollection() {
   const [title, setTitle] = useState();
   const [date, setDate] = useState();
   const [desc, setDesc] = useState();
-  // const [collection, setCollection] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
   const history = useHistory();

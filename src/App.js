@@ -56,7 +56,7 @@ function App() {
           });
         })
         .catch((err) => {
-          console.log(err.response.data.message);
+          console.log(err);
           localStorage.removeItem('token');
           setTimeout(() => {
             window.location = '/';
@@ -101,7 +101,7 @@ function App() {
         <Route exact path="/packages/edit/:id" component={PackagesEdit} />
         <Route exact path="/invoice/new/:id" component={InvoiceNew} />
         <Route exact path="/invoice/edit/:id" component={InvoiceEdit} />
-        <Route path='*' component={NotFound} />
+        <Route path="*" component={NotFound} />
       </Switch>
     </>
   );

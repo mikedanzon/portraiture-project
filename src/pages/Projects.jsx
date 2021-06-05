@@ -42,8 +42,8 @@ function Projects() {
           return data;
         })
       );
-      // console.log(project);
-      setProjects(project);
+      console.log(project);
+      setProjects(project.reverse());
       setIsLoading(false);
     } catch (error) {
       dispatch(toastError(`${error.response.data.message}`));

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router';
+import { useHistory, useParams } from 'react-router';
 import { URL_API } from '../helper/url';
 import { Fragment } from 'react';
 import {
@@ -24,6 +24,7 @@ function InvoiceNew() {
   const [paid, setPaid] = useState(0);
   const [subtotal, setSubtotal] = useState(0);
   const [amountdue, setAmountdue] = useState(0);
+  const [invoiceDetails, setInvoiceDetails] = useState(false); // proteksi biar ga double saat user salah input
   const [inputFields, setInputFields] = useState([
     {
       itemName: null,
@@ -34,6 +35,7 @@ function InvoiceNew() {
   ]);
   const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   useEffect(() => {
     if (localStorage.getItem('token')) {
@@ -165,6 +167,9 @@ function InvoiceNew() {
       .post(`${URL_API}/invoice?id_project=${id}`, bodyFormData)
       .then(() => {
         dispatch(toastSuccess('Success created invoice!'));
+        setTimeout(() => {
+          history.push(`/projects/details/${id}`);
+        }, 2000);
       })
       .catch((err) => {
         dispatch(toastError(`${err.response.data.message}`));
@@ -340,7 +345,7 @@ function InvoiceNew() {
                   type="number"
                   value={paid}
                   onChange={(e) => setPaid(e.target.value)}
-                  style={{width: `${paid ? paid.length : "1"}ch`}}
+                  style={{ width: `${paid ? paid.length : '1'}ch` }}
                 />
               </div>
             </div>
@@ -365,36 +370,44 @@ function InvoiceNew() {
           </div>
           <div className="invoice-right-name">Leon & Stella</div>
           <div className="invoice-right-date">28 June 2021</div>
-          <div className="invoice-right-package">
-            <div className="invoice-right-package-header">
-              <div className="invoice-right-pader-text">
-                Related package found
-              </div>
-              <div className="invoice-right-pader-hide">
-                <button onClick={() => setHidePackage(!hidePackage)}>
-                  hide
-                </button>
+          {!packageItems.length ? (
+            <div className="invoice-right-package">
+              <div className="invoice-right-package-header">
+                <div className="invoice-right-pader-text">No package found</div>
               </div>
             </div>
-            <div
-              className={
-                hidePackage ? 'd-none' : 'invoice-right-package-content'
-              }
-            >
-              <div className="invoice-right-content-text">
-                You can import related package into this invoice. Here's the
-                package details
+          ) : (
+            <div className="invoice-right-package">
+              <div className="invoice-right-package-header">
+                <div className="invoice-right-pader-text">
+                  Related package found
+                </div>
+                <div className="invoice-right-pader-hide">
+                  <button onClick={() => setHidePackage(!hidePackage)}>
+                    hide
+                  </button>
+                </div>
               </div>
-              <div className="invoice-right-content-items">
-                {packageItems.map((val) => {
-                  return <li>{val.itemName}</li>;
-                })}
-              </div>
-              <div className="invoice-right-content-button">
-                <button onClick={onClickProceed}>Proceed</button>
+              <div
+                className={
+                  hidePackage ? 'd-none' : 'invoice-right-package-content'
+                }
+              >
+                <div className="invoice-right-content-text">
+                  You can import related package into this invoice. Here's the
+                  package details
+                </div>
+                <div className="invoice-right-content-items">
+                  {packageItems.map((val) => {
+                    return <li>{val.itemName}</li>;
+                  })}
+                </div>
+                <div className="invoice-right-content-button">
+                  <button onClick={onClickProceed}>Proceed</button>
+                </div>
               </div>
             </div>
-          </div>
+          )}
           <div className="invoice-right-button">
             <button onClick={onClickSave}>Create Invoice</button>
           </div>

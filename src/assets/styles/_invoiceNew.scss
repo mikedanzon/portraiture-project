@@ -521,7 +521,6 @@
       .invoice-right-package-header {
         display: flex;
         justify-content: space-between;
-        padding-bottom: 10px;
 
         .invoice-right-pader-text {
           font-weight: bold;
@@ -540,6 +539,8 @@
       }
 
       .invoice-right-package-content {
+        padding-top: 10px;
+
         .invoice-right-content-text {
           padding-bottom: 10px;
         }

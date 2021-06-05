@@ -10,6 +10,7 @@ import {
   toastSuccess,
 } from '../redux/actions/toastActions';
 import HeaderProps from '../components/HeaderProps';
+import NoImage from '../assets/img/no_image.png';
 
 function PackagesNew() {
   const [name, setName] = useState('');
@@ -148,13 +149,23 @@ function PackagesNew() {
           <div className="pnew-image-2">
             <input id="previewImage" type="file" onChange={onPhotoChange} />
           </div>
-          <div className="pnew-image-show">
-            <img
-              className="pnew-preview-image pt-3"
-              src={picture && picture}
-              alt="previewImage"
-            />
-          </div>
+          {picture ? (
+            <div className="pnew-image-show">
+              <img
+                className="pnew-preview-image pt-3"
+                src={picture && picture}
+                alt="previewImage"
+              />
+            </div>
+          ) : (
+            <div className="pnew-image-show">
+              <img
+                className="pnew-preview-image pt-3"
+                src={NoImage}
+                alt="previewImage"
+              />
+            </div>
+          )}
         </div>
         <div className="pnew-items">
           <div className="pnew-items-text">Package Item</div>

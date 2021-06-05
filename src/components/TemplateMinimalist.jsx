@@ -83,7 +83,7 @@ function TemplateMinimalist() {
             <button onClick={scrollOpen}>
               <div>Open</div>
               <BsArrowDown size={30} />
-            </button>  
+            </button>
           </div>
         </div>
       </div>

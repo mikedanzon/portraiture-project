@@ -7,8 +7,8 @@ import { useDispatch } from 'react-redux';
 import { toastError } from '../redux/actions/toastActions';
 import Header from '../components/Header';
 import axios from 'axios';
-import ProjectPackages from '../components/DetailsPage/ProjectPackages';
-import ProjectInvoice from '../components/DetailsPage/ProjectInvoice';
+import ProjectPackages from '../components/ProjectDetails/ProjectPackages';
+import ProjectInvoice from '../components/ProjectDetails/ProjectInvoice';
 
 function ProjectDetails() {
   const { id } = useParams();

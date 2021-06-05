@@ -35,7 +35,8 @@ function Collections() {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       };
       var res = await axios.get(`${URL_API}/collection/all`, config);
-      setDataCollections(res.data.result);
+      setDataCollections(res.data.result.reverse());
+      console.log(res.data.result);
       setIsLoading(false);
     } catch (error) {
       dispatch(toastError(`${error.response.data.message}`));

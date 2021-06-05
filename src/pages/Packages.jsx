@@ -29,7 +29,7 @@ function Packages() {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       };
       var res = await axios.get(`${URL_API}/package`, config);
-      setDataPacakges(res.data.result);
+      setDataPacakges(res.data.result.reverse());
       setIsLoading(false);
     } catch (error) {
       dispatch(toastError(`${error.response.data.message}`));
