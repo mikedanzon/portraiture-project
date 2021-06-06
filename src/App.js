@@ -29,7 +29,7 @@ import InvoiceEdit from './pages/invoices/InvoiceEdit';
 import NotFound from './pages/NotFound';
 import TempClassic from './pages/TempClassic';
 import TempDarkmode from './pages/TempDarkmode';
-import TempMinimalism from './pages/TempClassic';
+import TempMinimalism from './pages/TempMinimalism';
 import 'react-toastify/dist/ReactToastify.css';
 import './assets/styles/style.scss';
 import 'react-awesome-lightbox/build/style.css';
