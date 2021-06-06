@@ -11,7 +11,7 @@ import { useParams } from 'react-router';
 
 function TempClassic() {
   const { id } = useParams();
-  const auth = useSelector((state) => state.auth);
+  // const auth = useSelector((state) => state.auth);
   const [images, setImages] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [user, setUser] = useState({});

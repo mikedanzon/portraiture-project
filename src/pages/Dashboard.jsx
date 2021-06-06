@@ -99,8 +99,21 @@ function Dashboard() {
                   </div>
                 </div>
                 <div className="cards-preview">
-                  <BsEyeFill size={20} style={{ marginBottom: '3px' }} />{' '}
-                  <span>Preview</span>
+                  {/*<BsEyeFill size={20} style={{ marginBottom: '3px' }} />{' '}
+                  <span>Preview</span>*/}
+                  {val.theme === 'Classic' ? (
+                  <Link to={`/temp/classic/${val.id}`} target="_blank">
+                    <BsEyeFill size={20} style={{ marginBottom: '3px' }}/> Preview
+                  </Link>
+                ) : val.theme === 'Minimalism' ? (
+                  <Link to={`/temp/minimalism/${val.id}`} target="_blank">
+                    <BsEyeFill size={20} style={{ marginBottom: '3px' }}/> Preview
+                  </Link>
+                ) : (
+                  <Link to={`/temp/darkmode/${val.id}`} target="_blank">
+                    <BsEyeFill size={20} style={{ marginBottom: '3px' }}/> Preview
+                  </Link>
+                )}
                 </div>
               </div>
               <div className="cards-bottom-wrapper">

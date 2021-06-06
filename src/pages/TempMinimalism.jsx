@@ -11,7 +11,9 @@ import Dummy from '../assets/img/dummy-img/minimalist-background.png';
 
 function TempMinimalism() {
   const { id } = useParams();
-  const auth = useSelector((state) => state.auth);
+  // const auth = useSelector((state) => state.auth);
+  const [user, setUser] = useState({});
+  const [date, setDate] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [images, setImages] = useState([]);
   const myRefOpen = useRef(null);
@@ -26,11 +28,20 @@ function TempMinimalism() {
     setIsLoading(true);
     try {
       var res = await axios.get(
-        `${URL_API}/collectionImages/bycollection?id_collection=1`
+        `${URL_API}/collection/one?id_collection=${id}`
       );
-      let colImages = res.data.result.filter((item, index) => {
+      let colImages = res.data.result.collectionImages.filter((item, index) => {
         return index % 2 !== 0;
       });
+      console.log(res.data.result);
+      setUser(res.data.result.user);
+      setCollection(res.data.result);
+      let date = res.data.result.date
+        .slice(0, 10)
+        .split('-')
+        .reverse()
+        .join('-');
+      setDate(date);
       setImages(colImages);
       setIsLoading(false);
     } catch (error) {
@@ -64,23 +75,20 @@ function TempMinimalism() {
     <div className="minimalist-wrapper">
       <div ref={myRefBack} className="minimalist-header">
         <div className="mh-background">
-          <img src={Dummy} alt="" />
+          <img src={collection.cover} alt="" />
         </div>
         <div className="mh-info">
           <div className="mh-logo-studioname">
             <div className="mh-logo">
-              <img src={`${URL_API}${auth.photo}`} alt="" />
+              <img src={`${URL_API}${user.photo}`} alt="" />
             </div>
-            <div className="mh-studioname">{auth.businessName}</div>
+            <div className="mh-studioname">{user.businessName}</div>
           </div>
           <div className="mh-title-date">
-            <div className="mh-title">Leon & Stella</div>
-            <div className="mh-date">28 June 2021</div>
+            <div className="mh-title">{collection.title}</div>
+            <div className="mh-date">{date}</div>
           </div>
-          <div className="mh-desc">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas
-            expedita eos nisi officiis.
-          </div>
+          <div className="mh-desc">{collection.description}</div>
           <div className="arrow-open">
             <button onClick={scrollOpen}>
               <div>Open</div>
@@ -93,8 +101,8 @@ function TempMinimalism() {
         <div ref={myRefOpen} className="cobascroll">
           <div className="mm-title-studioname-info">
             <div className="mm-title-studioname">
-              <div className="mm-title">Leon & Stella</div>
-              <div className="mm-studioname">{auth.businessName}</div>
+              <div className="mm-title">{collection.title}</div>
+              <div className="mm-studioname">{user.businessName}</div>
             </div>
             <div className="mm-info">
               <div>
@@ -119,7 +127,7 @@ function TempMinimalism() {
         </div>
         <div className="minimalist-footer">
           <div className="footer-text-top">
-            Copyright &#xA9; 2021 <span>{auth.businessName}</span>
+            Copyright &#xA9; 2021 <span>{user.businessName}</span>
           </div>
           <div className="footer-text-bottom">
             powered by <span>portraiture</span>
