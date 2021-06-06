@@ -87,8 +87,8 @@ function App() {
         <Route exact path="/" component={Home} />
         <Route exact path="/register" component={Register} />
         <Route exact path="/login" component={Login} />
-        <Route exact path="/privacy" component={Privacy} />
-        <Route exact path="/download" component={Download} />
+        <Route exact path="/privacy/:id" component={Privacy} />
+        <Route exact path="/download/:id" component={Download} />
         <Route exact path="/collections" component={Collections} />
         <Route exact path="/collections/new" component={CollectionNew} />
         <Route exact path="/collections/edit/:id" component={CollectionEdit} />

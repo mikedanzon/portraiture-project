@@ -5,8 +5,8 @@ import { FaRegShareSquare } from 'react-icons/fa';
 import { useSelector } from 'react-redux';
 import { URL_API } from '../helper/url';
 import { useDispatch } from 'react-redux';
-import { toastError } from '../redux/actions/toastActions';
-import { useParams } from 'react-router';
+import { toastError, toastSuccess } from '../redux/actions/toastActions';
+import { useHistory, useParams } from 'react-router';
 import Dummy from '../assets/img/dummy-img/minimalist-background.png';
 
 function TempMinimalism() {
@@ -20,6 +20,7 @@ function TempMinimalism() {
   const myRefOpen = useRef(null);
   const myRefBack = useRef(null);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   useEffect(() => {
     fetchDataImage();
@@ -60,8 +61,30 @@ function TempMinimalism() {
   const scrollOpen = () => {
     myRefOpen.current.scrollIntoView({ top: 0, left: 0, behavior: 'smooth' });
   };
+
   const scrollBack = () => {
     myRefBack.current.scrollIntoView({ top: 0, left: 0, behavior: 'smooth' });
+  };
+
+  const onClickDownload = () => {
+    if (collection.downloadOption) {
+      if (collection.password) {
+        history.push(`/privacy/${id}`);
+      } else {
+        history.push(`/download/${id}`);
+      }
+    } else {
+      dispatch(
+        toastError('Sorry, you are not allowed to download this collections!')
+      );
+    }
+  };
+
+  const onClickShare = () => {
+    navigator.clipboard.writeText(window.location.href);
+    dispatch(
+      toastSuccess('Link has been copied! Share it with your friend now!')
+    );
   };
 
   if (isLoading) {
@@ -106,13 +129,13 @@ function TempMinimalism() {
               <div className="mm-studioname">{user.businessName}</div>
             </div>
             <div className="mm-info">
-              <div>
+              <div className="cursor-pointer">
                 <FaRegShareSquare style={{ marginBottom: '3px' }} />{' '}
-                <span className="share">Share</span>
+                <span className="share" onClick={onClickShare}>Share</span>
               </div>
-              <div>
+              <div className="cursor-pointer">
                 <BsBoxArrowInDown style={{ marginBottom: '3px' }} />{' '}
-                <span>Download</span>
+                <span onClick={onClickDownload}>Download</span>
               </div>
             </div>
           </div>

@@ -114,7 +114,7 @@ function GalleryPhoto() {
       ) : null}
       <div className="galleryphoto-wrapper">
         <div className="gallery-head">
-          <Link className="gallery-link" to="/dashboard">
+          <Link className="gallery-link" to="/gallery/all">
             <img
               className="gallery-logo"
               src={`${URL_API}${studioImage}`}

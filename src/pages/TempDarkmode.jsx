@@ -4,10 +4,10 @@ import Dummy from '../assets/img/dummy-img/minimalist-background.png';
 import { URL_API } from '../helper/url';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { toastError } from '../redux/actions/toastActions';
+import { toastError, toastSuccess } from '../redux/actions/toastActions';
 import { FaRegShareSquare } from 'react-icons/fa';
 import { BsBoxArrowInDown, BsArrowUp } from 'react-icons/bs';
-import { useParams } from 'react-router';
+import { useHistory, useParams } from 'react-router';
 
 function TempDarkmode() {
   // const auth = useSelector((state) => state.auth);
@@ -20,6 +20,7 @@ function TempDarkmode() {
   const [user, setUser] = useState({});
   const [collection, setCollection] = useState({});
   const [date, setDate] = useState('');
+  const history = useHistory();
 
   useEffect(() => {
     fetchDataImage();
@@ -60,8 +61,30 @@ function TempDarkmode() {
   const scrollOpen = () => {
     myRefOpen.current.scrollIntoView({ top: 0, left: 0, behavior: 'smooth' });
   };
+
   const scrollBack = () => {
     myRefBack.current.scrollIntoView({ top: 0, left: 0, behavior: 'smooth' });
+  };
+
+  const onClickDownload = () => {
+    if (collection.downloadOption) {
+      if (collection.password) {
+        history.push(`/privacy/${id}`);
+      } else {
+        history.push(`/download/${id}`);
+      }
+    } else {
+      dispatch(
+        toastError('Sorry, you are not allowed to download this collections!')
+      );
+    }
+  };
+
+  const onClickShare = () => {
+    navigator.clipboard.writeText(window.location.href);
+    dispatch(
+      toastSuccess('Link has been copied! Share it with your friend now!')
+    );
   };
 
   if (isLoading) {
@@ -91,7 +114,7 @@ function TempDarkmode() {
           <div className="dmh-titledate-desc">
             <div className="dmh-title-date">
               <div className="dmh-title">{collection.title}</div>
-              <div className="dmh-date">{user.businessName}</div>
+              <div className="dmh-date">{date}</div>
             </div>
             <div className="dmm-desc">{collection.description}</div>
           </div>
@@ -101,13 +124,15 @@ function TempDarkmode() {
         <div>
           <div ref={myRefOpen} className="dmm-title-studioname-info">
             <div className="dmm-info">
-              <div>
+              <div className="cursor-pointer">
                 <FaRegShareSquare style={{ marginBottom: '3px' }} />{' '}
-                <span className="share">Share</span>
+                <span className="share" onClick={onClickShare}>
+                  Share
+                </span>
               </div>
-              <div>
+              <div className="cursor-pointer">
                 <BsBoxArrowInDown style={{ marginBottom: '3px' }} />{' '}
-                <span>Download</span>
+                <span onClick={onClickDownload}>Download</span>
               </div>
             </div>
           </div>

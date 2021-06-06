@@ -2,7 +2,11 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { URL_API } from '../helper/url';
 import { useDispatch } from 'react-redux';
-import { toastError, toastSuccess, toastWarning } from '../redux/actions/toastActions';
+import {
+  toastError,
+  toastSuccess,
+  toastWarning,
+} from '../redux/actions/toastActions';
 import { AiFillEye } from 'react-icons/ai';
 import { BsCardImage, BsBoxArrowInDown } from 'react-icons/bs';
 import { useHistory } from 'react-router';
@@ -53,6 +57,7 @@ function Collections() {
         setDataBackup(res.data.result.reverse());
         setIdUser(res.data.result[0].id_user);
       }
+      console.log(res.data.result);
       setIsLoading(false);
     } catch (error) {
       dispatch(toastError(`${error.response.data.message}`));
@@ -71,7 +76,6 @@ function Collections() {
     axios
       .delete(`${URL_API}/collection/delete?id_collection=${idCol}`, config)
       .then((res) => {
-        console.log(res.data.result);
         dispatch(toastSuccess('Success deleted a collection!'));
         setTimeout(() => {
           fetchData();
@@ -151,7 +155,7 @@ function Collections() {
   };
 
   const onClickFilter = () => {
-    dispatch(toastWarning("Feature coming soon!"))
+    dispatch(toastWarning('Feature coming soon!'));
   };
 
   if (isLoading) {
