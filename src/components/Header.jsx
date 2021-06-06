@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import { Navbar } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { toastWarning } from '../redux/actions';
 import Logo from '../assets/img/portraiture.png';
 import LogoBell from '../assets/img/header/logo_bell.png';
 import LogoUser from '../assets/img/header/logo_user.png';
 
 function Header() {
   const [page, setPage] = useState('');
+  const dispatch = useDispatch();
 
   useEffect(() => {
     getUrl();
@@ -14,8 +17,12 @@ function Header() {
 
   const getUrl = () => {
     let url = window.location.href;
-    let result = url.match(/[^\/]+$/);
+    let result = url.match(/[^\/]+$/); // eslint-disable-line
     setPage(result[0]);
+  };
+
+  const onNotifClick = () => {
+    dispatch(toastWarning('Feature in development! Please try again later'));
   };
 
   return (
@@ -51,9 +58,9 @@ function Header() {
               <Link to="/packages">Packages</Link>
             </div>
             <div className="port-header-bell pr-4">
-              <Link to="/">
+              <span onClick={onNotifClick} className="cursor-pointer">
                 <img src={LogoBell} alt="imageLogo" />
-              </Link>
+              </span>
             </div>
             <div className="port-header-user pr-5">
               <Link to="/dashboard">
@@ -61,14 +68,12 @@ function Header() {
               </Link>
             </div>
             <div className="port-header-bell-notif pr-4">
-              <Link to="/">
-                <Link to="/">Notifications</Link>
-              </Link>
+              <span onClick={onNotifClick} className="cursor-pointer">
+                Notifications
+              </span>
             </div>
             <div className="port-header-user-profile pr-5">
-              <Link to="/dashboard">
-                <Link to="/profile">Profile</Link>
-              </Link>
+              <Link to="/dashboard">Profile</Link>
             </div>
           </div>
         </Navbar.Collapse>

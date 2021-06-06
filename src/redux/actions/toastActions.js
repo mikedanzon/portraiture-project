@@ -41,3 +41,17 @@ export const toastInfo = (msg) => {
     });
   };
 };
+
+export const toastWarning = (msg) => {
+  return (dispatch) => {
+    toast.warn(`${msg}`, {
+      position: 'bottom-right',
+      autoClose: 3000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
+};

@@ -4,3 +4,4 @@ export const DELETE_COLLECTIONS = 'DELETE_COLLECTIONS';
 export const SET_LOADING = 'SET_LOADING';
 export const TOAST_SUCCESS = 'TOAST_SUCCESS';
 export const TOAST_ERROR = 'TOAST_ERROR';
+export const TOAST_WARNING = 'TOAST_WARNING';

@@ -6,15 +6,21 @@
 @import './privacy';
 @import './download';
 @import './dashboard';
-@import './template';
 @import './profile';
 @import './galleryAll';
 @import './switch';
 @import './galleryPhoto';
 @import './simplePopover';
-@import './packageModal';
-@import './invoiceNew';
-@import './templateMinimalist';
+@import './notfound';
+// Templates Import
+@import './templates/tempMinimalism';
+@import './templates/tempClassic';
+@import './templates/tempDarkmode';
+// Invoices Import
+@import './invoices/invoiceNew';
+@import './invoices/invoiceEdit';
+@import './invoices/invoicePreview';
+@import './invoices/invoicePaid';
 // Headers Import
 @import './headers/header';
 @import './headers/headerProps';
@@ -33,6 +39,7 @@
 @import './projects/projectEdit';
 @import './projects/projects';
 @import './projects/projectDetails';
+@import './projects/components/packageModal';
 @import './projects/components/projectInvoice';
 @import './projects/components/projectPackages';
 @import './projects/components/projectRundown';
@@ -79,6 +86,10 @@
 }
 
 .loader {
+  @media (max-width: 400px) {
+    left: 38% !important;
+  }
+
   @media (max-width: 650px) {
     left: 40% !important;
   }
@@ -119,6 +130,10 @@
 }
 
 .loader-project {
+  @media (max-width: 400px) {
+    left: 38% !important;
+  }
+
   @media (max-width: 650px) {
     left: 40% !important;
   }
@@ -128,8 +143,8 @@
   }
 
   position: absolute;
-  left: 46%;
-  top: 40%;
+  left: 45%;
+  top: 45%;
   z-index: 1;
   border: 16px solid #f3f3f3;
   border-radius: 50%;

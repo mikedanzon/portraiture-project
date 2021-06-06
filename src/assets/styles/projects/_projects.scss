@@ -1,10 +1,56 @@
 .projects-wrapper {
   @media (max-width: 650px) {
     padding: 100px 20px;
+
+    .projects-content {
+      .content-items {
+        .item-content {
+          display: block !important;
+
+          .item-left-wrapper {
+            width: 100% !important;
+            padding-bottom: 10px;
+          }
+
+          .item-left-wrapper-empty {
+            width: 100% !important;
+            padding-bottom: 10px;
+          }
+
+          .item-right-wrapper {
+            width: 100% !important;
+            margin-left: auto !important;
+          }
+        }
+      }
+    }
   }
 
   @media (min-width: 650px) and (max-width: 1100px) {
-    padding: 155px 125px;
+    padding: 155px 70px;
+
+    .projects-content {
+      .content-items {
+        .item-content {
+          display: block !important;
+
+          .item-left-wrapper {
+            width: 100% !important;
+            padding-bottom: 10px;
+          }
+
+          .item-left-wrapper-empty {
+            width: 100% !important;
+            padding-bottom: 10px;
+          }
+
+          .item-right-wrapper {
+            width: 100% !important;
+            margin-left: auto !important;
+          }
+        }
+      }
+    }
   }
 
   @media (min-width: 1100px) {
@@ -12,6 +58,9 @@
   }
 
   .projects-content {
+    max-width: 1300px;
+    margin: 0 auto;
+
     .content-items {
       margin-bottom: 20px;
 
@@ -65,6 +114,14 @@
 
             .item-packages-link {
               font-weight: 600;
+
+              button {
+                outline: none;
+                background: inherit;
+                color: black;
+                font-size: 12px;
+                border: none;
+              }
 
               a {
                 font-size: 12px;
@@ -142,6 +199,13 @@
             }
 
             .item-invoice-link {
+              button {
+                background: inherit;
+                border: none;
+                font-size: 12px;
+                outline: none;
+              }
+
               a {
                 font-size: 12px;
                 text-decoration: none;

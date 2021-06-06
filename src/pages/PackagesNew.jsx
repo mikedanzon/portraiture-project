@@ -10,8 +10,10 @@ import {
   toastSuccess,
 } from '../redux/actions/toastActions';
 import HeaderProps from '../components/HeaderProps';
+import NoImage from '../assets/img/no_image.png';
 
 function PackagesNew() {
+  const [isLoading, setIsLoading] = useState(false);
   const [name, setName] = useState('');
   const [desc, setDesc] = useState('');
   const [picture, setPicture] = useState(null);
@@ -82,6 +84,7 @@ function PackagesNew() {
   };
 
   const postData = () => {
+    setIsLoading(true);
     var bodyFormData = new FormData();
     bodyFormData.append('name', name);
     bodyFormData.append('description', desc);
@@ -101,8 +104,18 @@ function PackagesNew() {
       })
       .catch((err) => {
         dispatch(toastError(`${err.response.data.message}`));
+        setIsLoading(false);
       });
   };
+
+  if (isLoading) {
+    return (
+      <>
+        <HeaderProps title="Edit Profile" link="/dashboard" />
+        <div className="loader"></div>
+      </>
+    );
+  }
 
   return (
     <>
@@ -138,13 +151,23 @@ function PackagesNew() {
           <div className="pnew-image-2">
             <input id="previewImage" type="file" onChange={onPhotoChange} />
           </div>
-          <div className="pnew-image-show">
-            <img
-              className="pnew-preview-image pt-3"
-              src={picture && picture}
-              alt="previewImage"
-            />
-          </div>
+          {picture ? (
+            <div className="pnew-image-show">
+              <img
+                className="pnew-preview-image pt-3"
+                src={picture && picture}
+                alt="previewImage"
+              />
+            </div>
+          ) : (
+            <div className="pnew-image-show">
+              <img
+                className="pnew-preview-image pt-3"
+                src={NoImage}
+                alt="previewImage"
+              />
+            </div>
+          )}
         </div>
         <div className="pnew-items">
           <div className="pnew-items-text">Package Item</div>

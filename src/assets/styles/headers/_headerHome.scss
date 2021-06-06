@@ -1,4 +1,6 @@
 .hhome {
+  background: transparent !important;
+
   @media (max-width: 992px) {
     background: white;
     position: fixed;
@@ -115,4 +117,8 @@
       }
     }
   }
+}
+
+.hhome.active {
+  background: white !important;
 }

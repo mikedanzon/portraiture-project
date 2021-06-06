@@ -1,0 +1,251 @@
+.darkmode-wrapper {
+  .darkmode-header {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    .dmh-background-blur {
+      height: 100vh;
+      img {
+        width: 100%;
+        height: 100vh;
+        object-fit: cover;
+      }
+    }
+    .dmh-info {
+      z-index: 1;
+      text-align: center;
+      backdrop-filter: blur(9px) brightness(0.5);
+      .dmh-logo-studioname {
+        .dmh-logo {
+          padding-bottom: 10px;
+          img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+          }
+        }
+        .dmh-studioname {
+          font-size: 18px;
+          color: #ffffff;
+          text-align: center;
+        }
+      }
+      .dmh-background {
+        cursor: pointer;
+        img {
+          backdrop-filter: blur(5px);
+          height: 60vh;
+          width: 70vw;
+          object-fit: cover;
+          box-shadow: 0px 4px 20px 4px #ffffff; 
+        }
+      }
+      .dmh-titledate-desc {
+        width: 70vw;
+        align-self: center;
+        .dmh-title-date {
+          flex-basis: 50%;
+          .dmh-title {
+            font-size: 32px;
+            font-weight: bold;
+            color: #ffffff;
+          }
+          .dmh-date {
+            font-size: 18px;
+            color: #ffffff;
+            text-align: center;
+          }
+        }
+
+        .dmm-desc {
+          font-size: 18px;
+          color: #ffffff;
+          flex-basis: 50%;
+          // text-align: end;
+        }
+      }
+      .arrow-open {
+        button {
+          background-color: transparent;
+          cursor: pointer;
+          border: 1px solid #ffffff;
+          outline: none;
+          color: #ffffff;
+          padding: 10px 20px;
+        }
+      }
+    }
+  }
+  .darkmode-main {
+    backdrop-filter: brightness(0.2);
+    .dmm-title-studioname-info {
+      display: flex;
+      flex-grow: 1;
+      justify-content: space-between;
+      .dmm-title-studioname {
+        .dmm-title {
+          font-size: 16px;
+          color: #373737;
+          font-weight: bold;
+        }
+        .dmm-studioname {
+          font-size: 14px;
+          color: #999999;
+        }
+      }
+      .dmm-info {
+        font-size: 14px;
+        flex-grow: 1;
+        justify-content: center;
+        color: #ffffff;
+      }
+    }
+  }
+  .dmm-cards-wrapper {
+    grid-template-columns: repeat(3, auto);
+    grid-template-rows: repeat(3, auto);
+    justify-items: stretch;
+    flex-wrap: wrap;
+    max-width: 1300px;
+    margin-right: auto;
+    margin-left: auto;
+    img {
+      height: auto;
+      width: 100%;
+      object-fit: cover;
+      display: inline-flex;
+      margin-bottom: 20px;
+    }
+  }
+  .arrow-back {
+    text-align: center;
+    padding-top: 120px;
+    padding-bottom: 80px;
+    button {
+      cursor: pointer;
+      background-color: transparent;
+      border: none;
+      outline: none;
+      color: #ffffff;
+    }
+  }
+  .darkmode-footer {
+    text-align: center;
+    .footer-text-top {
+      font-size: 14px;
+      color: #ffffff;
+    }
+    .footer-text-bottom {
+      font-size: 14px;
+      color: #ffffff;
+      span {
+        text-decoration: underline;
+      }
+    }
+  }
+  @media (max-width: 650px) {
+    .dmh-info {
+      display: flex;
+      flex-direction: column;
+      padding-top: 40px;
+      padding-bottom: 40px;
+      justify-content: space-between;
+    }
+    .dmh-logo-studioname {
+      align-self: center;
+    }
+    .darkmode-main {
+      padding: 30px 20px;
+    }
+    .dmm-cards-wrapper {
+      margin-top: 30px;
+      column-width: 300px;
+    }
+    .dmm-info {
+      display: flex;
+      .share {
+        padding-right: 20px;
+      }
+    }
+    .dmm-title-studioname {
+      flex-basis: 50%;
+    }
+  }
+  @media (min-width: 650px) and (max-width: 900px) {
+    .dmh-info {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 40px;
+      padding-bottom: 40px;
+    }
+    .dmh-desc {
+      padding: 0px 150px;
+    }
+    .darkmode-main {
+      padding: 50px 100px;
+    }
+    .dmm-cards-wrapper {
+      margin-top: 50px;
+      column-width: 300px;
+    }
+    .dmm-info {
+      display: flex;
+      .share {
+        padding-right: 20px;
+      }
+    }
+    .dmh-titledate-desc {
+      display: flex;
+      justify-content: space-between;
+      .dmh-title-date {
+        text-align-last: start;
+      }
+      .dmm-desc {
+        text-align: end;
+      }
+    }
+  }
+  @media (min-width: 900px) {
+    .dmh-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      flex-basis: 40%;
+      padding-top: 50px;
+      padding-bottom: 50px;
+    }
+    .dmh-desc {
+      padding: 0px 150px;
+    }
+    .darkmode-main {
+      padding: 50px 100px;
+    }
+    .dmm-cards-wrapper {
+      margin-top: 50px;
+      column-width: 350px;
+    }
+    .dmm-info {
+      display: flex;
+      .share {
+        padding-right: 20px;
+      }
+    }
+    .dmh-titledate-desc {
+      display: flex;
+      justify-content: space-between;
+      .dmh-title-date {
+        text-align-last: start;
+      }
+      .dmm-desc {
+        text-align: end;
+      }
+    }
+  }
+  .dmh-background,
+  .dmh-info,
+  .dmh-background-blur {
+    grid-row: 1 / 7;
+    grid-column: 1 / 7;
+  }
+}

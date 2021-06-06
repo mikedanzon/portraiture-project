@@ -16,7 +16,7 @@ function Home() {
 
   return (
     <>
-      <HeaderHome />
+      <HeaderHome headerHeight={165} />
       <div className="port-home">
         <div className="home-template">
           <div className="home-template-text">

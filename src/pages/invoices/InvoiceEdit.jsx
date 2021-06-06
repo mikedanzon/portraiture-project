@@ -1,32 +1,42 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import axios from 'axios';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router';
-import { URL_API } from '../helper/url';
+import { useHistory, useParams } from 'react-router';
+import { URL_API } from '../../helper/url';
 import { Fragment } from 'react';
 import {
   toastError,
   toastInfo,
   toastSuccess,
-} from '../redux/actions/toastActions';
+  toastWarning,
+} from '../../redux/actions/toastActions';
 import { BsTrash } from 'react-icons/bs';
-import HeaderProps from '../components/HeaderProps';
+import { HiDownload } from 'react-icons/hi';
+import { Link } from 'react-router-dom';
+import { useDropzone } from 'react-dropzone';
+import { dateFormatter } from '../../helper/dateformatter';
+import HeaderProps from '../../components/HeaderProps';
 
-function InvoiceNew() {
+function InvoiceEdit() {
   const { id } = useParams();
-  const [hidePackage, setHidePackage] = useState(false);
   const [clientName, setClientName] = useState('');
   const [clientAddress, setClientAddress] = useState('');
+  const [idProject, setIdProject] = useState(0);
   const [issuedDate, setIssuedDate] = useState('');
+  const [issuedDateFormat, setIssuedDateFormat] = useState('');
   const [dueDate, setDueDate] = useState('');
-  const [packageItems, setPackageItems] = useState([]);
+  const [paymentDate, setPaymentDate] = useState('');
+  const [dueRemain, setDueRemain] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [paid, setPaid] = useState(0);
+  const [isPaid, setIsPaid] = useState(false);
   const [subtotal, setSubtotal] = useState(0);
   const [amountdue, setAmountdue] = useState(0);
+  const [imageReceipt, setImageReceipt] = useState(false);
+  const [invoiceDetails, setInvoiceDetails] = useState(false);
   const [inputFields, setInputFields] = useState([
     {
-      itemName: null,
+      name: null,
       quantity: null,
       price: null,
       amount: null,
@@ -34,9 +44,18 @@ function InvoiceNew() {
   ]);
   const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+  const history = useHistory();
+
+  const onDrop = useCallback((acceptedFiles) => {
+    setImageReceipt(acceptedFiles[0]);
+  }, []);
+
+  const { getRootProps, getInputProps } = useDropzone({ onDrop });
 
   useEffect(() => {
-    fetchData();
+    if (localStorage.getItem('token')) {
+      fetchData();
+    }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
@@ -60,16 +79,23 @@ function InvoiceNew() {
   const fetchData = async () => {
     setIsLoading(true);
     try {
-      var config = {
-        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
-      };
-      var res = await axios.get(`${URL_API}/project/one?id=${id}`, config);
-      if (res.data.result.id_package) {
-        let packages = await fetchPackages(res.data.result.id_package);
-        setPackageItems(packages.packageItems);
+      var res = await axios.get(`${URL_API}/invoice/one?id_invoice=${id}`);
+      setDueRemain(res.data.result.total);
+      setDueDate(res.data.result.dueDate);
+      setIssuedDate(res.data.result.issuedDate);
+      setClientName(res.data.result.billToName);
+      setClientAddress(res.data.result.billToAddress);
+      setInputFields(res.data.result.detailInvoices);
+      setPaid(res.data.result.paidCost);
+      setIsPaid(res.data.result.isPaid);
+      setIdProject(res.data.result.id_project);
+      setInvoiceDetails(res.data.result);
+      setImageReceipt(res.data.result.receipt);
+      setPaymentDate(res.data.result.paymentDate);
+      setIssuedDateFormat(dateFormatter(res.data.result.issuedDate));
+      if (res.data.result.isPaid && res.data.result.receipt) {
+        history.push(`/invoice/paid/${id}`);
       }
-      setClientName(res.data.result.clientName);
-      setClientAddress(res.data.result.clientAddress);
       setIsLoading(false);
     } catch (error) {
       dispatch(toastError(`${error.response.data.message}`));
@@ -77,24 +103,10 @@ function InvoiceNew() {
     }
   };
 
-  const fetchPackages = (idPackage) => {
-    var config = {
-      headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
-    };
-    return axios
-      .get(`${URL_API}/package/one?packageId=${idPackage}`, config)
-      .then((res) => {
-        return res.data.result;
-      })
-      .catch((err) => {
-        dispatch(toastError(`${err.response.data.message}`));
-      });
-  };
-
   const handleInputChange = (index, event) => {
     const values = [...inputFields];
-    if (event.target.name === 'itemName') {
-      values[index].itemName = event.target.value;
+    if (event.target.name === 'name') {
+      values[index].name = event.target.value;
     } else if (event.target.name === 'quantity') {
       values[index].quantity = event.target.value;
       values[index].amount = values[index].quantity * values[index].price;
@@ -109,7 +121,7 @@ function InvoiceNew() {
 
   const handleAddFields = () => {
     const values = [...inputFields];
-    values.push({ itemName: '', quantity: '', price: '', amount: '' });
+    values.push({ name: '', quantity: '', price: '', amount: '' });
     setInputFields(values);
   };
 
@@ -119,60 +131,63 @@ function InvoiceNew() {
     setInputFields(values);
   };
 
-  const onClickProceed = () => {
-    let data = [...inputFields];
-    for (let i = 0; i < packageItems.length; i++) {
-      data.push({
-        itemName: packageItems[i].itemName,
-        quantity: 1,
-        price: packageItems[i].price,
-        amount: packageItems[i].price,
-      });
-    }
-    setInputFields(data);
-  };
-
   const onClickSave = () => {
-    var itemFormData = new FormData();
-    console.log(inputFields);
-    for (var i = 0; i < inputFields.length; i++) {
-      itemFormData.append('name', inputFields[i].itemName);
-      itemFormData.append('quantity', inputFields[i].quantity);
-      itemFormData.append('price', inputFields[i].price);
-    }
-    axios
-      .post(`${URL_API}/detailInvoice`, itemFormData)
-      .then(() => {
-        dispatch(toastInfo('Please wait connecting to database'));
-        createInvoice();
-      })
-      .catch((err) => {
-        dispatch(toastError(`${err.response.data.message}`));
-      });
-  };
-
-  const createInvoice = () => {
-    var bodyFormData = new FormData();
+    setIsLoading(true);
+    let bodyFormData = new FormData();
     bodyFormData.append('issuedDate', issuedDate);
     bodyFormData.append('dueDate', dueDate);
-    bodyFormData.append('isPaid', false);
-    bodyFormData.append('subtotal', subtotal);
+    bodyFormData.append('isPaid', isPaid);
     bodyFormData.append('paidCost', paid);
-    bodyFormData.append('amountDue', amountdue);
+    bodyFormData.append('billToName', clientName);
+    bodyFormData.append('billToAddress', clientAddress);
+    bodyFormData.append('image', imageReceipt);
     axios
-      .post(`${URL_API}/invoice?id_project=${id}`, bodyFormData)
+      .put(
+        `${URL_API}/invoice?id_project=${idProject}&id_invoice=${id}`,
+        bodyFormData
+      )
       .then(() => {
-        dispatch(toastSuccess('Success created invoice!'));
+        dispatch(toastInfo('Please wait connecting to server...'));
+        onUpdateDetails();
       })
       .catch((err) => {
         dispatch(toastError(`${err.response.data.message}`));
+        setIsLoading(false);
       });
+  };
+
+  const onUpdateDetails = () => {
+    let itemsFormData = new FormData();
+    for (let i = 0; i < inputFields.length; i++) {
+      itemsFormData.append('name', inputFields[i].name);
+      itemsFormData.append('quantity', inputFields[i].quantity);
+      itemsFormData.append('price', inputFields[i].price);
+    }
+    axios
+      .put(`${URL_API}/detailInvoice?id_invoice=${id}`, itemsFormData)
+      .then(() => {
+        dispatch(toastSuccess('Success updating the invoice! Redirecting...'));
+        setTimeout(() => {
+          history.push(`/projects/details/${idProject}`);
+        }, 2000);
+      })
+      .catch((err) => {
+        dispatch(toastError(`${err.response.data.message}`));
+        setIsLoading(false);
+      });
+  };
+
+  const onClickPdf = () => {
+    dispatch(toastWarning('Feature in development! Please try again later'));
   };
 
   if (isLoading) {
     return (
       <>
-        <HeaderProps title="Invoice" link={`/projects/details/${id}`} />
+        <HeaderProps
+          title={invoiceDetails.invoiceName}
+          link={`/projects/details/${invoiceDetails.id_project}`}
+        />
         <div className="loader-project"></div>
       </>
     );
@@ -180,8 +195,21 @@ function InvoiceNew() {
 
   return (
     <>
-      <HeaderProps title="Invoice" link={`/projects/details/${id}`} />
-      <div className="invoice-wrapper">
+      <HeaderProps
+        title={`INVOICE ${invoiceDetails.invoiceName}`}
+        link={`/projects/details/${invoiceDetails.id_project}`}
+      />
+      <div className="invoice-edit-header-top">
+        <div className="invoice-header-wrapper">
+          <div className="invoice-header-top-edit">
+            <Link to={`/invoice/edit/${id}`}>Edit</Link>
+          </div>
+          <div className="invoice-header-top-preview">
+            <Link to={`/invoice/preview/${id}`}>Preview</Link>
+          </div>
+        </div>
+      </div>
+      <div className="invoice-edit-wrapper">
         <div className="invoice-left">
           <div className="invoice-left-studio">
             <div className="invoice-left-studio-image">
@@ -189,7 +217,7 @@ function InvoiceNew() {
             </div>
             <div className="invoice-left-studio-name">{auth.businessName}</div>
           </div>
-          <div className="invoice-left-name">INVOICE</div>
+          <div className="invoice-left-name">{`INVOICE ${invoiceDetails.invoiceName}`}</div>
           <div className="invoice-date">
             <div className="invoice-date-issued">
               <div className="invoice-date-issued-text">Issued Date</div>
@@ -229,7 +257,7 @@ function InvoiceNew() {
                 <textarea
                   rows="5"
                   cols="50"
-                  className="custom-form-port"
+                  className="custom-form-port invoice-buyer-address-text"
                   style={{ width: '90%' }}
                   value={clientAddress}
                   onChange={(e) => setClientAddress(e.target.value)}
@@ -262,9 +290,9 @@ function InvoiceNew() {
                           <input
                             placeholder="Type product/service name"
                             type="text"
-                            id="itemName"
-                            name="itemName"
-                            value={inputField.itemName}
+                            id="name"
+                            name="name"
+                            value={inputField.name}
                             onChange={(event) =>
                               handleInputChange(index, event)
                             }
@@ -328,6 +356,7 @@ function InvoiceNew() {
                   type="number"
                   value={paid}
                   onChange={(e) => setPaid(e.target.value)}
+                  style={{ width: `${paid ? paid.length : '1'}ch` }}
                 />
               </div>
             </div>
@@ -347,43 +376,62 @@ function InvoiceNew() {
           </div>
         </div>
         <div className="invoice-right">
-          <div className="invoice-right-header">
-            <div className="invoice-right-header-text">Project</div>
-          </div>
-          <div className="invoice-right-name">Leon & Stella</div>
-          <div className="invoice-right-date">28 June 2021</div>
-          <div className="invoice-right-package">
-            <div className="invoice-right-package-header">
-              <div className="invoice-right-pader-text">
-                Related package found
+          <div className="invoice-right-text">Project</div>
+          <div className="invoice-right-name">{clientName}</div>
+          <div className="invoice-right-date">{issuedDateFormat}</div>
+          <div className="invoice-right-text">Status</div>
+          {isPaid ? (
+            <div className="invoice-right-paid">Paid</div>
+          ) : (
+            <div className="invoice-right-unpaid">
+              <b>Unpaid</b> - Due in {dueRemain} days
+            </div>
+          )}
+          {imageReceipt ? (
+            <div className="invoice-right-payment">
+              <div className="invoice-right-receipt">
+                <div className="invoice-right-text">Receipt</div>
+                <div className="invoice-right-receipt-image">
+                  <a
+                    href={imageReceipt}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    receipt.png
+                  </a>
+                </div>
               </div>
-              <div className="invoice-right-pader-hide">
-                <button onClick={() => setHidePackage(!hidePackage)}>
-                  hide
-                </button>
+              <div className="invoice-right-payment-date">
+                <div className="invoice-right-text">Payment Date</div>
+                <div className="invoice-right-date-payment">
+                  {dateFormatter(paymentDate)}
+                </div>
               </div>
             </div>
-            <div
-              className={
-                hidePackage ? 'd-none' : 'invoice-right-package-content'
-              }
-            >
-              <div className="invoice-right-content-text">
-                You can import related package into this invoice. Here's the
-                package details
-              </div>
-              <div className="invoice-right-content-items">
-                {packageItems.map((val) => {
-                  return <li>{val.itemName}</li>;
-                })}
-              </div>
-              <div className="invoice-right-content-button">
-                <button onClick={onClickProceed}>Proceed</button>
+          ) : (
+            <div className="invoice-right-receipt-upload">
+              <div className="invoice-right-text">Receipt</div>
+              <div className="invoice-right-upload-receipt">
+                <div {...getRootProps()}>
+                  <input {...getInputProps()} />
+                  {imageReceipt ? (
+                    <div className="invoice-right-upload-dropzone">
+                      Success Upload
+                    </div>
+                  ) : (
+                    <div className="invoice-right-upload-dropzone">
+                      Upload Receipt
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
+          )}
+          <div className="invoice-right-pdf" onClick={onClickPdf}>
+            <HiDownload size={18} /> Download pdf
           </div>
           <div className="invoice-right-button">
-            <button onClick={onClickSave}>Create Invoice</button>
+            <button onClick={onClickSave}>Save</button>
           </div>
         </div>
       </div>
@@ -391,4 +439,4 @@ function InvoiceNew() {
   );
 }
 
-export default InvoiceNew;
+export default InvoiceEdit;

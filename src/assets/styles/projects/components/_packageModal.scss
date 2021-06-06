@@ -1,4 +1,26 @@
 .package-modal {
+  @media (max-width: 650px) {
+    .package-modal-main {
+      width: 95% !important;
+
+      .package-modal-content {
+        display: block !important;
+      }
+    }
+  }
+
+  @media (min-width: 650px) and (max-width: 1100px) {
+    .package-modal-main {
+      width: 85% !important;
+
+      .package-modal-content {
+        .data-item-list {
+          flex-basis: 48% !important;
+        }
+      }
+    }
+  }
+
   position: fixed;
   top: 0;
   left: 0;

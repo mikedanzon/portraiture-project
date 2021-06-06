@@ -17,7 +17,9 @@ function Profile() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    fetchUser();
+    if (localStorage.getItem('token')) {
+      fetchUser();
+    }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const fetchUser = async () => {

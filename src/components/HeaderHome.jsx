@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Navbar } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { toastSuccess } from '../redux/actions/toastActions';
 import Logo from '../assets/img/portraiture.png';
 
-function HeaderHome() {
+function HeaderHome(props) {
+  const [navbar, setNavbar] = useState(false);
   const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
@@ -19,9 +20,19 @@ function HeaderHome() {
     }, 2000);
   };
 
+  const changeBackground = () => {
+    if (window.scrollY >= props.headerHeight) {
+      setNavbar(true);
+    } else {
+      setNavbar(false);
+    }
+  };
+
+  window.addEventListener('scroll', changeBackground);
+
   return (
     <>
-      <div className="hhome">
+      <div className={navbar ? 'hhome active' : 'hhome'}>
         <Navbar expand="lg">
           <div className="hhome-logo">
             <Link to="/">

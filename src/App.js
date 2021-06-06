@@ -2,7 +2,7 @@ import { Route, Switch } from 'react-router';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { URL_API } from './helper/url';
-import { ToastContainer } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import Home from './pages/Home';
 import Register from './pages/Register';
 import Login from './pages/Login';
@@ -24,11 +24,17 @@ import Packages from './pages/Packages';
 import PackagesNew from './pages/PackagesNew';
 import PackagesEdit from './pages/PackagesEdit';
 import ProjectDetails from './pages/ProjectDetails';
-import InvoiceNew from './pages/InvoiceNew';
-import InvoiceEdit from './pages/InvoiceEdit';
+import InvoiceNew from './pages/invoices/InvoiceNew';
+import InvoiceEdit from './pages/invoices/InvoiceEdit';
+import NotFound from './pages/NotFound';
+import TempClassic from './pages/TempClassic';
+import TempDarkmode from './pages/TempDarkmode';
+import TempMinimalism from './pages/TempMinimalism';
 import 'react-toastify/dist/ReactToastify.css';
 import './assets/styles/style.scss';
 import 'react-awesome-lightbox/build/style.css';
+import InvoicePreview from './pages/invoices/InvoicePreview';
+import InvoicePaid from './pages/invoices/InvoicePaid';
 
 function App() {
   const dispatch = useDispatch();
@@ -55,7 +61,7 @@ function App() {
           });
         })
         .catch((err) => {
-          console.log(err.response.data.message);
+          console.log(err);
           localStorage.removeItem('token');
           setTimeout(() => {
             window.location = '/';
@@ -63,6 +69,49 @@ function App() {
         });
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  if (!localStorage.getItem('token')) {
+    toast.dark(
+      '👋🏻 Welcome to portraiture! Please login or signup to access the photographer area, enjoy!',
+      {
+        position: 'bottom-left',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      }
+    );
+
+    return (
+      <>
+        <ToastContainer
+          position="bottom-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/register" component={Register} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/gallery/all" component={GalleryAll} />
+          <Route
+            exact
+            path="/gallery/photographer/:id"
+            component={GalleryPhoto}
+          />
+          <Route path="*" component={NotFound} />
+        </Switch>
+      </>
+    );
+  }
 
   return (
     <>
@@ -81,8 +130,8 @@ function App() {
         <Route exact path="/" component={Home} />
         <Route exact path="/register" component={Register} />
         <Route exact path="/login" component={Login} />
-        <Route exact path="/privacy" component={Privacy} />
-        <Route exact path="/download" component={Download} />
+        <Route exact path="/privacy/:id" component={Privacy} />
+        <Route exact path="/download/:id" component={Download} />
         <Route exact path="/collections" component={Collections} />
         <Route exact path="/collections/new" component={CollectionNew} />
         <Route exact path="/collections/edit/:id" component={CollectionEdit} />
@@ -94,12 +143,22 @@ function App() {
         <Route exact path="/projects/details/:id" component={ProjectDetails} />
         <Route exact path="/projects" component={Projects} />
         <Route exact path="/gallery/all" component={GalleryAll} />
-        <Route exact path="/gallery/photographer" component={GalleryPhoto} />
+        <Route
+          exact
+          path="/gallery/photographer/:id"
+          component={GalleryPhoto}
+        />
         <Route exact path="/packages" component={Packages} />
         <Route exact path="/packages/new" component={PackagesNew} />
         <Route exact path="/packages/edit/:id" component={PackagesEdit} />
         <Route exact path="/invoice/new/:id" component={InvoiceNew} />
         <Route exact path="/invoice/edit/:id" component={InvoiceEdit} />
+        <Route exact path="/invoice/preview/:id" component={InvoicePreview} />
+        <Route exact path="/invoice/paid/:id" component={InvoicePaid} />
+        <Route exact path="/temp/classic/:id" component={TempClassic} />
+        <Route exact path="/temp/minimalism/:id" component={TempMinimalism} />
+        <Route exact path="/temp/darkmode/:id" component={TempDarkmode} />
+        <Route path="*" component={NotFound} />
       </Switch>
     </>
   );

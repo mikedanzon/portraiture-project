@@ -6,7 +6,6 @@
   -o-background-size: cover;
   background-size: cover;
   height: 330px;
-  // margin-top: 76px;
   background-position: center;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -43,16 +42,17 @@
     }
   }
   @media (max-width: 992px) {
-    margin-top:60px
+    margin-top: 60px;
   }
   @media (min-width: 992px) {
-    margin-top: 76px
-    
+    margin-top: 76px;
   }
 }
 .dashboard-main {
   .dashboard-wrapper {
     width: 100%;
+    max-width: 1300px;
+    margin: 0 auto;
     .dashboard-title {
       font-size: 24px;
       font-style: normal;
@@ -139,19 +139,14 @@
       span {
         display: none;
       }
-    } 
+    }
   }
   @media (min-width: 650px) and (max-width: 1100px) {
     padding: 100px 80px;
     .rcollections-cards {
       flex-basis: 45%;
     }
-    // .recent-projects-packages-wrapper {
-    //   display: flex;
-    //   justify-content: space-between;
-    // }
     .rcollections-wrapper {
-      // flex-wrap: wrap;
       flex-direction: column;
     }
     .recent-collections {
@@ -272,7 +267,6 @@
         justify-content: space-between;
         .cards-packages-rundown-invoice {
           font-size: 12px;
-          // padding-top: 7px;
           span {
             margin-right: 10px;
           }
@@ -317,8 +311,13 @@
             }
           }
           .cards-preview {
-            font-size: 12px;
-            color: #999999;
+            a {
+              font-size: 12px;
+              color: #999999;
+            }
+            a:hover {
+              text-decoration: none;
+            }
           }
         }
         .cards-bottom-wrapper {
@@ -327,9 +326,6 @@
           .cards-img-down {
             font-size: 12px;
             color: #000000;
-          }
-          .cards-edit {
-
           }
         }
       }

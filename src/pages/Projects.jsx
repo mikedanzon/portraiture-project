@@ -4,9 +4,10 @@ import { URL_API } from '../helper/url';
 import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { deleteProject, toastError } from '../redux/actions';
+import { deleteProject, toastError, toastWarning } from '../redux/actions';
 import { MdClose, MdDone } from 'react-icons/md';
 import { HiDownload } from 'react-icons/hi';
+import { dateFormatter } from '../helper/dateformatter';
 import Header from '../components/Header';
 import HeaderUser from '../components/HeaderUser';
 import SimplePopover from '../components/Popover/SimplePopover';
@@ -14,11 +15,28 @@ import SimplePopover from '../components/Popover/SimplePopover';
 function Projects() {
   const [isLoading, setIsLoading] = useState(false);
   const [projects, setProjects] = useState([]);
+  const [dataBackup, setDataBackup] = useState([]);
+  const [search, setSearch] = useState('');
   const history = useHistory();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    fetchData();
+    let results = [];
+    for (let i = 0; i < projects.length; i++) {
+      if (projects[i].name.toLowerCase().includes(search)) {
+        results.push(projects[i]);
+      }
+    }
+    setProjects(results.reverse());
+    if (search.length === 0) {
+      setProjects(dataBackup);
+    }
+  }, [search]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    if (localStorage.getItem('token')) {
+      fetchData();
+    }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const fetchData = async () => {
@@ -40,8 +58,20 @@ function Projects() {
           return data;
         })
       );
-      // console.log(project);
-      setProjects(project);
+      let invoice = await Promise.all(
+        project.map(async (data) => {
+          if (data.id) {
+            let invoice = await fetchInvoice(data.id);
+            return {
+              ...data,
+              invoice,
+            };
+          }
+          return data;
+        })
+      );
+      setProjects(invoice.reverse());
+      setDataBackup(invoice);
       setIsLoading(false);
     } catch (error) {
       dispatch(toastError(`${error.response.data.message}`));
@@ -55,6 +85,17 @@ function Projects() {
     };
     return axios
       .get(`${URL_API}/package/one?packageId=${id}`, config)
+      .then((res) => {
+        return res.data.result;
+      })
+      .catch((err) => {
+        dispatch(toastError(`${err.response.data.message}`));
+      });
+  };
+
+  const fetchInvoice = (id) => {
+    return axios
+      .get(`${URL_API}/invoice?id_project=${id}`)
       .then((res) => {
         return res.data.result;
       })
@@ -93,9 +134,7 @@ function Projects() {
             </div>
           </div>
           <div className="item-name">{val.clientName}</div>
-          <div className="item-date">
-            {val.date.split('-').reverse().join('-')}
-          </div>
+          <div className="item-date">{dateFormatter(val.date)}</div>
           <div className="item-content">
             {val.id_package ? (
               <div className="item-left-wrapper">
@@ -104,9 +143,9 @@ function Projects() {
                     <MdDone size={19} className="mdclose-styling" /> Packages
                   </div>
                   <div className="item-packages-link">
-                    <Link>
+                    <button onClick={onPdfClick}>
                       <HiDownload size={20} /> Download pdf
-                    </Link>
+                    </button>
                   </div>
                 </div>
                 <div className="item-packages-content">
@@ -141,16 +180,29 @@ function Projects() {
                   </Link>
                 </div>
               </div>
-              <div className="item-invoice">
-                <div className="item-invoice-name">
-                  <MdClose size={19} className="mdclose-styling" /> Invoice
+              {val.invoice.length ? (
+                <div className="item-invoice">
+                  <div className="item-invoice-name">
+                    <MdDone size={19} className="mdclose-styling" /> Invoice
+                  </div>
+                  <div className="item-invoice-link">
+                    <button onClick={onPdfClick}>
+                      <HiDownload size={20} /> Download pdf
+                    </button>
+                  </div>
                 </div>
-                <div className="item-invoice-link">
-                  <Link to={`/projects/details/${val.id}`}>
-                    + Add new invoice
-                  </Link>
+              ) : (
+                <div className="item-invoice">
+                  <div className="item-invoice-name">
+                    <MdClose size={19} className="mdclose-styling" /> Invoice
+                  </div>
+                  <div className="item-invoice-link">
+                    <Link to={`/projects/details/${val.id}`}>
+                      + Add new invoice
+                    </Link>
+                  </div>
                 </div>
-              </div>
+              )}
             </div>
           </div>
           <div className="projects-border"></div>
@@ -160,7 +212,11 @@ function Projects() {
   };
 
   const onClickFilter = () => {
-    alert('success filter');
+    dispatch(toastWarning('Feature coming soon!'));
+  };
+
+  const onPdfClick = () => {
+    dispatch(toastWarning('Feature in development! Please try again later'));
   };
 
   if (isLoading) {
@@ -182,6 +238,8 @@ function Projects() {
           headerOneLink="/projects/new"
           headerSearchText="Search Projects"
           onClick={onClickFilter}
+          searchValue={search}
+          searchChange={(e) => setSearch(e.target.value)}
         />
         <div className="projects-content">{projectItems()}</div>
       </div>

@@ -9,7 +9,14 @@ import reportWebVitals from './reportWebVitals';
 import Reducers from './redux/reducers';
 import thunk from 'redux-thunk';
 
-const store = createStore(Reducers, composeWithDevTools(applyMiddleware(thunk)));
+const middleware = [thunk];
+
+const devTools =
+  process.env.NODE_ENV === 'production'
+    ? applyMiddleware(...middleware)
+    : composeWithDevTools(applyMiddleware(...middleware));
+
+const store = createStore(Reducers, devTools);
 
 ReactDOM.render(
   <Provider store={store}>

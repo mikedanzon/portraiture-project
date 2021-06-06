@@ -13,11 +13,20 @@
 }
 
 .cedit {
+  max-width: 1300px;
+  margin: 0 auto;
+
   @media (max-width: 550px) {
     padding: 100px 10px;
 
+    .cedit-theme {
+      display: block !important;
+    }
+
     .cedit-main-menu {
       .cedit-menu {
+        font-size: 12px;
+
         .cedit-menu-style {
           padding: 7px 5px;
           margin-right: 5px;
@@ -33,7 +42,7 @@
       padding: 50px 20px;
 
       img {
-        width: 100px;
+        width: 150px;
         height: auto;
         max-height: 200px;
       }
@@ -41,6 +50,21 @@
 
     .cedit-upload {
       padding: 50px 20px;
+    }
+
+    .cedit-upload-button-2 {
+      margin-right: 0px !important;
+    }
+
+    .cedit-image-wrapper {
+      margin-left: 0 !important;
+      margin-right: 0 !important;
+
+      .cedit-image {
+        .image-preview-button {
+          flex-basis: 100% !important;
+        }
+      }
     }
   }
 
@@ -65,7 +89,7 @@
         padding: 50px 50px;
 
         img {
-          width: 120px;
+          width: 100%;
           height: auto;
           max-height: 200px;
         }
@@ -73,6 +97,21 @@
 
       .cedit-upload {
         padding: 50px 50px;
+      }
+
+      .cedit-upload-button-2 {
+        margin-right: -20px !important;
+      }
+
+      .cedit-image-wrapper {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+
+        .cedit-image {
+          .image-preview-button {
+            flex-basis: 47.5% !important;
+          }
+        }
       }
     }
   }
@@ -97,7 +136,7 @@
       padding: 50px 100px;
 
       img {
-        width: 150px;
+        width: 100%;
         height: auto;
         max-height: 200px;
       }
@@ -166,7 +205,20 @@
     .cedit-theme {
       display: flex;
       justify-content: space-between;
-      padding-bottom: 70px;
+      padding-bottom: 30px;
+      text-align: center;
+
+      .cedit-theme-img-active {
+        border: 2px solid #c2a47e;
+        box-sizing: border-box;
+        box-shadow: 0px 2px 10px 2px rgba(0, 0, 0, 0.1);
+      }
+
+      .cedit-theme-text {
+        font-size: 12px;
+        font-weight: bold;
+        padding-bottom: 20px;
+      }
 
       :hover {
         cursor: pointer;
@@ -197,7 +249,8 @@
           }
 
           .theme-preview-text-2 {
-            font-size: 10px;
+            font-size: 12px;
+            font-weight: bold;
           }
         }
       }
@@ -300,26 +353,72 @@
       }
     }
 
-    .cedit-image {
-      display: flex;
-      flex-flow: row wrap;
-      flex-direction: row;
-      text-align: center;
-      align-items: center;
-      margin-right: -120px;
+    .cedit-image-wrapper {
       margin-left: -120px;
-      padding-top: 50px;
+      margin-right: -120px;
 
-      .image-preview-list {
-        flex-basis: 33%;
-        padding-top: 25px;
-        padding-bottom: 25px;
-      }
+      .cedit-image {
+        display: flex;
+        flex-flow: row wrap;
+        flex-direction: row;
+        align-items: center;
+        margin: 0 auto;
+        margin-top: 50px;
+        max-width: 1600px;
+        column-gap: 5%;
 
-      img {
-        width: 200px;
-        height: auto;
-        max-height: 200px;
+        .image-preview-button {
+          background: none;
+          border: none;
+          flex-basis: 30%;
+          width: 100%;
+
+          .image-preview-list {
+            position: relative;
+            width: 100%;
+
+            .image-preview-cover {
+              // display: none;
+              color: black;
+              position: absolute;
+              top: 15px;
+              left: 15px;
+              color: white;
+              background: #c2a47e;
+              border-radius: 4px;
+              padding: 8px 15px;
+              cursor: pointer;
+            }
+
+            .image-preview-delete {
+              position: absolute;
+              top: 15px;
+              right: 15px;
+              background: white;
+              color: black;
+              border: none;
+              border-radius: 4px;
+              padding: 4px 10px;
+              display: none;
+            }
+
+            img {
+              width: 100%;
+              height: 270px;
+              object-fit: cover;
+              margin-bottom: 30px;
+              box-shadow: 4px 4px 20px 4px rgba(0, 0, 0, 0.15);
+            }
+          }
+        }
+
+        .image-preview-button:hover {
+          .image-preview-list {
+            .image-preview-delete {
+              display: block;
+            }
+          }
+        }
       }
     }
 
@@ -449,12 +548,6 @@
         .cedit-advance-2-3 {
           padding-left: 55px;
           padding-top: 10px;
-          button {
-            padding: 10px 20px;
-            background: #c2a47e;
-            color: white;
-            border: none;
-          }
 
           input {
             padding-left: 15px;
@@ -468,6 +561,24 @@
               cursor: pointer;
             }
           }
+        }
+      }
+
+      button {
+        margin-top: 40px;
+        font-weight: bold;
+        font-size: 14px;
+        float: right;
+        background: #0e203d;
+        outline: none !important;
+        box-shadow: none !important;
+        border-radius: 0px;
+        padding: 5px 30px;
+        color: white;
+
+        &:hover {
+          background: #122e3d;
+          color: white;
         }
       }
     }
@@ -499,58 +610,6 @@
             color: #c2a47e;
           }
         }
-
-        .download-option-1 {
-          margin-left: 55px;
-          margin-top: 30px;
-          width: 340px;
-          background: #f8f8f8;
-
-          .option-image {
-            padding: 15px;
-            color: #373737;
-            font-size: 10px;
-
-            .option-image-text {
-              font-weight: bold;
-            }
-          }
-        }
-
-        .download-option-2 {
-          margin-left: 55px;
-          margin-top: 20px;
-          width: 340px;
-          background: #f8f8f8;
-
-          .option-email {
-            padding: 15px;
-            color: #373737;
-            font-size: 10px;
-
-            .option-email-text {
-              font-size: 12px;
-              font-weight: bold;
-            }
-
-            .option-email-add {
-              padding-top: 10px;
-              font-size: 14px;
-
-              button {
-                padding: 10px 20px;
-                background: #c2a47e;
-                color: white;
-                border: none;
-              }
-
-              input {
-                width: 220px;
-                padding-left: 15px;
-              }
-            }
-          }
-        }
       }
 
       .cedit-advance-2 {
@@ -578,17 +637,28 @@
           padding-left: 55px;
           padding-top: 10px;
 
-          button {
-            padding: 10px 20px;
-            background: #c2a47e;
-            color: white;
-            border: none;
-          }
-
           input {
             width: 220px;
             padding-left: 15px;
           }
+        }
+      }
+
+      button {
+        margin-top: 40px;
+        font-weight: bold;
+        font-size: 14px;
+        float: right;
+        background: #0e203d;
+        outline: none !important;
+        box-shadow: none !important;
+        border-radius: 0px;
+        padding: 5px 30px;
+        color: white;
+
+        &:hover {
+          background: #122e3d;
+          color: white;
         }
       }
     }

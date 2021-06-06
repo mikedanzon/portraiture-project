@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Button, Form } from 'react-bootstrap';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { URL_API } from '../helper/url';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -14,12 +14,11 @@ import Logo from '../assets/img/logo.png';
 function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const history = useHistory();
   const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
   if (auth.isLogin === true) {
-    history.push('/');
+    window.location = '/';
   }
 
   function handleSubmit(event) {

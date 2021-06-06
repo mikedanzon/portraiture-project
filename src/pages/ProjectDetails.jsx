@@ -5,21 +5,25 @@ import { Breadcrumb } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { toastError } from '../redux/actions/toastActions';
+import { dateFormatter } from '../helper/dateformatter';
 import Header from '../components/Header';
 import axios from 'axios';
-import ProjectPackages from '../components/DetailsPage/ProjectPackages';
-import ProjectInvoice from '../components/DetailsPage/ProjectInvoice';
+import ProjectPackages from '../components/ProjectDetails/ProjectPackages';
+import ProjectInvoice from '../components/ProjectDetails/ProjectInvoice';
+import ProjectRundown from '../components/ProjectDetails/ProjectRundown';
 
 function ProjectDetails() {
   const { id } = useParams();
   const [page, setPage] = useState(null);
   const [project, setProject] = useState({});
-  const [isLoading, setIsLoading] = useState(false);
   const [date, setDate] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    fetchData();
+    if (localStorage.getItem('token')) {
+      fetchData();
+    }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const fetchData = async () => {
@@ -30,7 +34,8 @@ function ProjectDetails() {
       };
       var res = await axios.get(`${URL_API}/project/one?id=${id}`, config);
       setProject(res.data.result);
-      setDate(res.data.result.date.split('-').reverse().join('-'));
+      let newDate = dateFormatter(res.data.result.date);
+      setDate(newDate);
       setIsLoading(false);
     } catch (error) {
       dispatch(toastError(`${error.response.data.message}`));
@@ -96,7 +101,9 @@ function ProjectDetails() {
           <div className="petail-menu-border"></div>
         </div>
         {page === 'rundown' ? (
-          <div className="petail-content">Rundown still pending</div>
+          <div className="petail-content">
+            <ProjectRundown />
+          </div>
         ) : page === 'invoice' ? (
           <div className="petail-content">
             <ProjectInvoice />

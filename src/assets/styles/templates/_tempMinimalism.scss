@@ -1,0 +1,213 @@
+.minimalist-wrapper {
+  .minimalist-header {
+    .mh-background {
+      flex-basis: 60%;
+      height: 100vh;
+      img {
+        width: 100%;
+        height: 100vh;
+        object-fit: cover;
+      }
+    }
+    .mh-info {
+      text-align: center;
+      .mh-logo-studioname {
+        .mh-logo {
+          padding-bottom: 10px;
+          img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+          }
+        }
+        .mh-studioname {
+          font-size: 14px;
+          color: #000000;
+          text-align: center;
+        }
+      }
+      .mh-title-date {
+        .mh-title {
+          font-size: 32px;
+          font-weight: bold;
+          color: #373737;
+        }
+        .mh-date {
+          font-size: 14px;
+          color: #999999;
+          text-align: center;
+        }
+      }
+      .mh-desc {
+        font-size: 14px;
+        color: #000000;
+        text-align: -webkit-center;
+        padding: 0px 50px;
+      }
+      .arrow-open {
+        padding-top: 30px;
+        button {
+          background-color: transparent;
+          cursor: pointer;
+          border: none;
+          outline: none;
+        }
+      }
+    }
+  }
+  .minimalist-main {
+    .mm-title-studioname-info {
+      display: flex;
+      flex-grow: 1;
+      justify-content: space-between;
+      .mm-title-studioname {
+        .mm-title {
+          font-size: 16px;
+          color: #373737;
+          font-weight: bold;
+        }
+        .mm-studioname {
+          font-size: 14px;
+          color: #999999;
+        }
+      }
+      .mm-info {
+        font-size: 14px;
+      }
+    }
+  }
+  .mm-cards-wrapper {
+    grid-template-columns: repeat(3, auto);
+    grid-template-rows: repeat(3, auto);
+    justify-items: stretch;
+    flex-wrap: wrap;
+    max-width: 1300px;
+    margin-right: auto;
+    margin-left: auto;
+    img {
+      height: auto;
+      width: 100%;
+      object-fit: cover;
+      display: inline-flex;
+      margin-bottom: 20px;
+    }
+  }
+  .arrow-back {
+    text-align: center;
+    padding-top: 120px;
+    padding-bottom: 80px;
+    button {
+      cursor: pointer;
+      background-color: transparent;
+      border: none;
+      outline: none;
+    }
+  }
+  .minimalist-footer {
+    text-align: center;
+    .footer-text-top {
+      font-size: 14px;
+      color: #999999;
+    }
+    .footer-text-bottom {
+      font-size: 14px;
+      color: #000000;
+      span {
+        text-decoration: underline;
+      }
+    }
+  }
+  @media (max-width: 650px) {
+    .mh-info {
+      display: flex;
+      margin-top: -100vh;
+      flex-direction: column;
+      padding-top: 30px;
+      height: 100vh;
+      padding: 100px 0px;
+      justify-content: space-between;
+    }
+    .mh-title-date {
+      padding-top: 50px;
+      padding-bottom: 50px;
+    }
+    .mh-logo-studioname {
+      align-self: center;
+    }
+    .mh-title-date {
+      align-self: center;
+    }
+    .minimalist-main {
+      padding: 30px 20px;
+    }
+    .mm-cards-wrapper {
+      margin-top: 30px;
+      column-width: 300px;
+    }
+    .mm-title-studioname {
+      flex-basis: 50%;
+    }
+  }
+  @media (min-width: 650px) and (max-width: 900px) {
+    .mh-info {
+      padding: 100px 0px;
+      margin-top: -100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex-basis: 40%;
+      justify-content: space-between;
+      height: 100vh;
+    }
+    .mh-desc {
+      padding: 0px 150px;
+    }
+    .minimalist-main {
+      padding: 50px 100px;
+    }
+    .mm-cards-wrapper {
+      margin-top: 50px;
+      column-width: 300px;
+    }
+    .mm-info {
+      display: flex;
+      .share {
+        padding-right: 20px;
+      }
+    }
+    .mh-title-date {
+      padding-top: 50px;
+      padding-bottom: 50px;
+    }
+  }
+  @media (min-width: 900px) {
+    .mh-info {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex-basis: 40%;
+      justify-content: space-between;
+      padding-top: 100px;
+      padding-bottom: 100px;
+    }
+    .minimalist-header {
+      display: flex;
+    }
+    .mh-desc {
+      padding: 0px 150px;
+    }
+    .minimalist-main {
+      padding: 50px 100px;
+    }
+    .mm-cards-wrapper {
+      margin-top: 50px;
+      column-width: 350px;
+    }
+    .mm-info {
+      display: flex;
+      .share {
+        padding-right: 20px;
+      }
+    }
+  }
+}

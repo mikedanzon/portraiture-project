@@ -1,12 +1,27 @@
-import React from 'react';
+import axios from 'axios';
+import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { BiArrowBack } from 'react-icons/bi';
-import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { Link, useParams } from 'react-router-dom';
+import { URL_API } from '../helper/url';
+import { toastError } from '../redux/actions';
 
 function Download() {
-  function handleSubmit(event) {
-    event.preventDefault();
-  }
+  const { id } = useParams();
+  const [radio, setRadio] = useState(0);
+  const dispatch = useDispatch();
+
+  const onClickDownload = () => {
+    axios
+      .get(`${URL_API}/collection/download?id_collection=${id}&option=${radio}`)
+      .then((res) => {
+        window.open(`${res.data.result}`, '_blank');
+      })
+      .catch((err) => {
+        dispatch(toastError(`${err}`));
+      });
+  };
 
   return (
     <div className="download-background">
@@ -19,7 +34,7 @@ function Download() {
           <div className="download-name">Leon & Stella</div>
           <div className="download-date">21 February 2021</div>
           <div className="download-form">
-            <Form onSubmit={handleSubmit}>
+            <Form>
               <Form.Group size="lg" controlId="public">
                 <Form.Label>
                   <span className="color-ash">Choose download size</span>
@@ -29,15 +44,21 @@ function Download() {
                   label="High Resolution (72Mb)"
                   name="formHorizontalRadios"
                   id="formHorizontalRadios1"
+                  defaultChecked={radio === 1}
+                  value={radio}
+                  onChange={() => setRadio(1)}
                 />
                 <Form.Check
                   type="radio"
                   label="Web size (13Mb)"
                   name="formHorizontalRadios"
                   id="formHorizontalRadios2"
+                  defaultChecked={radio === 2}
+                  value={radio}
+                  onChange={() => setRadio(2)}
                 />
               </Form.Group>
-              <Button block size="lg" type="submit">
+              <Button block size="lg" onClick={onClickDownload}>
                 Start Download
               </Button>
             </Form>

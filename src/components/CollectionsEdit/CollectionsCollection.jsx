@@ -11,7 +11,6 @@ function CollectionsCollection() {
   const [title, setTitle] = useState();
   const [date, setDate] = useState();
   const [desc, setDesc] = useState();
-  // const [collection, setCollection] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
   const history = useHistory();
@@ -53,7 +52,6 @@ function CollectionsCollection() {
     axios
       .put(`${URL_API}/collection?id_collection=${id}`, bodyFormData, config)
       .then((res) => {
-        console.log(res.data.result);
         dispatch(toastSuccess('You have updated your collection!'));
         setTimeout(() => {
           history.push(`/collections`);

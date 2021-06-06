@@ -1,10 +1,43 @@
+.MuiBackdrop-root {
+  background-color: inherit !important;
+}
+
+.collections-modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 50%;
+  margin-bottom: 10%;
+
+  .coll-modal-paper {
+    padding: 25px;
+    background: white;
+  }
+}
+
 .collections-wrapper {
   @media (max-width: 650px) {
     padding: 100px 20px;
+
+    .collections-main {
+      .data-item-list {
+        flex-basis: 100% !important;
+      }
+    }
+  }
+
+  @media (min-width: 650px) and (max-width: 950px) {
+    .collections-main {
+      column-gap: 3% !important;
+
+      .data-item-list {
+        flex-basis: 48% !important;
+      }
+    }
   }
 
   @media (min-width: 650px) and (max-width: 1100px) {
-    padding: 155px 125px;
+    padding: 155px 70px;
   }
 
   @media (min-width: 1100px) {
@@ -13,29 +46,33 @@
 
   .collections-main {
     display: flex;
-    justify-content: space-between;
-    column-gap: 10px;
+    column-gap: 5%;
     flex-flow: row wrap;
     flex-direction: row;
+    max-width: 1300px;
+    margin: auto;
 
     .data-item-list {
       align-items: center;
       flex-basis: 30%;
-      margin-bottom: 25px;
+      margin-bottom: 15px;
       font-size: 13px;
+      padding: 10px;
+      box-shadow: 0px 4px 20px 4px rgba(0, 0, 0, 0.15);
 
       .collections-top {
         .collections-image {
           img {
             width: 100%;
-            height: 200px;
+            height: 250px;
+            object-fit: cover;
           }
         }
       }
 
       .collections-bottom {
-        padding: 10px 5px;
-        box-shadow: 0px 4px 20px 4px rgba(0, 0, 0, 0.15);
+        padding-top: 5px;
+
         .collections-text-preview {
           display: flex;
           justify-content: space-between;
@@ -46,7 +83,10 @@
           }
 
           .collections-preview {
-            color: $color-ash;
+            a {
+              color: $color-ash;
+              text-decoration: none;
+            }
           }
         }
 
