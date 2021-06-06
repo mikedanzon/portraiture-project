@@ -67,10 +67,7 @@ function CollectionsTheme() {
       .put(`${URL_API}/collection?id_collection=${id}`, bodyFormData, config)
       .then((res) => {
         console.log(res.data.result);
-        dispatch(toastSuccess('You have updated your collection!'));
-        setTimeout(() => {
-          history.push(`/collections`);
-        }, 2000);
+        dispatch(toastSuccess('Your theme has been changed!'));
       })
       .catch((err) => {
         dispatch(toastError(`${err.response.data.message}`));

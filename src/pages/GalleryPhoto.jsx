@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { FiSearch } from 'react-icons/fi';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { URL_API } from '../helper/url';
 import { useSelector } from 'react-redux';
 import { toastError } from '../redux/actions/toastActions';
@@ -19,6 +19,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function GalleryPhoto() {
+  const { id } = useParams();
   const auth = useSelector((state) => state.auth);
   const [image, setImage] = useState([]);
   const [images, setImages] = useState([]);
@@ -35,7 +36,9 @@ function GalleryPhoto() {
   const fetchDataGalleryPhoto = async () => {
     setIsLoading(true);
     try {
-      var res = await axios.get(`${URL_API}/collection/oneUser?limit=15&page=0&id_user=${auth.id}`);
+      var res = await axios.get(
+        `${URL_API}/collection/oneUser?limit=15&page=0&id_user=${id}`
+      );
       setImage(res.data.result);
       setIsLoading(false);
       console.log(res.data);
@@ -48,7 +51,9 @@ function GalleryPhoto() {
   const fetchDataPage = async () => {
     setIsLoading(true);
     try {
-      var res = await axios.get(`${URL_API}/collection/oneUser?limit=9999&page=0&id_user=${auth.id}`);
+      var res = await axios.get(
+        `${URL_API}/collection/oneUser?limit=9999&page=0&id_user=${id}`
+      );
       setPageNumber(Math.ceil(res.data.totalData / 15));
       setIsLoading(false);
     } catch (error) {
@@ -60,7 +65,11 @@ function GalleryPhoto() {
   const pageChange = async (event, value) => {
     setPage(value);
     try {
-      var res = await axios.get(`${URL_API}/collection/oneUser?limit=15&page=${value - 1}&id_user=${auth.id}`);
+      var res = await axios.get(
+        `${URL_API}/collection/oneUser?limit=15&page=${value - 1}&id_user=${
+          auth.id
+        }`
+      );
       setImage(res.data.result);
     } catch (error) {
       dispatch(toastError(`${error.response.data.message}`));
@@ -72,10 +81,11 @@ function GalleryPhoto() {
     return image.map((val, index) => {
       return (
         <div className="gallery-cards">
-          <img className="cards-img" 
-          src={val.cover} 
-          alt="noImageFound"
-          onClick={() => onImageClick(val.collectionImages)}  
+          <img
+            className="cards-img"
+            src={val.cover}
+            alt="noImageFound"
+            onClick={() => onImageClick(val.collectionImages)}
           />
           <div className="cards-text">
             <div className="cards-text1">{val.title}</div>
@@ -117,7 +127,7 @@ function GalleryPhoto() {
 
   return (
     <>
-    {images.length ? (
+      {images.length ? (
         <Lightbox images={images} onClose={() => setImages([])} />
       ) : null}
       <div className="galleryphoto-wrapper">
@@ -128,9 +138,7 @@ function GalleryPhoto() {
               src={`${URL_API}${auth.photo}`}
               alt=""
             />
-            <div className="logo-name">
-            {auth.businessName}
-            </div>
+            <div className="logo-name">{auth.businessName}</div>
           </Link>
           <div className="gallery-search">
             <div className="search-input">
@@ -143,11 +151,11 @@ function GalleryPhoto() {
         </div>
         <div className="gallery-wrapper">{galleryPhotoImage()}</div>
         <div className="gallery-pagination">
-          <Pagination 
+          <Pagination
             count={pageNumber}
             page={page}
             onChange={pageChange}
-            shape="rounded" 
+            shape="rounded"
           />
         </div>
       </div>
