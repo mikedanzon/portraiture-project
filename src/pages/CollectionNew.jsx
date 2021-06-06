@@ -21,6 +21,8 @@ import ThemeDark from '../assets/img/collections/theme-dark.png';
 import CollectionsDetails from '../components/CollectionsNew/CollectionsDetails';
 import CollectionsTheme from '../components/CollectionsNew/CollectionsTheme';
 import TempPreviewClassic from '../components/TemplatesPreview/TempPreviewClassic';
+import TempPreviewMinimalism from '../components/TemplatesPreview/TempPreviewMinimalism';
+import TempPreviewDarkmode from '../components/TemplatesPreview/TempPreviewDarkmode';
 import HeaderPreview from '../components/HeaderPreview';
 
 function CollectionNew() {
@@ -271,15 +273,16 @@ function CollectionNew() {
           previewTheme={previewTheme}
           onSaveTheme={onSaveTheme}
           classicClick={theme === 'Classic' ? 'cnew-theme-img-active' : null}
-          minimalismClick={
-            theme === 'Minimalism' ? 'cnew-theme-img-active' : null
-          }
+          minimalismClick={theme === 'Minimalism' ? 'cnew-theme-img-active' : null}
           darkmodeClick={theme === 'Darkmode' ? 'cnew-theme-img-active' : null}
         />
       ) : page === 'previewClassic' ? (
         <TempPreviewClassic imagePreview={image} imageCover={cover} />
-      ) : page === 'previewMinimalism' ? null : page ===
-        'previewDarkmode' ? null : (
+      ) : page === 'previewMinimalism' ? (
+        <TempPreviewMinimalism imagePreview={image} imageCover={cover} />
+      ) : page === 'previewDarkmode' ? (
+        <TempPreviewDarkmode imagePreview={image} imageCover={cover} />
+      ) : (
         <CollectionsDetails
           title={title}
           titleChange={(e) => setTitle(e.target.value)}

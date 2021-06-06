@@ -6,9 +6,11 @@ import { useSelector } from 'react-redux';
 import { URL_API } from '../helper/url';
 import { useDispatch } from 'react-redux';
 import { toastError } from '../redux/actions/toastActions';
+import { useParams } from 'react-router';
 import Dummy from '../assets/img/dummy-img/minimalist-background.png';
 
 function TempMinimalism() {
+  const { id } = useParams();
   const auth = useSelector((state) => state.auth);
   const [isLoading, setIsLoading] = useState(false);
   const [images, setImages] = useState([]);
