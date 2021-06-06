@@ -4,13 +4,15 @@
     grid-template-columns: repeat(6, 1fr);
     .ch-background {
       height: 100vh;
+      filter: brightness(0.4);
       img {
         width: 100%;
         height: 100vh;
-        object-fit: cover;
+        object-fit: cover; 
       }
     }
     .ch-info {
+      z-index: 1;
       text-align: center;
       margin: 50px;
       border: 2px solid #ffffff;

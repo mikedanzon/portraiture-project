@@ -15,6 +15,7 @@ function TempMinimalism() {
   const [user, setUser] = useState({});
   const [date, setDate] = useState('');
   const [isLoading, setIsLoading] = useState(false);
+  const [collection, setCollection] = useState({});
   const [images, setImages] = useState([]);
   const myRefOpen = useRef(null);
   const myRefBack = useRef(null);
