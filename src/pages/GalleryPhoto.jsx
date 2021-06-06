@@ -28,22 +28,17 @@ function GalleryPhoto() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (localStorage.getItem('token')) {
-      fetchDataGalleryPhoto();
-    }
+    fetchDataGalleryPhoto();
     fetchDataPage();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const fetchDataGalleryPhoto = async () => {
     setIsLoading(true);
     try {
-      var config = {
-        headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
-      };
-      var res = await axios.get(`${URL_API}/collection/all`, config);
+      var res = await axios.get(`${URL_API}/collection/oneUser?limit=15&page=0&id_user=${auth.id}`);
       setImage(res.data.result);
       setIsLoading(false);
-      console.log(res);
+      console.log(res.data);
     } catch (error) {
       dispatch(toastError(`${error.response.data.message}`));
       setIsLoading(false);
@@ -51,25 +46,21 @@ function GalleryPhoto() {
   };
 
   const fetchDataPage = async () => {
-    // setIsLoading(true);
+    setIsLoading(true);
     try {
-      var res = await axios.get(`${URL_API}/collection?limit=100`);
+      var res = await axios.get(`${URL_API}/collection/oneUser?limit=9999&page=0&id_user=${auth.id}`);
       setPageNumber(Math.ceil(res.data.totalData / 15));
-      // setPageNumber(Math.ceil(res.data.totalData / 2));
-      // console.log(Math.ceil(res.data.totalData / 15))
-      // setIsLoading(false);
-      // setPageNumber(res.data.totalData)
-      console.log(res.data)
+      setIsLoading(false);
     } catch (error) {
       dispatch(toastError(`${error.response.data.message}`));
-      // setIsLoading(false);
+      setIsLoading(false);
     }
   };
 
   const pageChange = async (event, value) => {
     setPage(value);
     try {
-      var res = await axios.get(`${URL_API}/collection?limit=15&page=${value - 1}`);
+      var res = await axios.get(`${URL_API}/collection/oneUser?limit=15&page=${value - 1}&id_user=${auth.id}`);
       setImage(res.data.result);
     } catch (error) {
       dispatch(toastError(`${error.response.data.message}`));
@@ -88,7 +79,7 @@ function GalleryPhoto() {
           />
           <div className="cards-text">
             <div className="cards-text1">{val.title}</div>
-            <div className="cards-text2">{auth.businessName}</div>
+            <div className="cards-text2">{val.user.businessName}</div>
           </div>
         </div>
       );
@@ -119,7 +110,6 @@ function GalleryPhoto() {
   if (isLoading) {
     return (
       <>
-        {/*<HeaderHome />*/}
         <div className="loader"></div>
       </>
     );
@@ -138,7 +128,9 @@ function GalleryPhoto() {
               src={`${URL_API}${auth.photo}`}
               alt=""
             />
-            <div className="logo-name">{auth.businessName}</div>
+            <div className="logo-name">
+            {auth.businessName}
+            </div>
           </Link>
           <div className="gallery-search">
             <div className="search-input">

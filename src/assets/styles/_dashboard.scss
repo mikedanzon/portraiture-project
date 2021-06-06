@@ -311,8 +311,13 @@
             }
           }
           .cards-preview {
-            font-size: 12px;
-            color: #999999;
+            a {
+              font-size: 12px;
+              color: #999999;
+            }
+            a:hover {
+              text-decoration: none;
+            }
           }
         }
         .cards-bottom-wrapper {
