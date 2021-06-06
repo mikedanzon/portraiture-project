@@ -16,46 +16,55 @@ import {
 
 import { appointments } from './Rundown';
 
-function ProjectRundown(props) {
-  const [data, setData] = useState(appointments);
-  const currentDate = useState(new Date());
+export default class ProjectRundown extends React.PureComponent {
+  constructor(props) {
+    super(props);
+    this.state = {
+      data: appointments,
+      currentDate: `${new Date()}`,
+    };
 
-  const commitChanges = ({ added, changed, deleted }) => {
-    if (added) {
-      const startingAddedId =
-        data.length > 0 ? data[data.length - 1].id + 1 : 0;
-      let newData = [...data, { id: startingAddedId, ...added }];
-      setData(newData);
-    }
-    if (changed) {
-      let newData = data.map((appointment) =>
-        changed[appointment.id]
-          ? { ...appointment, ...changed[appointment.id] }
-          : appointment
-      );
-      setData(newData);
-    }
-    if (deleted !== undefined) {
-      let newData = data.filter((appointment) => appointment.id !== deleted);
-      setData(newData);
-    }
-    return { data };
-  };
+    this.commitChanges = this.commitChanges.bind(this);
+  }
 
-  return (
-    <Paper>
-      <Scheduler data={data} height={660}>
-        <ViewState currentDate={currentDate} />
-        <EditingState onCommitChanges={commitChanges} />
-        <IntegratedEditing />
-        <DayView startDayHour={9} endDayHour={19} />
-        <ConfirmationDialog />
-        <Appointments />
-        <AppointmentTooltip showOpenButton showDeleteButton />
-        <AppointmentForm />
-      </Scheduler>
-    </Paper>
-  );
+  commitChanges({ added, changed, deleted }) {
+    this.setState((state) => {
+      let { data } = state;
+      if (added) {
+        const startingAddedId =
+          data.length > 0 ? data[data.length - 1].id + 1 : 0;
+        data = [...data, { id: startingAddedId, ...added }];
+      }
+      if (changed) {
+        data = data.map((appointment) =>
+          changed[appointment.id]
+            ? { ...appointment, ...changed[appointment.id] }
+            : appointment
+        );
+      }
+      if (deleted !== undefined) {
+        data = data.filter((appointment) => appointment.id !== deleted);
+      }
+      return { data };
+    });
+  }
+
+  render() {
+    const { currentDate, data } = this.state;
+
+    return (
+      <Paper>
+        <Scheduler data={data} height={660}>
+          <ViewState currentDate={currentDate} />
+          <EditingState onCommitChanges={this.commitChanges} />
+          <IntegratedEditing />
+          <DayView startDayHour={9} endDayHour={19} />
+          <ConfirmationDialog />
+          <Appointments />
+          <AppointmentTooltip showOpenButton showDeleteButton />
+          <AppointmentForm />
+        </Scheduler>
+      </Paper>
+    );
+  }
 }
-
-export default ProjectRundown;
