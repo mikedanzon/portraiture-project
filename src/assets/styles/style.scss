@@ -11,12 +11,16 @@
 @import './switch';
 @import './galleryPhoto';
 @import './simplePopover';
-@import './invoiceNew';
 @import './notfound';
 // Templates Import
 @import './templates/tempMinimalism';
 @import './templates/tempClassic';
 @import './templates/tempDarkmode';
+// Invoices Import
+@import './invoices/invoiceNew';
+@import './invoices/invoiceEdit';
+@import './invoices/invoicePreview';
+@import './invoices/invoicePaid';
 // Headers Import
 @import './headers/header';
 @import './headers/headerProps';

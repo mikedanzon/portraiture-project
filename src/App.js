@@ -24,8 +24,8 @@ import Packages from './pages/Packages';
 import PackagesNew from './pages/PackagesNew';
 import PackagesEdit from './pages/PackagesEdit';
 import ProjectDetails from './pages/ProjectDetails';
-import InvoiceNew from './pages/InvoiceNew';
-import InvoiceEdit from './pages/InvoiceEdit';
+import InvoiceNew from './pages/invoices/InvoiceNew';
+import InvoiceEdit from './pages/invoices/InvoiceEdit';
 import NotFound from './pages/NotFound';
 import TempClassic from './pages/TempClassic';
 import TempDarkmode from './pages/TempDarkmode';
@@ -33,6 +33,8 @@ import TempMinimalism from './pages/TempClassic';
 import 'react-toastify/dist/ReactToastify.css';
 import './assets/styles/style.scss';
 import 'react-awesome-lightbox/build/style.css';
+import InvoicePreview from './pages/invoices/InvoicePreview';
+import InvoicePaid from './pages/invoices/InvoicePaid';
 
 function App() {
   const dispatch = useDispatch();
@@ -108,6 +110,8 @@ function App() {
         <Route exact path="/packages/edit/:id" component={PackagesEdit} />
         <Route exact path="/invoice/new/:id" component={InvoiceNew} />
         <Route exact path="/invoice/edit/:id" component={InvoiceEdit} />
+        <Route exact path="/invoice/preview/:id" component={InvoicePreview} />
+        <Route exact path="/invoice/paid/:id" component={InvoicePaid} />
         <Route exact path="/temp/classic/:id" component={TempClassic} />
         <Route exact path="/temp/minimalism/:id" component={TempMinimalism} />
         <Route exact path="/temp/darkmode/:id" component={TempDarkmode} />

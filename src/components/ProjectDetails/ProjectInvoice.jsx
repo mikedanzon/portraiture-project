@@ -38,7 +38,9 @@ function ProjectInvoice() {
     }
   };
 
-  const onEditClick = () => {};
+  const onEditClick = (idInvoice) => {
+    history.push(`/invoice/edit/${idInvoice}`);
+  };
 
   const onDeleteClick = (idInvoice) => {
     axios

@@ -1,4 +1,49 @@
-.invoice-wrapper {
+.invoice-edit-header-top {
+  @media (max-width: 650px) {
+    margin-top: 20px !important;
+    margin-bottom: 20px;
+  }
+
+  @media (min-width: 650px) and (max-width: 1100px) {
+    margin-top: 40px !important;
+  }
+
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+
+  .invoice-header-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #ffffff;
+    box-shadow: inset 0px 2px 2px rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    width: 200px;
+    padding: 5px;
+
+    .invoice-header-top-edit {
+      background: #0e203d;
+      padding: 10px 25px;
+      box-shadow: 0px 2px 10px 2px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      a {
+        text-decoration: none;
+        color: white;
+      }
+    }
+
+    .invoice-header-top-preview {
+      padding: 10px 25px;
+      a {
+        text-decoration: none;
+        color: #0e203d;
+      }
+    }
+  }
+}
+
+.invoice-edit-wrapper {
   @media (max-width: 650px) {
     margin: 10px !important;
     display: block !important;
@@ -259,6 +304,7 @@
 
     .invoice-left-name {
       font-weight: bold;
+      color: #0e203d;
       padding-bottom: 20px;
     }
 
@@ -426,7 +472,7 @@
       justify-content: space-between;
       font-weight: bold;
       font-size: 12px;
-      margin-left: 65%;
+      margin-left: 50%;
       padding: 5px 20px;
     }
 
@@ -434,7 +480,7 @@
       display: flex;
       justify-content: space-between;
       font-size: 12px;
-      margin-left: 65%;
+      margin-left: 50%;
       padding: 5px 20px 15px 20px;
 
       input {
@@ -460,7 +506,7 @@
       justify-content: space-between;
       font-weight: bold;
       font-size: 12px;
-      margin-left: 65%;
+      margin-left: 50%;
       padding: 5px 20px;
       background: #e3e3e3;
     }
@@ -493,74 +539,81 @@
     box-shadow: 0px 2px 10px 2px rgba(0, 0, 0, 0.1);
     padding: 30px 20px 15px 20px;
 
-    .invoice-right-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    .invoice-right-text {
       padding-bottom: 5px;
-
-      .invoice-right-header-text {
-        color: $color-ash;
-      }
+      color: $color-ash;
     }
 
     .invoice-right-name {
       font-weight: bold;
+      font-size: 14px;
     }
 
     .invoice-right-date {
       padding-bottom: 20px;
+      font-size: 14px;
     }
 
-    .invoice-right-package {
-      padding: 10px;
-      background: white;
-      font-size: 12px;
-      box-shadow: 0px 2px 10px 2px rgba(0, 0, 0, 0.1);
+    .invoice-right-paid {
+      color: #3e89ae;
+      font-size: 14px;
+      font-weight: bold;
+    }
 
-      .invoice-right-package-header {
-        display: flex;
-        justify-content: space-between;
+    .invoice-right-unpaid {
+      color: #dd5571;
+      font-size: 14px;
+    }
 
-        .invoice-right-pader-text {
+    .invoice-right-receipt-upload {
+      padding-top: 15px;
+
+      .invoice-right-upload-done {
+        text-align: center;
+        padding: 5px 0;
+        background: #f3f8f8;
+        border: 1px dashed #0e203d;
+        color: #0e203d;
+        font-weight: bold;
+      }
+
+      .invoice-right-upload-receipt {
+        .invoice-right-upload-dropzone {
+          text-align: center;
+          padding: 5px 0;
+          background: #f3f8f8;
+          border: 1px dashed #0e203d;
+          color: #0e203d;
           font-weight: bold;
-          font-size: 14px;
-        }
 
-        .invoice-right-pader-hide {
-          button {
-            color: $color-ash;
-            text-decoration: underline;
-            border: none;
-            background: inherit;
-            outline: none;
+          &:hover {
+            cursor: pointer;
           }
         }
       }
+    }
 
-      .invoice-right-package-content {
-        padding-top: 10px;
+    .invoice-right-payment {
+      padding-top: 15px;
+      display: flex;
+      font-size: 14px;
 
-        .invoice-right-content-text {
-          padding-bottom: 10px;
-        }
+      .invoice-right-receipt {
+        width: 60%;
+      }
 
-        .invoice-right-content-items {
-          margin-bottom: 40px;
-          color: $color-ash;
-        }
+      .invoice-right-payment-date {
+        width: 50%;
+      }
+    }
 
-        .invoice-right-content-button {
-          float: right;
-          margin-top: -30px;
+    .invoice-right-pdf {
+      padding-top: 30px;
+      font-weight: bold;
+      font-size: 12px;
 
-          button {
-            background: inherit;
-            color: #0e203d;
-            padding: 3px 15px;
-            font-weight: bold;
-          }
-        }
+      &:hover {
+        cursor: pointer;
       }
     }
 
