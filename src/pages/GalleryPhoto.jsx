@@ -27,7 +27,7 @@ function GalleryPhoto() {
     fetchDataGalleryPhoto();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  useEffect(async () => {
+  useEffect(() => {
     let results = [];
     for (let i = 0; i < image.length; i++) {
       if (image[i].title.toLowerCase().includes(search)) {
@@ -38,7 +38,7 @@ function GalleryPhoto() {
     if (search.length === 0) {
       setImage(imageBackup);
     }
-  }, [search]);
+  }, [search]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const fetchDataGalleryPhoto = async () => {
     setIsLoading(true);

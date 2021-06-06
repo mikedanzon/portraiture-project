@@ -3,9 +3,9 @@ import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { Button } from 'react-bootstrap';
 import { AiFillEye } from 'react-icons/ai';
-import { toastWarning, toastSuccess, toastError } from '../../redux/actions';
+import { toastSuccess, toastError } from '../../redux/actions';
 import { URL_API } from '../../helper/url';
-import { useHistory, useParams } from 'react-router';
+import { useParams } from 'react-router';
 import ThemeClass from '../../assets/img/collections/theme-classic.png';
 import ThemeMin from '../../assets/img/collections/theme-minimalism.png';
 import ThemeDark from '../../assets/img/collections/theme-dark.png';
@@ -24,7 +24,6 @@ function CollectionsTheme() {
   const [images, setImages] = useState([]);
   const [cover, setCover] = useState('');
   const dispatch = useDispatch();
-  const history = useHistory();
 
   useEffect(() => {
     fetchData();

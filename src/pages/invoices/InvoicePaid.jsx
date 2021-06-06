@@ -198,7 +198,11 @@ function InvoicePaid() {
             <div className="invoice-right-receipt">
               <div className="invoice-right-text">Receipt</div>
               <div className="invoice-right-receipt-image">
-                <a href={imageReceipt} target="_blank">
+                <a
+                  href={imageReceipt}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   receipt.png
                 </a>
               </div>

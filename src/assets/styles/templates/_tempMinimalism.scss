@@ -120,6 +120,7 @@
   @media (max-width: 650px) {
     .mh-info {
       display: flex;
+      margin-top: -100vh;
       flex-direction: column;
       padding-top: 30px;
       height: 100vh;
@@ -150,6 +151,7 @@
   @media (min-width: 650px) and (max-width: 900px) {
     .mh-info {
       padding: 100px 0px;
+      margin-top: -100vh;
       display: flex;
       flex-direction: column;
       align-items: center;

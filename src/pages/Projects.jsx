@@ -31,7 +31,7 @@ function Projects() {
     if (search.length === 0) {
       setProjects(dataBackup);
     }
-  }, [search]);
+  }, [search]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (localStorage.getItem('token')) {

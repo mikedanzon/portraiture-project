@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import { BsBoxArrowInDown, BsArrowDown, BsArrowUp } from 'react-icons/bs';
 import { FaRegShareSquare } from 'react-icons/fa';
 import { useSelector } from 'react-redux';

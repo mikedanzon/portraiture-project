@@ -1,37 +1,60 @@
-import * as React from 'react';
+import React, { useState } from 'react';
 import Paper from '@material-ui/core/Paper';
-import { ViewState } from '@devexpress/dx-react-scheduler';
+import {
+  ViewState,
+  EditingState,
+  IntegratedEditing,
+} from '@devexpress/dx-react-scheduler';
 import {
   Scheduler,
   DayView,
   Appointments,
+  AppointmentForm,
+  AppointmentTooltip,
+  ConfirmationDialog,
 } from '@devexpress/dx-react-scheduler-material-ui';
 
-const currentDate = '2021-06-05';
-const schedulerData = [
-  {
-    startDate: '2021-06-05T09:45',
-    endDate: '2021-06-05T11:00',
-    title: 'Meeting',
-  },
-  {
-    startDate: '2021-06-05T12:00',
-    endDate: '2021-06-05T13:30',
-    title: 'Go to a gym',
-  },
-];
+import { appointments } from './Rundown';
 
-function ProjectRundown() {
+function ProjectRundown(props) {
+  const [data, setData] = useState(appointments);
+  const currentDate = useState(new Date());
+
+  const commitChanges = ({ added, changed, deleted }) => {
+    if (added) {
+      const startingAddedId =
+        data.length > 0 ? data[data.length - 1].id + 1 : 0;
+      let newData = [...data, { id: startingAddedId, ...added }];
+      setData(newData);
+    }
+    if (changed) {
+      let newData = data.map((appointment) =>
+        changed[appointment.id]
+          ? { ...appointment, ...changed[appointment.id] }
+          : appointment
+      );
+      setData(newData);
+    }
+    if (deleted !== undefined) {
+      let newData = data.filter((appointment) => appointment.id !== deleted);
+      setData(newData);
+    }
+    return { data };
+  };
+
   return (
-    <>
-      <Paper>
-        <Scheduler data={schedulerData}>
-          <ViewState currentDate={currentDate} />
-          <DayView startDayHour={9} endDayHour={14} />
-          <Appointments />
-        </Scheduler>
-      </Paper>
-    </>
+    <Paper>
+      <Scheduler data={data} height={660}>
+        <ViewState currentDate={currentDate} />
+        <EditingState onCommitChanges={commitChanges} />
+        <IntegratedEditing />
+        <DayView startDayHour={9} endDayHour={19} />
+        <ConfirmationDialog />
+        <Appointments />
+        <AppointmentTooltip showOpenButton showDeleteButton />
+        <AppointmentForm />
+      </Scheduler>
+    </Paper>
   );
 }
 

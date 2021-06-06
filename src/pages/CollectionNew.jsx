@@ -11,9 +11,7 @@ import {
   toastError,
   toastInfo,
   toastSuccess,
-  toastWarning,
 } from '../redux/actions/toastActions';
-import { IoIosArrowBack } from 'react-icons/io';
 import HeaderProps from '../components/HeaderProps';
 import ThemeClass from '../assets/img/collections/theme-classic.png';
 import ThemeMin from '../assets/img/collections/theme-minimalism.png';

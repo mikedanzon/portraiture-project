@@ -35,13 +35,13 @@ function CollectionsPhotos() {
         dispatch(toastError(`${err.response.data.message}`));
         setIsLoading(false);
       });
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const fetchData = async () => {
     try {
@@ -54,7 +54,7 @@ function CollectionsPhotos() {
       let imagesRev = imagesColl.reverse();
       let collection = await fetchCollection();
       for (var i = 0; i < imagesRev.length; i++) {
-        if (collection == imagesRev[i].image) {
+        if (collection === imagesRev[i].image) {
           setCover(i);
         }
       }

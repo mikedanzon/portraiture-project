@@ -1,3 +1,20 @@
+.MuiBackdrop-root {
+  background-color: inherit !important;
+}
+
+.collections-modal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 50%;
+  margin-bottom: 10%;
+
+  .coll-modal-paper {
+    padding: 25px;
+    background: white;
+  }
+}
+
 .collections-wrapper {
   @media (max-width: 650px) {
     padding: 100px 20px;

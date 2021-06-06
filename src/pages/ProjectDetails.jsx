@@ -10,6 +10,7 @@ import Header from '../components/Header';
 import axios from 'axios';
 import ProjectPackages from '../components/ProjectDetails/ProjectPackages';
 import ProjectInvoice from '../components/ProjectDetails/ProjectInvoice';
+import ProjectRundown from '../components/ProjectDetails/ProjectRundown';
 
 function ProjectDetails() {
   const { id } = useParams();
@@ -100,7 +101,9 @@ function ProjectDetails() {
           <div className="petail-menu-border"></div>
         </div>
         {page === 'rundown' ? (
-          <div className="petail-content">Rundown still pending</div>
+          <div className="petail-content">
+            <ProjectRundown />
+          </div>
         ) : page === 'invoice' ? (
           <div className="petail-content">
             <ProjectInvoice />

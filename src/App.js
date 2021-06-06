@@ -35,7 +35,6 @@ import './assets/styles/style.scss';
 import 'react-awesome-lightbox/build/style.css';
 import InvoicePreview from './pages/invoices/InvoicePreview';
 import InvoicePaid from './pages/invoices/InvoicePaid';
-import { toastInfo, toastWarning } from './redux/actions';
 
 function App() {
   const dispatch = useDispatch();

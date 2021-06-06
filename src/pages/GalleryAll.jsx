@@ -108,7 +108,7 @@ function GalleryAll() {
       {images.length ? (
         <Lightbox images={images} onClose={() => setImages([])} />
       ) : null}
-      <HeaderHome />
+      <HeaderHome headerHeight={350} />
       <div className="galleryall-wrapper">
         <div className="gallery-title">Explore Photographer Gallery</div>
         <div className="galleryall-cards-container">{galleryAllImage()}</div>

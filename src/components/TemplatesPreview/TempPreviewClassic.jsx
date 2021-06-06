@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import { URL_API } from '../../helper/url';
 import { useSelector } from 'react-redux';
 import { FaRegShareSquare } from 'react-icons/fa';

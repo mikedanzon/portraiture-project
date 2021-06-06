@@ -29,7 +29,7 @@ function Packages() {
     if (search.length === 0) {
       setDataPacakges(dataBackup);
     }
-  }, [search]);
+  }, [search]); // eslint-disable-line react-hooks/exhaustive-deps
 
   useEffect(() => {
     if (localStorage.getItem('token')) {

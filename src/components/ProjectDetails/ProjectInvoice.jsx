@@ -12,7 +12,6 @@ import SimplePopover from '../Popover/SimplePopover';
 function ProjectInvoice() {
   const { id } = useParams();
   const [dataInvoice, setDataInvoice] = useState([]);
-  const [issuedDate, setIssuedDate] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
   const history = useHistory();

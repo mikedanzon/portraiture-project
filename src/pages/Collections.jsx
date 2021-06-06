@@ -22,7 +22,6 @@ function Collections() {
   const [dataCollections, setDataCollections] = useState([]);
   const [dataBackup, setDataBackup] = useState([]);
   const [images, setImages] = useState([]);
-  const [idUser, setIdUser] = useState(0);
   const [search, setSearch] = useState('');
   const dispatch = useDispatch();
   const history = useHistory();
@@ -33,7 +32,7 @@ function Collections() {
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
-  useEffect(async () => {
+  useEffect(() => {
     let results = [];
     for (let i = 0; i < dataCollections.length; i++) {
       if (dataCollections[i].title.toLowerCase().includes(search)) {
@@ -44,7 +43,7 @@ function Collections() {
     if (search.length === 0) {
       setDataCollections(dataBackup);
     }
-  }, [search]);
+  }, [search]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const fetchData = async () => {
     setIsLoading(true);
@@ -56,7 +55,6 @@ function Collections() {
       if (res.data.result.length) {
         setDataCollections(res.data.result.reverse());
         setDataBackup(res.data.result);
-        setIdUser(res.data.result[0].id_user);
       }
       setIsLoading(false);
     } catch (error) {
@@ -75,7 +73,7 @@ function Collections() {
     };
     axios
       .delete(`${URL_API}/collection/delete?id_collection=${idCol}`, config)
-      .then((res) => {
+      .then(() => {
         dispatch(toastSuccess('Success deleted a collection!'));
         setTimeout(() => {
           fetchData();
