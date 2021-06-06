@@ -53,11 +53,11 @@ function TempPreviewClassic(props) {
               <div className="cm-studioname">{auth.businessName}</div>
             </div>
             <div className="cm-info">
-              <div>
+              <div className="cursor-pointer">
                 <FaRegShareSquare style={{ marginBottom: '3px' }} />{' '}
                 <span className="share">Share</span>
               </div>
-              <div>
+              <div className="cursor-pointer">
                 <BsBoxArrowInDown style={{ marginBottom: '3px' }} />{' '}
                 <span>Download</span>
               </div>

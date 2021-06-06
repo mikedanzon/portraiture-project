@@ -1,12 +1,12 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { useHistory, useParams } from 'react-router';
+import axios from 'axios';
+import { useParams } from 'react-router';
 import { useDropzone } from 'react-dropzone';
 import { AiOutlineCloudUpload } from 'react-icons/ai';
 import { BsX } from 'react-icons/bs';
 import { useDispatch } from 'react-redux';
 import { Button } from 'react-bootstrap';
 import { toastError, toastSuccess } from '../../redux/actions';
-import axios from 'axios';
 import { URL_API } from '../../helper/url';
 
 function CollectionsPhotos() {
@@ -16,45 +16,6 @@ function CollectionsPhotos() {
   const [images, setImages] = useState([]);
   const [cover, setCover] = useState(false);
   const dispatch = useDispatch();
-  const history = useHistory();
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
-  const fetchData = async () => {
-    try {
-      let res = await axios.get(
-        `${URL_API}/collectionImages/bycollection?id_collection=${id}`
-      );
-      let imagesColl = res.data.result.filter((item, index) => {
-        return index % 2 === 0;
-      });
-      let imagesRev = imagesColl.reverse();
-      let collection = await fetchCollection();
-      console.log(imagesRev);
-      console.log(collection);
-      for (var i = 0; i < imagesRev.length; i++) {
-        if (collection == imagesRev[i].image) {
-          setCover(i);
-        }
-      }
-      setImages(imagesRev);
-    } catch (error) {
-      dispatch(toastError(`${error}`));
-    }
-  };
-
-  const fetchCollection = () => {
-    return axios
-      .get(`${URL_API}/collection/one?id_collection=${id}`)
-      .then((res) => {
-        return res.data.result.cover;
-      })
-      .catch((err) => {
-        dispatch(toastError(`${err.response.data.message}`));
-      });
-  };
 
   const onDrop = useCallback((acceptedFiles) => {
     setIsLoading(true);
@@ -79,6 +40,42 @@ function CollectionsPhotos() {
   }, []);
 
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    try {
+      let res = await axios.get(
+        `${URL_API}/collectionImages/bycollection?id_collection=${id}`
+      );
+      let imagesColl = res.data.result.filter((item, index) => {
+        return index % 2 !== 0;
+      });
+      let imagesRev = imagesColl.reverse();
+      let collection = await fetchCollection();
+      for (var i = 0; i < imagesRev.length; i++) {
+        if (collection == imagesRev[i].image) {
+          setCover(i);
+        }
+      }
+      setImages(imagesRev);
+    } catch (error) {
+      dispatch(toastError(`${error}`));
+    }
+  };
+
+  const fetchCollection = () => {
+    return axios
+      .get(`${URL_API}/collection/one?id_collection=${id}`)
+      .then((res) => {
+        return res.data.result.cover;
+      })
+      .catch((err) => {
+        dispatch(toastError(`${err.response.data.message}`));
+      });
+  };
 
   const previewImages = () => {
     return images.map((val, index) => {
@@ -132,23 +129,15 @@ function CollectionsPhotos() {
     const imageFilter = images.filter((photo, i) => i !== index);
     setImages(imageFilter);
     axios
-      .delete(`${URL_API}/collectionImages/one?id=${idImage}`)
+      .delete(`${URL_API}/collectionImages/one?id=${idImage + 1}`)
       .then(() => {
-        axios
-          .delete(`${URL_API}/collectionImages/one?id=${idImage - 1}`)
-          .then(() => {
-            dispatch(toastSuccess('Success deleted the image!'));
-            if (index < cover) {
-              setCover(cover - 1);
-            } else if (cover === index) {
-              setCover(0);
-            }
-            setIsLoading(false);
-          })
-          .catch((err) => {
-            // dispatch(toastError(`${err.response.data.message}`));
-            setIsLoading(false);
-          });
+        dispatch(toastSuccess('Success deleted the image!'));
+        if (index < cover) {
+          setCover(cover - 1);
+        } else if (cover === index) {
+          setCover(0);
+        }
+        setIsLoading(false);
       })
       .catch((err) => {
         dispatch(toastError(`${err.response.data.message}`));
@@ -187,17 +176,8 @@ function CollectionsPhotos() {
           </div>
         </div>
       </div>
-      {image && (
-        <div className="cedit-image-wrapper">
-          <div className="cedit-image">{previewImages()}</div>
-        </div>
-      )}
-      <div
-        className={`${image ? 'cedit-upload-button-2' : 'cedit-upload-button'}`}
-      >
-        <Button variant="none" onClick={onUploadImage} disabled={!image}>
-          Save
-        </Button>
+      <div className="cedit-image-wrapper">
+        <div className="cedit-image">{previewImages()}</div>
       </div>
     </div>
   );

@@ -9,6 +9,8 @@ function HeaderPreview(props) {
         background: '#373737',
         color: 'white',
         textAlign: 'center',
+        zIndex: '999',
+        position: 'relative',
       }}
     >
       <div

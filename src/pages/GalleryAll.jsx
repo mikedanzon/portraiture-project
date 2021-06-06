@@ -7,16 +7,7 @@ import { Link } from 'react-router-dom';
 import HeaderHome from '../components/HeaderHome';
 import Footer from '../components/Footer';
 import Lightbox from 'react-awesome-lightbox';
-import { makeStyles } from '@material-ui/core/styles';
 import Pagination from '@material-ui/lab/Pagination';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& > *': {
-      marginTop: theme.spacing(2),
-    },
-  },
-}));
 
 function GalleryAll() {
   const [collections, setCollections] = useState([]);
@@ -47,13 +38,13 @@ function GalleryAll() {
   const fetchDataPage = async () => {
     // setIsLoading(true);
     try {
-      var res = await axios.get(`${URL_API}/collection?limit=100`);
+      var res = await axios.get(`${URL_API}/collection?limit=9999`);
       setPageNumber(Math.ceil(res.data.totalData / 15));
       // setPageNumber(Math.ceil(res.data.totalData / 2));
       // console.log(Math.ceil(res.data.totalData / 15))
       // setIsLoading(false);
       // setPageNumber(res.data.totalData)
-      console.log(res.data)
+      console.log(res.data);
     } catch (error) {
       dispatch(toastError(`${error.response.data.message}`));
       // setIsLoading(false);
@@ -63,7 +54,9 @@ function GalleryAll() {
   const pageChange = async (event, value) => {
     setPage(value);
     try {
-      var res = await axios.get(`${URL_API}/collection?limit=15&page=${value - 1}`);
+      var res = await axios.get(
+        `${URL_API}/collection?limit=15&page=${value - 1}`
+      );
       setCollections(res.data.result);
     } catch (error) {
       dispatch(toastError(`${error.response.data.message}`));
@@ -75,10 +68,10 @@ function GalleryAll() {
     return collections.map((val, index) => {
       return (
         <div className="galleryall-cards" key={index}>
-          <img 
-          src={val.cover} 
-          alt="NoImageFound"
-          onClick={() => onImageClick(val.collectionImages)} 
+          <img
+            src={val.cover}
+            alt="NoImageFound"
+            onClick={() => onImageClick(val.collectionImages)}
           />
           <div className="cards-text">
             <div className="cards-text1">{val.title}</div>
@@ -92,11 +85,10 @@ function GalleryAll() {
   const onImageClick = (image) => {
     let colImages = [];
     for (var i = 0; i < image.length; i++) {
-      if (i % 2 !== 0) {
+      if (i % 2 === 0) {
         colImages.push({ url: image[i].image, title: `image${i}` });
       }
     }
-    console.log(colImages);
     setImages(colImages);
   };
 
@@ -110,7 +102,7 @@ function GalleryAll() {
   }
 
   return (
-    <>
+    <div className="background-wrapper">
       {images.length ? (
         <Lightbox images={images} onClose={() => setImages([])} />
       ) : null}
@@ -119,16 +111,16 @@ function GalleryAll() {
         <div className="gallery-title">Explore Photographer Gallery</div>
         <div className="galleryall-cards-container">{galleryAllImage()}</div>
         <div className="galleryall-pagination">
-          <Pagination 
+          <Pagination
             count={pageNumber}
             page={page}
             onChange={pageChange}
-            shape="rounded" 
+            shape="rounded"
           />
         </div>
       </div>
       <Footer />
-    </>
+    </div>
   );
 }
 

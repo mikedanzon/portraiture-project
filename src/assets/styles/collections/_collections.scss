@@ -66,7 +66,10 @@
           }
 
           .collections-preview {
-            color: $color-ash;
+            a {
+              color: $color-ash;
+              text-decoration: none;
+            }
           }
         }
 

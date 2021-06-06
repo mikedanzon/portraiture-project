@@ -123,36 +123,8 @@ function CollectionEdit() {
         {page === 'theme' ? (
           <CollectionsTheme />
         ) : page === 'photos' ? (
-          <CollectionsPhotos /> //       <input {...getInputProps()} /> //     <div {...getRootProps()}> //   <div className="cedit-upload"> // <div className="cedit-content">
-        ) : //       <div className="cedit-upload-text">
-        //         <div className="upload-text-1">
-        //           <AiOutlineCloudUpload /> Upload Images
-        //         </div>
-        //         <div className="upload-text-2">
-        //           Drag and drop, or click to select
-        //         </div>
-        //         <div className="upload-text-3">
-        //           Accepts JPEG files up to 10MB each
-        //         </div>
-        //       </div>
-        //     </div>
-        //   </div>
-        //   {image && (
-        //     <div className="cedit-image-wrapper">
-        //       <div className="cedit-image">{previewImages()}</div>
-        //     </div>
-        //   )}
-        //   <div
-        //     className={`${
-        //       image ? 'cedit-upload-button-2' : 'cedit-upload-button'
-        //     }`}
-        //   >
-        //     <Button variant="none" onClick={onUploadImage} disabled={!image}>
-        //       Save
-        //     </Button>
-        //   </div>
-        // </div>
-        page === 'privacy' ? (
+          <CollectionsPhotos />
+        ) : page === 'privacy' ? (
           <CollectionsPrivacy />
         ) : page === 'download' ? (
           <CollectionsDownload />

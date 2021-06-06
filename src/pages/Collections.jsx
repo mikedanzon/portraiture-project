@@ -14,6 +14,7 @@ import Header from '../components/Header';
 import HeaderUser from '../components/HeaderUser';
 import SimplePopover from '../components/Popover/SimplePopover';
 import Lightbox from 'react-awesome-lightbox';
+import { Link } from 'react-router-dom';
 
 function Collections() {
   const [isLoading, setIsLoading] = useState(false);
@@ -99,12 +100,24 @@ function Collections() {
             <div className="collections-text-preview">
               <div className="collections-text">{val.title}</div>
               <div className="collections-preview">
-                <span
+                {/* <span
                   onClick={() => onPreviewClick(val.collectionImages)}
                   className="cursor-pointer"
-                >
-                  <AiFillEye /> Preview
-                </span>
+                > */}
+                {val.theme === 'Classic' ? (
+                  <Link to={`/temp/classic/${val.id}`} target="_blank">
+                    <AiFillEye /> Preview
+                  </Link>
+                ) : val.theme === 'Minimalism' ? (
+                  <Link to={`/temp/minimalism/${val.id}`} target="_blank">
+                    <AiFillEye /> Preview
+                  </Link>
+                ) : (
+                  <Link to={`/temp/darkmode/${val.id}`} target="_blank">
+                    <AiFillEye /> Preview
+                  </Link>
+                )}
+                {/* </span> */}
               </div>
             </div>
             <div className="collections-date">

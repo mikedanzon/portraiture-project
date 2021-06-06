@@ -14,6 +14,9 @@ function TempClassic() {
   const auth = useSelector((state) => state.auth);
   const [images, setImages] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [user, setUser] = useState({});
+  const [date, setDate] = useState('');
+  const [collection, setCollection] = useState({});
   const dispatch = useDispatch();
   const myRefOpen = useRef(null);
   const myRefBack = useRef(null);
@@ -25,12 +28,21 @@ function TempClassic() {
   const fetchDataImage = async () => {
     setIsLoading(true);
     try {
-      var res = await axios.get(
-        `${URL_API}/collectionImages/bycollection?id_collection=1`
+      let res = await axios.get(
+        `${URL_API}/collection/one?id_collection=${id}`
       );
-      let colImages = res.data.result.filter((item, index) => {
+      let colImages = res.data.result.collectionImages.filter((item, index) => {
         return index % 2 !== 0;
       });
+      console.log(res.data.result);
+      setUser(res.data.result.user);
+      setCollection(res.data.result);
+      let date = res.data.result.date
+        .slice(0, 10)
+        .split('-')
+        .reverse()
+        .join('-');
+      setDate(date);
       setImages(colImages);
       setIsLoading(false);
     } catch (error) {
@@ -64,18 +76,18 @@ function TempClassic() {
     <div className="classic-wrapper">
       <div ref={myRefBack} className="classic-header">
         <div className="ch-background">
-          <img src={Dummy} alt="" />
+          <img src={collection.cover} alt="imageCover" />
         </div>
         <div className="ch-info">
           <div className="ch-logo-studioname">
             <div className="ch-logo">
-              <img src={`${URL_API}${auth.photo}`} alt="" />
+              <img src={`${URL_API}${user.photo}`} alt="" />
             </div>
-            <div className="ch-studioname">{auth.businessName}</div>
+            <div className="ch-studioname">{user.businessName}</div>
           </div>
           <div className="ch-title-date">
-            <div className="ch-title">Leon & Stella</div>
-            <div className="ch-date">28 June 2021</div>
+            <div className="ch-title">{collection.title}</div>
+            <div className="ch-date">{date}</div>
           </div>
           <div className="arrow-open">
             <button onClick={scrollOpen}>Open</button>
@@ -86,8 +98,8 @@ function TempClassic() {
         <div>
           <div ref={myRefOpen} className="cm-title-studioname-info">
             <div className="cm-title-studioname">
-              <div className="cm-title">Leon & Stella</div>
-              <div className="cm-studioname">{auth.businessName}</div>
+              <div className="cm-title">{collection.title}</div>
+              <div className="cm-studioname">{user.businessName}</div>
             </div>
             <div className="cm-info">
               <div>
@@ -100,10 +112,7 @@ function TempClassic() {
               </div>
             </div>
           </div>
-          <div className="ch-desc">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptas
-            expedita eos nisi officiis.
-          </div>
+          <div className="ch-desc">{collection.description}</div>
           <div className="cm-cards-wrapper">{collectionAllImage()}</div>
         </div>
         <div>
@@ -116,7 +125,7 @@ function TempClassic() {
         </div>
         <div className="classic-footer">
           <div className="footer-text-top">
-            Copyright &#xA9; 2021 <span>{auth.businessName}</span>
+            Copyright © 2021 <span>{user.businessName}</span>
           </div>
           <div className="footer-text-bottom">
             powered by <span>portraiture</span>
