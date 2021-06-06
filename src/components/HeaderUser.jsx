@@ -10,6 +10,8 @@ function HeaderUser(props) {
     headerSearchText,
     headerOneLink,
     onClick,
+    searchValue,
+    searchChange,
   } = props;
 
   return (
@@ -29,6 +31,8 @@ function HeaderUser(props) {
               className="header-searchbar"
               type="search"
               placeholder={headerSearchText}
+              value={searchValue}
+              onChange={searchChange}
             />
           </div>
           <div className="header-2-search-2">

@@ -14,8 +14,23 @@ import SimplePopover from '../components/Popover/SimplePopover';
 function Projects() {
   const [isLoading, setIsLoading] = useState(false);
   const [projects, setProjects] = useState([]);
+  const [dataBackup, setDataBackup] = useState([]);
+  const [search, setSearch] = useState('');
   const history = useHistory();
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    let results = [];
+    for (let i = 0; i < projects.length; i++) {
+      if (projects[i].name.toLowerCase().includes(search)) {
+        results.push(projects[i]);
+      }
+    }
+    setProjects(results.reverse());
+    if (search.length === 0) {
+      setProjects(dataBackup);
+    }
+  }, [search]);
 
   useEffect(() => {
     if (localStorage.getItem('token')) {
@@ -44,6 +59,7 @@ function Projects() {
       );
       console.log(project);
       setProjects(project.reverse());
+      setDataBackup(project.reverse());
       setIsLoading(false);
     } catch (error) {
       dispatch(toastError(`${error.response.data.message}`));
@@ -162,7 +178,7 @@ function Projects() {
   };
 
   const onClickFilter = () => {
-    alert('success filter');
+    dispatch(toastWarning('Feature coming soon!'));
   };
 
   const onPdfClick = () => {
@@ -198,6 +214,8 @@ function Projects() {
           headerOneLink="/projects/new"
           headerSearchText="Search Projects"
           onClick={onClickFilter}
+          searchValue={search}
+          searchChange={(e) => setSearch(e.target.value)}
         />
         <div className="projects-content">{projectItems()}</div>
       </div>

@@ -3,7 +3,7 @@ import axios from 'axios';
 import { URL_API } from '../helper/url';
 import { useHistory } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { deletePackage, toastError } from '../redux/actions';
+import { deletePackage, toastError, toastWarning } from '../redux/actions';
 import Header from '../components/Header';
 import HeaderUser from '../components/HeaderUser';
 import SimplePopover from '../components/Popover/SimplePopover';
@@ -11,10 +11,25 @@ import Lightbox from 'react-awesome-lightbox';
 
 function Packages() {
   const [dataPackages, setDataPacakges] = useState([]);
+  const [dataBackup, setDataBackup] = useState([]);
+  const [search, setSearch] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [preview, setPreview] = useState();
   const history = useHistory();
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    let results = [];
+    for (let i = 0; i < dataPackages.length; i++) {
+      if (dataPackages[i].name.toLowerCase().includes(search)) {
+        results.push(dataPackages[i]);
+      }
+    }
+    setDataPacakges(results.reverse());
+    if (search.length === 0) {
+      setDataPacakges(dataBackup);
+    }
+  }, [search]);
 
   useEffect(() => {
     if (localStorage.getItem('token')) {
@@ -30,6 +45,8 @@ function Packages() {
       };
       var res = await axios.get(`${URL_API}/package`, config);
       setDataPacakges(res.data.result.reverse());
+      setDataBackup(res.data.result.reverse());
+      console.log(res.data.result);
       setIsLoading(false);
     } catch (error) {
       dispatch(toastError(`${error.response.data.message}`));
@@ -79,7 +96,7 @@ function Packages() {
   };
 
   const onClickFilter = () => {
-    alert('success filter');
+    dispatch(toastWarning('Feature coming soon!'));
   };
 
   if (isLoading) {
@@ -116,6 +133,8 @@ function Packages() {
           headerOneLink="/packages/new"
           headerSearchText="Search Packages"
           onClick={onClickFilter}
+          searchValue={search}
+          searchChange={(e) => setSearch(e.target.value)}
         />
         <div className="packages-main">{packageItems()}</div>
       </div>

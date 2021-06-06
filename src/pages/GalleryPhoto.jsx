@@ -7,16 +7,7 @@ import { useSelector } from 'react-redux';
 import { toastError } from '../redux/actions/toastActions';
 import { useDispatch } from 'react-redux';
 import Lightbox from 'react-awesome-lightbox';
-import { makeStyles } from '@material-ui/core/styles';
 import Pagination from '@material-ui/lab/Pagination';
-
-const useStyles = makeStyles((theme) => ({
-  root: {
-    '& > *': {
-      marginTop: theme.spacing(2),
-    },
-  },
-}));
 
 function GalleryPhoto() {
   const { id } = useParams();
@@ -24,13 +15,14 @@ function GalleryPhoto() {
   const [image, setImage] = useState([]);
   const [images, setImages] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [page, setPage] = useState();
-  const [pageNumber, setPageNumber] = useState();
+  const [page, setPage] = useState(1);
+  const [pageNumber, setPageNumber] = useState(0);
+  const [studioName, setStudioName] = useState('');
+  const [studioImage, setStudioImage] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
     fetchDataGalleryPhoto();
-    fetchDataPage();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const fetchDataGalleryPhoto = async () => {
@@ -40,26 +32,26 @@ function GalleryPhoto() {
         `${URL_API}/collection/oneUser?limit=15&page=0&id_user=${id}`
       );
       setImage(res.data.result);
+      let getUser = await fetchUser();
+      for (let i = 0; i < getUser.length; i++) {
+        if (getUser[i].id === res.data.result[0].id_user) {
+          setStudioImage(getUser[i].photo);
+          setStudioName(getUser[i].businessName);
+          break;
+        }
+      }
+      setPageNumber(Math.ceil(res.data.result.length / 15));
       setIsLoading(false);
-      console.log(res.data);
     } catch (error) {
       dispatch(toastError(`${error.response.data.message}`));
       setIsLoading(false);
     }
   };
 
-  const fetchDataPage = async () => {
-    setIsLoading(true);
-    try {
-      var res = await axios.get(
-        `${URL_API}/collection/oneUser?limit=9999&page=0&id_user=${id}`
-      );
-      setPageNumber(Math.ceil(res.data.totalData / 15));
-      setIsLoading(false);
-    } catch (error) {
-      dispatch(toastError(`${error.response.data.message}`));
-      setIsLoading(false);
-    }
+  const fetchUser = () => {
+    return axios.get(`${URL_API}/user`).then((res) => {
+      return res.data.result;
+    });
   };
 
   const pageChange = async (event, value) => {
@@ -96,16 +88,6 @@ function GalleryPhoto() {
     });
   };
 
-  if (!localStorage.getItem('token')) {
-    return (
-      <div className="notfound">
-        <div className="notfound-inside">
-          <h1>You need to login to view this page!</h1>
-        </div>
-      </div>
-    );
-  }
-
   const onImageClick = (image) => {
     let colImages = [];
     for (var i = 0; i < image.length; i++) {
@@ -135,10 +117,10 @@ function GalleryPhoto() {
           <Link className="gallery-link" to="/dashboard">
             <img
               className="gallery-logo"
-              src={`${URL_API}${auth.photo}`}
+              src={`${URL_API}${studioImage}`}
               alt=""
             />
-            <div className="logo-name">{auth.businessName}</div>
+            <div className="logo-name">{studioName}</div>
           </Link>
           <div className="gallery-search">
             <div className="search-input">

@@ -3,7 +3,7 @@ import axios from 'axios';
 import { URL_API } from '../helper/url';
 import { toastError } from '../redux/actions/toastActions';
 import { useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import HeaderHome from '../components/HeaderHome';
 import Footer from '../components/Footer';
 import Lightbox from 'react-awesome-lightbox';
@@ -13,21 +13,22 @@ function GalleryAll() {
   const [collections, setCollections] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [images, setImages] = useState([]);
-  const [page, setPage] = useState();
-  const [pageNumber, setPageNumber] = useState();
+  const [page, setPage] = useState(1);
+  const [pageNumber, setPageNumber] = useState(0);
   const dispatch = useDispatch();
+  const history = useHistory();
 
   useEffect(() => {
     fetchDataGalleryAll();
-    fetchDataPage();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   const fetchDataGalleryAll = async () => {
     setIsLoading(true);
     try {
-      var res = await axios.get(`${URL_API}/collection?limit=15&page=0`);
+      let res = await axios.get(`${URL_API}/collection?limit=15&page=0`);
       setCollections(res.data.result);
-      // console.log(res.data);
+      let page = await fetchDataPage();
+      setPageNumber(Math.ceil(page / 15));
       setIsLoading(false);
     } catch (error) {
       dispatch(toastError(`${error.response.data.message}`));
@@ -35,20 +36,15 @@ function GalleryAll() {
     }
   };
 
-  const fetchDataPage = async () => {
-    // setIsLoading(true);
-    try {
-      var res = await axios.get(`${URL_API}/collection?limit=9999`);
-      setPageNumber(Math.ceil(res.data.totalData / 15));
-      // setPageNumber(Math.ceil(res.data.totalData / 2));
-      // console.log(Math.ceil(res.data.totalData / 15))
-      // setIsLoading(false);
-      // setPageNumber(res.data.totalData)
-      console.log(res.data);
-    } catch (error) {
-      dispatch(toastError(`${error.response.data.message}`));
-      // setIsLoading(false);
-    }
+  const fetchDataPage = () => {
+    return axios
+      .get(`${URL_API}/collection?limit=9999`)
+      .then((res) => {
+        return res.data.totalData;
+      })
+      .catch((err) => {
+        dispatch(toastError(`${err.response.data.message}`));
+      });
   };
 
   const pageChange = async (event, value) => {
@@ -60,7 +56,6 @@ function GalleryAll() {
       setCollections(res.data.result);
     } catch (error) {
       dispatch(toastError(`${error.response.data.message}`));
-      setIsLoading(false);
     }
   };
 
@@ -73,7 +68,10 @@ function GalleryAll() {
             alt="NoImageFound"
             onClick={() => onImageClick(val.collectionImages)}
           />
-          <div className="cards-text">
+          <div
+            className="cards-text"
+            onClick={() => onStudioClick(val.id_user)}
+          >
             <div className="cards-text1">{val.title}</div>
             <div className="cards-text2">{val.user.businessName}</div>
           </div>
@@ -90,6 +88,10 @@ function GalleryAll() {
       }
     }
     setImages(colImages);
+  };
+
+  const onStudioClick = (idStudio) => {
+    history.push(`/gallery/photographer/${idStudio}`);
   };
 
   if (isLoading) {
