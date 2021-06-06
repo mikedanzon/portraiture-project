@@ -5,7 +5,7 @@ import { AiOutlineCloudUpload } from 'react-icons/ai';
 import { BsX } from 'react-icons/bs';
 import { useDispatch } from 'react-redux';
 import { Button } from 'react-bootstrap';
-import { toastError } from '../../redux/actions';
+import { toastError, toastSuccess } from '../../redux/actions';
 import axios from 'axios';
 import { URL_API } from '../../helper/url';
 
@@ -14,7 +14,7 @@ function CollectionsPhotos() {
   const [isLoading, setIsLoading] = useState(false);
   const [image, setImage] = useState([]);
   const [images, setImages] = useState([]);
-  const [cover, setCover] = useState(0);
+  const [cover, setCover] = useState(false);
   const dispatch = useDispatch();
   const history = useHistory();
 
@@ -24,21 +24,58 @@ function CollectionsPhotos() {
 
   const fetchData = async () => {
     try {
-      var res = await axios.get(
+      let res = await axios.get(
         `${URL_API}/collectionImages/bycollection?id_collection=${id}`
       );
       let imagesColl = res.data.result.filter((item, index) => {
-        return index % 2 !== 0;
+        return index % 2 === 0;
       });
-      setImages(imagesColl.reverse());
-      console.log(imagesColl);
+      let imagesRev = imagesColl.reverse();
+      let collection = await fetchCollection();
+      console.log(imagesRev);
+      console.log(collection);
+      for (var i = 0; i < imagesRev.length; i++) {
+        if (collection == imagesRev[i].image) {
+          setCover(i);
+        }
+      }
+      setImages(imagesRev);
     } catch (error) {
       dispatch(toastError(`${error}`));
     }
   };
 
+  const fetchCollection = () => {
+    return axios
+      .get(`${URL_API}/collection/one?id_collection=${id}`)
+      .then((res) => {
+        return res.data.result.cover;
+      })
+      .catch((err) => {
+        dispatch(toastError(`${err.response.data.message}`));
+      });
+  };
+
   const onDrop = useCallback((acceptedFiles) => {
-    // setImage(acceptedFiles);
+    setIsLoading(true);
+    let imageUpload = acceptedFiles;
+    let bodyFormData = new FormData();
+    bodyFormData.append('id_collection', id);
+    for (let i = 0; i < imageUpload.length; i++) {
+      bodyFormData.append('image', imageUpload[i]);
+    }
+    axios
+      .post(`${URL_API}/collectionImages`, bodyFormData)
+      .then(() => {
+        dispatch(toastSuccess('Success uploading images!'));
+        setTimeout(() => {
+          window.location = `/collections/edit/${id}`;
+        }, 2000);
+      })
+      .catch((err) => {
+        dispatch(toastError(`${err.response.data.message}`));
+        setIsLoading(false);
+      });
   }, []);
 
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
@@ -49,7 +86,7 @@ function CollectionsPhotos() {
         <span
           onClick={(e) => {
             e.stopPropagation();
-            onPreviewSelect(index);
+            onPreviewSelect(val.id, index);
           }}
           className="image-preview-button"
         >
@@ -62,7 +99,7 @@ function CollectionsPhotos() {
               className="image-preview-delete"
               onClick={(e) => {
                 e.stopPropagation();
-                onPreviewDelete(index);
+                onPreviewDelete(val.id, index);
               }}
             >
               <BsX size={20} />
@@ -73,16 +110,50 @@ function CollectionsPhotos() {
     });
   };
 
-  const onPreviewSelect = (index) => {
+  const onPreviewSelect = (idImage, index) => {
     setCover(index);
+    setIsLoading(true);
+    axios
+      .put(
+        `${URL_API}/collection/cover?id_collectionImages=${idImage}&id_collection=${id}`
+      )
+      .then(() => {
+        dispatch(toastSuccess('Success updated the cover image!'));
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        dispatch(toastError(`${err.response.data.message}`));
+        setIsLoading(false);
+      });
   };
 
-  const onPreviewDelete = (index) => {
-    if (cover == index) {
-      setCover(0);
-    }
-    const imageFilter = image.filter((photo, i) => i !== index);
-    setImage(imageFilter);
+  const onPreviewDelete = (idImage, index) => {
+    setIsLoading(true);
+    const imageFilter = images.filter((photo, i) => i !== index);
+    setImages(imageFilter);
+    axios
+      .delete(`${URL_API}/collectionImages/one?id=${idImage}`)
+      .then(() => {
+        axios
+          .delete(`${URL_API}/collectionImages/one?id=${idImage - 1}`)
+          .then(() => {
+            dispatch(toastSuccess('Success deleted the image!'));
+            if (index < cover) {
+              setCover(cover - 1);
+            } else if (cover === index) {
+              setCover(0);
+            }
+            setIsLoading(false);
+          })
+          .catch((err) => {
+            // dispatch(toastError(`${err.response.data.message}`));
+            setIsLoading(false);
+          });
+      })
+      .catch((err) => {
+        dispatch(toastError(`${err.response.data.message}`));
+        setIsLoading(false);
+      });
   };
 
   const onUploadImage = (e) => {

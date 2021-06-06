@@ -69,7 +69,7 @@ function Collections() {
   const onImageClick = (image) => {
     let colImages = [];
     for (var i = 0; i < image.length; i++) {
-      if (i % 2 !== 0) {
+      if (i % 2 === 0) {
         colImages.push({ url: image[i].image, title: `image${i}` });
       }
     }
