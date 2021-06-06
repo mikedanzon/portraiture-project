@@ -7,18 +7,20 @@ import { Fragment } from 'react';
 import { toastError, toastWarning } from '../../redux/actions/toastActions';
 import { HiDownload } from 'react-icons/hi';
 import { Link } from 'react-router-dom';
+import { dateFormatter } from '../../helper/dateformatter';
 import HeaderProps from '../../components/HeaderProps';
 
 function InvoicePreview() {
   const { id } = useParams();
   const [clientName, setClientName] = useState('');
   const [clientAddress, setClientAddress] = useState('');
-  const [idProject, setIdProject] = useState(0);
   const [issuedDate, setIssuedDate] = useState('');
   const [dueDate, setDueDate] = useState('');
+  const [paymentDate, setPaymentDate] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const [paid, setPaid] = useState(0);
   const [isPaid, setIsPaid] = useState(false);
+  const [receipt, setReceipt] = useState(false);
   const [subtotal, setSubtotal] = useState(0);
   const [amountdue, setAmountdue] = useState(0);
   const [invoiceDetails, setInvoiceDetails] = useState(false);
@@ -61,16 +63,16 @@ function InvoicePreview() {
     setIsLoading(true);
     try {
       var res = await axios.get(`${URL_API}/invoice/one?id_invoice=${id}`);
-      console.log(res.data.result);
+      setPaymentDate(res.data.result.paymentDate);
       setDueDate(res.data.result.dueDate);
       setIssuedDate(res.data.result.issuedDate);
-      setClientName(res.data.result.project.billToName);
-      setClientAddress(res.data.result.project.billToAddress);
+      setClientName(res.data.result.billToName);
+      setClientAddress(res.data.result.billToAddress);
       setInputFields(res.data.result.detailInvoices);
       setPaid(res.data.result.paidCost);
       setIsPaid(res.data.result.isPaid);
-      setIdProject(res.data.result.id_project);
       setInvoiceDetails(res.data.result);
+      setReceipt(receipt);
       setIsLoading(false);
     } catch (error) {
       dispatch(toastError(`${error.response.data.message}`));
@@ -82,6 +84,10 @@ function InvoicePreview() {
     dispatch(toastWarning('This is just a preview...'));
   };
 
+  const onClickPdf = () => {
+    dispatch(toastWarning('Feature in development! Please try again later'));
+  };
+
   if (isLoading) {
     return (
       <>
@@ -91,16 +97,6 @@ function InvoicePreview() {
         />
         <div className="loader-project"></div>
       </>
-    );
-  }
-
-  if (!localStorage.getItem('token')) {
-    return (
-      <div className="notfound">
-        <div className="notfound-inside">
-          <h1>You need to login to view this page!</h1>
-        </div>
-      </div>
     );
   }
 
@@ -132,11 +128,15 @@ function InvoicePreview() {
           <div className="invoice-date">
             <div className="invoice-date-issued">
               <div className="invoice-date-issued-text">Issued Date</div>
-              <div className="invoice-date-issued-date">{issuedDate}</div>
+              <div className="invoice-date-issued-date">
+                {issuedDate && dateFormatter(issuedDate)}
+              </div>
             </div>
             <div className="invoice-date-due">
               <div className="invoice-date-due-text">Due Date</div>
-              <div className="invoice-date-due-date">{dueDate}</div>
+              <div className="invoice-date-due-date">
+                {dueDate && dateFormatter(dueDate)}
+              </div>
             </div>
           </div>
           <div className="invoice-info">
@@ -212,7 +212,9 @@ function InvoicePreview() {
         <div className="invoice-right">
           <div className="invoice-right-text">Project</div>
           <div className="invoice-right-name">{clientName}</div>
-          <div className="invoice-right-date">{invoiceDetails.issuedDate}</div>
+          <div className="invoice-right-date">
+            {issuedDate && dateFormatter(issuedDate)}
+          </div>
           <div className="invoice-right-text">Status</div>
           {isPaid ? (
             <div className="invoice-right-paid">Paid</div>
@@ -221,7 +223,7 @@ function InvoicePreview() {
               <b>Unpaid</b> - Due in days
             </div>
           )}
-          {isPaid ? (
+          {receipt ? (
             <div className="invoice-right-payment">
               <div className="invoice-right-receipt">
                 <div className="invoice-right-text">Receipt</div>
@@ -230,7 +232,7 @@ function InvoicePreview() {
               <div className="invoice-right-payment-date">
                 <div className="invoice-right-text">Payment Date</div>
                 <div className="invoice-right-date-payment">
-                  Date here later
+                  {paymentDate && dateFormatter(paymentDate)}
                 </div>
               </div>
             </div>
@@ -244,7 +246,7 @@ function InvoicePreview() {
               </div>
             </div>
           )}
-          <div className="invoice-right-pdf">
+          <div className="invoice-right-pdf" onClick={onClickPdf}>
             <HiDownload size={18} /> Download pdf
           </div>
           <div className="invoice-right-button">

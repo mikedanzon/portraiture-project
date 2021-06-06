@@ -8,7 +8,6 @@ import PackageModal from '../Modals/PackageModal';
 
 function ProjectPackages() {
   const { id } = useParams();
-  // const [data, setData] = useState({});
   const [modal, setModal] = useState(false);
   const [isPackage, setIsPackage] = useState(false);
   const [packageData, setPackageData] = useState({});
@@ -39,7 +38,6 @@ function ProjectPackages() {
           setPackageItems(packages.packageItems);
         }
       }
-      // setData(res.data.result);
       setIsLoading(false);
     } catch (error) {
       dispatch(toastError(`${error.response.data.message}`));

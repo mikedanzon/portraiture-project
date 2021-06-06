@@ -55,21 +55,37 @@ function CollectionsPrivacy() {
     bodyFormData.append('description', desc);
     bodyFormData.append('date', date);
     bodyFormData.append('showGallery', showGallery);
-    if (collPass) {
-      bodyFormData.append('password', password);
-    }
     var config = {
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
     };
+    if (collPass) {
+      onPassUpdate();
+    }
     axios
       .put(`${URL_API}/collection?id_collection=${id}`, bodyFormData, config)
       .then((res) => {
-        console.log(res.data.result);
         dispatch(toastSuccess('You have updated your collection!'));
         setTimeout(() => {
           history.push(`/collections`);
         }, 2000);
       })
+      .catch((err) => {
+        dispatch(toastError(`${err.response.data.message}`));
+      });
+  };
+
+  const onPassUpdate = () => {
+    var passFormData = new FormData();
+    passFormData.append('password', password);
+    var config = {
+      headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+    };
+    axios
+      .put(
+        `${URL_API}/collection/createPassword?id_collection=${id}`,
+        passFormData,
+        config
+      )
       .catch((err) => {
         dispatch(toastError(`${err.response.data.message}`));
       });

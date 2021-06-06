@@ -13,6 +13,7 @@ import HeaderProps from '../components/HeaderProps';
 import NoImage from '../assets/img/no_image.png';
 
 function PackagesNew() {
+  const [isLoading, setIsLoading] = useState(false);
   const [name, setName] = useState('');
   const [desc, setDesc] = useState('');
   const [picture, setPicture] = useState(null);
@@ -83,6 +84,7 @@ function PackagesNew() {
   };
 
   const postData = () => {
+    setIsLoading(true);
     var bodyFormData = new FormData();
     bodyFormData.append('name', name);
     bodyFormData.append('description', desc);
@@ -102,16 +104,16 @@ function PackagesNew() {
       })
       .catch((err) => {
         dispatch(toastError(`${err.response.data.message}`));
+        setIsLoading(false);
       });
   };
 
-  if (!localStorage.getItem('token')) {
+  if (isLoading) {
     return (
-      <div className="notfound">
-        <div className="notfound-inside">
-          <h1>You need to login to view this page!</h1>
-        </div>
-      </div>
+      <>
+        <HeaderProps title="Edit Profile" link="/dashboard" />
+        <div className="loader"></div>
+      </>
     );
   }
 

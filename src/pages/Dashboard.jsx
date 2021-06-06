@@ -12,6 +12,7 @@ import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { deletePackage, deleteProject } from '../redux/actions';
 import { toastError, toastSuccess } from '../redux/actions/toastActions';
+import { dateFormatter } from '../helper/dateformatter';
 import Header from '../components/Header';
 import axios from 'axios';
 import SimplePopover from '../components/Popover/SimplePopover';
@@ -56,7 +57,6 @@ function Dashboard() {
       };
       var res = await axios.get(`${URL_API}/project/`, config);
       setDataProjects(res.data.result);
-      // console.log(res.data.result);
       setIsLoading(false);
     } catch (error) {
       dispatch(toastError(`${error.response.data.message}`));
@@ -72,7 +72,6 @@ function Dashboard() {
       };
       var res = await axios.get(`${URL_API}/package`, config);
       setDataPackages(res.data.result);
-      // console.log(res)
       setIsLoading(false);
     } catch (error) {
       dispatch(toastError(`${error.response.data.message}`));
@@ -94,26 +93,27 @@ function Dashboard() {
               <div className="cards-top-wrapper">
                 <div className="cards-name-date">
                   <div className="cards-name">{val.title}</div>
-                  <div className="cards-date">
-                    {val.date.slice(0, 10).split('-').reverse().join('-')}
-                  </div>
+                  <div className="cards-date">{dateFormatter(val.date)}</div>
                 </div>
                 <div className="cards-preview">
                   {/*<BsEyeFill size={20} style={{ marginBottom: '3px' }} />{' '}
                   <span>Preview</span>*/}
                   {val.theme === 'Classic' ? (
-                  <Link to={`/temp/classic/${val.id}`} target="_blank">
-                    <BsEyeFill size={20} style={{ marginBottom: '3px' }}/> Preview
-                  </Link>
-                ) : val.theme === 'Minimalism' ? (
-                  <Link to={`/temp/minimalism/${val.id}`} target="_blank">
-                    <BsEyeFill size={20} style={{ marginBottom: '3px' }}/> Preview
-                  </Link>
-                ) : (
-                  <Link to={`/temp/darkmode/${val.id}`} target="_blank">
-                    <BsEyeFill size={20} style={{ marginBottom: '3px' }}/> Preview
-                  </Link>
-                )}
+                    <Link to={`/temp/classic/${val.id}`} target="_blank">
+                      <BsEyeFill size={20} style={{ marginBottom: '3px' }} />{' '}
+                      Preview
+                    </Link>
+                  ) : val.theme === 'Minimalism' ? (
+                    <Link to={`/temp/minimalism/${val.id}`} target="_blank">
+                      <BsEyeFill size={20} style={{ marginBottom: '3px' }} />{' '}
+                      Preview
+                    </Link>
+                  ) : (
+                    <Link to={`/temp/darkmode/${val.id}`} target="_blank">
+                      <BsEyeFill size={20} style={{ marginBottom: '3px' }} />{' '}
+                      Preview
+                    </Link>
+                  )}
                 </div>
               </div>
               <div className="cards-bottom-wrapper">
@@ -150,7 +150,7 @@ function Dashboard() {
                 <div className="cards-name-date">
                   <div className="cards-name">{val.clientName}</div>
                   <div className="cards-date">
-                    {val.date.slice(0, 10).split('-').reverse().join('-')}
+                    {dateFormatter(val.date)}
                   </div>
                 </div>
                 <div className="cards-planned">Planned</div>
@@ -230,8 +230,7 @@ function Dashboard() {
     };
     axios
       .delete(`${URL_API}/collection/delete?id_collection=${idCol}`, config)
-      .then((res) => {
-        // console.log(res.data.result);
+      .then(() => {
         dispatch(toastSuccess('Success deleted a collection!'));
         setTimeout(() => {
           fetchDataCollections();
@@ -270,16 +269,6 @@ function Dashboard() {
         <Header />
         <div className="loader"></div>
       </>
-    );
-  }
-
-  if (!localStorage.getItem('token')) {
-    return (
-      <div className="notfound">
-        <div className="notfound-inside">
-          <h1>You need to login to view this page!</h1>
-        </div>
-      </div>
     );
   }
 

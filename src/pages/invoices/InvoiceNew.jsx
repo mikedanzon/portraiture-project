@@ -9,6 +9,7 @@ import {
   toastInfo,
   toastSuccess,
 } from '../../redux/actions/toastActions';
+import { dateFormatter } from '../../helper/dateformatter';
 import { BsTrash } from 'react-icons/bs';
 import HeaderProps from '../../components/HeaderProps';
 
@@ -75,7 +76,6 @@ function InvoiceNew() {
       setClientName(res.data.result.clientName);
       setClientAddress(res.data.result.clientAddress);
       setDate(res.data.result.date);
-      console.log(res.data.result);
       setIsLoading(false);
     } catch (error) {
       dispatch(toastError(`${error.response.data.message}`));
@@ -140,7 +140,6 @@ function InvoiceNew() {
 
   const onClickSave = () => {
     var itemFormData = new FormData();
-    console.log(inputFields);
     for (var i = 0; i < inputFields.length; i++) {
       itemFormData.append('name', inputFields[i].itemName);
       itemFormData.append('quantity', inputFields[i].quantity);
@@ -184,16 +183,6 @@ function InvoiceNew() {
         <HeaderProps title="Invoice" link={`/projects/details/${id}`} />
         <div className="loader-project"></div>
       </>
-    );
-  }
-
-  if (!localStorage.getItem('token')) {
-    return (
-      <div className="notfound">
-        <div className="notfound-inside">
-          <h1>You need to login to view this page!</h1>
-        </div>
-      </div>
     );
   }
 
@@ -371,7 +360,7 @@ function InvoiceNew() {
             <div className="invoice-right-header-text">Project</div>
           </div>
           <div className="invoice-right-name">{clientName}</div>
-          <div className="invoice-right-date">{date}</div>
+          <div className="invoice-right-date">{dateFormatter(date)}</div>
           {!packageItems.length ? (
             <div className="invoice-right-package">
               <div className="invoice-right-package-header">

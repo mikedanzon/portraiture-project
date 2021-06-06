@@ -2,16 +2,14 @@ import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
 import { BsBoxArrowInDown, BsArrowDown, BsArrowUp } from 'react-icons/bs';
 import { FaRegShareSquare } from 'react-icons/fa';
-import { useSelector } from 'react-redux';
 import { URL_API } from '../helper/url';
 import { useDispatch } from 'react-redux';
 import { toastError, toastSuccess } from '../redux/actions/toastActions';
 import { useHistory, useParams } from 'react-router';
-import Dummy from '../assets/img/dummy-img/minimalist-background.png';
+import { dateFormatter } from '../helper/dateformatter';
 
 function TempMinimalism() {
   const { id } = useParams();
-  // const auth = useSelector((state) => state.auth);
   const [user, setUser] = useState({});
   const [date, setDate] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -35,15 +33,9 @@ function TempMinimalism() {
       let colImages = res.data.result.collectionImages.filter((item, index) => {
         return index % 2 !== 0;
       });
-      console.log(res.data.result);
       setUser(res.data.result.user);
+      setDate(res.data.result.date);
       setCollection(res.data.result);
-      let date = res.data.result.date
-        .slice(0, 10)
-        .split('-')
-        .reverse()
-        .join('-');
-      setDate(date);
       setImages(colImages);
       setIsLoading(false);
     } catch (error) {
@@ -110,7 +102,7 @@ function TempMinimalism() {
           </div>
           <div className="mh-title-date">
             <div className="mh-title">{collection.title}</div>
-            <div className="mh-date">{date}</div>
+            <div className="mh-date">{date && dateFormatter(date)}</div>
           </div>
           <div className="mh-desc">{collection.description}</div>
           <div className="arrow-open">
@@ -131,7 +123,9 @@ function TempMinimalism() {
             <div className="mm-info">
               <div className="cursor-pointer">
                 <FaRegShareSquare style={{ marginBottom: '3px' }} />{' '}
-                <span className="share" onClick={onClickShare}>Share</span>
+                <span className="share" onClick={onClickShare}>
+                  Share
+                </span>
               </div>
               <div className="cursor-pointer">
                 <BsBoxArrowInDown style={{ marginBottom: '3px' }} />{' '}

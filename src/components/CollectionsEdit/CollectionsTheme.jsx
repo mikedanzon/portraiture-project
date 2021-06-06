@@ -66,7 +66,6 @@ function CollectionsTheme() {
     axios
       .put(`${URL_API}/collection?id_collection=${id}`, bodyFormData, config)
       .then((res) => {
-        console.log(res.data.result);
         dispatch(toastSuccess('Your theme has been changed!'));
       })
       .catch((err) => {

@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { useHistory, useParams } from 'react-router';
-import Switch from '../Fields/Switch';
 import { URL_API } from '../../helper/url';
 import { toastError, toastSuccess } from '../../redux/actions';
+import Switch from '../Fields/Switch';
 
 function CollectionsDownload() {
   const { id } = useParams();
@@ -55,7 +55,7 @@ function CollectionsDownload() {
     bodyFormData.append('date', date);
     bodyFormData.append('downloadOption', downloadOption);
     if (limitDownload) {
-      bodyFormData.append('limit', limit);
+      onLimitUpdate();
     }
     var config = {
       headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
@@ -63,12 +63,28 @@ function CollectionsDownload() {
     axios
       .put(`${URL_API}/collection?id_collection=${id}`, bodyFormData, config)
       .then((res) => {
-        console.log(res.data.result);
         dispatch(toastSuccess('You have updated your collection!'));
         setTimeout(() => {
           history.push(`/collections`);
         }, 2000);
       })
+      .catch((err) => {
+        dispatch(toastError(`${err.response.data.message}`));
+      });
+  };
+
+  const onLimitUpdate = () => {
+    var bodyFormData = new FormData();
+    bodyFormData.append('limit', limit);
+    var config = {
+      headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+    };
+    axios
+      .put(
+        `${URL_API}/collection/downloadSetting?id_collection=${id}`,
+        bodyFormData,
+        config
+      )
       .catch((err) => {
         dispatch(toastError(`${err.response.data.message}`));
       });

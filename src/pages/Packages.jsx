@@ -45,8 +45,7 @@ function Packages() {
       };
       var res = await axios.get(`${URL_API}/package`, config);
       setDataPacakges(res.data.result.reverse());
-      setDataBackup(res.data.result.reverse());
-      console.log(res.data.result);
+      setDataBackup(res.data.result);
       setIsLoading(false);
     } catch (error) {
       dispatch(toastError(`${error.response.data.message}`));
@@ -105,16 +104,6 @@ function Packages() {
         <Header />
         <div className="loader"></div>
       </>
-    );
-  }
-
-  if (!localStorage.getItem('token')) {
-    return (
-      <div className="notfound">
-        <div className="notfound-inside">
-          <h1>You need to login to view this page!</h1>
-        </div>
-      </div>
     );
   }
 

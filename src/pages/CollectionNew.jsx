@@ -184,16 +184,6 @@ function CollectionNew() {
     );
   }
 
-  if (!localStorage.getItem('token')) {
-    return (
-      <div className="notfound">
-        <div className="notfound-inside">
-          <h1>You need to login to view this page!</h1>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <>
       {page === 'previewClassic' ||
@@ -273,7 +263,9 @@ function CollectionNew() {
           previewTheme={previewTheme}
           onSaveTheme={onSaveTheme}
           classicClick={theme === 'Classic' ? 'cnew-theme-img-active' : null}
-          minimalismClick={theme === 'Minimalism' ? 'cnew-theme-img-active' : null}
+          minimalismClick={
+            theme === 'Minimalism' ? 'cnew-theme-img-active' : null
+          }
           darkmodeClick={theme === 'Darkmode' ? 'cnew-theme-img-active' : null}
         />
       ) : page === 'previewClassic' ? (

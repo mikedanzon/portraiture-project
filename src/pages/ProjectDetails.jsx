@@ -5,6 +5,7 @@ import { Breadcrumb } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { toastError } from '../redux/actions/toastActions';
+import { dateFormatter } from '../helper/dateformatter';
 import Header from '../components/Header';
 import axios from 'axios';
 import ProjectPackages from '../components/ProjectDetails/ProjectPackages';
@@ -14,8 +15,8 @@ function ProjectDetails() {
   const { id } = useParams();
   const [page, setPage] = useState(null);
   const [project, setProject] = useState({});
-  const [isLoading, setIsLoading] = useState(false);
   const [date, setDate] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -32,7 +33,8 @@ function ProjectDetails() {
       };
       var res = await axios.get(`${URL_API}/project/one?id=${id}`, config);
       setProject(res.data.result);
-      setDate(res.data.result.date.split('-').reverse().join('-'));
+      let newDate = dateFormatter(res.data.result.date);
+      setDate(newDate);
       setIsLoading(false);
     } catch (error) {
       dispatch(toastError(`${error.response.data.message}`));
@@ -46,16 +48,6 @@ function ProjectDetails() {
         <Header />
         <div className="loader"></div>
       </>
-    );
-  }
-
-  if (!localStorage.getItem('token')) {
-    return (
-      <div className="notfound">
-        <div className="notfound-inside">
-          <h1>You need to login to view this page!</h1>
-        </div>
-      </div>
     );
   }
 

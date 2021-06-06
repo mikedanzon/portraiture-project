@@ -6,6 +6,7 @@ import { URL_API } from '../../helper/url';
 import { toastError, toastSuccess } from '../../redux/actions/toastActions';
 import { HiDownload } from 'react-icons/hi';
 import { FaFileInvoiceDollar } from 'react-icons/fa';
+import { dateFormatter } from '../../helper/dateformatter';
 import SimplePopover from '../Popover/SimplePopover';
 
 function ProjectInvoice() {
@@ -24,13 +25,11 @@ function ProjectInvoice() {
     setIsLoading(true);
     try {
       var res = await axios.get(`${URL_API}/invoice?id_project=${id}`);
-      console.log(res.data.result);
-      setDataInvoice(res.data.result);
-      if (res.data.result.length) {
-        setIssuedDate(
-          res.data.result[0].issuedDate.split('-').reverse().join('-')
-        );
+      var result = res.data.result;
+      for (let i = 0; i < result.length; i++) {
+        result[i].issuedDate = dateFormatter(result[i].issuedDate);
       }
+      setDataInvoice(result);
       setIsLoading(false);
     } catch (error) {
       dispatch(toastError(`${error}`));
@@ -73,13 +72,13 @@ function ProjectInvoice() {
                 />
               </div>
             </div>
-            {dataInvoice.isPaid ? (
+            {val.isPaid ? (
               <div className="invoice-done-paid">Paid</div>
             ) : (
               <div className="invoice-done-unpaid">Unpaid</div>
             )}
             <div className="invoice-done-text">{val.invoiceName}</div>
-            {dataInvoice.isPaid ? (
+            {val.isPaid ? (
               <div className="invoice-done-date">Paid at {val.issuedDate}</div>
             ) : (
               <div className="invoice-done-date">

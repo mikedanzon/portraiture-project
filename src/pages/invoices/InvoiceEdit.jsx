@@ -8,12 +8,14 @@ import {
   toastError,
   toastInfo,
   toastSuccess,
+  toastWarning,
 } from '../../redux/actions/toastActions';
 import { BsTrash } from 'react-icons/bs';
 import { HiDownload } from 'react-icons/hi';
-import HeaderProps from '../../components/HeaderProps';
 import { Link } from 'react-router-dom';
 import { useDropzone } from 'react-dropzone';
+import { dateFormatter } from '../../helper/dateformatter';
+import HeaderProps from '../../components/HeaderProps';
 
 function InvoiceEdit() {
   const { id } = useParams();
@@ -21,13 +23,16 @@ function InvoiceEdit() {
   const [clientAddress, setClientAddress] = useState('');
   const [idProject, setIdProject] = useState(0);
   const [issuedDate, setIssuedDate] = useState('');
+  const [issuedDateFormat, setIssuedDateFormat] = useState('');
   const [dueDate, setDueDate] = useState('');
+  const [paymentDate, setPaymentDate] = useState('');
+  const [dueRemain, setDueRemain] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
   const [paid, setPaid] = useState(0);
   const [isPaid, setIsPaid] = useState(false);
   const [subtotal, setSubtotal] = useState(0);
   const [amountdue, setAmountdue] = useState(0);
-  const [receipt, setReceipt] = useState(false);
+  const [imageReceipt, setImageReceipt] = useState(false);
   const [invoiceDetails, setInvoiceDetails] = useState(false);
   const [inputFields, setInputFields] = useState([
     {
@@ -42,9 +47,7 @@ function InvoiceEdit() {
   const history = useHistory();
 
   const onDrop = useCallback((acceptedFiles) => {
-    dispatch(toastSuccess('Upload success! Please continue.'));
-    setReceipt(acceptedFiles);
-    console.log(acceptedFiles);
+    setImageReceipt(acceptedFiles[0]);
   }, []);
 
   const { getRootProps, getInputProps } = useDropzone({ onDrop });
@@ -77,16 +80,22 @@ function InvoiceEdit() {
     setIsLoading(true);
     try {
       var res = await axios.get(`${URL_API}/invoice/one?id_invoice=${id}`);
-      console.log(res.data.result);
+      setDueRemain(res.data.result.total);
       setDueDate(res.data.result.dueDate);
       setIssuedDate(res.data.result.issuedDate);
-      setClientName(res.data.result.project.billToName);
-      setClientAddress(res.data.result.project.billToAddress);
+      setClientName(res.data.result.billToName);
+      setClientAddress(res.data.result.billToAddress);
       setInputFields(res.data.result.detailInvoices);
       setPaid(res.data.result.paidCost);
       setIsPaid(res.data.result.isPaid);
       setIdProject(res.data.result.id_project);
       setInvoiceDetails(res.data.result);
+      setImageReceipt(res.data.result.receipt);
+      setPaymentDate(res.data.result.paymentDate);
+      setIssuedDateFormat(dateFormatter(res.data.result.issuedDate));
+      if (res.data.result.isPaid && res.data.result.receipt) {
+        history.push(`/invoice/paid/${id}`);
+      }
       setIsLoading(false);
     } catch (error) {
       dispatch(toastError(`${error.response.data.message}`));
@@ -123,16 +132,18 @@ function InvoiceEdit() {
   };
 
   const onClickSave = () => {
-    // buat var isinya invoicedetails , ntar tinggal di push (tp bkn push kan object)
     setIsLoading(true);
     let bodyFormData = new FormData();
     bodyFormData.append('issuedDate', issuedDate);
     bodyFormData.append('dueDate', dueDate);
     bodyFormData.append('isPaid', isPaid);
     bodyFormData.append('paidCost', paid);
+    bodyFormData.append('billToName', clientName);
+    bodyFormData.append('billToAddress', clientAddress);
+    bodyFormData.append('image', imageReceipt);
     axios
       .put(
-        `${URL_API}/invoice?id_project=${invoiceDetails.id_project}&id_invoice=${id}`,
+        `${URL_API}/invoice?id_project=${idProject}&id_invoice=${id}`,
         bodyFormData
       )
       .then(() => {
@@ -166,6 +177,10 @@ function InvoiceEdit() {
       });
   };
 
+  const onClickPdf = () => {
+    dispatch(toastWarning('Feature in development! Please try again later'));
+  };
+
   if (isLoading) {
     return (
       <>
@@ -175,16 +190,6 @@ function InvoiceEdit() {
         />
         <div className="loader-project"></div>
       </>
-    );
-  }
-
-  if (!localStorage.getItem('token')) {
-    return (
-      <div className="notfound">
-        <div className="notfound-inside">
-          <h1>You need to login to view this page!</h1>
-        </div>
-      </div>
     );
   }
 
@@ -373,25 +378,29 @@ function InvoiceEdit() {
         <div className="invoice-right">
           <div className="invoice-right-text">Project</div>
           <div className="invoice-right-name">{clientName}</div>
-          <div className="invoice-right-date">{invoiceDetails.issuedDate}</div>
+          <div className="invoice-right-date">{issuedDateFormat}</div>
           <div className="invoice-right-text">Status</div>
           {isPaid ? (
             <div className="invoice-right-paid">Paid</div>
           ) : (
             <div className="invoice-right-unpaid">
-              <b>Unpaid</b> - Due in days
+              <b>Unpaid</b> - Due in {dueRemain} days
             </div>
           )}
-          {isPaid ? (
+          {imageReceipt ? (
             <div className="invoice-right-payment">
               <div className="invoice-right-receipt">
                 <div className="invoice-right-text">Receipt</div>
-                <div className="invoice-right-receipt-image">receipt.png</div>
+                <div className="invoice-right-receipt-image">
+                  <a href={imageReceipt} target="_blank">
+                    receipt.png
+                  </a>
+                </div>
               </div>
               <div className="invoice-right-payment-date">
                 <div className="invoice-right-text">Payment Date</div>
                 <div className="invoice-right-date-payment">
-                  Date here later
+                  {dateFormatter(paymentDate)}
                 </div>
               </div>
             </div>
@@ -401,7 +410,7 @@ function InvoiceEdit() {
               <div className="invoice-right-upload-receipt">
                 <div {...getRootProps()}>
                   <input {...getInputProps()} />
-                  {receipt ? (
+                  {imageReceipt ? (
                     <div className="invoice-right-upload-dropzone">
                       Success Upload
                     </div>
@@ -414,7 +423,7 @@ function InvoiceEdit() {
               </div>
             </div>
           )}
-          <div className="invoice-right-pdf">
+          <div className="invoice-right-pdf" onClick={onClickPdf}>
             <HiDownload size={18} /> Download pdf
           </div>
           <div className="invoice-right-button">

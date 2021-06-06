@@ -1,13 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
-import Dummy from '../assets/img/dummy-img/minimalist-background.png';
 import { URL_API } from '../helper/url';
-import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { toastError, toastSuccess } from '../redux/actions/toastActions';
 import { FaRegShareSquare } from 'react-icons/fa';
 import { BsBoxArrowInDown, BsArrowUp } from 'react-icons/bs';
 import { useHistory, useParams } from 'react-router';
+import { dateFormatter } from '../helper/dateformatter';
 
 function TempClassic() {
   const { id } = useParams();
@@ -35,15 +34,9 @@ function TempClassic() {
       let colImages = res.data.result.collectionImages.filter((item, index) => {
         return index % 2 !== 0;
       });
-      console.log(res.data.result);
       setUser(res.data.result.user);
+      setDate(res.data.result.date);
       setCollection(res.data.result);
-      let date = res.data.result.date
-        .slice(0, 10)
-        .split('-')
-        .reverse()
-        .join('-');
-      setDate(date);
       setImages(colImages);
       setIsLoading(false);
     } catch (error) {
@@ -110,7 +103,7 @@ function TempClassic() {
           </div>
           <div className="ch-title-date">
             <div className="ch-title">{collection.title}</div>
-            <div className="ch-date">{date}</div>
+            <div className="ch-date">{dateFormatter(date)}</div>
           </div>
           <div className="arrow-open">
             <button onClick={scrollOpen}>Open</button>

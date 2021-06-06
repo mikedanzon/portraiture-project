@@ -2,7 +2,7 @@ import { Route, Switch } from 'react-router';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { URL_API } from './helper/url';
-import { ToastContainer } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import Home from './pages/Home';
 import Register from './pages/Register';
 import Login from './pages/Login';
@@ -35,6 +35,7 @@ import './assets/styles/style.scss';
 import 'react-awesome-lightbox/build/style.css';
 import InvoicePreview from './pages/invoices/InvoicePreview';
 import InvoicePaid from './pages/invoices/InvoicePaid';
+import { toastInfo, toastWarning } from './redux/actions';
 
 function App() {
   const dispatch = useDispatch();
@@ -69,6 +70,49 @@ function App() {
         });
     }
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  if (!localStorage.getItem('token')) {
+    toast.dark(
+      '👋🏻 Welcome to portraiture! Please login or signup to access the photographer area, enjoy!',
+      {
+        position: 'bottom-left',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      }
+    );
+
+    return (
+      <>
+        <ToastContainer
+          position="bottom-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route exact path="/register" component={Register} />
+          <Route exact path="/login" component={Login} />
+          <Route exact path="/gallery/all" component={GalleryAll} />
+          <Route
+            exact
+            path="/gallery/photographer/:id"
+            component={GalleryPhoto}
+          />
+          <Route path="*" component={NotFound} />
+        </Switch>
+      </>
+    );
+  }
 
   return (
     <>

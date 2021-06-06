@@ -11,6 +11,7 @@ import { AiFillEye } from 'react-icons/ai';
 import { BsCardImage, BsBoxArrowInDown } from 'react-icons/bs';
 import { useHistory } from 'react-router';
 import { Link } from 'react-router-dom';
+import { dateFormatter } from '../helper/dateformatter';
 import Header from '../components/Header';
 import HeaderUser from '../components/HeaderUser';
 import SimplePopover from '../components/Popover/SimplePopover';
@@ -54,10 +55,9 @@ function Collections() {
       var res = await axios.get(`${URL_API}/collection/all`, config);
       if (res.data.result.length) {
         setDataCollections(res.data.result.reverse());
-        setDataBackup(res.data.result.reverse());
+        setDataBackup(res.data.result);
         setIdUser(res.data.result[0].id_user);
       }
-      console.log(res.data.result);
       setIsLoading(false);
     } catch (error) {
       dispatch(toastError(`${error.response.data.message}`));
@@ -93,7 +93,6 @@ function Collections() {
         colImages.push({ url: image[i].image, title: `image${i}` });
       }
     }
-    console.log(colImages);
     setImages(colImages);
   };
 
@@ -130,9 +129,7 @@ function Collections() {
                 )}
               </div>
             </div>
-            <div className="collections-date">
-              {val.date.slice(0, 10).split('-').reverse().join('-')}
-            </div>
+            <div className="collections-date">{dateFormatter(val.date)}</div>
             <div className="collections-etc">
               <div className="collections-etc-image">
                 <BsCardImage size={16} /> {val.collectionImages.length / 2}
@@ -164,16 +161,6 @@ function Collections() {
         <Header />
         <div className="loader"></div>
       </>
-    );
-  }
-
-  if (!localStorage.getItem('token')) {
-    return (
-      <div className="notfound">
-        <div className="notfound-inside">
-          <h1>You need to login to view this page!</h1>
-        </div>
-      </div>
     );
   }
 

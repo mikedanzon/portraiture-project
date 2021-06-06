@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import { Navbar } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { toastWarning } from '../redux/actions';
 import Logo from '../assets/img/portraiture.png';
 import LogoBell from '../assets/img/header/logo_bell.png';
 import LogoUser from '../assets/img/header/logo_user.png';
-import { useDispatch } from 'react-redux';
-import { toastWarning } from '../redux/actions';
 
 function Header() {
   const [page, setPage] = useState('');

@@ -199,6 +199,13 @@
             }
 
             .item-invoice-link {
+              button {
+                background: inherit;
+                border: none;
+                font-size: 12px;
+                outline: none;
+              }
+
               a {
                 font-size: 12px;
                 text-decoration: none;

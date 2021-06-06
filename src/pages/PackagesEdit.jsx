@@ -101,9 +101,6 @@ function PackagesEdit() {
 
   const onSave = (e) => {
     e.preventDefault();
-    // if (inputFields.length === 0) {
-    //   return postData();
-    // }
     var itemFormData = new FormData();
     for (var i = 0; i < inputFields.length; i++) {
       itemFormData.append('itemName', inputFields[i].itemName);
@@ -164,16 +161,6 @@ function PackagesEdit() {
         <HeaderProps title="Edit Profile" link="/dashboard" />
         <div className="loader"></div>
       </>
-    );
-  }
-
-  if (!localStorage.getItem('token')) {
-    return (
-      <div className="notfound">
-        <div className="notfound-inside">
-          <h1>You need to login to view this page!</h1>
-        </div>
-      </div>
     );
   }
 

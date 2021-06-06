@@ -13,6 +13,8 @@ function GalleryPhoto() {
   const { id } = useParams();
   const auth = useSelector((state) => state.auth);
   const [image, setImage] = useState([]);
+  const [imageBackup, setImageBackup] = useState([]);
+  const [search, setSearch] = useState('');
   const [images, setImages] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [page, setPage] = useState(1);
@@ -25,13 +27,27 @@ function GalleryPhoto() {
     fetchDataGalleryPhoto();
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
+  useEffect(async () => {
+    let results = [];
+    for (let i = 0; i < image.length; i++) {
+      if (image[i].title.toLowerCase().includes(search)) {
+        results.push(image[i]);
+      }
+    }
+    setImage(results.reverse());
+    if (search.length === 0) {
+      setImage(imageBackup);
+    }
+  }, [search]);
+
   const fetchDataGalleryPhoto = async () => {
     setIsLoading(true);
     try {
       var res = await axios.get(
         `${URL_API}/collection/oneUser?limit=15&page=0&id_user=${id}`
       );
-      setImage(res.data.result);
+      setImage(res.data.result.reverse());
+      setImageBackup(res.data.result);
       let getUser = await fetchUser();
       for (let i = 0; i < getUser.length; i++) {
         if (getUser[i].id === res.data.result[0].id_user) {
@@ -91,11 +107,10 @@ function GalleryPhoto() {
   const onImageClick = (image) => {
     let colImages = [];
     for (var i = 0; i < image.length; i++) {
-      if (i % 2 !== 0) {
+      if (i % 2 === 0) {
         colImages.push({ url: image[i].image, title: `image${i}` });
       }
     }
-    console.log(colImages);
     setImages(colImages);
   };
 
@@ -124,7 +139,12 @@ function GalleryPhoto() {
           </Link>
           <div className="gallery-search">
             <div className="search-input">
-              <input type="search" placeholder="Search gallery" />
+              <input
+                type="search"
+                placeholder="Search gallery"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+              />
             </div>
             <div className="search-icon">
               <FiSearch size={16} />

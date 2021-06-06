@@ -5,6 +5,7 @@ import { useParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { toastError } from '../redux/actions/toastActions';
 import { URL_API } from '../helper/url';
+import { dateFormatter } from '../helper/dateformatter';
 import Header from '../components/Header';
 import CollectionsCollection from '../components/CollectionsEdit/CollectionsCollection';
 import CollectionsTheme from '../components/CollectionsEdit/CollectionsTheme';
@@ -36,7 +37,7 @@ function CollectionEdit() {
         `${URL_API}/collection/one?id_collection=${id}`,
         config
       );
-      setDate(res.data.result.date.slice(0, 10).split('-').reverse().join('-'));
+      setDate(res.data.result.date);
       setCollection(res.data.result);
       setIsLoading(false);
     } catch (error) {
@@ -50,16 +51,6 @@ function CollectionEdit() {
       <>
         <div className="loader-project"></div>
       </>
-    );
-  }
-
-  if (!localStorage.getItem('token')) {
-    return (
-      <div className="notfound">
-        <div className="notfound-inside">
-          <h1>You need to login to view this page!</h1>
-        </div>
-      </div>
     );
   }
 
@@ -77,7 +68,9 @@ function CollectionEdit() {
         </div>
         <div className="cedit-header-text">
           <div className="cedit-header-text-name">{collection.title}</div>
-          <div className="cedit-header-text-date">{date}</div>
+          <div className="cedit-header-text-date">
+            {date && dateFormatter(date)}
+          </div>
         </div>
         <div className="cedit-main-menu">
           <div className="cedit-menu">

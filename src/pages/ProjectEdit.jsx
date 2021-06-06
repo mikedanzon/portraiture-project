@@ -74,16 +74,6 @@ function ProjectEdit() {
     );
   }
 
-  if (!localStorage.getItem('token')) {
-    return (
-      <div className="notfound">
-        <div className="notfound-inside">
-          <h1>You need to login to view this page!</h1>
-        </div>
-      </div>
-    );
-  }
-
   return (
     <>
       <HeaderProps title="Edit Project" link={`/projects/details/${id}`} />

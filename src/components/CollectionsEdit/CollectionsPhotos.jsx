@@ -5,14 +5,12 @@ import { useDropzone } from 'react-dropzone';
 import { AiOutlineCloudUpload } from 'react-icons/ai';
 import { BsX } from 'react-icons/bs';
 import { useDispatch } from 'react-redux';
-import { Button } from 'react-bootstrap';
 import { toastError, toastSuccess } from '../../redux/actions';
 import { URL_API } from '../../helper/url';
 
 function CollectionsPhotos() {
   const { id } = useParams();
   const [isLoading, setIsLoading] = useState(false);
-  const [image, setImage] = useState([]);
   const [images, setImages] = useState([]);
   const [cover, setCover] = useState(false);
   const dispatch = useDispatch();
@@ -143,11 +141,6 @@ function CollectionsPhotos() {
         dispatch(toastError(`${err.response.data.message}`));
         setIsLoading(false);
       });
-  };
-
-  const onUploadImage = (e) => {
-    e.preventDefault();
-    console.log('success');
   };
 
   if (isLoading) {

@@ -52,7 +52,6 @@ function CollectionsCollection() {
     axios
       .put(`${URL_API}/collection?id_collection=${id}`, bodyFormData, config)
       .then((res) => {
-        console.log(res.data.result);
         dispatch(toastSuccess('You have updated your collection!'));
         setTimeout(() => {
           history.push(`/collections`);
