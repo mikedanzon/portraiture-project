@@ -360,8 +360,10 @@ function InvoiceNew() {
             <div className="invoice-right-header-text">Project</div>
           </div>
           <div className="invoice-right-name">{clientName}</div>
-          <div className="invoice-right-date">{dateFormatter(date)}</div>
-          {!packageItems.length ? (
+          <div className="invoice-right-date">
+            {date && dateFormatter(date)}
+          </div>
+          {!packageItems ? (
             <div className="invoice-right-package">
               <div className="invoice-right-package-header">
                 <div className="invoice-right-pader-text">No package found</div>

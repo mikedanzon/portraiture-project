@@ -71,6 +71,7 @@ function Dashboard() {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       };
       var res = await axios.get(`${URL_API}/package`, config);
+      console.log(res.data.result);
       setDataPackages(res.data.result);
       setIsLoading(false);
     } catch (error) {
@@ -139,56 +140,52 @@ function Dashboard() {
   };
 
   const projectItems = () => {
-    return (
-      dataProjects
-        .sort((a, b) => (a.id < b.id ? 1 : -1))
-        // .slice(0, 3)
-        .map((val, index) => {
-          return (
-            <div className="rprojects-cards" key={index}>
-              <div className="cards-top-wrapper">
-                <div className="cards-name-date">
-                  <div className="cards-name">{val.clientName}</div>
-                  <div className="cards-date">
-                    {dateFormatter(val.date)}
-                  </div>
-                </div>
-                <div className="cards-planned">Planned</div>
+    return dataProjects
+      .sort((a, b) => (a.id < b.id ? 1 : -1))
+      .slice(0, 3)
+      .map((val, index) => {
+        return (
+          <div className="rprojects-cards" key={index}>
+            <div className="cards-top-wrapper">
+              <div className="cards-name-date">
+                <div className="cards-name">{val.clientName}</div>
+                <div className="cards-date">{dateFormatter(val.date)}</div>
               </div>
-              <div className="cards-bottom-wrapper">
-                <div className="cards-packages-rundown-invoice d-flex">
-                  {val.id_package ? (
-                    <div>
-                      <BsCheck size={25} style={{ marginBottom: '3px' }} />{' '}
-                      Packages
-                    </div>
-                  ) : (
-                    <div>
-                      <BsX size={25} style={{ marginBottom: '3px' }} /> Packages
-                    </div>
-                  )}
-                  <div>
-                    <BsX
-                      size={25}
-                      style={{ marginBottom: '3px', marginLeft: '10px' }}
-                    />{' '}
-                    <span>Rundown</span>
-                  </div>
-                  <div>
-                    <BsX size={25} style={{ marginBottom: '3px' }} /> Invoice
-                  </div>
-                </div>
-                <SimplePopover
-                  className="cards-edit"
-                  onEditClick={() => onEditClickProjects(val.id)}
-                  onDeleteClick={() => onDeleteClickProjects(val.id)}
-                  buttonName="Edit"
-                />
-              </div>
+              <div className="cards-planned">Planned</div>
             </div>
-          );
-        })
-    );
+            <div className="cards-bottom-wrapper">
+              <div className="cards-packages-rundown-invoice d-flex">
+                {val.id_package ? (
+                  <div>
+                    <BsCheck size={25} style={{ marginBottom: '3px' }} />{' '}
+                    Packages
+                  </div>
+                ) : (
+                  <div>
+                    <BsX size={25} style={{ marginBottom: '3px' }} /> Packages
+                  </div>
+                )}
+                <div>
+                  <BsX
+                    size={25}
+                    style={{ marginBottom: '3px', marginLeft: '10px' }}
+                  />{' '}
+                  <span>Rundown</span>
+                </div>
+                <div>
+                  <BsX size={25} style={{ marginBottom: '3px' }} /> Invoice
+                </div>
+              </div>
+              <SimplePopover
+                className="cards-edit"
+                onEditClick={() => onEditClickProjects(val.id)}
+                onDeleteClick={() => onDeleteClickProjects(val.id)}
+                buttonName="Edit"
+              />
+            </div>
+          </div>
+        );
+      });
   };
 
   const packageItems = () => {
@@ -207,7 +204,7 @@ function Dashboard() {
                 {val.packageItems.length} Items
               </div>
               <div className="rpackages-priceedit">
-                <div className="rpackages-price">Rp.2,500,000</div>
+                <div className="rpackages-price"></div>
                 <SimplePopover
                   onEditClick={() => onEditClickPackages(val.id)}
                   onDeleteClick={() => onDeleteClickPackages(val.id)}
