@@ -46,6 +46,9 @@ React Native Team:
 * 0.1
     * Just finished the project and deployed.
 
+* 0.2
+    * Website is fully functioning now, fixed alot of bugs!
+
 ## License
 
 This project is licensed under the [PORTRAITURE TEAM] License - see the LICENSE.md file for details
