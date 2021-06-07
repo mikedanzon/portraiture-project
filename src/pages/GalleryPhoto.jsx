@@ -32,7 +32,7 @@ function GalleryPhoto() {
         results.push(image[i]);
       }
     }
-    setImage(results.reverse());
+    setImage(results);
     if (search.length === 0) {
       setImage(imageBackup);
     }
@@ -44,8 +44,8 @@ function GalleryPhoto() {
       var res = await axios.get(
         `${URL_API}/collection/oneUser?limit=15&page=0&id_user=${id}`
       );
-      setImage(res.data.result.reverse());
-      setImageBackup(res.data.result.reverse());
+      setImage(res.data.result);
+      setImageBackup(res.data.result);
       let getUser = await fetchUser();
       for (let i = 0; i < getUser.length; i++) {
         if (getUser[i].id === res.data.result[0].id_user) {
@@ -75,7 +75,7 @@ function GalleryPhoto() {
       var res = await axios.get(
         `${URL_API}/collection/oneUser?limit=15&page=${value - 1}&id_user=${id}`
       );
-      setImage(res.data.result.reverse());
+      setImage(res.data.result);
     } catch (error) {
       dispatch(toastError(`${error.response.data.message}`));
       setIsLoading(false);

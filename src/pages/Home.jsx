@@ -13,9 +13,10 @@ import Package from '../assets/img/home/package.png';
 import Footer from '../components/Footer';
 
 function Home() {
-  const [image, setImage] = useState();
+  const [image, setImage] = useState('');
+  const [toastPop, setToastPop] = useState(false);
 
-  if (!localStorage.getItem('token')) {
+  if (!toastPop && !localStorage.getItem('token')) {
     toast.dark(
       '👋🏻 Welcome to portraiture! Please login or signup to access the photographer area, enjoy!',
       {
@@ -28,6 +29,7 @@ function Home() {
         progress: undefined,
       }
     );
+    setToastPop(true);
   }
 
   return (

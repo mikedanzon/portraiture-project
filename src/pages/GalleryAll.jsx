@@ -24,7 +24,7 @@ function GalleryAll() {
     setIsLoading(true);
     try {
       let res = await axios.get(`${URL_API}/collection?limit=15&page=0`);
-      setCollections(res.data.result.reverse());
+      setCollections(res.data.result);
       let page = await fetchDataPage();
       setPageNumber(Math.ceil(page / 15));
       setIsLoading(false);
@@ -51,7 +51,7 @@ function GalleryAll() {
       var res = await axios.get(
         `${URL_API}/collection?limit=15&page=${value - 1}`
       );
-      setCollections(res.data.result.reverse());
+      setCollections(res.data.result);
     } catch (error) {
       dispatch(toastError(`${error.response.data.message}`));
     }

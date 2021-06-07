@@ -43,7 +43,7 @@ function HeaderHome(props) {
           <Navbar.Collapse id="basic-navbar-nav">
             <div className="hhome-nav">
               <div className="hhome-product pr-3">
-                <a href="#product">Product</a>
+                <a href="/#product">Product</a>
               </div>
               <div className="hhome-gallery pr-5">
                 <Link to="/gallery/all">Gallery</Link>
