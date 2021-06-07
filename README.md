@@ -6,12 +6,15 @@ Welcome! This is our final project for the Portraiture Team, hope you like it :)
 
 This is a website for photographer to store they image collections, or to make a plan for future photoshoot, even for selling and showchase thier photo works!
 
-## Website showcase (video coming soon!)
+## Website showcase
 
-![screencapture-portraiture-3ba48-web-app-2021-06-07-07_05_01](https://user-images.githubusercontent.com/60975328/120944454-ca4f9b00-c75e-11eb-9522-6e676fa3a70e.png)
+### Short version for all user without login
+https://youtu.be/O2NnVYhbbNU
 
-### Visit the link!
+### Full Video of Portraiture
+https://youtu.be/JN79QRGcfSI
 
+### Visit the website!
 https://portraiture-3ba48.web.app/
 
 ## Help
