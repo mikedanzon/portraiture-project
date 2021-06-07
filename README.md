@@ -1,6 +1,6 @@
 # Portraiture Project
 
-Website final project for team Portraiture
+Welcome! This is our final project for the Portraiture Team, hope you like it :)
 
 ## Description
 
