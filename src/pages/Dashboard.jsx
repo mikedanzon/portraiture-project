@@ -56,12 +56,35 @@ function Dashboard() {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       };
       var res = await axios.get(`${URL_API}/project/`, config);
-      setDataProjects(res.data.result);
+      let invoice = await Promise.all(
+        res.data.result.map(async (data) => {
+          if (data.id) {
+            let invoice = await fetchInvoice(res.data.result.id);
+            return {
+              ...data,
+              invoice,
+            };
+          }
+          return data;
+        })
+      );
+      setDataProjects(invoice);
       setIsLoading(false);
     } catch (error) {
       dispatch(toastError(`${error.response.data.message}`));
       setIsLoading(false);
     }
+  };
+
+  const fetchInvoice = (id) => {
+    return axios
+      .get(`${URL_API}/invoice?id_project=${id}`)
+      .then((res) => {
+        return res.data.result;
+      })
+      .catch((err) => {
+        dispatch(toastError(`${err.response.data.message}`));
+      });
   };
 
   const fetchDataPackages = async () => {
@@ -171,9 +194,16 @@ function Dashboard() {
                   />{' '}
                   <span>Rundown</span>
                 </div>
-                <div>
-                  <BsX size={25} style={{ marginBottom: '3px' }} /> Invoice
-                </div>
+                {val.invoice.length ? (
+                  <div>
+                    <BsCheck size={25} style={{ marginBottom: '3px' }} />{' '}
+                    Invoice
+                  </div>
+                ) : (
+                  <div>
+                    <BsX size={25} style={{ marginBottom: '3px' }} /> Invoice
+                  </div>
+                )}
               </div>
               <SimplePopover
                 className="cards-edit"
@@ -203,7 +233,9 @@ function Dashboard() {
                 {val.packageItems.length} Items
               </div>
               <div className="rpackages-priceedit">
-                <div className="rpackages-price"></div>
+                <div className="rpackages-price">{`Rp ${new Intl.NumberFormat(
+                  'de-DE'
+                ).format(val.totalPrice)},00`}</div>
                 <SimplePopover
                   onEditClick={() => onEditClickPackages(val.id)}
                   onDeleteClick={() => onDeleteClickPackages(val.id)}

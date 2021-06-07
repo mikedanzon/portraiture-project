@@ -12,6 +12,7 @@ import {
 import Logo from '../assets/img/logo.png';
 
 function Login() {
+  const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const auth = useSelector((state) => state.auth);
@@ -23,6 +24,7 @@ function Login() {
 
   function handleSubmit(event) {
     event.preventDefault();
+    setIsLoading(true);
     var data = {
       email: email,
       password: password,
@@ -56,11 +58,21 @@ function Login() {
           })
           .catch((err2) => {
             dispatch(toastError(`${err2.response.data.message}`));
+            setIsLoading(false);
           });
       })
       .catch((err) => {
         dispatch(toastError(`${err.response.data.message}`));
+        setIsLoading(false);
       });
+  }
+
+  if (isLoading) {
+    return (
+      <>
+        <div className="loader"></div>
+      </>
+    );
   }
 
   return (

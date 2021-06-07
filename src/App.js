@@ -35,6 +35,7 @@ import './assets/styles/style.scss';
 import 'react-awesome-lightbox/build/style.css';
 import InvoicePreview from './pages/invoices/InvoicePreview';
 import InvoicePaid from './pages/invoices/InvoicePaid';
+import NotLogin from './pages/NotLogin';
 
 function App() {
   const dispatch = useDispatch();
@@ -71,19 +72,6 @@ function App() {
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (!localStorage.getItem('token')) {
-    toast.dark(
-      '👋🏻 Welcome to portraiture! Please login or signup to access the photographer area, enjoy!',
-      {
-        position: 'bottom-left',
-        autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      }
-    );
-
     return (
       <>
         <ToastContainer
@@ -110,6 +98,25 @@ function App() {
           <Route exact path="/temp/classic/:id" component={TempClassic} />
           <Route exact path="/temp/minimalism/:id" component={TempMinimalism} />
           <Route exact path="/temp/darkmode/:id" component={TempDarkmode} />
+          <Route exact path="/privacy/:id" component={Privacy} />
+          <Route exact path="/download/:id" component={Download} />
+          <Route exact path="/collections" component={NotLogin} />
+          <Route exact path="/collections/new" component={NotLogin} />
+          <Route exact path="/collections/edit/:id" component={NotLogin} />
+          <Route exact path="/testing" component={NotLogin} />
+          <Route exact path="/dashboard" component={NotLogin} />
+          <Route exact path="/profile" component={NotLogin} />
+          <Route exact path="/projects/new" component={NotLogin} />
+          <Route exact path="/projects/edit/:id" component={NotLogin} />
+          <Route exact path="/projects/details/:id" component={NotLogin} />
+          <Route exact path="/projects" component={NotLogin} />
+          <Route exact path="/packages" component={NotLogin} />
+          <Route exact path="/packages/new" component={NotLogin} />
+          <Route exact path="/packages/edit/:id" component={NotLogin} />
+          <Route exact path="/invoice/new/:id" component={NotLogin} />
+          <Route exact path="/invoice/edit/:id" component={NotLogin} />
+          <Route exact path="/invoice/preview/:id" component={NotLogin} />
+          <Route exact path="/invoice/paid/:id" component={NotLogin} />
           <Route path="*" component={NotFound} />
         </Switch>
       </>

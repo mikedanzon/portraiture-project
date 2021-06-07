@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import HeaderHome from '../components/HeaderHome';
 import HomeMini from '../assets/img/home/home-minimalist.png';
 import HomeClass from '../assets/img/home/home-classic.png';
@@ -13,6 +14,21 @@ import Footer from '../components/Footer';
 
 function Home() {
   const [image, setImage] = useState();
+
+  if (!localStorage.getItem('token')) {
+    toast.dark(
+      '👋🏻 Welcome to portraiture! Please login or signup to access the photographer area, enjoy!',
+      {
+        position: 'bottom-left',
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      }
+    );
+  }
 
   return (
     <>

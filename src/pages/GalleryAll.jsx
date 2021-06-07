@@ -12,7 +12,6 @@ import Pagination from '@material-ui/lab/Pagination';
 function GalleryAll() {
   const [collections, setCollections] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-  const [images, setImages] = useState([]);
   const [page, setPage] = useState(1);
   const [pageNumber, setPageNumber] = useState(0);
   const dispatch = useDispatch();
@@ -66,7 +65,7 @@ function GalleryAll() {
           <img
             src={val.cover}
             alt="NoImageFound"
-            onClick={() => onImageClick(val.collectionImages)}
+            onClick={() => onImageClick(val.id, val.theme)}
           />
           <div
             className="cards-text"
@@ -80,14 +79,9 @@ function GalleryAll() {
     });
   };
 
-  const onImageClick = (image) => {
-    let colImages = [];
-    for (var i = 0; i < image.length; i++) {
-      if (i % 2 !== 0) {
-        colImages.push({ url: image[i].image, title: `image${i}` });
-      }
-    }
-    setImages(colImages);
+  const onImageClick = (id, theme) => {
+    let themeLower = theme.toLowerCase();
+    window.location = `/temp/${themeLower}/${id}`;
   };
 
   const onStudioClick = (idStudio) => {
@@ -105,9 +99,6 @@ function GalleryAll() {
 
   return (
     <div className="background-wrapper">
-      {images.length ? (
-        <Lightbox images={images} onClose={() => setImages([])} />
-      ) : null}
       <HeaderHome headerHeight={350} />
       <div className="galleryall-wrapper">
         <div className="gallery-title">Explore Photographer Gallery</div>

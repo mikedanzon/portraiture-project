@@ -32,7 +32,7 @@ function CollectionNew() {
   const [gallery, setGallery] = useState(true);
   const [download, setDownload] = useState(true);
   const [advOpen, setAdvOpen] = useState(false);
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState([]);
   const [cover, setCover] = useState(0);
   const [theme, setTheme] = useState(0);
   const history = useHistory();

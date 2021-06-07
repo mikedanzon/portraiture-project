@@ -8,6 +8,7 @@ import { toastError, toastSuccess } from '../redux/actions';
 import Logo from '../assets/img/logo.png';
 
 function Login() {
+  const [isLoading, setIsLoading] = useState(false);
   const [name, setName] = useState('');
   const [bsName, setBsName] = useState('');
   const [email, setEmail] = useState('');
@@ -22,6 +23,7 @@ function Login() {
 
   function handleSubmit(event) {
     event.preventDefault();
+    setIsLoading(true);
     var data = {
       email: email,
       password: password,
@@ -42,7 +44,16 @@ function Login() {
       })
       .catch((err) => {
         dispatch(toastError(`${err.response.data.message}`));
+        setIsLoading(false);
       });
+  }
+
+  if (isLoading) {
+    return (
+      <>
+        <div className="loader"></div>
+      </>
+    );
   }
 
   return (
