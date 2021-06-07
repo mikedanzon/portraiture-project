@@ -103,7 +103,7 @@ function TempClassic() {
           </div>
           <div className="ch-title-date">
             <div className="ch-title">{collection.title}</div>
-            <div className="ch-date">{dateFormatter(date)}</div>
+            <div className="ch-date">{date && dateFormatter(date)}</div>
           </div>
           <div className="arrow-open">
             <button onClick={scrollOpen}>Open</button>

@@ -106,6 +106,8 @@ function CollectionNew() {
     bodyFormData.append('title', title);
     bodyFormData.append('description', desc);
     bodyFormData.append('date', date);
+    bodyFormData.append('downloadOption', download);
+    bodyFormData.append('showGallery', gallery);
     bodyFormData.append('image', image[cover]);
     bodyFormData.append('theme', theme);
     axios({

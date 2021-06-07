@@ -111,7 +111,7 @@ function PackagesNew() {
   if (isLoading) {
     return (
       <>
-        <HeaderProps title="Edit Profile" link="/dashboard" />
+        <HeaderProps title="Create Package" link="/packages" />
         <div className="loader"></div>
       </>
     );

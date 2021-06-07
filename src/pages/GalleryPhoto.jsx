@@ -6,6 +6,7 @@ import { URL_API } from '../helper/url';
 import { useSelector } from 'react-redux';
 import { toastError } from '../redux/actions/toastActions';
 import { useDispatch } from 'react-redux';
+import { HiOutlineMail } from 'react-icons/hi';
 import Lightbox from 'react-awesome-lightbox';
 import Pagination from '@material-ui/lab/Pagination';
 
@@ -21,6 +22,7 @@ function GalleryPhoto() {
   const [pageNumber, setPageNumber] = useState(0);
   const [studioName, setStudioName] = useState('');
   const [studioImage, setStudioImage] = useState(false);
+  const [studioEmail, setStudioEmail] = useState('');
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -51,6 +53,7 @@ function GalleryPhoto() {
       let getUser = await fetchUser();
       for (let i = 0; i < getUser.length; i++) {
         if (getUser[i].id === res.data.result[0].id_user) {
+          setStudioEmail(getUser[i].email);
           setStudioImage(getUser[i].photo);
           setStudioName(getUser[i].businessName);
           break;
@@ -107,7 +110,7 @@ function GalleryPhoto() {
   const onImageClick = (image) => {
     let colImages = [];
     for (var i = 0; i < image.length; i++) {
-      if (i % 2 === 0) {
+      if (i % 2 !== 0) {
         colImages.push({ url: image[i].image, title: `image${i}` });
       }
     }
@@ -159,6 +162,12 @@ function GalleryPhoto() {
             onChange={pageChange}
             shape="rounded"
           />
+        </div>
+        <div className="gallery-footer">
+          <div className="gallery-footer-contact">Contact {studioName}</div>
+          <div className="gallery-footer-email">
+            <HiOutlineMail style={{ marginTop: '-1px' }} /> {studioEmail}
+          </div>
         </div>
       </div>
     </>

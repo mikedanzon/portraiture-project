@@ -81,9 +81,22 @@
     margin-top: 100px;
     display: flex;
     justify-content: center;
+    font-size: 20px !important;
+  }
+  .gallery-footer {
+    text-align: center;
+    padding-top: 90px;
+    .gallery-footer-contact {
+      padding-bottom: 10px;
+      font-weight: bold;
+    }
+
+    .gallery-footer-email {
+      color: $color-ash;
+    }
   }
   @media (max-width: 650px) {
-    padding: 150px 20px 100px 20px;
+    padding: 100px 20px 100px 20px;
     .gallery-wrapper {
       flex-direction: column;
       margin-top: 100px;
@@ -96,7 +109,7 @@
     }
   }
   @media (min-width: 650px) and (max-width: 1100px) {
-    padding: 150px 50px 100px 50px;
+    padding: 100px 50px 100px 50px;
     .gallery-wrapper {
       flex-wrap: wrap;
       column-gap: 5%;
@@ -112,7 +125,7 @@
     }
   }
   @media (min-width: 1100px) {
-    padding: 150px 50px 100px 50px;
+    padding: 100px 50px 100px 50px;
     .gallery-wrapper {
       flex-wrap: wrap;
       column-gap: 5%;

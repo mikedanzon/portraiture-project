@@ -49,7 +49,7 @@ function CollectionsPhotos() {
         `${URL_API}/collectionImages/bycollection?id_collection=${id}`
       );
       let imagesColl = res.data.result.filter((item, index) => {
-        return index % 2 !== 0;
+        return index % 2 === 0;
       });
       let imagesRev = imagesColl.reverse();
       let collection = await fetchCollection();

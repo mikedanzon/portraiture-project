@@ -26,7 +26,7 @@ function GalleryAll() {
     setIsLoading(true);
     try {
       let res = await axios.get(`${URL_API}/collection?limit=15&page=0`);
-      setCollections(res.data.result);
+      setCollections(res.data.result.reverse());
       let page = await fetchDataPage();
       setPageNumber(Math.ceil(page / 15));
       setIsLoading(false);
@@ -53,7 +53,7 @@ function GalleryAll() {
       var res = await axios.get(
         `${URL_API}/collection?limit=15&page=${value - 1}`
       );
-      setCollections(res.data.result);
+      setCollections(res.data.result.revert());
     } catch (error) {
       dispatch(toastError(`${error.response.data.message}`));
     }
@@ -83,7 +83,7 @@ function GalleryAll() {
   const onImageClick = (image) => {
     let colImages = [];
     for (var i = 0; i < image.length; i++) {
-      if (i % 2 === 0) {
+      if (i % 2 !== 0) {
         colImages.push({ url: image[i].image, title: `image${i}` });
       }
     }

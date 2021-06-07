@@ -107,6 +107,9 @@ function App() {
             path="/gallery/photographer/:id"
             component={GalleryPhoto}
           />
+          <Route exact path="/temp/classic/:id" component={TempClassic} />
+          <Route exact path="/temp/minimalism/:id" component={TempMinimalism} />
+          <Route exact path="/temp/darkmode/:id" component={TempDarkmode} />
           <Route path="*" component={NotFound} />
         </Switch>
       </>

@@ -71,7 +71,6 @@ function Dashboard() {
         headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
       };
       var res = await axios.get(`${URL_API}/package`, config);
-      console.log(res.data.result);
       setDataPackages(res.data.result);
       setIsLoading(false);
     } catch (error) {

@@ -77,7 +77,7 @@ function Login() {
                   required
                   type="text"
                   value={bsName}
-                  placeholder="e.g. justinjunaedi@gmail.com"
+                  placeholder="Justin Studio"
                   onChange={(e) => setBsName(e.target.value)}
                 />
               </Form.Group>
