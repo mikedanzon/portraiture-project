@@ -7,7 +7,6 @@ import { deletePackage, toastError, toastWarning } from '../redux/actions';
 import Header from '../components/Header';
 import HeaderUser from '../components/HeaderUser';
 import SimplePopover from '../components/Popover/SimplePopover';
-import Lightbox from 'react-awesome-lightbox';
 
 function Packages() {
   const [dataPackages, setDataPacakges] = useState([]);

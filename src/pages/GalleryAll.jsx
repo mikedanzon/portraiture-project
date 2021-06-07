@@ -6,7 +6,6 @@ import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import HeaderHome from '../components/HeaderHome';
 import Footer from '../components/Footer';
-import Lightbox from 'react-awesome-lightbox';
 import Pagination from '@material-ui/lab/Pagination';
 
 function GalleryAll() {
@@ -52,7 +51,7 @@ function GalleryAll() {
       var res = await axios.get(
         `${URL_API}/collection?limit=15&page=${value - 1}`
       );
-      setCollections(res.data.result.revert());
+      setCollections(res.data.result.reverse());
     } catch (error) {
       dispatch(toastError(`${error.response.data.message}`));
     }

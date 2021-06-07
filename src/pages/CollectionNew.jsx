@@ -110,18 +110,14 @@ function CollectionNew() {
     bodyFormData.append('showGallery', gallery);
     bodyFormData.append('image', image[cover]);
     bodyFormData.append('theme', theme);
-    axios({
-      method: 'post',
-      url: `${URL_API}/collection`,
-      data: bodyFormData,
-      headers: {
-        'Content-Type': 'multipart/form-data',
-        Authorization: `Bearer ${localStorage.getItem('token')}`,
-      },
-    })
-      .then(() => {
+    var config = {
+      headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+    };
+    axios
+      .post(`${URL_API}/collection`, bodyFormData, config)
+      .then((res) => {
         dispatch(toastInfo('Please wait, uploading images to the server!'));
-        postImage();
+        postImage(res.data.result.id);
       })
       .catch((err) => {
         setIsLoading(false);
@@ -129,35 +125,20 @@ function CollectionNew() {
       });
   };
 
-  const postImage = () => {
+  const postImage = (idCollection) => {
+    var config = {
+      headers: { Authorization: `Bearer ${localStorage.getItem('token')}` },
+    };
+    var imageFormData = new FormData();
+    imageFormData.append('id_collection', idCollection);
+    for (var i = 0; i < image.length; i++) {
+      imageFormData.append('image', image[i]);
+    }
     axios
-      .get(`${URL_API}/collection`)
-      .then((res) => {
-        var response = res.data.result;
-        var potong = response.slice(-1).pop();
-        var imageFormData = new FormData();
-        imageFormData.append('id_collection', potong.id);
-        for (var i = 0; i < image.length; i++) {
-          imageFormData.append('image', image[i]);
-        }
-        axios({
-          method: 'post',
-          url: `${URL_API}/collectionImages`,
-          data: imageFormData,
-          headers: {
-            'Content-Type': 'multipart/form-data',
-            Authorization: `Bearer ${localStorage.getItem('token')}`,
-          },
-        })
-          .then(() => {
-            setIsLoading(false);
-            dispatch(toastSuccess('Success created a new collection!'));
-            history.push('/collections');
-          })
-          .catch((err) => {
-            setIsLoading(false);
-            dispatch(toastError(`${err.response.data.message}`));
-          });
+      .post(`${URL_API}/collectionImages`, imageFormData, config)
+      .then(() => {
+        dispatch(toastSuccess('Success created a new collection!'));
+        history.push('/collections');
       })
       .catch((err) => {
         setIsLoading(false);
