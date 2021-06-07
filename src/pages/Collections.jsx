@@ -164,9 +164,9 @@ function Collections() {
 
   return (
     <>
-      {images.length ? (
+      {images.length && (
         <Lightbox images={images} onClose={() => setImages([])} />
-      ) : null}
+      )}
       <Header />
       <div className="collections-wrapper">
         <HeaderUser

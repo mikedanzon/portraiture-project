@@ -1,13 +1,13 @@
 import React from 'react';
 
-function NotFound() {
+function NotLogin() {
   return (
     <div className="notfound">
       <div className="notfound-inside">
-        <h1>Error 404 Page not found</h1>
+        <h1>You have to login to access this page!</h1>
       </div>
     </div>
   );
 }
 
-export default NotFound;
+export default NotLogin;

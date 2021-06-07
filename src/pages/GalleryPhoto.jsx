@@ -3,24 +3,22 @@ import axios from 'axios';
 import { FiSearch } from 'react-icons/fi';
 import { Link, useParams } from 'react-router-dom';
 import { URL_API } from '../helper/url';
-import { useSelector } from 'react-redux';
 import { toastError } from '../redux/actions/toastActions';
 import { useDispatch } from 'react-redux';
-import Lightbox from 'react-awesome-lightbox';
+import { HiOutlineMail } from 'react-icons/hi';
 import Pagination from '@material-ui/lab/Pagination';
 
 function GalleryPhoto() {
   const { id } = useParams();
-  const auth = useSelector((state) => state.auth);
   const [image, setImage] = useState([]);
   const [imageBackup, setImageBackup] = useState([]);
   const [search, setSearch] = useState('');
-  const [images, setImages] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [page, setPage] = useState(1);
   const [pageNumber, setPageNumber] = useState(0);
   const [studioName, setStudioName] = useState('');
   const [studioImage, setStudioImage] = useState(false);
+  const [studioEmail, setStudioEmail] = useState('');
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -34,7 +32,7 @@ function GalleryPhoto() {
         results.push(image[i]);
       }
     }
-    setImage(results.reverse());
+    setImage(results);
     if (search.length === 0) {
       setImage(imageBackup);
     }
@@ -46,11 +44,12 @@ function GalleryPhoto() {
       var res = await axios.get(
         `${URL_API}/collection/oneUser?limit=15&page=0&id_user=${id}`
       );
-      setImage(res.data.result.reverse());
+      setImage(res.data.result);
       setImageBackup(res.data.result);
       let getUser = await fetchUser();
       for (let i = 0; i < getUser.length; i++) {
         if (getUser[i].id === res.data.result[0].id_user) {
+          setStudioEmail(getUser[i].email);
           setStudioImage(getUser[i].photo);
           setStudioName(getUser[i].businessName);
           break;
@@ -74,9 +73,7 @@ function GalleryPhoto() {
     setPage(value);
     try {
       var res = await axios.get(
-        `${URL_API}/collection/oneUser?limit=15&page=${value - 1}&id_user=${
-          auth.id
-        }`
+        `${URL_API}/collection/oneUser?limit=15&page=${value - 1}&id_user=${id}`
       );
       setImage(res.data.result);
     } catch (error) {
@@ -93,7 +90,7 @@ function GalleryPhoto() {
             className="cards-img"
             src={val.cover}
             alt="noImageFound"
-            onClick={() => onImageClick(val.collectionImages)}
+            onClick={() => onImageClick(val.id, val.theme)}
           />
           <div className="cards-text">
             <div className="cards-text1">{val.title}</div>
@@ -104,14 +101,9 @@ function GalleryPhoto() {
     });
   };
 
-  const onImageClick = (image) => {
-    let colImages = [];
-    for (var i = 0; i < image.length; i++) {
-      if (i % 2 === 0) {
-        colImages.push({ url: image[i].image, title: `image${i}` });
-      }
-    }
-    setImages(colImages);
+  const onImageClick = (id, theme) => {
+    let themeLower = theme.toLowerCase();
+    window.location = `/temp/${themeLower}/${id}`;
   };
 
   if (isLoading) {
@@ -124,9 +116,6 @@ function GalleryPhoto() {
 
   return (
     <>
-      {images.length ? (
-        <Lightbox images={images} onClose={() => setImages([])} />
-      ) : null}
       <div className="galleryphoto-wrapper">
         <div className="gallery-head">
           <Link className="gallery-link" to="/gallery/all">
@@ -159,6 +148,12 @@ function GalleryPhoto() {
             onChange={pageChange}
             shape="rounded"
           />
+        </div>
+        <div className="gallery-footer">
+          <div className="gallery-footer-contact">Contact {studioName}</div>
+          <div className="gallery-footer-email">
+            <HiOutlineMail style={{ marginTop: '-1px' }} /> {studioEmail}
+          </div>
         </div>
       </div>
     </>

@@ -7,14 +7,12 @@ import { deletePackage, toastError, toastWarning } from '../redux/actions';
 import Header from '../components/Header';
 import HeaderUser from '../components/HeaderUser';
 import SimplePopover from '../components/Popover/SimplePopover';
-import Lightbox from 'react-awesome-lightbox';
 
 function Packages() {
   const [dataPackages, setDataPacakges] = useState([]);
   const [dataBackup, setDataBackup] = useState([]);
   const [search, setSearch] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [preview, setPreview] = useState();
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -64,20 +62,11 @@ function Packages() {
     }, 3000);
   };
 
-  const onImageClick = (image) => {
-    setPreview(image);
-  };
-
   const packageItems = () => {
     return dataPackages.map((val, index) => {
       return (
         <div className="data-item-list" key={index}>
-          <img
-            src={val.image}
-            alt="packagesNull"
-            onClick={() => onImageClick(val.image)}
-            className="cursor-pointer"
-          />
+          <img src={val.image} alt="packagesNull" />
           <div className="data-item-content">
             <div className="content-text">{val.name}</div>
             <div className="content-edit">
@@ -109,11 +98,6 @@ function Packages() {
 
   return (
     <>
-      <Lightbox
-        image={preview}
-        alt="packagesNull"
-        onClose={() => setPreview(null)}
-      />
       <Header />
       <div className="packages-wrapper">
         <HeaderUser

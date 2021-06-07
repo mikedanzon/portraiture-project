@@ -147,7 +147,7 @@ function CollectionsTheme() {
               </span>
             </div>
           </div>
-          {theme ? (
+          {/* {theme ? (
             <div className="cedit-theme-preview">
               <div className="theme-preview">
                 <span className="theme-pointer" onClick={previewTheme}>
@@ -160,7 +160,7 @@ function CollectionsTheme() {
                 </span>
               </div>
             </div>
-          ) : null}
+          ) : null} */}
           <div className="cedit-theme-button">
             <Button variant="none" onClick={onSaveTheme} disabled={!theme}>
               Save

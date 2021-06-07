@@ -158,7 +158,7 @@ function PackagesEdit() {
   if (isLoading) {
     return (
       <>
-        <HeaderProps title="Edit Profile" link="/dashboard" />
+        <HeaderProps title="Edit Package" link="/packages" />
         <div className="loader"></div>
       </>
     );
