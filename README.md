@@ -30,7 +30,7 @@ Scrum Master: Michael Max / @mikedanzon
 
 Front End Team:
 - Michael Max ( Stack Lead )
-- Dean
+- Dean Novri
 
 Back End Team:
 - Kamal Isham ( Stack Lead )
