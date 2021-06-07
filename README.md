@@ -8,13 +8,13 @@ This is a website for photographer to store they image collections, or to make a
 
 ## Website showcase
 
-### Short version for all user without login
+### [VIDEO] Short version for all user without login
 https://youtu.be/O2NnVYhbbNU
 
-### Full Video of Portraiture
+### [VIDEO] Full Video of Portraiture
 https://youtu.be/JN79QRGcfSI
 
-### Visit the website!
+### [WEBSITE] Visit the website!
 https://portraiture-3ba48.web.app/
 
 ## Help
