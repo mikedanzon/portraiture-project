@@ -8,11 +8,17 @@ This is a website for photographer to store they image collections, or to make a
 
 ## Website showcase
 
-### [VIDEO] Short version for all user without login
+### [VIDEO] Short video version from Front End Team
 https://youtu.be/O2NnVYhbbNU
 
-### [VIDEO] Full Video of Portraiture
+### [VIDEO] Full video from Front End Team
 https://youtu.be/JN79QRGcfSI
+
+### [DOCUMENTATION] Postman from Back End Team
+https://documenter.getpostman.com/view/15024378/TzRSgn9m
+
+### [VIDEO] Full video from React Native Team
+https://drive.google.com/file/d/1R-VzJPoXLpLydlf86T_MtN_E9R-LFSoQ/view?usp=sharing
 
 ### [WEBSITE] Visit the website!
 https://portraiture-3ba48.web.app/
@@ -26,10 +32,8 @@ contact me for any bugs you found
 
 ## Authors
 
-Scrum Master: Michael Max / @mikedanzon
-
 Front End Team:
-- Michael Max ( Stack Lead )
+- Michael Max ( Scrum Master & Stack Lead )
 - Dean Novri
 
 Back End Team:
